@@ -523,6 +523,37 @@ def get_ncbitaxon_with_traits(conn, output_dir):
 
     return ncbitaxon_traits_ids, ncbitaxon_traits_dict
 
+def get_ncbitaxon_with_uniprot(conn, output_dir):
+
+    ncbitaxon_uniprot_file = output_dir + "/unique_ncbitaxon_uniprot_ids.txt"
+
+    if not os.path.exists(ncbitaxon_uniprot_file):
+        query = (
+            f"""
+            SELECT DISTINCT split_part(object, ':', 2) AS ncbi_taxon
+            FROM edges
+            WHERE split_part(subject, ':', 1) = 'UniprotKB'
+            AND split_part(object, ':', 1) = 'NCBITaxon'
+            AND predicate = 'biolink:derives_from';
+            """
+        )
+
+        unique_ncbitaxon = conn.execute(query).fetchall()
+
+        # Convert the results to a list
+        unique_ncbitaxon_list = [row[0] for row in unique_ncbitaxon]
+
+        with open(output_dir + "/" + ncbitaxon_uniprot_file, "w") as f:
+            for taxon in unique_ncbitaxon_list:
+                f.write(f"{taxon}\n")
+
+    else:
+        with open(unique_ncbitaxon_list, 'r') as f:
+            unique_ncbitaxon_list = [line.strip() for line in f]
+
+    return unique_ncbitaxon_list
+
+
 def get_ncbitaxon_with_functional_annotation(conn, output_dir):
 
     ncbitaxon_func_dict_file = output_dir + "/ncbitaxon_func_dict.json"

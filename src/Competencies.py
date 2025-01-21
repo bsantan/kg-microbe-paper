@@ -25,7 +25,7 @@ from statsmodels.stats.multitest import multipletests
 
 from equilibrator_api import ComponentContribution, Q_
 
-from ncbi_phylogeny_search import find_microbes_family, find_microbes_species, get_all_kg_taxa, get_all_ranks, get_ncbitaxon_with_functional_annotation, get_taxa_per_rank, load_graph
+from ncbi_phylogeny_search import find_microbes_family, find_microbes_species, get_all_kg_taxa, get_all_ranks, get_ncbitaxon_with_uniprot, get_taxa_per_rank, load_graph
 cc = ComponentContribution()
 
 def get_rhea_participants(metabolite):
@@ -208,7 +208,7 @@ def plot_competencies_venn_diagrams_with_proteomes(conn):
 
     # # Get total number of bugs with proteomes
     # total_proteomes = get_total_proteomes_from_graph()
-    ncbitaxon_func_ids, ncbitaxon_func_dict = get_ncbitaxon_with_functional_annotation(conn, "./Phylogeny_Search")
+    ncbitaxon_func_ids = get_ncbitaxon_with_uniprot(conn, "./Phylogeny_Search")
     print("Len Taxa with a functional annotation")
     print(len(ncbitaxon_func_ids))
     total_proteomes = ncbitaxon_func_ids
@@ -901,7 +901,7 @@ def genomic_ec_competency(metabolite, direction):
 
     print("Loading EC, RHEA relevant table.")
 
-    duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_competency_specific_ec.tsv", "edges", ["subject", "predicate", "object"])
+    duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_competency_only_ec.tsv", "edges", ["subject", "predicate", "object"])
     duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
     output_dir = "./Intermediate_Files_Competencies" + "/" + metabolite + "_" + direction
 
@@ -1441,14 +1441,17 @@ def organismal_genomic_competency(metabolite, direction):
 
     output_table_to_file(conn, "(SELECT subject_id FROM matching_strain_organismal_rhea)", output_dir + "/NCBI_organismal_genomic_rhea_go_comparison_strain.tsv")
 
-    #query = (
-    #            f"""
-    #                DROP TABLE edges;
-    #                """
-    #            )
+    # Get uniprot microbes
+    ncbitaxon_func_ids = get_ncbitaxon_with_uniprot(conn, "./Phylogeny_Search")
 
-    #print(query)
-    #conn.execute(query)
+    query = (
+                f"""
+                    DROP TABLE edges;
+                    """
+                )
+
+    print(query)
+    conn.execute(query)
 
     return conn
     #genomic_ec_competency(conn, metabolite, direction, output_dir)
@@ -1994,7 +1997,7 @@ def gold_standard_comparison_species(metabolite, direction):
         
         #conn = load_graph()
         
-        ncbitaxon_func_ids, ncbitaxon_func_dict = get_ncbitaxon_with_functional_annotation(conn, "./Phylogeny_Search")
+        ncbitaxon_func_ids = get_ncbitaxon_with_uniprot(conn, "./Phylogeny_Search")
         print("Len Taxa with a functional annotation")
         print(len(ncbitaxon_func_ids))
 

@@ -543,7 +543,7 @@ def get_ncbitaxon_with_uniprot(conn, output_dir):
         # Convert the results to a list
         unique_ncbitaxon_list = [row[0] for row in unique_ncbitaxon]
 
-        with open(output_dir + "/" + ncbitaxon_uniprot_file, "w") as f:
+        with open(ncbitaxon_uniprot_file, "w") as f:
             for taxon in unique_ncbitaxon_list:
                 f.write(f"{taxon}\n")
 

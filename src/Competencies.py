@@ -895,14 +895,13 @@ FROM final_taxa;
 
 def genomic_ec_competency(metabolite, direction):
 
-
     output_dir = "./Intermediate_Files_Competencies" + "/" + metabolite + "_" + direction
 
     conn = duckdb.connect(":memory:")
 
     print("Loading EC, RHEA relevant table.")
 
-    duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_competency_only_ec.tsv", "edges", ["subject", "predicate", "object"])
+    duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_competency_specific_ec.tsv", "edges", ["subject", "predicate", "object"])
     duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
     output_dir = "./Intermediate_Files_Competencies" + "/" + metabolite + "_" + direction
 
@@ -958,6 +957,8 @@ def genomic_ec_competency(metabolite, direction):
 
         new_ec_filename = EC_ANNOTATIONS_FILE_SUBSTRING + "all"
         all_dfs.to_csv(output_dir + "/" + new_ec_filename + ".tsv",sep='\t')
+
+    conn.close()
 
 def organismal_genomic_competency(metabolite, direction):
 
@@ -1440,15 +1441,16 @@ def organismal_genomic_competency(metabolite, direction):
 
     output_table_to_file(conn, "(SELECT subject_id FROM matching_strain_organismal_rhea)", output_dir + "/NCBI_organismal_genomic_rhea_go_comparison_strain.tsv")
 
-    query = (
-                f"""
-                    DROP TABLE edges;
-                    """
-                )
+    #query = (
+    #            f"""
+    #                DROP TABLE edges;
+    #                """
+    #            )
 
-    print(query)
-    conn.execute(query)
+    #print(query)
+    #conn.execute(query)
 
+    return conn
     #genomic_ec_competency(conn, metabolite, direction, output_dir)
 
 def process_congruency_competency_questions():
@@ -1731,6 +1733,8 @@ def equilibrator_reaction_direction(conn, metabolite,direction):
 
         df = pd.read_csv(directory + "/" + RHEA_CHEBI_ANNOTATIONS_FILE + ".tsv", sep = "\t")
         df = df.drop(columns=['ncbitaxon', "uniprotkb"]).drop_duplicates()
+        
+        print(len(df))
 
         for i in tqdm.tqdm(range(len(df))):
             rhea = df.iloc[i].loc["rhea"]
@@ -1806,6 +1810,16 @@ def equilibrator_reaction_direction(conn, metabolite,direction):
         with open(reaction_direction_dict_file, 'r') as json_file:
             reaction_direction_dict = json.load(json_file)
             reaction_direction_dict = defaultdict(list, reaction_direction_dict)
+
+    query = (
+                f"""
+                    DROP TABLE edges;
+                    """
+                )
+
+    conn.execute(query)
+
+    conn.close()
 
     return reaction_direction_dict
 
@@ -1948,9 +1962,10 @@ def gold_standard_comparison_species(metabolite, direction):
     
     conn = duckdb.connect(":memory:")
             
-    print("Loading og relevant table.")
+    print("Loading ncbitaxon relevant table.")
         
     duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv", "edges", ["subject", "predicate", "object"])
+    duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
 
     directory = "./Intermediate_Files_Competencies/" + metabolite + "_" + direction
 

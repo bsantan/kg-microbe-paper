@@ -21,8 +21,8 @@ def main():
             # duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv", "edges", ["subject", "predicate", "object"])
             # duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
             #output_dir = "./Intermediate_Files_Competencies" + "/" + metabolite + "_" + direction
+            reaction_direction_dict = equilibrator_reaction_direction(c, metabolite,direction)
             genomic_ec_competency(metabolite, direction)
-            reaction_direction_dict = equilibrator_reaction_direction(conn, metabolite,direction)
             metabolite_df = create_metabolite_competency_df(metabolite, direction, reaction_direction_dict)
             all_metabolite_dfs.append(metabolite_df)
             conn = gold_standard_comparison_species(metabolite, direction)

@@ -1814,14 +1814,6 @@ def equilibrator_reaction_direction(conn, metabolite,direction):
             reaction_direction_dict = json.load(json_file)
             reaction_direction_dict = defaultdict(list, reaction_direction_dict)
 
-    query = (
-                f"""
-                    DROP TABLE edges;
-                    """
-                )
-
-    conn.execute(query)
-
     conn.close()
 
     return reaction_direction_dict

@@ -901,7 +901,7 @@ def genomic_ec_competency(metabolite, direction):
 
     print("Loading EC, RHEA relevant table.")
 
-    duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_competency_only_ec.tsv", "edges", ["subject", "predicate", "object"])
+    duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_competency_specific_ec.tsv", "edges", ["subject", "predicate", "object"])
     duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
     output_dir = "./Intermediate_Files_Competencies" + "/" + metabolite + "_" + direction
 

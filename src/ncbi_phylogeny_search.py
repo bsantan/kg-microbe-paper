@@ -541,7 +541,7 @@ def get_ncbitaxon_with_uniprot(conn, output_dir):
         unique_ncbitaxon = conn.execute(query).fetchall()
 
         # Convert the results to a list
-        unique_ncbitaxon_list = [row[0] for row in unique_ncbitaxon]
+        unique_ncbitaxon_list = ["NCBITaxon:" + row[0] for row in unique_ncbitaxon]
 
         with open(ncbitaxon_uniprot_file, "w") as f:
             for taxon in unique_ncbitaxon_list:

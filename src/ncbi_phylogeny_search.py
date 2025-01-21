@@ -548,7 +548,7 @@ def get_ncbitaxon_with_uniprot(conn, output_dir):
                 f.write(f"{taxon}\n")
 
     else:
-        with open(unique_ncbitaxon_list, 'r') as f:
+        with open(ncbitaxon_uniprot_file, 'r') as f:
             unique_ncbitaxon_list = [line.strip() for line in f]
 
     return unique_ncbitaxon_list

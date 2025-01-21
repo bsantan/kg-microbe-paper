@@ -1444,15 +1444,6 @@ def organismal_genomic_competency(metabolite, direction):
     # Get uniprot microbes
     ncbitaxon_func_ids = get_ncbitaxon_with_uniprot(conn, "./Phylogeny_Search")
 
-    query = (
-                f"""
-                    DROP TABLE edges;
-                    """
-                )
-
-    print(query)
-    conn.execute(query)
-
     return conn
     #genomic_ec_competency(conn, metabolite, direction, output_dir)
 

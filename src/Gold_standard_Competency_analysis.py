@@ -16,7 +16,7 @@ import tqdm
 from duckdb_utils import duckdb_load_table, get_node_label
 from Competencies import convert_to_species
 from constants import GUT_PHYLA_LIST
-from ncbi_phylogeny_search import find_microbes_family, find_microbes_phylum, find_microbes_strain, get_all_ranks, get_ncbitaxon_with_functional_annotation
+from ncbi_phylogeny_search import find_microbes_family, find_microbes_phylum, find_microbes_strain, get_all_ranks, get_ncbitaxon_with_uniprot
 
 import plotly.express as px
 import plotly.io as pio
@@ -77,10 +77,6 @@ def create_families_piechart(conn, df, filename, all_microbes_families_species, 
     print(filename)
     # Remove families with no children
     all_microbes_families_species = {key: value for key, value in all_microbes_families_species.items() if len(value) > 0}
-
-    # Only include families in gut phyla
-    df['Phylum_Label'] = df['Phylum'].apply(lambda family: get_node_label(conn, family))
-    df = df.loc[df["Phylum_Label"].isin(GUT_PHYLA_LIST)]
 
     family_value_dict = df.groupby(['Family'])['Value'].apply(list).to_dict()
     phylum_mapping = df[['Family', 'Phylum']].drop_duplicates().set_index('Family')['Phylum'].to_dict()
@@ -290,7 +286,7 @@ def main():
     microbes_strain_dict, microbes_species_dict = find_microbes_strain(conn, ncbi_taxa_ranks_df, families_list, "./Intermediate_Files", "competencies_all_microbes_families_butyrate_produces")
 
     # Only include bugs that have a proteome in the graph
-    ncbitaxon_func_ids, ncbitaxon_func_dict = get_ncbitaxon_with_functional_annotation(conn, "./Phylogeny_Search")
+    ncbitaxon_func_ids = get_ncbitaxon_with_uniprot(conn, "./Phylogeny_Search")
 
     # Combine species and strain dictionaries
     microbes_species_and_strain_dict = combine_microbes_dicts(microbes_species_dict, microbes_strain_dict, "./Intermediate_Files", "competencies_all_microbes_families_butyrate_produces_microbes_strains_and_species.json")
@@ -316,8 +312,12 @@ def main():
     for microbial_subset, constraint in microbial_subsets.items():
         subset_list = gs_analysis_microbes_df[constraint]["Value"].tolist()
         df = post_competency_analysis(conn, microbes_family_dict, microbes_phylum_dict, ncbi_taxa_ranks_df, subset_list, butyrate_production_output_dir, microbial_subset, all_microbes_df)
-        create_families_piechart(conn, df, microbial_subset, filtered_microbes_species_and_strain_dict, "species_and_strain", ncbitaxon_func_ids, butyrate_production_output_dir)
+        create_families_piechart(conn, df, microbial_subset, filtered_microbes_species_and_strain_dict, "species_and_strain_all", ncbitaxon_func_ids, butyrate_production_output_dir)
         create_treemap(conn, df, microbial_subset, butyrate_production_output_dir)
+
+        # Only include families in human gut phyla
+        df_human = df.loc[df["Location"] == "human"]
+        create_families_piechart(conn, df_human, microbial_subset, filtered_microbes_species_and_strain_dict, "species_and_strain_human", ncbitaxon_func_ids, butyrate_production_output_dir)
 
         subset_list_human = df.loc[df["Location"] == "human", "Value"].tolist()
         final_data[microbial_subset] = [len(subset_list), len(subset_list_human)]

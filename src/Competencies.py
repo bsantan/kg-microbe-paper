@@ -1967,6 +1967,8 @@ def gold_standard_comparison_species(metabolite, direction):
     gs_df = create_gs_file(metabolite, direction)
     if gs_df is not None:
         gold_standard_list = gs_df["Name_ID"].unique().tolist()
+        print("Len lit_comparison taxa")
+        print(len(gold_standard_list))
         # Organismal
         organismal_strains_list = pd.read_csv(directory + "/" + ORGANISMAL_TRAITS_STRAINS_ANNOTATIONS_FILE + ".tsv",delimiter="\t").drop_duplicates(subset=["updated_subject"])["updated_subject"].tolist()
         # Functional
@@ -2000,7 +2002,7 @@ def gold_standard_comparison_species(metabolite, direction):
         print("orig len organismal, functional, ec")
         print(len(organismal_strains_list), len(rhea_chebi_strains_list), len(ec_strains_list))
 
-        all_values = set(gold_standard_list + rhea_chebi_strains_list + ec_strains_list + organismal_strains_list)
+        # all_values = set(gold_standard_list + rhea_chebi_strains_list + ec_strains_list + organismal_strains_list)
 
         # Organismal-GS Overlap
         organismal_gs_overlap = list(set(organismal_strains_list) & set(gold_standard_list))
@@ -2011,6 +2013,8 @@ def gold_standard_comparison_species(metabolite, direction):
         kg_gs_overlap = (list(set(kg_species_list) & set(gold_standard_list)))
         ec_gs_overlap = list(set(ec_strains_list) & set(gold_standard_list))
 
+        print("unique len organismal, functional, ec")
+        print(len(organismal_strains_list), len(rhea_chebi_strains_list), len(ec_strains_list))
 
         all_values = set(gold_standard_list + rhea_chebi_strains_list + ec_strains_list + organismal_strains_list)
         sorted_all_values = sorted(all_values)

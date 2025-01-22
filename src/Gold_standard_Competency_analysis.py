@@ -268,7 +268,7 @@ def main():
     ncbi_taxa_ranks_df = get_all_ranks(phylogeny_output_dir)
 
     conn = duckdb.connect(":memory:")
-    duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv", "ncbitaxon_edges", ["subject", "predicate", "object"])
+    duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv", "edges", ["subject", "predicate", "object"])
     duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
 
     # First create list of colors that will be used in every treemap to align family boxes

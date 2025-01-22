@@ -58,3 +58,5 @@ COMPETENCY_DISEASE_MAP = {
 }
 
 GUT_PHYLA_LIST = ["Bacteroidota", "Bacillota", "Actinomycetota", "Pseudomonadota", "Fusobacteriota"]
+
+GUT_FAMILIES_LIST = ["Ruminococcaceae", "Lachnospiraceae", "Bacteroidaceae", "Prevotellaceae"]

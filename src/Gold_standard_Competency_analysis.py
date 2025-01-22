@@ -15,7 +15,7 @@ import tqdm
 
 from duckdb_utils import duckdb_load_table, get_node_label
 from Competencies import convert_to_species
-from constants import GUT_PHYLA_LIST
+from constants import GUT_FAMILIES_LIST, GUT_PHYLA_LIST
 from ncbi_phylogeny_search import find_microbes_family, find_microbes_phylum, find_microbes_rank, find_microbes_strain, get_all_ranks, get_ncbitaxon_with_uniprot
 
 import plotly.express as px
@@ -194,6 +194,7 @@ def post_competency_analysis(conn, microbes_family_dict, microbes_phylum_dict, m
         microbes_list_families = []
         microbes_list_phyla = []
         microbe_location = []
+        microbes_impt_families = []
 
         for m in tqdm.tqdm(microbes_list):
             rank = get_rank(m, all_microbes_df, ncbi_taxa_ranks_df)
@@ -205,10 +206,15 @@ def post_competency_analysis(conn, microbes_family_dict, microbes_phylum_dict, m
                 microbes_list_genera.append(gen)
             else:
                 microbes_list_genera.append("none")
+                microbes_impt_families.append("none")
             if fam:
+                fam_lab = get_node_label(conn, gen)
+                impt_fam = "impt_fam" if fam_lab in GUT_FAMILIES_LIST else "other"
                 microbes_list_families.append(fam)
+                microbes_impt_families.append(impt_fam)
             else:
                 microbes_list_families.append("none")
+                microbes_impt_families.append("none")
             if phy:
                 lab = get_node_label(conn, phy)
                 loc = "human" if lab in GUT_PHYLA_LIST else "other"
@@ -224,6 +230,7 @@ def post_competency_analysis(conn, microbes_family_dict, microbes_phylum_dict, m
         new_df["Family"] = microbes_list_families
         new_df["Phylum"] = microbes_list_phyla
         new_df["Location"] = microbe_location
+        new_df["Impt_Family"] = microbes_impt_families
 
         new_df = new_df.sort_values(by=["Phylum","Location"])
         new_df.to_csv(new_filename,sep='\t',index=False)
@@ -332,6 +339,10 @@ def main():
         # Only include families in human gut phyla
         df_human = df.loc[df["Location"] == "human"]
         create_families_piechart(conn, df_human, microbial_subset, filtered_microbes_species_and_strain_dict, "species_and_strain_human", ncbitaxon_func_ids, butyrate_production_output_dir, "genus")
+
+        # Only include impt families for butyrate production 
+        df_impt = df.loc[df["Impt_Family"] == "impt_fam"]
+        create_families_piechart(conn, df_impt, microbial_subset, filtered_microbes_species_and_strain_dict, "species_and_strain_impt_families", ncbitaxon_func_ids, butyrate_production_output_dir, "genus")
 
         subset_list_human = df.loc[df["Location"] == "human", "Value"].tolist()
         final_data[microbial_subset] = [len(subset_list), len(subset_list_human)]

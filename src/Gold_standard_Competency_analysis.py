@@ -326,7 +326,7 @@ def main():
     for microbial_subset, constraint in microbial_subsets.items():
         subset_list = gs_analysis_microbes_df[constraint]["Value"].tolist()
         df = post_competency_analysis(conn, microbes_family_dict, microbes_phylum_dict, microbes_genus_dict, ncbi_taxa_ranks_df, subset_list, butyrate_production_output_dir, microbial_subset, all_microbes_df)
-        create_families_piechart(conn, df, microbial_subset, filtered_microbes_species_and_strain_dict, "species_and_strain_all", ncbitaxon_func_ids, butyrate_production_output_dir)
+        create_families_piechart(conn, df, microbial_subset, filtered_microbes_species_and_strain_dict, "species_and_strain_all", ncbitaxon_func_ids, butyrate_production_output_dir, "genus")
         create_treemap(conn, df, microbial_subset, butyrate_production_output_dir)
 
         # Only include families in human gut phyla

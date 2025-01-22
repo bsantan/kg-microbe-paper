@@ -106,7 +106,7 @@ def search_subclass_phylogeny(conn, microbe):
         f"""
         CREATE TEMPORARY TABLE subclass_table AS
         SELECT *
-        FROM ncbitaxon_edges
+        FROM edges
         WHERE subject = '{microbe}' AND predicate = 'biolink:subclass_of' AND object LIKE '%NCBITaxon:%';
         SELECT * FROM subclass_table;
         """

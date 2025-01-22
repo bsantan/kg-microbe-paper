@@ -2012,23 +2012,28 @@ def gold_standard_comparison_species(metabolite, direction):
 
         # Get protein name
         rhea_chebi_df = pd.read_csv(directory + "/" + RHEA_CHEBI_ANNOTATIONS_FILE + ".tsv", delimiter="\t")
-        rhea_chebi_protein_dict = rhea_chebi_df.groupby('ncbitaxon')['uniprotkb'].apply(lambda x: [get_node_label(conn, v) for v in x]).to_dict()
 
-        print(len(organismal_gs_overlap))
-        print(len(organismal_strains_list))
-        # Create a DataFrame with columns indicating membership
-        df = pd.DataFrame({
-            "Value": sorted_all_values,
-            "Proteome": [1 if val in ncbitaxon_func_ids else 0 for val in sorted_all_values],
-            "Gold_Standard": [1 if val in gold_standard_list else 0 for val in sorted_all_values],
-            "Organismal": [1 if val in organismal_strains_list else 0 for val in sorted_all_values],
-            "Functional": [1 if val in rhea_chebi_strains_list else 0 for val in sorted_all_values],
-            "Functional_EC": [1 if val in ec_strains_list else 0 for val in sorted_all_values],
-            "Functional_Protein_Name": ["|".join(rhea_chebi_protein_dict[val]) if val in rhea_chebi_strains_list else 0 for val in sorted_all_values],
-            "Functional_EC_Pathway" :  ["|".join(ec_dict[val]) if val in ec_strains_list else 0 for val in sorted_all_values],
-        })
+        gold_standard_overlap_file = directory + "/Gold_Standard_Species_Overlap_" + metabolite + "_" + direction + ".csv"
+        if not os.path.exists(gold_standard_overlap_file):
+            rhea_chebi_protein_dict = rhea_chebi_df.groupby('ncbitaxon')['uniprotkb'].apply(lambda x: [get_node_label(conn, v) for v in x]).to_dict()
 
-        df.to_csv(directory + "/Gold_Standard_Species_Overlap_" + metabolite + "_" + direction + ".csv",index=False)
+            print(len(organismal_gs_overlap))
+            print(len(organismal_strains_list))
+            # Create a DataFrame with columns indicating membership
+            df = pd.DataFrame({
+                "Value": sorted_all_values,
+                "Proteome": [1 if val in ncbitaxon_func_ids else 0 for val in sorted_all_values],
+                "Gold_Standard": [1 if val in gold_standard_list else 0 for val in sorted_all_values],
+                "Organismal": [1 if val in organismal_strains_list else 0 for val in sorted_all_values],
+                "Functional": [1 if val in rhea_chebi_strains_list else 0 for val in sorted_all_values],
+                "Functional_EC": [1 if val in ec_strains_list else 0 for val in sorted_all_values],
+                "Functional_Protein_Name": ["|".join(rhea_chebi_protein_dict[val]) if val in rhea_chebi_strains_list else 0 for val in sorted_all_values],
+                "Functional_EC_Pathway" :  ["|".join(ec_dict[val]) if val in ec_strains_list else 0 for val in sorted_all_values],
+            })
+
+            df.to_csv(directory + "/Gold_Standard_Species_Overlap_" + metabolite + "_" + direction + ".csv",index=False)
+        else:
+            df = pd.read_csv(gold_standard_overlap_file,sep = ',')
 
         venn_pairs = [("Organismal Trait", len(organismal_strains_list), len(gold_standard_list), len(organismal_gs_overlap)),("RHEA Trait", len(rhea_chebi_strains_list), len(gold_standard_list), len(functional_gs_overlap)),("Proteomes vs. RHEA Traits", len(proteome_gs_overlap), len(gold_standard_list), len(functional_gs_overlap))]
 

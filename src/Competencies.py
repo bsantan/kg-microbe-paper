@@ -2064,6 +2064,8 @@ def gold_standard_comparison_species(metabolite, direction):
         # venn_title = "Gold Standard Comparison Across Sources For Families, " + metabolite.capitalize() + ", " + direction.capitalize()
         # create_gold_standard_venn_diagram(directory, venn_pairs, venn_title, "Gold_Standard_KGSpecies_Venn_Diagram.png")
 
+    return conn
+
 def convert_to_species(conn, taxa_list, taxa_list_type):
 
     # Create a DuckDB connection

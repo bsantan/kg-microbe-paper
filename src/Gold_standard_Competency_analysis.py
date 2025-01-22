@@ -79,8 +79,8 @@ def create_families_piechart(conn, df, filename, all_microbes_families_species, 
     # Remove families with no children
     all_microbes_families_species = {key: value for key, value in all_microbes_families_species.items() if len(value) > 0}
 
-    ranked_value_dict = df.groupby([grouped_rank])['Value'].apply(list).to_dict()
-    phylum_mapping = df[[grouped_rank, 'Phylum']].drop_duplicates().set_index(grouped_rank)['Phylum'].to_dict()
+    ranked_value_dict = df.groupby([grouped_rank.capitalize()])['Value'].apply(list).to_dict()
+    phylum_mapping = df[[grouped_rank.capitalize(), 'Phylum']].drop_duplicates().set_index(grouped_rank.capitalize())['Phylum'].to_dict()
     # Now, sort ranked_value_dict by phylum
     ranked_value_dict = {k: ranked_value_dict[k] for k in sorted(ranked_value_dict, key=lambda x: phylum_mapping.get(x, ''))}
 
@@ -331,7 +331,7 @@ def main():
 
         # Only include families in human gut phyla
         df_human = df.loc[df["Location"] == "human"]
-        create_families_piechart(conn, df_human, microbial_subset, filtered_microbes_species_and_strain_dict, "species_and_strain_human", ncbitaxon_func_ids, butyrate_production_output_dir)
+        create_families_piechart(conn, df_human, microbial_subset, filtered_microbes_species_and_strain_dict, "species_and_strain_human", ncbitaxon_func_ids, butyrate_production_output_dir, "genus")
 
         subset_list_human = df.loc[df["Location"] == "human", "Value"].tolist()
         final_data[microbial_subset] = [len(subset_list), len(subset_list_human)]

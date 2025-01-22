@@ -100,7 +100,7 @@ def search_lower_subclass_phylogeny(conn, microbe):
 
     return child_taxa
 
-def search_subclass_phylogeny(conn, microbe):
+def search_subclass_phylogeny_parent(conn, microbe):
 
     query = (
         f"""
@@ -302,6 +302,23 @@ def get_microbe_species(conn, microbe, species, microbes_species):
 
     return microbes_species
 
+def get_microbe_parent_rank(conn, microbe, all_of_rank, microbes_rank):
+
+    microbe_list = [microbe]
+    rank_found = False
+    while not rank_found:
+        parent_taxa = search_subclass_phylogeny_parent(conn, microbe)
+
+        if parent_taxa in all_of_rank or parent_taxa == 'not found':
+            rank_found = True
+            microbes_rank[parent_taxa].extend(microbe_list)
+        # Keep track of each bug in the phylogeny
+        else:
+            microbe_list.append(parent_taxa)
+            microbe = parent_taxa
+
+    return microbes_rank
+
 def get_microbe_family(conn, microbe, family, microbes_family):
 
     microbe_list = [microbe]
@@ -425,6 +442,28 @@ def find_microbes_species(conn, ncbi_taxa_ranks_df, all_taxa, output_dir, featur
             microbes_traits_species = defaultdict(list, data)
 
     return microbes_traits_species
+
+def find_microbes_rank(conn, ncbi_taxa_ranks_df, all_taxa, output_dir, feature_type, rank):
+    '''Takes in list of all relevant taxa or just 1 microbe'''
+    microbes_traits_rank_file = './' + output_dir + '/' + feature_type + '_microbes_' + rank + '.json'
+
+    print("Getting rank for all taxa: " + feature_type + ", " + rank)
+    if not os.path.exists(microbes_traits_rank_file):
+        # Get only family
+        # rank = get_taxa_per_rank(all_taxa, "genus", ncbi_taxa_ranks_df)
+        all_of_rank = list(set(ncbi_taxa_ranks_df.loc[ncbi_taxa_ranks_df["Rank"] == rank, "NCBITaxon_ID"].tolist()))
+        microbes_traits_rank = defaultdict(list)
+        for microbe in tqdm.tqdm(all_taxa): #["NCBITaxon:853"]:#tqdm.tqdm(relevant_ncbitaxa):
+            microbes_traits_rank = get_microbe_parent_rank(conn, microbe, all_of_rank, microbes_traits_rank)
+        with open(microbes_traits_rank_file, 'w') as json_file:
+            json.dump(microbes_traits_rank, json_file, indent=4)
+    else:
+        with open(microbes_traits_rank_file, 'r') as json_file:
+            data = json.load(json_file)
+            microbes_traits_rank = defaultdict(list, data)
+
+    return microbes_traits_rank
+
 
 def find_microbes_family(conn, ncbi_taxa_ranks_df, all_taxa, output_dir, feature_type):
     '''Takes in list of all relevant taxa or just 1 microbe'''

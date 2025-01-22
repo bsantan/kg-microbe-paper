@@ -16,7 +16,7 @@ import tqdm
 from duckdb_utils import duckdb_load_table, get_node_label
 from Competencies import convert_to_species
 from constants import GUT_PHYLA_LIST
-from ncbi_phylogeny_search import find_microbes_family, find_microbes_phylum, find_microbes_strain, get_all_ranks, get_ncbitaxon_with_uniprot
+from ncbi_phylogeny_search import find_microbes_family, find_microbes_phylum, find_microbes_rank, find_microbes_strain, get_all_ranks, get_ncbitaxon_with_uniprot
 
 import plotly.express as px
 import plotly.io as pio
@@ -72,39 +72,40 @@ def combine_microbes_dicts(dict1, dict2, output_dir, new_filename):
 
     return combined_dict
 
-def create_families_piechart(conn, df, filename, all_microbes_families_species, child_rank, ncbitaxon_func_ids, output_dir):
+def create_families_piechart(conn, df, filename, all_microbes_families_species, child_rank, ncbitaxon_func_ids, output_dir, grouped_rank):
 
+    #! update to work with the genus columm here: Ruminococcaceae, Lachnospiraceae, Bacteroidaceae, Prevotellaceae
     print(filename)
     # Remove families with no children
     all_microbes_families_species = {key: value for key, value in all_microbes_families_species.items() if len(value) > 0}
 
-    family_value_dict = df.groupby(['Family'])['Value'].apply(list).to_dict()
-    phylum_mapping = df[['Family', 'Phylum']].drop_duplicates().set_index('Family')['Phylum'].to_dict()
-    # Now, sort family_value_dict by phylum
-    family_value_dict = {k: family_value_dict[k] for k in sorted(family_value_dict, key=lambda x: phylum_mapping.get(x, ''))}
+    ranked_value_dict = df.groupby([grouped_rank])['Value'].apply(list).to_dict()
+    phylum_mapping = df[[grouped_rank, 'Phylum']].drop_duplicates().set_index(grouped_rank)['Phylum'].to_dict()
+    # Now, sort ranked_value_dict by phylum
+    ranked_value_dict = {k: ranked_value_dict[k] for k in sorted(ranked_value_dict, key=lambda x: phylum_mapping.get(x, ''))}
 
     not_found_children = 0
     print("len families dict with non proteomes")
-    print(len(family_value_dict.items()))
-    family_value_dict = {key: value for key, value in family_value_dict.items() if key in all_microbes_families_species.keys()}
+    print(len(ranked_value_dict.items()))
+    ranked_value_dict = {key: value for key, value in ranked_value_dict.items() if key in all_microbes_families_species.keys()}
     print("len families dict with only proteomes")
-    print(len(family_value_dict.items()))
+    print(len(ranked_value_dict.items()))
 
-    if len(family_value_dict.items()) > 0:
-        lengths = {key: len(value) for key, value in family_value_dict.items()}
+    if len(ranked_value_dict.items()) > 0:
+        lengths = {key: len(value) for key, value in ranked_value_dict.items()}
         threshold = sorted(lengths.values(), reverse=True)[int(len(lengths) * 0.1)]
-        top_10_percent_family_value_dict = {key: value for key, value in family_value_dict.items() if len(value) >= threshold}
+        top_10_percent_ranked_value_dict = {key: value for key, value in ranked_value_dict.items() if len(value) >= threshold}
 
-        fam_labels = []
-        fam_ids = []
+        ranked_microbe_labels = []
+        ranked_microbe_ids = []
         phyla_labels = []
         fractions_produces_but = []
         total_fam_sizes = []
         traits_data = []
 
         # Determine grid dimensions (roughly square)
-        num_cols = math.ceil(math.sqrt(len(top_10_percent_family_value_dict.keys())))
-        num_rows = math.ceil(len(top_10_percent_family_value_dict.keys()) / num_cols)
+        num_cols = math.ceil(math.sqrt(len(top_10_percent_ranked_value_dict.keys())))
+        num_rows = math.ceil(len(top_10_percent_ranked_value_dict.keys()) / num_cols)
         fig, ax = plt.subplots(num_rows, num_cols, figsize=(16, 12))
         # Ensure ax is always an array
         # Flatten the axes array for easy indexing, will be array only if num_cols is >1
@@ -113,39 +114,39 @@ def create_families_piechart(conn, df, filename, all_microbes_families_species, 
         else:
             ax = [ax]
 
-        for i, (family, values) in enumerate(top_10_percent_family_value_dict.items()):
+        for i, (ranked_microbe, values) in enumerate(top_10_percent_ranked_value_dict.items()):
             # Subset by only values in proteomes
             values = [j for j in values if j in ncbitaxon_func_ids]
-            fam_label = get_node_label(conn, family)
-            phyla_labels.append(phylum_mapping[family])
-            if family == "not found": 
+            ranked_microbe_label = get_node_label(conn, ranked_microbe)
+            phyla_labels.append(phylum_mapping[ranked_microbe])
+            if ranked_microbe == "not found": 
                 not_found_children += 1
             else:
                 # Remove values that did not have rank
-                all_children = all_microbes_families_species[family]
+                all_children = all_microbes_families_species[ranked_microbe]
                 values = [j for j in values if j in all_children]
-                total_children = len(all_microbes_families_species[family])
+                total_children = len(all_microbes_families_species[ranked_microbe])
                 with_trait = len(values)
                 without_trait = total_children - with_trait
-                fam_labels.append(fam_label)
-                fam_ids.append(family)
+                ranked_microbe_labels.append(ranked_microbe_label)
+                ranked_microbe_ids.append(ranked_microbe)
                 fractions_produces_but.append(with_trait / total_children)
                 total_fam_sizes.append(total_children)
                 traits_data.append([with_trait, without_trait])
 
         colors = ["#56B4E9","#9C27B0"]
-        for m in range(len(fam_labels)):
+        for m in range(len(ranked_microbe_labels)):
             # For original taxa
             wedges, texts = ax[m].pie(traits_data[m], labels=None, autopct=None, startangle=90, wedgeprops={'edgecolor': 'black'}, colors = colors) #autopct='%1.0f%%'
             ax[m].axis('equal')
-            ax[m].set_title(fam_labels[m] + ": " + str(total_fam_sizes[m]) + " total", fontsize=12)
+            ax[m].set_title(ranked_microbe_labels[m] + ": " + str(total_fam_sizes[m]) + " total", fontsize=12)
         # Hide unused subplots
         traits_labels = ["Butyrate Producer", "Non Butyrate Producer"]
         for j in range(i + 1, len(ax)):
             fig.delaxes(ax[j])
         fig.legend(wedges, traits_labels, title="Microbial Trait", loc="upper left", fontsize=12, bbox_to_anchor=(0.6, 0.2))
         plt.tight_layout(rect=[0, 0, 0.95, 1])
-        fig.savefig(output_dir + '/' + filename + '_Family_Traits_Comparison_' + child_rank + '.png')
+        fig.savefig(output_dir + '/' + filename + '_' + grouped_rank.capitalize() + '_Traits_Comparison_' + child_rank + '.png')
         plt.close()
    
         # Calculate total number of 1s and total observations
@@ -158,19 +159,19 @@ def create_families_piechart(conn, df, filename, all_microbes_families_species, 
         families_results_stats_df["Total_Butyrate_Producers"] = [total_but_producers]
         families_results_stats_df["Total_Children"] = [total_observations]
         families_results_stats_df["Binomial_p_value"] = [p_value]
-        families_results_stats_df.to_csv(output_dir + '/' + filename + '_Family_Traits_Comparison_Statistics_' + child_rank + '.tsv')
+        families_results_stats_df.to_csv(output_dir + '/' + filename + '_' + grouped_rank.capitalize() + '_Traits_Comparison_Statistics_' + child_rank + '.tsv')
 
         print(f"Total Butyrate Producers: {total_but_producers}, Total Children: {total_observations}")
         print(f"P-value: {p_value}")
 
         # Output to tsv
         families_results_df = pd.DataFrame()
-        families_results_df["Family"] = fam_labels
-        families_results_df["Family_ID"] = fam_ids
+        families_results_df[grouped_rank.capitalize()] = ranked_microbe_labels
+        families_results_df[grouped_rank.capitalize() + "_ID"] = ranked_microbe_ids
         families_results_df["Phylum"] = phyla_labels
         families_results_df["fractions_produces_but"] = fractions_produces_but
         families_results_df["total_fam_sizes"] = total_fam_sizes
-        families_results_df.to_csv(output_dir + '/' + filename + '_Family_Traits_Comparison_' + child_rank + '.tsv')
+        families_results_df.to_csv(output_dir + '/' + filename + '_' + grouped_rank.capitalize() + '_Traits_Comparison_' + child_rank + '.tsv')
 
 def get_rank(microbe, all_microbes_df, ncbi_taxa_ranks_df):
 
@@ -181,7 +182,7 @@ def get_rank(microbe, all_microbes_df, ncbi_taxa_ranks_df):
     
     return rank
 
-def post_competency_analysis(conn, microbes_family_dict, microbes_phylum_dict, ncbi_taxa_ranks_df, microbes_list, butyrate_production_output_dir, filename, all_microbes_df):
+def post_competency_analysis(conn, microbes_family_dict, microbes_phylum_dict, microbes_genus_dict, ncbi_taxa_ranks_df, microbes_list, butyrate_production_output_dir, filename, all_microbes_df):
 
     new_filename = butyrate_production_output_dir + "/" + filename + "_butyrate_produces_families.tsv"
 
@@ -189,6 +190,7 @@ def post_competency_analysis(conn, microbes_family_dict, microbes_phylum_dict, n
 
         new_df = pd.DataFrame()
         rank_list = []
+        microbes_list_genera = []
         microbes_list_families = []
         microbes_list_phyla = []
         microbe_location = []
@@ -196,8 +198,13 @@ def post_competency_analysis(conn, microbes_family_dict, microbes_phylum_dict, n
         for m in tqdm.tqdm(microbes_list):
             rank = get_rank(m, all_microbes_df, ncbi_taxa_ranks_df)
             rank_list.append(rank)
+            gen = next((k for k, v in microbes_genus_dict.items() if m in v), None)
             fam = next((k for k, v in microbes_family_dict.items() if m in v), None)
             phy = next((k for k, v in microbes_phylum_dict.items() if m in v), None)
+            if gen:
+                microbes_list_genera.append(gen)
+            else:
+                microbes_list_genera.append("none")
             if fam:
                 microbes_list_families.append(fam)
             else:
@@ -213,6 +220,7 @@ def post_competency_analysis(conn, microbes_family_dict, microbes_phylum_dict, n
 
         new_df["Value"] = microbes_list
         new_df["Rank"] = rank_list
+        new_df["Genus"] = microbes_list_genera
         new_df["Family"] = microbes_list_families
         new_df["Phylum"] = microbes_list_phyla
         new_df["Location"] = microbe_location
@@ -273,14 +281,20 @@ def main():
 
     # First create list of colors that will be used in every treemap to align family boxes
     all_microbes_list = gs_analysis_microbes_df["Value"].unique().tolist()
+    # Get genus of each bug
+    microbes_genus_dict = find_microbes_rank(conn, ncbi_taxa_ranks_df, all_microbes_list, phylogeny_output_dir, "/Gold_Standard_Species_Overlap_all_butyrate_produces", "genus")
     # Get family of each bug
-    microbes_family_dict = find_microbes_family(conn, ncbi_taxa_ranks_df, all_microbes_list, phylogeny_output_dir, "/Gold_Standard_Species_Overlap_all_butyrate_produces")
+    microbes_family_dict = find_microbes_rank(conn, ncbi_taxa_ranks_df, all_microbes_list, phylogeny_output_dir, "/Gold_Standard_Species_Overlap_all_butyrate_produces", "family")
     # Get phylum of each bug
-    microbes_phylum_dict = find_microbes_phylum(conn, ncbi_taxa_ranks_df, all_microbes_list, phylogeny_output_dir, "/Gold_Standard_Species_Overlap_all_butyrate_produces")
+    microbes_phylum_dict = find_microbes_rank(conn, ncbi_taxa_ranks_df, all_microbes_list, phylogeny_output_dir, "/Gold_Standard_Species_Overlap_all_butyrate_produces", "phylum")
 
-    all_microbes_df = post_competency_analysis(conn, microbes_family_dict, microbes_phylum_dict, ncbi_taxa_ranks_df, all_microbes_list, butyrate_production_output_dir, "all_microbes", pd.DataFrame())
+    all_microbes_df = post_competency_analysis(conn, microbes_family_dict, microbes_phylum_dict, microbes_genus_dict, ncbi_taxa_ranks_df, all_microbes_list, butyrate_production_output_dir, "all_microbes", pd.DataFrame(columns = ["Value"]))
     families_list = all_microbes_df['Family'].unique().tolist()
     families_list = sorted(families_list)
+
+    #! figure out genus here
+    genera_list = all_microbes_df['Genus'].unique().tolist()
+    genera_list = sorted(genera_list)
 
     # Get all species & strains from each family found
     microbes_strain_dict, microbes_species_dict = find_microbes_strain(conn, ncbi_taxa_ranks_df, families_list, "./Intermediate_Files", "competencies_all_microbes_families_butyrate_produces")
@@ -311,7 +325,7 @@ def main():
 
     for microbial_subset, constraint in microbial_subsets.items():
         subset_list = gs_analysis_microbes_df[constraint]["Value"].tolist()
-        df = post_competency_analysis(conn, microbes_family_dict, microbes_phylum_dict, ncbi_taxa_ranks_df, subset_list, butyrate_production_output_dir, microbial_subset, all_microbes_df)
+        df = post_competency_analysis(conn, microbes_family_dict, microbes_phylum_dict, microbes_genus_dict, ncbi_taxa_ranks_df, subset_list, butyrate_production_output_dir, microbial_subset, all_microbes_df)
         create_families_piechart(conn, df, microbial_subset, filtered_microbes_species_and_strain_dict, "species_and_strain_all", ncbitaxon_func_ids, butyrate_production_output_dir)
         create_treemap(conn, df, microbial_subset, butyrate_production_output_dir)
 

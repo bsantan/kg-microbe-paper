@@ -1968,107 +1968,114 @@ def gold_standard_comparison_species(metabolite, direction):
         gold_standard_list = gs_df["Name_ID"].unique().tolist()
         print("Len lit_comparison taxa")
         print(len(gold_standard_list))
-        # Organismal
-        organismal_strains_list = pd.read_csv(directory + "/" + ORGANISMAL_TRAITS_STRAINS_ANNOTATIONS_FILE + ".tsv",delimiter="\t").drop_duplicates(subset=["updated_subject"])["updated_subject"].tolist()
-        # Functional
-        rhea_chebi_strains_list = pd.read_csv(directory + "/" + RHEA_CHEBI_ANNOTATIONS_FILE + ".tsv", delimiter="\t").drop_duplicates(subset=["ncbitaxon"])["ncbitaxon"].tolist()
-        # Organismal-GS Overlap
-        #organismal_gs_overlap = list(set(organismal_strains_list) & set(gold_standard_list))
-        #gs_no_organismal_overlap = list(set(gold_standard_list) - set(organismal_gs_overlap))
-        # Functional-GS Overlap
-        #functional_gs_overlap = list(set(rhea_chebi_strains_list) & set(gold_standard_list))
-        #kg_species_list = list(set(organismal_strains_list + rhea_chebi_strains_list))
-        #kg_gs_overlap = (list(set(kg_species_list) & set(gold_standard_list)))
+    else:
+        gs_df = pd.DataFrame()
+    # Organismal
+    organismal_strains_list = pd.read_csv(directory + "/" + ORGANISMAL_TRAITS_STRAINS_ANNOTATIONS_FILE + ".tsv",delimiter="\t").drop_duplicates(subset=["updated_subject"])["updated_subject"].tolist()
+    # Functional
+    rhea_chebi_strains_list = pd.read_csv(directory + "/" + RHEA_CHEBI_ANNOTATIONS_FILE + ".tsv", delimiter="\t").drop_duplicates(subset=["ncbitaxon"])["ncbitaxon"].tolist()
+    # Organismal-GS Overlap
+    #organismal_gs_overlap = list(set(organismal_strains_list) & set(gold_standard_list))
+    #gs_no_organismal_overlap = list(set(gold_standard_list) - set(organismal_gs_overlap))
+    # Functional-GS Overlap
+    #functional_gs_overlap = list(set(rhea_chebi_strains_list) & set(gold_standard_list))
+    #kg_species_list = list(set(organismal_strains_list + rhea_chebi_strains_list))
+    #kg_gs_overlap = (list(set(kg_species_list) & set(gold_standard_list)))
 
-        
-        # EC-GS Overlap
+    
+    # EC-GS Overlap
+    if os.exists(directory + "/" + EC_ANNOTATIONS_FILE_SUBSTRING + "all.tsv"):
         ec_strains_list = pd.read_csv(directory + "/" + EC_ANNOTATIONS_FILE_SUBSTRING + "all.tsv", delimiter="\t").drop_duplicates(subset=["subject"])["subject"].tolist()
         #ec_gs_overlap = list(set(ec_strains_list) & set(gold_standard_list))
         # Get Pathway Number
         ec_df = pd.read_csv(directory + "/" + EC_ANNOTATIONS_FILE_SUBSTRING + "all.tsv", delimiter="\t")
         ec_dict = ec_df.groupby('subject')['Pathway'].apply(lambda x: [get_node_label(conn, v) for v in x]).to_dict()
-        
-        #conn = load_graph()
-        
-        ncbitaxon_func_ids = get_ncbitaxon_with_uniprot(conn, "./Phylogeny_Search")
-        print("Len Taxa with a functional annotation")
-        print(len(ncbitaxon_func_ids))
+    else:
+        ec_strains_list = []
+        ec_df = pd.DataFrame()
+        ec_dict = {}
 
-        proteome_gs_overlap = (list(set(ncbitaxon_func_ids) & set(gold_standard_list)))
-        print("proteome_gs_overlap")
-        print(len(proteome_gs_overlap))
-        
-        print("orig len organismal, functional, ec")
-        print(len(organismal_strains_list), len(rhea_chebi_strains_list), len(ec_strains_list))
+    #conn = load_graph()
+    
+    ncbitaxon_func_ids = get_ncbitaxon_with_uniprot(conn, "./Phylogeny_Search")
+    print("Len Taxa with a functional annotation")
+    print(len(ncbitaxon_func_ids))
 
-        # all_values = set(gold_standard_list + rhea_chebi_strains_list + ec_strains_list + organismal_strains_list)
+    proteome_gs_overlap = (list(set(ncbitaxon_func_ids) & set(gold_standard_list)))
+    print("proteome_gs_overlap")
+    print(len(proteome_gs_overlap))
+    
+    print("orig len organismal, functional, ec")
+    print(len(organismal_strains_list), len(rhea_chebi_strains_list), len(ec_strains_list))
 
-        # Organismal-GS Overlap
-        organismal_gs_overlap = list(set(organismal_strains_list) & set(gold_standard_list))
-        #gs_no_organismal_overlap = list(set(gold_standard_list) - set(organismal_gs_overlap))
-        # Functional-GS Overlap
-        functional_gs_overlap = list(set(rhea_chebi_strains_list) & set(gold_standard_list))
-        kg_species_list = list(set(organismal_strains_list + rhea_chebi_strains_list))
-        kg_gs_overlap = (list(set(kg_species_list) & set(gold_standard_list)))
-        ec_gs_overlap = list(set(ec_strains_list) & set(gold_standard_list))
+    # all_values = set(gold_standard_list + rhea_chebi_strains_list + ec_strains_list + organismal_strains_list)
 
-        print("unique len organismal, functional, ec")
-        print(len(organismal_strains_list), len(rhea_chebi_strains_list), len(ec_strains_list))
+    # Organismal-GS Overlap
+    organismal_gs_overlap = list(set(organismal_strains_list) & set(gold_standard_list))
+    #gs_no_organismal_overlap = list(set(gold_standard_list) - set(organismal_gs_overlap))
+    # Functional-GS Overlap
+    functional_gs_overlap = list(set(rhea_chebi_strains_list) & set(gold_standard_list))
+    kg_species_list = list(set(organismal_strains_list + rhea_chebi_strains_list))
+    kg_gs_overlap = (list(set(kg_species_list) & set(gold_standard_list)))
+    ec_gs_overlap = list(set(ec_strains_list) & set(gold_standard_list))
 
-        all_values = set(gold_standard_list + rhea_chebi_strains_list + ec_strains_list + organismal_strains_list)
-        sorted_all_values = sorted(all_values)
+    print("unique len organismal, functional, ec")
+    print(len(organismal_strains_list), len(rhea_chebi_strains_list), len(ec_strains_list))
 
-        # Get protein name
-        rhea_chebi_df = pd.read_csv(directory + "/" + RHEA_CHEBI_ANNOTATIONS_FILE + ".tsv", delimiter="\t")
+    all_values = set(gold_standard_list + rhea_chebi_strains_list + ec_strains_list + organismal_strains_list)
+    sorted_all_values = sorted(all_values)
 
-        gold_standard_overlap_file = directory + "/Gold_Standard_Species_Overlap_" + metabolite + "_" + direction + ".csv"
-        if not os.path.exists(gold_standard_overlap_file):
-            rhea_chebi_protein_dict = rhea_chebi_df.groupby('ncbitaxon')['uniprotkb'].apply(lambda x: [get_node_label(conn, v) for v in x]).to_dict()
+    # Get protein name
+    rhea_chebi_df = pd.read_csv(directory + "/" + RHEA_CHEBI_ANNOTATIONS_FILE + ".tsv", delimiter="\t")
 
-            # Create a DataFrame with columns indicating membership
-            df = pd.DataFrame({
-                "Value": sorted_all_values,
-                "Proteome": [1 if val in ncbitaxon_func_ids else 0 for val in sorted_all_values],
-                "Gold_Standard": [1 if val in gold_standard_list else 0 for val in sorted_all_values],
-                "Organismal": [1 if val in organismal_strains_list else 0 for val in sorted_all_values],
-                "Functional": [1 if val in rhea_chebi_strains_list else 0 for val in sorted_all_values],
-                "Functional_EC": [1 if val in ec_strains_list else 0 for val in sorted_all_values],
-                "Functional_Protein_Name": ["|".join(rhea_chebi_protein_dict[val]) if val in rhea_chebi_strains_list else 0 for val in sorted_all_values],
-                "Functional_EC_Pathway" :  ["|".join(ec_dict[val]) if val in ec_strains_list else 0 for val in sorted_all_values],
-            })
+    gold_standard_overlap_file = directory + "/Gold_Standard_Species_Overlap_" + metabolite + "_" + direction + ".csv"
+    if not os.path.exists(gold_standard_overlap_file):
+        rhea_chebi_protein_dict = rhea_chebi_df.groupby('ncbitaxon')['uniprotkb'].apply(lambda x: [get_node_label(conn, v) for v in x]).to_dict()
 
-            df.to_csv(directory + "/Gold_Standard_Species_Overlap_" + metabolite + "_" + direction + ".csv",index=False)
-        else:
-            df = pd.read_csv(gold_standard_overlap_file,sep = ',')
+        # Create a DataFrame with columns indicating membership
+        df = pd.DataFrame({
+            "Value": sorted_all_values,
+            "Proteome": [1 if val in ncbitaxon_func_ids else 0 for val in sorted_all_values],
+            "Gold_Standard": [1 if val in gold_standard_list else 0 for val in sorted_all_values],
+            "Organismal": [1 if val in organismal_strains_list else 0 for val in sorted_all_values],
+            "Functional": [1 if val in rhea_chebi_strains_list else 0 for val in sorted_all_values],
+            "Functional_EC": [1 if val in ec_strains_list else 0 for val in sorted_all_values],
+            "Functional_Protein_Name": ["|".join(rhea_chebi_protein_dict[val]) if val in rhea_chebi_strains_list else 0 for val in sorted_all_values],
+            "Functional_EC_Pathway" :  ["|".join(ec_dict[val]) if val in ec_strains_list else 0 for val in sorted_all_values],
+        })
 
-        venn_pairs = [("Organismal Trait", len(organismal_strains_list), len(gold_standard_list), len(organismal_gs_overlap)),("RHEA Trait", len(rhea_chebi_strains_list), len(gold_standard_list), len(functional_gs_overlap)),("Proteomes vs. RHEA Traits", len(proteome_gs_overlap), len(gold_standard_list), len(functional_gs_overlap))]
+        df.to_csv(directory + "/Gold_Standard_Species_Overlap_" + metabolite + "_" + direction + ".csv",index=False)
+    else:
+        df = pd.read_csv(gold_standard_overlap_file,sep = ',')
 
-        venn_title = "Gold Standard Comparison Across Sources For Species, " + metabolite.capitalize() + ", " + direction.capitalize()
-        create_gold_standard_venn_diagram(directory, venn_pairs, venn_title, "Gold_Standard_Species_Venn_Diagrams.png")
+    venn_pairs = [("Organismal Trait", len(organismal_strains_list), len(gold_standard_list), len(organismal_gs_overlap)),("RHEA Trait", len(rhea_chebi_strains_list), len(gold_standard_list), len(functional_gs_overlap)),("Proteomes vs. RHEA Traits", len(proteome_gs_overlap), len(gold_standard_list), len(functional_gs_overlap))]
 
-        # Show EC Venn
-        rhea_chebi_and_ec_overlap = (list(set(rhea_chebi_strains_list) & set(ec_strains_list)))
-        rhea_chebi_and_ec_strains_list = list(set(rhea_chebi_strains_list) | set(ec_strains_list))
-        functional_and_ec_gs_overlap = (list(set(functional_gs_overlap) | set(ec_gs_overlap)))
+    venn_title = "Gold Standard Comparison Across Sources For Species, " + metabolite.capitalize() + ", " + direction.capitalize()
+    create_gold_standard_venn_diagram(directory, venn_pairs, venn_title, "Gold_Standard_Species_Venn_Diagrams.png")
 
-        venn_pairs = [("EC Trait", len(ec_strains_list), len(gold_standard_list), len(ec_gs_overlap)),("EC, RHEA Trait", len(rhea_chebi_and_ec_strains_list), len(gold_standard_list), len(functional_and_ec_gs_overlap)),("Proteomes vs. EC, RHEA Traits", len(proteome_gs_overlap), len(gold_standard_list), len(functional_and_ec_gs_overlap))]
+    # Show EC Venn
+    rhea_chebi_and_ec_overlap = (list(set(rhea_chebi_strains_list) & set(ec_strains_list)))
+    rhea_chebi_and_ec_strains_list = list(set(rhea_chebi_strains_list) | set(ec_strains_list))
+    functional_and_ec_gs_overlap = (list(set(functional_gs_overlap) | set(ec_gs_overlap)))
 
-        venn_title = "Gold Standard Comparison Across Sources For Species, " + metabolite.capitalize() + ", " + direction.capitalize()
-        create_gold_standard_venn_diagram(directory, venn_pairs, venn_title, "Gold_Standard_Species_Venn_Diagrams_EC.png")
+    venn_pairs = [("EC Trait", len(ec_strains_list), len(gold_standard_list), len(ec_gs_overlap)),("EC, RHEA Trait", len(rhea_chebi_and_ec_strains_list), len(gold_standard_list), len(functional_and_ec_gs_overlap)),("Proteomes vs. EC, RHEA Traits", len(proteome_gs_overlap), len(gold_standard_list), len(functional_and_ec_gs_overlap))]
 
-        org_rhea_chebi_and_ec_strains_list = list(set(rhea_chebi_strains_list) | set(ec_strains_list) | set(organismal_strains_list))
-        org_functional_and_ec_gs_overlap = (list(set(functional_gs_overlap) | set(ec_gs_overlap) | set(organismal_gs_overlap)))
+    venn_title = "Gold Standard Comparison Across Sources For Species, " + metabolite.capitalize() + ", " + direction.capitalize()
+    create_gold_standard_venn_diagram(directory, venn_pairs, venn_title, "Gold_Standard_Species_Venn_Diagrams_EC.png")
 
-        venn_pairs = [("Organismal, RHEA, EC Traits", len(org_rhea_chebi_and_ec_strains_list), len(gold_standard_list), len(org_functional_and_ec_gs_overlap)),("Proteomes vs. EC, RHEA Traits", len(proteome_gs_overlap), len(gold_standard_list), len(functional_and_ec_gs_overlap))]
+    org_rhea_chebi_and_ec_strains_list = list(set(rhea_chebi_strains_list) | set(ec_strains_list) | set(organismal_strains_list))
+    org_functional_and_ec_gs_overlap = (list(set(functional_gs_overlap) | set(ec_gs_overlap) | set(organismal_gs_overlap)))
 
-        venn_title = "Gold Standard Comparison Across Sources For Species, " + metabolite.capitalize() + ", " + direction.capitalize()
-        create_gold_standard_venn_diagram(directory, venn_pairs, venn_title, "Gold_Standard_Species_Venn_Diagrams_EC_RHEA_Org.png")
+    venn_pairs = [("Organismal, RHEA, EC Traits", len(org_rhea_chebi_and_ec_strains_list), len(gold_standard_list), len(org_functional_and_ec_gs_overlap)),("Proteomes vs. EC, RHEA Traits", len(proteome_gs_overlap), len(gold_standard_list), len(functional_and_ec_gs_overlap))]
 
-        # # Compare KG to GS
-        # venn_pairs = [("All KG Traits", len(kg_species_list), len(gold_standard_list), len(kg_gs_overlap))]
+    venn_title = "Gold Standard Comparison Across Sources For Species, " + metabolite.capitalize() + ", " + direction.capitalize()
+    create_gold_standard_venn_diagram(directory, venn_pairs, venn_title, "Gold_Standard_Species_Venn_Diagrams_EC_RHEA_Org.png")
 
-        # venn_title = "Gold Standard Comparison Across Sources For Families, " + metabolite.capitalize() + ", " + direction.capitalize()
-        # create_gold_standard_venn_diagram(directory, venn_pairs, venn_title, "Gold_Standard_KGSpecies_Venn_Diagram.png")
+    # # Compare KG to GS
+    # venn_pairs = [("All KG Traits", len(kg_species_list), len(gold_standard_list), len(kg_gs_overlap))]
+
+    # venn_title = "Gold Standard Comparison Across Sources For Families, " + metabolite.capitalize() + ", " + direction.capitalize()
+    # create_gold_standard_venn_diagram(directory, venn_pairs, venn_title, "Gold_Standard_KGSpecies_Venn_Diagram.png")
 
     return conn
 

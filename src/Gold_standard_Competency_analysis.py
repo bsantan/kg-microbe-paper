@@ -348,7 +348,7 @@ def main():
 
         # Only include impt families for butyrate production 
         df_impt = df.loc[df["Impt_Family"] == "impt_fam"]
-        for threshold in [0.1, 0]:
+        for threshold in [0.1, 1.0]:
             threshold_ranked_value_dict, family_mapping = create_ordered_subset(df_impt, microbial_subset, filtered_microbes_species_and_strain_dict, "genus", "family", threshold)
             create_families_piechart(conn, microbial_subset, filtered_microbes_species_and_strain_dict, "species_and_strain_impt_families_" + str(threshold), ncbitaxon_func_ids, butyrate_production_output_dir, "genus", "family", threshold_ranked_value_dict, family_mapping)
 

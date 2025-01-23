@@ -495,41 +495,43 @@ def create_metabolite_competency_df(metabolite, direction, reaction_direction_di
     if metabolite == "butyrate" and direction == "produces":
         print("adding ECs")
         ec_strains_list = pd.read_csv(directory + "/" + EC_ANNOTATIONS_FILE_SUBSTRING + "all.tsv", delimiter="\t").drop_duplicates(subset=["subject"])["subject"].tolist()
-        total_ec = len(ec_strains_list)
-        new_row["EC_Annotations"] = total_ec
+    else:
+        ec_strains_list = []
+    total_ec = len(ec_strains_list)
+    new_row["EC_Annotations"] = total_ec
 
-        total_ec_traits_overlap = len(list(set(ec_strains_list) & set(organismal_strains_list)))
-        new_row["Total_EC_Traits_Overlap"] = total_ec_traits_overlap
-        # competency_df.loc[0,"EC_Annotations"] = len(ec_strains_list)
-        # competency_df.loc[0,"Total EC_Traits_Overlap"] = len(list(set(ec_strains_list) & set(organismal_annotations)))
-        total_ec_rhea_chebi_overlap = len(list(set(ec_strains_list) & set(rhea_chebi_annotations_list)))
-        new_row["Total_EC_Rhea-Chebi_Overlap"] = total_ec_rhea_chebi_overlap
+    total_ec_traits_overlap = len(list(set(ec_strains_list) & set(organismal_strains_list)))
+    new_row["Total_EC_Traits_Overlap"] = total_ec_traits_overlap
+    # competency_df.loc[0,"EC_Annotations"] = len(ec_strains_list)
+    # competency_df.loc[0,"Total EC_Traits_Overlap"] = len(list(set(ec_strains_list) & set(organismal_annotations)))
+    total_ec_rhea_chebi_overlap = len(list(set(ec_strains_list) & set(rhea_chebi_annotations_list)))
+    new_row["Total_EC_Rhea-Chebi_Overlap"] = total_ec_rhea_chebi_overlap
 
-        total_ec_and_rhea_chebi = len(list(set(ec_strains_list) | set(rhea_chebi_annotations_list)))
-        new_row["Total_EC_and_Rhea-Chebi"] = total_ec_and_rhea_chebi
+    total_ec_and_rhea_chebi = len(list(set(ec_strains_list) | set(rhea_chebi_annotations_list)))
+    new_row["Total_EC_and_Rhea-Chebi"] = total_ec_and_rhea_chebi
 
-        # competency_df.loc[0,"Total EC_Rhea-Chebi_Overlap"] = len(list(set(ec_strains_list) & set(rhea_chebi_annotations)))
+    # competency_df.loc[0,"Total EC_Rhea-Chebi_Overlap"] = len(list(set(ec_strains_list) & set(rhea_chebi_annotations)))
 
-        total_ec_traits_rhea_chebi_overlap = len(list((set(ec_strains_list) & set(rhea_chebi_annotations_list)) & set(organismal_strains_list)))
-        new_row["Total_Rhea-Chebi_and_EC_Traits_Overlap"] = total_ec_traits_rhea_chebi_overlap
+    total_ec_traits_rhea_chebi_overlap = len(list((set(ec_strains_list) & set(rhea_chebi_annotations_list)) & set(organismal_strains_list)))
+    new_row["Total_Rhea-Chebi_and_EC_Traits_Overlap"] = total_ec_traits_rhea_chebi_overlap
 
-        # competency_df.loc[0,"Total Rhea-Chebi_and_EC_Traits_Overlap"] = len(list((set(ec_strains_list) | set(rhea_chebi_annotations)) & set(organismal_annotations)))
+    # competency_df.loc[0,"Total Rhea-Chebi_and_EC_Traits_Overlap"] = len(list((set(ec_strains_list) | set(rhea_chebi_annotations)) & set(organismal_annotations)))
 
-        total = len(list(set(ec_strains_list) | set(rhea_chebi_annotations_list) | set(organismal_strains_list)))
-        new_row["Total_Traits_and_Rhea-Chebi_and_EC_Annotations"] = total
-        # competency_df.loc[0,"Traits_and_Rhea-Chebi_and_EC_Annotations"] = len(list(set(ec_strains_list) | set(rhea_chebi_annotations) | set(organismal_annotations)))
+    total = len(list(set(ec_strains_list) | set(rhea_chebi_annotations_list) | set(organismal_strains_list)))
+    new_row["Total_Traits_and_Rhea-Chebi_and_EC_Annotations"] = total
+    # competency_df.loc[0,"Traits_and_Rhea-Chebi_and_EC_Annotations"] = len(list(set(ec_strains_list) | set(rhea_chebi_annotations) | set(organismal_annotations)))
 
-        # Metrics for paper
-        summary_row = {
-            "Metabolite" : metabolite,
-            "traits_only" : (total_traits - total_ec_traits_overlap - total_traits_rhea_chebi_overlap) + total_ec_traits_rhea_chebi_overlap,
-            "ec_only" : (total_ec - total_ec_rhea_chebi_overlap - total_ec_traits_overlap) + total_ec_traits_rhea_chebi_overlap,
-            "rhea_chebi_only" : (total_rhea_chebi - total_traits_rhea_chebi_overlap - total_ec_rhea_chebi_overlap) + total_ec_traits_rhea_chebi_overlap,
-            "traits_rhea_chebi_only" : total_traits_rhea_chebi_overlap - total_ec_traits_rhea_chebi_overlap,
-            "traits_ec_only" : total_ec_traits_overlap - total_ec_traits_rhea_chebi_overlap,
-            "ec_rhea_chebi_only" : total_ec_rhea_chebi_overlap - total_ec_traits_rhea_chebi_overlap,
-            "traits_rhea_chebi_ec_only" : total_ec_traits_rhea_chebi_overlap,
-        }
+    # Metrics for paper
+    summary_row = {
+        "Metabolite" : metabolite,
+        "traits_only" : (total_traits - total_ec_traits_overlap - total_traits_rhea_chebi_overlap) + total_ec_traits_rhea_chebi_overlap,
+        "ec_only" : (total_ec - total_ec_rhea_chebi_overlap - total_ec_traits_overlap) + total_ec_traits_rhea_chebi_overlap,
+        "rhea_chebi_only" : (total_rhea_chebi - total_traits_rhea_chebi_overlap - total_ec_rhea_chebi_overlap) + total_ec_traits_rhea_chebi_overlap,
+        "traits_rhea_chebi_only" : total_traits_rhea_chebi_overlap - total_ec_traits_rhea_chebi_overlap,
+        "traits_ec_only" : total_ec_traits_overlap - total_ec_traits_rhea_chebi_overlap,
+        "ec_rhea_chebi_only" : total_ec_rhea_chebi_overlap - total_ec_traits_rhea_chebi_overlap,
+        "traits_rhea_chebi_ec_only" : total_ec_traits_rhea_chebi_overlap,
+    }
 
     competency_df = pd.DataFrame()  # Initialize if not already existing
     competency_df = pd.concat([competency_df, pd.DataFrame([new_row])], ignore_index=True)

@@ -335,23 +335,26 @@ def main():
 
     final_data = {}
 
+    output_dir = butyrate_production_output_dir + "/Competency_Analysis"
+
     for microbial_subset, constraint in microbial_subsets.items():
         subset_list = gs_analysis_microbes_df[constraint]["Value"].tolist()
-        df = post_competency_analysis(conn, microbes_family_dict, microbes_phylum_dict, microbes_genus_dict, ncbi_taxa_ranks_df, subset_list, butyrate_production_output_dir, microbial_subset, all_microbes_df)
+        df = post_competency_analysis(conn, microbes_family_dict, microbes_phylum_dict, microbes_genus_dict, ncbi_taxa_ranks_df, subset_list, output_dir, microbial_subset, all_microbes_df)
         threshold_ranked_value_dict, family_mapping = create_ordered_subset(df, microbial_subset, filtered_microbes_species_and_strain_dict, "genus", "family", 0.1)
-        create_families_piechart(conn, microbial_subset, filtered_microbes_species_and_strain_dict, "species_and_strain_all", ncbitaxon_func_ids, butyrate_production_output_dir, "genus", "family",threshold_ranked_value_dict, family_mapping)
-        create_treemap(conn, df, microbial_subset, butyrate_production_output_dir)
+        create_families_piechart(conn, microbial_subset, filtered_microbes_species_and_strain_dict, "species_and_strain_all", ncbitaxon_func_ids, output_dir, "genus", "family",threshold_ranked_value_dict, family_mapping)
+        create_treemap(conn, df, microbial_subset, output_dir)
 
         # # Only include families in human gut phyla
         # df_human = df.loc[df["Location"] == "human"]
         # threshold_ranked_value_dict, family_mapping = create_ordered_subset(df_human, microbial_subset, filtered_microbes_species_and_strain_dict, "genus", "family", 0.1)
-        # create_families_piechart(conn, microbial_subset, filtered_microbes_species_and_strain_dict, "species_and_strain_human", ncbitaxon_func_ids, butyrate_production_output_dir, "genus", threshold_ranked_value_dict, family_mapping)
+        # create_families_piechart(conn, microbial_subset, filtered_microbes_species_and_strain_dict, "species_and_strain_human", ncbitaxon_func_ids, output_dir, "genus", threshold_ranked_value_dict, family_mapping)
 
         # Only include impt families for butyrate production 
         df_impt = df.loc[df["Impt_Family"] == "impt_fam"]
         for threshold in [0.1, 1.0]:
+            output_subdir = output_dir + "/Threshold_" + str(threshold)
             threshold_ranked_value_dict, family_mapping = create_ordered_subset(df_impt, microbial_subset, filtered_microbes_species_and_strain_dict, "genus", "family", threshold)
-            create_families_piechart(conn, microbial_subset, filtered_microbes_species_and_strain_dict, "species_and_strain_impt_families_" + str(threshold), ncbitaxon_func_ids, butyrate_production_output_dir, "genus", "family", threshold_ranked_value_dict, family_mapping)
+            create_families_piechart(conn, microbial_subset, filtered_microbes_species_and_strain_dict, "species_and_strain_impt_families_" + str(threshold), ncbitaxon_func_ids, output_subdir, "genus", "family", threshold_ranked_value_dict, family_mapping)
 
         subset_list_human = df.loc[df["Location"] == "human", "Value"].tolist()
         final_data[microbial_subset] = [len(subset_list), len(subset_list_human)]
@@ -359,91 +362,7 @@ def main():
     # Convert to DataFrame
     final_data_df = pd.DataFrame([(key, values[0], values[1]) for key, values in final_data.items()],
                   columns=["Microbial_Subset", "Num_Non-Human_Butyrate_Producers", "Num_Human_Butyrate_Producers"])
-    final_data_df.to_csv(butyrate_production_output_dir + "/competency_summary_butyrate_produces.tsv",sep='\t')
-
-    # gs_no_kg = gs_analysis_microbes_df[(gs_analysis_microbes_df['Organismal'] == 0) & (gs_analysis_microbes_df['Functional'] == 0) & (gs_analysis_microbes_df['Functional_EC'] == 0) & (gs_analysis_microbes_df['Gold_Standard'] == 1)]["Value"].tolist()
-    # gs_no_kg_df = post_competency_analysis(conn, microbes_family_dict, microbes_phylum_dict, ncbi_taxa_ranks_df, gs_no_kg, butyrate_production_output_dir, "gs_no_kg")
-    # create_treemap(conn, gs_no_kg_df, "gs_no_kg", butyrate_production_output_dir)
-
-    # proteomes_no_gs = gs_analysis_microbes_df[(gs_analysis_microbes_df['Proteome'] == 1) & (gs_analysis_microbes_df['Gold_Standard'] == 0)]["Value"].tolist()
-    # proteomes_df = post_competency_analysis(conn, microbes_family_dict, microbes_phylum_dict, ncbi_taxa_ranks_df, proteomes_no_gs, butyrate_production_output_dir, "proteomes_without_gs")
-    # create_treemap(conn, proteomes_df, "proteomes_without_gs", butyrate_production_output_dir)
-
-    # gs_and_kg = gs_analysis_microbes_df[((gs_analysis_microbes_df['Organismal'] == 1) | (gs_analysis_microbes_df['Functional'] == 1) | (gs_analysis_microbes_df["Functional_EC"] == 1)) & (gs_analysis_microbes_df['Gold_Standard'] == 1)]["Value"].tolist()
-    # gs_and_kg_df = post_competency_analysis(conn, microbes_family_dict, microbes_phylum_dict, ncbi_taxa_ranks_df, gs_and_kg, butyrate_production_output_dir, "gs_and_kg")
-    # create_treemap(conn, gs_and_kg_df, "gs_and_kg", butyrate_production_output_dir)
-
-    # organismal_no_gs = gs_analysis_microbes_df[(gs_analysis_microbes_df['Organismal'] == 1) & (gs_analysis_microbes_df['Gold_Standard'] == 0)]["Value"].tolist()
-    # organismal_df = post_competency_analysis(conn, microbes_family_dict, microbes_phylum_dict, ncbi_taxa_ranks_df, organismal_no_gs, butyrate_production_output_dir, "organismal_without_gs")
-    # create_treemap(conn, organismal_df, "organismal_without_gs", butyrate_production_output_dir)
-
-    # rhea_chebi_no_gs = gs_analysis_microbes_df[(gs_analysis_microbes_df['Functional'] == 1) & (gs_analysis_microbes_df['Gold_Standard'] == 0)]["Value"].tolist()
-    # rhea_chebi_df = post_competency_analysis(conn, microbes_family_dict, microbes_phylum_dict, ncbi_taxa_ranks_df, rhea_chebi_no_gs, butyrate_production_output_dir, "rhea_chebi_without_gs")
-    # create_treemap(conn, rhea_chebi_df, "rhea_chebi_without_gs", butyrate_production_output_dir)
-
-    # ec_no_gs = gs_analysis_microbes_df[(gs_analysis_microbes_df['Functional_EC'] == 1) & (gs_analysis_microbes_df['Gold_Standard'] == 0)]["Value"].tolist()
-    # ec_df = post_competency_analysis(conn, microbes_family_dict, microbes_phylum_dict, ncbi_taxa_ranks_df, ec_no_gs, butyrate_production_output_dir, "ec_without_gs")
-    # create_treemap(conn, ec_df, "ec_without_gs", butyrate_production_output_dir)
-
-    # all_no_gs = gs_analysis_microbes_df[gs_analysis_microbes_df['Gold_Standard'] == 0]["Value"].tolist()
-    # # all_no_gs_df = post_competency_analysis(conn, microbes_family_dict, microbes_phylum_dict, ncbi_taxa_ranks_df, all_no_gs, butyrate_production_output_dir, "all_without_gs")
-    # #! TEMPORARY
-    # all_no_gs_df = pd.read_csv(butyrate_production_output_dir + "/all_microbes_butyrate_produces_families_withRank.tsv",sep='\t')
-    # create_treemap(conn, all_no_gs_df, "all_without_gs", butyrate_production_output_dir)
-    # create_families_piechart(conn, all_no_gs_df, "all_without_gs", filtered_microbes_species_and_strain_dict, "species", ncbitaxon_func_ids, butyrate_production_output_dir)
-
-    # all_kg = gs_analysis_microbes_df[gs_analysis_microbes_df['Gold_Standard'] == 0]["Value"].tolist()
-    # # all_kg_df = post_competency_analysis(conn, microbes_family_dict, microbes_phylum_dict, ncbi_taxa_ranks_df, all_kg, butyrate_production_output_dir, "all_kg")
-    # #! TEMPORARY
-    # all_kg_df = pd.read_csv(butyrate_production_output_dir + "/all_kg_butyrate_produces_families_withRank.tsv",sep='\t')
-    # create_treemap(conn, all_kg_df, "all_without_gs", butyrate_production_output_dir)
-    # create_families_piechart(conn, all_kg_df, "all_kg", filtered_microbes_species_and_strain_dict, "species_and_strain", ncbitaxon_func_ids, butyrate_production_output_dir)
-
-
-    # import pdb;pdb.set_trace()
-    # # Evaluate proteomes that are in GS but not annotated with trait
-    # gs_proteomes_no_trait = gs_analysis_microbes_df[(gs_analysis_microbes_df['Proteome'] == 1) & (gs_analysis_microbes_df['Gold_Standard'] == 1) & (gs_analysis_microbes_df['Functional'] == 0) & (gs_analysis_microbes_df['Functional_EC'] == 0)]["Value"].tolist()
-    # gs_proteomes_no_trait_df = post_competency_analysis(conn, microbes_family_dict, microbes_phylum_dict, ncbi_taxa_ranks_df, gs_proteomes_no_trait, butyrate_production_output_dir, "gs_proteomes_no_trait")
-    # create_treemap(conn, gs_proteomes_no_trait_df, "gs_proteomes_no_trait", butyrate_production_output_dir)
-
-
-    # species_overlap_df = get_species_overlap(conn, gs_analysis_microbes_df, butyrate_production_output_dir)
-
-    # # Final results
-    # num_proteomes_no_gs = len(proteomes_no_gs)
-    # num_proteomes_no_gs_human = len(proteomes_df.loc[proteomes_df["Location"] == "human"])
-
-    # num_organismal_no_gs = len(organismal_no_gs)
-    # num_organismal_no_gs_human = len(organismal_df.loc[organismal_df["Location"] == "human"])
-
-    # num_rhea_chebi_no_gs = len(rhea_chebi_no_gs)
-    # num_rhea_chebi_no_gs_human = len(rhea_chebi_df.loc[rhea_chebi_df["Location"] == "human"])
-
-    # num_ec_no_gs = len(ec_no_gs)
-    # num_ec_no_gs_human = len(ec_df.loc[ec_df["Location"] == "human"])
-
-    # num_all_no_gs = len(all_no_gs)
-    # num_all_no_gs_human = len(all_no_gs_df.loc[all_no_gs_df["Location"] == "human"])
-
-    # num_species_overlap = len(species_overlap_df.loc[species_overlap_df["Species_Overlap_GS"] == 1])
-
-    # labels = ["num_proteomes_no_gs", "num_proteomes_no_gs_human",
-    #           "num_organismal_no_gs", "num_organismal_no_gs_human",
-    #           "num_rhea_chebi_no_gs", "num_rhea_chebi_no_gs_human",
-    #           "num_ec_no_gs", "num_ec_no_gs_human",
-    #           "num_species_overlap",
-    #           "num_all_no_gs", "num_all_no_gs_human"]
-
-    # data = [num_proteomes_no_gs, num_proteomes_no_gs_human,
-    #         num_organismal_no_gs,num_organismal_no_gs_human,
-    #         num_rhea_chebi_no_gs, num_rhea_chebi_no_gs_human,
-    #         num_ec_no_gs, num_ec_no_gs_human,
-    #         num_species_overlap,
-    #         num_all_no_gs, num_all_no_gs_human]
-    
-    # final_df = pd.DataFrame(data, index=labels)
-
-    # final_df.to_csv(butyrate_production_output_dir + "/competency_summary_butyrate_produces.tsv",sep='\t')
+    final_data_df.to_csv(output_dir + "/competency_summary_butyrate_produces.tsv",sep='\t')
 
 if __name__ == '__main__':
     main()    

@@ -517,6 +517,7 @@ def create_metabolite_competency_df(metabolite, direction, reaction_direction_di
 
         # Metrics for paper
         summary_row = {
+            "Metabolite" : metabolite,
             "traits_only" : total_traits - total_ec_traits_overlap - total_traits_rhea_chebi_overlap,
             "ec_only" : total_ec - total_ec_rhea_chebi_overlap - total_ec_traits_overlap,
             "rhea_chebi_only" : total_rhea_chebi - total_traits_rhea_chebi_overlap - total_ec_rhea_chebi_overlap,
@@ -534,7 +535,7 @@ def create_metabolite_competency_df(metabolite, direction, reaction_direction_di
     combined_competency_kg_summary_df = pd.concat([combined_competency_kg_summary_df, pd.DataFrame([summary_row])], ignore_index=True)
     return competency_df, combined_competency_kg_summary_df
 
-def combine_all_competency_dfs(competency_dfs, direction):
+def combine_all_competency_dfs(competency_dfs, direction, filename):
 
     directory = "./Intermediate_Files_Competencies"
 
@@ -544,7 +545,7 @@ def combine_all_competency_dfs(competency_dfs, direction):
     for df in competency_dfs:
         final_df = pd.concat([final_df, df], ignore_index=True)
 
-    final_df.to_csv(directory + "/" + ALL_COMPETENCIES_DF_FILE + "_" + direction + ".tsv", index=False)
+    final_df.to_csv(directory + "/" + ALL_COMPETENCIES_DF_FILE + "_" + direction + "_" + filename + ".tsv", index=False)
 
     return final_df
 
@@ -552,21 +553,11 @@ def visualize_all_competencies(final_df, direction):
 
     directory = "./Intermediate_Files_Competencies"
     metabolite = final_df.iloc[0].loc["Metabolite"]
-    # labels = {
-    #     "Traits_Annotations" : "BacDive",
-    #     "Rhea-Chebi_Annotations" : "UniProt Reaction",
-    #     "Total Rhea-Chebi_Traits_Overlap" : "BacDive/UniProt Reaction",
-    #     "EC_Annotations" : "UniProt EC",
-    #     "Total EC_Traits_Overlap" : "BacDive/UniProt EC",
-    #     "Total EC_Rhea-Chebi_Overlap" : "UniProt Reaction/UniProt EC"
-    # }
 
     values = final_df.iloc[0].tolist()
     values.remove(metabolite)
-    values.remove(3660)
     labels = list(final_df.columns)
     labels.remove("Metabolite")
-    labels.remove("Rhea-Chebi_and_EC_Annotations")
 
     plt.figure(figsize=(8,8))
     wedges, texts, autotexts =  plt.pie(

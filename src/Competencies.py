@@ -216,7 +216,7 @@ def plot_competencies_venn_diagrams_with_proteomes(conn):
 
     all_dfs = pd.DataFrame()
     for direction in ALL_DIRECTIONS:
-        final_df_filename = directory + "/" + ALL_COMPETENCIES_DF_FILE + "_" + direction + ".tsv"
+        final_df_filename = directory + "/" + ALL_COMPETENCIES_DF_FILE + "_" + direction + "raw.tsv"
         final_df = pd.read_csv(final_df_filename)
         final_df["Direction"] = direction
         all_dfs = pd.concat([all_dfs,final_df],axis=0)
@@ -360,7 +360,7 @@ def plot_competencies_venn_diagrams():
 
     all_dfs = pd.DataFrame()
     for direction in ALL_DIRECTIONS:
-        final_df_filename = directory + "/" + ALL_COMPETENCIES_DF_FILE + "_" + direction + ".tsv"
+        final_df_filename = directory + "/" + ALL_COMPETENCIES_DF_FILE + "_" + direction + "raw.tsv"
         final_df = pd.read_csv(final_df_filename)
         final_df["Direction"] = direction
         all_dfs = pd.concat([all_dfs,final_df],axis=0)

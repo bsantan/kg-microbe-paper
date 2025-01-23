@@ -93,8 +93,9 @@ def create_ordered_subset( df, filename, all_microbes_families_species, grouped_
         threshold_ranked_value_dict = {}
     else:
         lengths = {key: len(value) for key, value in ranked_value_dict.items()}
-        threshold = sorted(lengths.values(), reverse=True)[int(len(lengths) * threshold)]
-        threshold_ranked_value_dict = {key: value for key, value in ranked_value_dict.items() if len(value) >= threshold}
+        threshold_index = max(0, int(len(lengths) * threshold) - 1)  # Avoid out-of-range index
+        threshold_value = sorted(lengths.values(), reverse=True)[threshold_index]
+        threshold_ranked_value_dict = {key: value for key, value in ranked_value_dict.items() if len(value) >= threshold_value}
         
     return threshold_ranked_value_dict, ranked_mapping
 

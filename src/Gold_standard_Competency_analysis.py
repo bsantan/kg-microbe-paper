@@ -336,6 +336,7 @@ def main():
     final_data = {}
 
     output_dir = butyrate_production_output_dir + "/Competency_Analysis"
+    os.makedirs(output_dir, exist_ok=True)
 
     for microbial_subset, constraint in microbial_subsets.items():
         subset_list = gs_analysis_microbes_df[constraint]["Value"].tolist()

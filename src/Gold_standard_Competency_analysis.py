@@ -89,10 +89,13 @@ def create_ordered_subset( df, filename, all_microbes_families_species, grouped_
     print("len families dict with only proteomes")
     print(len(ranked_value_dict.items()))
 
-    lengths = {key: len(value) for key, value in ranked_value_dict.items()}
-    threshold = sorted(lengths.values(), reverse=True)[int(len(lengths) * threshold)]
-    threshold_ranked_value_dict = {key: value for key, value in ranked_value_dict.items() if len(value) >= threshold}
-
+    if not ranked_value_dict:  # Check if the input dict is empty
+        threshold_ranked_value_dict = {}
+    else:
+        lengths = {key: len(value) for key, value in ranked_value_dict.items()}
+        threshold = sorted(lengths.values(), reverse=True)[int(len(lengths) * threshold)]
+        threshold_ranked_value_dict = {key: value for key, value in ranked_value_dict.items() if len(value) >= threshold}
+        
     return threshold_ranked_value_dict, ranked_mapping
 
 def create_families_piechart(conn, filename, all_microbes_families_species, child_rank, ncbitaxon_func_ids, output_dir, grouped_rank, group_by_rank, threshold_ranked_value_dict, ranked_mapping):

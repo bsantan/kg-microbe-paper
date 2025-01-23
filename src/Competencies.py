@@ -522,9 +522,9 @@ def create_metabolite_competency_df(metabolite, direction, reaction_direction_di
         # Metrics for paper
         summary_row = {
             "Metabolite" : metabolite,
-            "traits_only" : total_traits - total_ec_traits_overlap - total_traits_rhea_chebi_overlap,
-            "ec_only" : total_ec - total_ec_rhea_chebi_overlap - total_ec_traits_overlap,
-            "rhea_chebi_only" : total_rhea_chebi - total_traits_rhea_chebi_overlap - total_ec_rhea_chebi_overlap,
+            "traits_only" : (total_traits - total_ec_traits_overlap - total_traits_rhea_chebi_overlap) + total_ec_traits_rhea_chebi_overlap,
+            "ec_only" : (total_ec - total_ec_rhea_chebi_overlap - total_ec_traits_overlap) + total_ec_traits_rhea_chebi_overlap,
+            "rhea_chebi_only" : (total_rhea_chebi - total_traits_rhea_chebi_overlap - total_ec_rhea_chebi_overlap) + total_ec_traits_rhea_chebi_overlap,
             "traits_rhea_chebi_only" : total_traits_rhea_chebi_overlap - total_ec_traits_rhea_chebi_overlap,
             "traits_ec_only" : total_ec_traits_overlap - total_ec_traits_rhea_chebi_overlap,
             "ec_rhea_chebi_only" : total_ec_rhea_chebi_overlap - total_ec_traits_rhea_chebi_overlap,

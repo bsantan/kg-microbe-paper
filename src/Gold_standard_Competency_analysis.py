@@ -332,7 +332,7 @@ def main():
         "all_kg" : ((gs_analysis_microbes_df['Organismal'] == 1) | (gs_analysis_microbes_df['Functional'] == 1) | (gs_analysis_microbes_df["Functional_EC"] == 1)),
         "gs_proteomes_no_annotation" : (gs_analysis_microbes_df['Proteome'] == 1) & (gs_analysis_microbes_df['Gold_Standard'] == 1) & (gs_analysis_microbes_df['Functional'] == 0) & (gs_analysis_microbes_df['Functional_EC'] == 0),
         "gs_proteomes_total" : (gs_analysis_microbes_df['Proteome'] == 1) & (gs_analysis_microbes_df['Gold_Standard'] == 1),
-        "proteomes_probable_protein_name" : gs_analysis_microbes_df['Functional_Protein_Name'].str.contains(r'\bprobable\b', case=False).sum()
+        "proteomes_probable_protein_name" : gs_analysis_microbes_df['Functional_Protein_Name'].str.contains(r'\bprobable\b', case=False),
     }
 
     final_data = {}

@@ -1984,7 +1984,7 @@ def gold_standard_comparison_species(metabolite, direction):
 
     
     # EC-GS Overlap
-    if os.exists(directory + "/" + EC_ANNOTATIONS_FILE_SUBSTRING + "all.tsv"):
+    if os.path.exists(directory + "/" + EC_ANNOTATIONS_FILE_SUBSTRING + "all.tsv"):
         ec_strains_list = pd.read_csv(directory + "/" + EC_ANNOTATIONS_FILE_SUBSTRING + "all.tsv", delimiter="\t").drop_duplicates(subset=["subject"])["subject"].tolist()
         #ec_gs_overlap = list(set(ec_strains_list) & set(gold_standard_list))
         # Get Pathway Number

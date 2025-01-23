@@ -506,7 +506,7 @@ def create_metabolite_competency_df(metabolite, direction, reaction_direction_di
         new_row["Total EC_Rhea-Chebi_Overlap"] = total_ec_rhea_chebi_overlap
         # competency_df.loc[0,"Total EC_Rhea-Chebi_Overlap"] = len(list(set(ec_strains_list) & set(rhea_chebi_annotations)))
 
-        total_ec_traits_rhea_chebi_overlap = len(list((set(ec_strains_list) | set(rhea_chebi_annotations_list)) & set(organismal_strains_list)))
+        total_ec_traits_rhea_chebi_overlap = len(list((set(ec_strains_list) & set(rhea_chebi_annotations_list)) & set(organismal_strains_list)))
         new_row["Total Rhea-Chebi_and_EC_Traits_Overlap"] = total_ec_traits_rhea_chebi_overlap
 
         # competency_df.loc[0,"Total Rhea-Chebi_and_EC_Traits_Overlap"] = len(list((set(ec_strains_list) | set(rhea_chebi_annotations)) & set(organismal_annotations)))
@@ -516,7 +516,7 @@ def create_metabolite_competency_df(metabolite, direction, reaction_direction_di
         # competency_df.loc[0,"Traits_and_Rhea-Chebi_and_EC_Annotations"] = len(list(set(ec_strains_list) | set(rhea_chebi_annotations) | set(organismal_annotations)))
 
         # Metrics for paper
-        new_row.update({
+        summary_row = {
             "traits_only" : total_traits - total_ec_traits_overlap - total_traits_rhea_chebi_overlap,
             "ec_only" : total_ec - total_ec_rhea_chebi_overlap - total_ec_traits_overlap,
             "rhea_chebi_only" : total_rhea_chebi - total_traits_rhea_chebi_overlap - total_ec_rhea_chebi_overlap,
@@ -524,13 +524,15 @@ def create_metabolite_competency_df(metabolite, direction, reaction_direction_di
             "traits_ec_only" : total_ec_traits_overlap - total_ec_traits_rhea_chebi_overlap,
             "ec_rhea_chebi_only" : total_ec_rhea_chebi_overlap - total_ec_traits_rhea_chebi_overlap,
             "traits_rhea_chebi_ec_only" : total_ec_traits_rhea_chebi_overlap,
-        })
+        }
 
     competency_df = pd.DataFrame()  # Initialize if not already existing
     competency_df = pd.concat([competency_df, pd.DataFrame([new_row])], ignore_index=True)
-    
     competency_df = competency_df.applymap(round_percentages)
-    return competency_df
+
+    combined_competency_kg_summary_df = pd.DataFrame()
+    combined_competency_kg_summary_df = pd.concat([combined_competency_kg_summary_df, pd.DataFrame([summary_row])], ignore_index=True)
+    return competency_df, combined_competency_kg_summary_df
 
 def combine_all_competency_dfs(competency_dfs, direction):
 

@@ -11,6 +11,7 @@ def main():
 
     for direction in ALL_DIRECTIONS:
         all_metabolite_dfs = []
+        combined_competency_kg_summary_dfs = []
         for metabolite in ALL_METABOLITES:
             c = organismal_genomic_competency(metabolite,direction)
             # # Create a DuckDB connection
@@ -23,12 +24,14 @@ def main():
             #output_dir = "./Intermediate_Files_Competencies" + "/" + metabolite + "_" + direction
             reaction_direction_dict = equilibrator_reaction_direction(c, metabolite,direction)
             genomic_ec_competency(metabolite, direction)
-            metabolite_df = create_metabolite_competency_df(metabolite, direction, reaction_direction_dict)
+            metabolite_df, combined_competency_kg_summary_df = create_metabolite_competency_df(metabolite, direction, reaction_direction_dict)
             all_metabolite_dfs.append(metabolite_df)
+            combined_competency_kg_summary_dfs.append(combined_competency_kg_summary_df)
             conn = gold_standard_comparison_species(metabolite, direction)
             gold_standard_comparison_family(conn, metabolite, direction)
         final_df = combine_all_competency_dfs(all_metabolite_dfs,direction)
-        visualize_all_competencies(final_df, direction)
+        final_summary_df = combine_all_competency_dfs(combined_competency_kg_summary_dfs,direction)
+        visualize_all_competencies(final_summary_df, direction)
         # plot_competencies_barplot(final_df,direction)
     plot_competencies_venn_diagrams()
     plot_competencies_venn_diagrams_with_proteomes(conn)

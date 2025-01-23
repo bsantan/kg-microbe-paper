@@ -95,7 +95,7 @@ def create_ordered_subset( df, filename, all_microbes_families_species, grouped_
 
     return threshold_ranked_value_dict, ranked_mapping
 
-def create_families_piechart(conn, filename, all_microbes_families_species, child_rank, ncbitaxon_func_ids, output_dir, grouped_rank, threshold_ranked_value_dict, ranked_mapping):
+def create_families_piechart(conn, filename, all_microbes_families_species, child_rank, ncbitaxon_func_ids, output_dir, grouped_rank, group_by_rank, threshold_ranked_value_dict, ranked_mapping):
 
     ranked_microbe_labels = []
     ranked_microbe_ids = []
@@ -169,7 +169,7 @@ def create_families_piechart(conn, filename, all_microbes_families_species, chil
     families_results_df = pd.DataFrame()
     families_results_df[grouped_rank.capitalize()] = ranked_microbe_labels
     families_results_df[grouped_rank.capitalize() + "_ID"] = ranked_microbe_ids
-    families_results_df["Ranked_Mapping_" + ranked_mapping] = ranked_labels
+    families_results_df["Ranked_Mapping_" + group_by_rank] = ranked_labels
     families_results_df["fractions_produces_but"] = fractions_produces_but
     families_results_df["total_fam_sizes"] = total_fam_sizes
     families_results_df.to_csv(output_dir + '/' + filename + '_' + grouped_rank.capitalize() + '_Traits_Comparison_' + child_rank + '.tsv')
@@ -334,7 +334,7 @@ def main():
         subset_list = gs_analysis_microbes_df[constraint]["Value"].tolist()
         df = post_competency_analysis(conn, microbes_family_dict, microbes_phylum_dict, microbes_genus_dict, ncbi_taxa_ranks_df, subset_list, butyrate_production_output_dir, microbial_subset, all_microbes_df)
         threshold_ranked_value_dict, family_mapping = create_ordered_subset(df, microbial_subset, filtered_microbes_species_and_strain_dict, "genus", "family", 0.1)
-        create_families_piechart(conn, microbial_subset, filtered_microbes_species_and_strain_dict, "species_and_strain_all", ncbitaxon_func_ids, butyrate_production_output_dir, "genus", threshold_ranked_value_dict, family_mapping)
+        create_families_piechart(conn, microbial_subset, filtered_microbes_species_and_strain_dict, "species_and_strain_all", ncbitaxon_func_ids, butyrate_production_output_dir, "genus", "family",threshold_ranked_value_dict, family_mapping)
         create_treemap(conn, df, microbial_subset, butyrate_production_output_dir)
 
         # # Only include families in human gut phyla
@@ -346,7 +346,7 @@ def main():
         df_impt = df.loc[df["Impt_Family"] == "impt_fam"]
         for threshold in [0.1, 1.0]:
             threshold_ranked_value_dict, family_mapping = create_ordered_subset(df_impt, microbial_subset, filtered_microbes_species_and_strain_dict, "genus", "family", threshold)
-            create_families_piechart(conn, microbial_subset, filtered_microbes_species_and_strain_dict, "species_and_strain_impt_families_" + str(threshold), ncbitaxon_func_ids, butyrate_production_output_dir, "genus", threshold_ranked_value_dict, family_mapping)
+            create_families_piechart(conn, microbial_subset, filtered_microbes_species_and_strain_dict, "species_and_strain_impt_families_" + str(threshold), ncbitaxon_func_ids, butyrate_production_output_dir, "genus", "family", threshold_ranked_value_dict, family_mapping)
 
         subset_list_human = df.loc[df["Location"] == "human", "Value"].tolist()
         final_data[microbial_subset] = [len(subset_list), len(subset_list_human)]

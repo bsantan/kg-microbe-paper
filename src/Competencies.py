@@ -242,16 +242,16 @@ def plot_competencies_venn_diagrams_with_proteomes(conn):
     for i in range(len(all_dfs)):
         metabolite = all_dfs.iloc[i].loc["Metabolite"]
         direction = all_dfs.iloc[i].loc["Direction"]
-        organismal_traits = int(all_dfs.iloc[i].loc["Traits_Annotations"])
+        organismal_traits = int(all_dfs.iloc[i].loc["Total_Traits_Annotations"])
         organismal_traits_proteomes_list = get_microbial_list(directory + "/" + metabolite + "_" + direction + "/" + ORGANISMAL_TRAITS_STRAINS_PROTEOMES_ANNOTATIONS_FILE + ".tsv", "updated_subject")
         # functional_annotations_proteomes_list = get_microbial_list(directory + "/" + metabolite + "_" + direction + "/" + RHEA_CHEBI_ANNOTATIONS_FILE + ".tsv", "ncbitaxon")
-        organismal_traits_proteomes = int(all_dfs.iloc[i].loc["Traits_Annotations_Proteome_Overlap"])
+        organismal_traits_proteomes = int(all_dfs.iloc[i].loc["Total_Traits_Proteome_Overlap"])
         if metabolite == "butyrate" and direction == "produces":
-            functional_annotations = int(all_dfs.iloc[i].loc["Rhea-Chebi_and_EC_Annotations"])
-            overlap = int(all_dfs.iloc[i].loc["Total Rhea-Chebi_and_EC_Traits_Overlap"])
+            functional_annotations = int(all_dfs.iloc[i].loc["Total_EC_and_Rhea-Chebi"])
+            overlap = int(all_dfs.iloc[i].loc["Total_Rhea-Chebi_and_EC_Traits_Overlap"])
         else:
             functional_annotations = int(all_dfs.iloc[i].loc["Rhea-Chebi_Annotations"])
-            overlap = int(all_dfs.iloc[i].loc["Total Rhea-Chebi_Traits_Overlap"])
+            overlap = int(all_dfs.iloc[i].loc["Total_Rhea-Chebi_Traits_Overlap"])
 
         p_value = monte_carlo_simulations(metabolite, direction, organismal_traits_proteomes_list, overlap, functional_annotations, total_proteomes, axes_hist[i], RANDOM_SEEDS)
         p_values[metabolite + "_" + direction] = p_value
@@ -377,9 +377,9 @@ def plot_competencies_venn_diagrams():
     for i in range(len(all_dfs)):
         metabolite = all_dfs.iloc[i].loc["Metabolite"]
         direction = all_dfs.iloc[i].loc["Direction"]
-        organismal_traits = int(all_dfs.iloc[i].loc["Traits_Annotations"])
-        functional_annotations = int(all_dfs.iloc[i].loc["Rhea-Chebi_Annotations"])
-        overlap = int(all_dfs.iloc[i].loc["Total Rhea-Chebi_Traits_Overlap"])
+        organismal_traits = int(all_dfs.iloc[i].loc["Total_Traits_Annotations"])
+        functional_annotations = int(all_dfs.iloc[i].loc["Total_Rhea-Chebi_Annotations"])
+        overlap = int(all_dfs.iloc[i].loc["Total_Rhea-Chebi_Traits_Overlap"])
 
         # Create Venn diagram
         venn = venn2(
@@ -470,7 +470,7 @@ def create_metabolite_competency_df(metabolite, direction, reaction_direction_di
 
     organismal_strains_proteomes = pd.read_csv(directory + "/" + ORGANISMAL_TRAITS_STRAINS_PROTEOMES_ANNOTATIONS_FILE + ".tsv",delimiter="\t")
     total_traits_proteomes_overlap = len(organismal_strains_proteomes)
-    new_row["Traits_Proteome_Overlap"] = total_traits_proteomes_overlap
+    new_row["Total_Traits_Proteome_Overlap"] = total_traits_proteomes_overlap
     # competency_df.loc[0,"Traits_Annotations_Proteome_Overlap"] = len(organismal_strains_proteomes)
 
     rhea_chebi_strains = pd.read_csv(directory + "/" + RHEA_CHEBI_ANNOTATIONS_FILE + ".tsv", delimiter="\t")
@@ -484,7 +484,7 @@ def create_metabolite_competency_df(metabolite, direction, reaction_direction_di
         rhea_chebi_strains.to_csv(directory + "/" + RHEA_CHEBI_ANNOTATIONS_FILE + ".tsv", sep="\t")
     total_rhea_chebi = len(rhea_chebi_strains.drop_duplicates(subset=["ncbitaxon"]))
     rhea_chebi_annotations_list = rhea_chebi_strains["ncbitaxon"].unique().tolist()
-    new_row["Rhea-Chebi_Annotations"] = total_rhea_chebi
+    new_row["Total_Rhea-Chebi_Annotations"] = total_rhea_chebi
     # competency_df.loc[0,"Rhea-Chebi_Annotations"] = len(rhea_chebi_strains.drop_duplicates(subset=["ncbitaxon"]))
 
     total_traits_rhea_chebi_overlap = len(list(set(rhea_chebi_annotations_list) & set(organismal_strains_list)))
@@ -499,20 +499,24 @@ def create_metabolite_competency_df(metabolite, direction, reaction_direction_di
         new_row["EC_Annotations"] = total_ec
 
         total_ec_traits_overlap = len(list(set(ec_strains_list) & set(organismal_strains_list)))
-        new_row["Total EC_Traits_Overlap"] = total_ec_traits_overlap
+        new_row["Total_EC_Traits_Overlap"] = total_ec_traits_overlap
         # competency_df.loc[0,"EC_Annotations"] = len(ec_strains_list)
         # competency_df.loc[0,"Total EC_Traits_Overlap"] = len(list(set(ec_strains_list) & set(organismal_annotations)))
         total_ec_rhea_chebi_overlap = len(list(set(ec_strains_list) & set(rhea_chebi_annotations_list)))
-        new_row["Total EC_Rhea-Chebi_Overlap"] = total_ec_rhea_chebi_overlap
+        new_row["Total_EC_Rhea-Chebi_Overlap"] = total_ec_rhea_chebi_overlap
+
+        total_ec_and_rhea_chebi = len(list(set(ec_strains_list) | set(rhea_chebi_annotations_list)))
+        new_row["Total_EC_and_Rhea-Chebi"] = total_ec_and_rhea_chebi
+
         # competency_df.loc[0,"Total EC_Rhea-Chebi_Overlap"] = len(list(set(ec_strains_list) & set(rhea_chebi_annotations)))
 
         total_ec_traits_rhea_chebi_overlap = len(list((set(ec_strains_list) & set(rhea_chebi_annotations_list)) & set(organismal_strains_list)))
-        new_row["Total Rhea-Chebi_and_EC_Traits_Overlap"] = total_ec_traits_rhea_chebi_overlap
+        new_row["Total_Rhea-Chebi_and_EC_Traits_Overlap"] = total_ec_traits_rhea_chebi_overlap
 
         # competency_df.loc[0,"Total Rhea-Chebi_and_EC_Traits_Overlap"] = len(list((set(ec_strains_list) | set(rhea_chebi_annotations)) & set(organismal_annotations)))
 
         total = len(list(set(ec_strains_list) | set(rhea_chebi_annotations_list) | set(organismal_strains_list)))
-        new_row["Traits_and_Rhea-Chebi_and_EC_Annotations"] = total
+        new_row["Total_Traits_and_Rhea-Chebi_and_EC_Annotations"] = total
         # competency_df.loc[0,"Traits_and_Rhea-Chebi_and_EC_Annotations"] = len(list(set(ec_strains_list) | set(rhea_chebi_annotations) | set(organismal_annotations)))
 
         # Metrics for paper

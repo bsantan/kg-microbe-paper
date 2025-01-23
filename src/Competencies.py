@@ -563,7 +563,7 @@ def visualize_all_competencies(final_df, direction):
     labels = list(final_df.columns)
     labels.remove("Metabolite")
 
-    plt.figure(figsize=(8,8))
+    plt.figure(figsize=(10,7))
     wedges, texts, autotexts =  plt.pie(
         values, 
         labels = None, 

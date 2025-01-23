@@ -250,7 +250,7 @@ def plot_competencies_venn_diagrams_with_proteomes(conn):
             functional_annotations = int(all_dfs.iloc[i].loc["Total_EC_and_Rhea-Chebi"])
             overlap = int(all_dfs.iloc[i].loc["Total_Rhea-Chebi_and_EC_Traits_Overlap"])
         else:
-            functional_annotations = int(all_dfs.iloc[i].loc["Rhea-Chebi_Annotations"])
+            functional_annotations = int(all_dfs.iloc[i].loc["Total_Rhea-Chebi_Annotations"])
             overlap = int(all_dfs.iloc[i].loc["Total_Rhea-Chebi_Traits_Overlap"])
 
         p_value = monte_carlo_simulations(metabolite, direction, organismal_traits_proteomes_list, overlap, functional_annotations, total_proteomes, axes_hist[i], RANDOM_SEEDS)

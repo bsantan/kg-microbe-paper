@@ -92,9 +92,9 @@ def create_families_piechart(conn, df, filename, all_microbes_families_species, 
     print(len(ranked_value_dict.items()))
 
     if len(ranked_value_dict.items()) > 0:
-        lengths = {key: len(value) for key, value in ranked_value_dict.items()}
-        threshold = sorted(lengths.values(), reverse=True)[int(len(lengths) * 0.1)]
-        top_10_percent_ranked_value_dict = {key: value for key, value in ranked_value_dict.items() if len(value) >= threshold}
+        # lengths = {key: len(value) for key, value in ranked_value_dict.items()}
+        # threshold = sorted(lengths.values(), reverse=True)[int(len(lengths) * 0.1)]
+        # top_10_percent_ranked_value_dict = {key: value for key, value in ranked_value_dict.items() if len(value) >= threshold}
 
         ranked_microbe_labels = []
         ranked_microbe_ids = []
@@ -104,8 +104,8 @@ def create_families_piechart(conn, df, filename, all_microbes_families_species, 
         traits_data = []
 
         # Determine grid dimensions (roughly square)
-        num_cols = math.ceil(math.sqrt(len(top_10_percent_ranked_value_dict.keys())))
-        num_rows = math.ceil(len(top_10_percent_ranked_value_dict.keys()) / num_cols)
+        num_cols = math.ceil(math.sqrt(len(ranked_value_dict.keys())))
+        num_rows = math.ceil(len(ranked_value_dict.keys()) / num_cols)
         fig, ax = plt.subplots(num_rows, num_cols, figsize=(16, 12))
         # Ensure ax is always an array
         # Flatten the axes array for easy indexing, will be array only if num_cols is >1
@@ -114,7 +114,7 @@ def create_families_piechart(conn, df, filename, all_microbes_families_species, 
         else:
             ax = [ax]
 
-        for i, (ranked_microbe, values) in enumerate(top_10_percent_ranked_value_dict.items()):
+        for i, (ranked_microbe, values) in enumerate(ranked_value_dict.items()):
             # Subset by only values in proteomes
             values = [j for j in values if j in ncbitaxon_func_ids]
             ranked_microbe_label = get_node_label(conn, ranked_microbe)

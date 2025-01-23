@@ -100,82 +100,83 @@ def create_ordered_subset( df, filename, all_microbes_families_species, grouped_
 
 def create_families_piechart(conn, filename, all_microbes_families_species, child_rank, ncbitaxon_func_ids, output_dir, grouped_rank, group_by_rank, threshold_ranked_value_dict, ranked_mapping):
 
-    ranked_microbe_labels = []
-    ranked_microbe_ids = []
-    ranked_labels = []
-    fractions_produces_but = []
-    total_fam_sizes = []
-    traits_data = []
+    if len(threshold_ranked_value_dict.items()) > 0:
+        ranked_microbe_labels = []
+        ranked_microbe_ids = []
+        ranked_labels = []
+        fractions_produces_but = []
+        total_fam_sizes = []
+        traits_data = []
 
-    # Determine grid dimensions (roughly square)
-    num_cols = math.ceil(math.sqrt(len(threshold_ranked_value_dict.keys())))
-    num_rows = math.ceil(len(threshold_ranked_value_dict.keys()) / num_cols)
-    fig, ax = plt.subplots(num_rows, num_cols, figsize=(16, 12))
-    # Ensure ax is always an array
-    # Flatten the axes array for easy indexing, will be array only if num_cols is >1
-    if isinstance(ax, np.ndarray):
-        ax = ax.flatten()
-    else:
-        ax = [ax]
-
-    for i, (ranked_microbe, values) in enumerate(threshold_ranked_value_dict.items()):
-        # Subset by only values in proteomes
-        values = [j for j in values if j in ncbitaxon_func_ids]
-        ranked_microbe_label = get_node_label(conn, ranked_microbe)
-        ranked_labels.append(ranked_mapping[ranked_microbe])
-        if ranked_microbe == "not found": 
-            not_found_children += 1
+        # Determine grid dimensions (roughly square)
+        num_cols = math.ceil(math.sqrt(len(threshold_ranked_value_dict.keys())))
+        num_rows = math.ceil(len(threshold_ranked_value_dict.keys()) / num_cols)
+        fig, ax = plt.subplots(num_rows, num_cols, figsize=(16, 12))
+        # Ensure ax is always an array
+        # Flatten the axes array for easy indexing, will be array only if num_cols is >1
+        if isinstance(ax, np.ndarray):
+            ax = ax.flatten()
         else:
-            # Remove values that did not have rank
-            all_children = all_microbes_families_species[ranked_microbe]
-            values = [j for j in values if j in all_children]
-            total_children = len(all_microbes_families_species[ranked_microbe])
-            with_trait = len(values)
-            without_trait = total_children - with_trait
-            ranked_microbe_labels.append(ranked_microbe_label)
-            ranked_microbe_ids.append(ranked_microbe)
-            fractions_produces_but.append(with_trait / total_children)
-            total_fam_sizes.append(total_children)
-            traits_data.append([with_trait, without_trait])
+            ax = [ax]
 
-    colors = ["#56B4E9","#9C27B0"]
-    for m in range(len(ranked_microbe_labels)):
-        # For original taxa
-        wedges, texts = ax[m].pie(traits_data[m], labels=None, autopct=None, startangle=90, wedgeprops={'edgecolor': 'black'}, colors = colors) #autopct='%1.0f%%'
-        ax[m].axis('equal')
-        ax[m].set_title(ranked_microbe_labels[m] + ": " + str(total_fam_sizes[m]) + " total", fontsize=12)
-    # Hide unused subplots
-    traits_labels = ["Butyrate Producer", "Non Butyrate Producer"]
-    for j in range(i + 1, len(ax)):
-        fig.delaxes(ax[j])
-    fig.legend(wedges, traits_labels, title="Microbial Trait", loc="upper left", fontsize=12, bbox_to_anchor=(0.6, 0.2))
-    plt.tight_layout(rect=[0, 0, 0.95, 1])
-    fig.savefig(output_dir + '/' + filename + '_' + grouped_rank.capitalize() + '_Traits_Comparison_' + child_rank + '.png')
-    plt.close()
+        for i, (ranked_microbe, values) in enumerate(threshold_ranked_value_dict.items()):
+            # Subset by only values in proteomes
+            values = [j for j in values if j in ncbitaxon_func_ids]
+            ranked_microbe_label = get_node_label(conn, ranked_microbe)
+            ranked_labels.append(ranked_mapping[ranked_microbe])
+            if ranked_microbe == "not found": 
+                not_found_children += 1
+            else:
+                # Remove values that did not have rank
+                all_children = all_microbes_families_species[ranked_microbe]
+                values = [j for j in values if j in all_children]
+                total_children = len(all_microbes_families_species[ranked_microbe])
+                with_trait = len(values)
+                without_trait = total_children - with_trait
+                ranked_microbe_labels.append(ranked_microbe_label)
+                ranked_microbe_ids.append(ranked_microbe)
+                fractions_produces_but.append(with_trait / total_children)
+                total_fam_sizes.append(total_children)
+                traits_data.append([with_trait, without_trait])
 
-    # Calculate total number of 1s and total observations
-    total_but_producers = int(sum(p * n for p, n in zip(fractions_produces_but, total_fam_sizes)))
-    total_observations = sum(total_fam_sizes)
+        colors = ["#56B4E9","#9C27B0"]
+        for m in range(len(ranked_microbe_labels)):
+            # For original taxa
+            wedges, texts = ax[m].pie(traits_data[m], labels=None, autopct=None, startangle=90, wedgeprops={'edgecolor': 'black'}, colors = colors) #autopct='%1.0f%%'
+            ax[m].axis('equal')
+            ax[m].set_title(ranked_microbe_labels[m] + ": " + str(total_fam_sizes[m]) + " total", fontsize=12)
+        # Hide unused subplots
+        traits_labels = ["Butyrate Producer", "Non Butyrate Producer"]
+        for j in range(i + 1, len(ax)):
+            fig.delaxes(ax[j])
+        fig.legend(wedges, traits_labels, title="Microbial Trait", loc="upper left", fontsize=12, bbox_to_anchor=(0.6, 0.2))
+        plt.tight_layout(rect=[0, 0, 0.95, 1])
+        fig.savefig(output_dir + '/' + filename + '_' + grouped_rank.capitalize() + '_Traits_Comparison_' + child_rank + '.png')
+        plt.close()
 
-    # Perform binomial test
-    p_value = binomtest(total_but_producers, total_observations, p=0.5, alternative='greater')
-    families_results_stats_df = pd.DataFrame()
-    families_results_stats_df["Total_Butyrate_Producers"] = [total_but_producers]
-    families_results_stats_df["Total_Children"] = [total_observations]
-    families_results_stats_df["Binomial_p_value"] = [p_value]
-    families_results_stats_df.to_csv(output_dir + '/' + filename + '_' + grouped_rank.capitalize() + '_Traits_Comparison_Statistics_' + child_rank + '.tsv')
+        # Calculate total number of 1s and total observations
+        total_but_producers = int(sum(p * n for p, n in zip(fractions_produces_but, total_fam_sizes)))
+        total_observations = sum(total_fam_sizes)
 
-    print(f"Total Butyrate Producers: {total_but_producers}, Total Children: {total_observations}")
-    print(f"P-value: {p_value}")
+        # Perform binomial test
+        p_value = binomtest(total_but_producers, total_observations, p=0.5, alternative='greater')
+        families_results_stats_df = pd.DataFrame()
+        families_results_stats_df["Total_Butyrate_Producers"] = [total_but_producers]
+        families_results_stats_df["Total_Children"] = [total_observations]
+        families_results_stats_df["Binomial_p_value"] = [p_value]
+        families_results_stats_df.to_csv(output_dir + '/' + filename + '_' + grouped_rank.capitalize() + '_Traits_Comparison_Statistics_' + child_rank + '.tsv')
 
-    # Output to tsv
-    families_results_df = pd.DataFrame()
-    families_results_df[grouped_rank.capitalize()] = ranked_microbe_labels
-    families_results_df[grouped_rank.capitalize() + "_ID"] = ranked_microbe_ids
-    families_results_df["Ranked_Mapping_" + group_by_rank] = ranked_labels
-    families_results_df["fractions_produces_but"] = fractions_produces_but
-    families_results_df["total_fam_sizes"] = total_fam_sizes
-    families_results_df.to_csv(output_dir + '/' + filename + '_' + grouped_rank.capitalize() + '_Traits_Comparison_' + child_rank + '.tsv')
+        print(f"Total Butyrate Producers: {total_but_producers}, Total Children: {total_observations}")
+        print(f"P-value: {p_value}")
+
+        # Output to tsv
+        families_results_df = pd.DataFrame()
+        families_results_df[grouped_rank.capitalize()] = ranked_microbe_labels
+        families_results_df[grouped_rank.capitalize() + "_ID"] = ranked_microbe_ids
+        families_results_df["Ranked_Mapping_" + group_by_rank] = ranked_labels
+        families_results_df["fractions_produces_but"] = fractions_produces_but
+        families_results_df["total_fam_sizes"] = total_fam_sizes
+        families_results_df.to_csv(output_dir + '/' + filename + '_' + grouped_rank.capitalize() + '_Traits_Comparison_' + child_rank + '.tsv')
 
 def get_rank(microbe, all_microbes_df, ncbi_taxa_ranks_df):
 

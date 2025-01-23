@@ -330,7 +330,8 @@ def main():
         "ec_no_gs" : (gs_analysis_microbes_df['Functional_EC'] == 1) & (gs_analysis_microbes_df['Gold_Standard'] == 0),
         "all_no_gs" : gs_analysis_microbes_df['Gold_Standard'] == 0,
         "all_kg" : ((gs_analysis_microbes_df['Organismal'] == 1) | (gs_analysis_microbes_df['Functional'] == 1) | (gs_analysis_microbes_df["Functional_EC"] == 1)),
-        "gs_proteomes_no_trait" : (gs_analysis_microbes_df['Proteome'] == 1) & (gs_analysis_microbes_df['Gold_Standard'] == 1) & (gs_analysis_microbes_df['Functional'] == 0) & (gs_analysis_microbes_df['Functional_EC'] == 0)
+        "gs_proteomes_no_annotation" : (gs_analysis_microbes_df['Proteome'] == 1) & (gs_analysis_microbes_df['Gold_Standard'] == 1) & (gs_analysis_microbes_df['Functional'] == 0) & (gs_analysis_microbes_df['Functional_EC'] == 0),
+        "gs_proteomes_total" : (gs_analysis_microbes_df['Proteome'] == 1) & (gs_analysis_microbes_df['Gold_Standard'] == 1)
     }
 
     final_data = {}

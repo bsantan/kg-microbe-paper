@@ -839,7 +839,6 @@ def create_query(pathway_list, pathway_index):
     # Combine all sublist conditions with AND
     combined_conditions = " AND ".join(query_parts)
 
-    print(combined_conditions)
     
     # Return the full query for this pathway
     return f"SELECT DISTINCT u.ncbi_taxon AS subject FROM edges AS e JOIN uniprot_to_ncbi u ON e.subject = u.uniprotkb WHERE e.subject LIKE '%UniprotKB:%' AND ({combined_conditions})"
@@ -1137,7 +1136,6 @@ def organismal_genomic_competency(metabolite, direction):
     ).fetchone()
 
     uniprot_to_ncbi = result[0]
-    print("uniprot_to_ncbi: ",uniprot_to_ncbi)
 
     #! Including statement to get rid of proteins without proteome, which is bug in tar build only- NOT NULL
     ## NCBITaxon - participates_in - GO
@@ -1222,7 +1220,6 @@ def organismal_genomic_competency(metabolite, direction):
     ).fetchone()
 
     rhea_to_chebi = result[0]
-    print("rhea_to_chebi: ",rhea_to_chebi)
 
     # Create table of NCBITaxon nodes that have edges to those Chebi results
     ## ncbitaxon - rhea
@@ -1256,7 +1253,6 @@ def organismal_genomic_competency(metabolite, direction):
     ).fetchone()
 
     ncbitaxon_to_rhea = result[0]
-    print("ncbitaxon_to_rhea: ",ncbitaxon_to_rhea)
 
     # Create table of ncbitaxon to Chebi
     ## ncbitaxon - chebi
@@ -1280,7 +1276,6 @@ def organismal_genomic_competency(metabolite, direction):
     ).fetchone()
 
     ncbitaxon_to_chebi = result[0]
-    print("ncbitaxon_to_chebi: ",ncbitaxon_to_chebi)
 
     output_table_to_file(conn, "(SELECT * FROM ncbitaxon_to_chebi)", output_dir + "/" + RHEA_CHEBI_ANNOTATIONS_FILE + ".tsv")
 
@@ -1529,7 +1524,6 @@ def congruency_competencies():
     ).fetchone()
 
     uniprot_rhea_only = result[0]
-    print("uniprot_rhea_only: ",uniprot_rhea_only)
 
     # result = conn.execute("SELECT COUNT(*) FROM uniprot_rhea_go").fetchone()
     # print(f"Number of rows: {result[0]}")
@@ -1557,7 +1551,6 @@ def congruency_competencies():
     ).fetchone()
 
     uniprot_go_only = result[0]
-    print("uniprot_go_only: ",uniprot_go_only)
 
 
     result = conn.execute(
@@ -1571,7 +1564,6 @@ def congruency_competencies():
     ).fetchone()
 
     rhea_go_overlap = result[0]
-    print("rhea_go_overlap: ",rhea_go_overlap)
 
     print("Fraction of overlap out of all uniprot go only: ",rhea_go_overlap/uniprot_go_only)
     print("Fraction of overlap out of all uniprot rhea only: ",rhea_go_overlap/uniprot_rhea_only)
@@ -1743,8 +1735,6 @@ def equilibrator_reaction_direction(conn, metabolite,direction):
 
         df = pd.read_csv(directory + "/" + RHEA_CHEBI_ANNOTATIONS_FILE + ".tsv", sep = "\t")
         df = df.drop(columns=['ncbitaxon', "uniprotkb"]).drop_duplicates()
-        
-        print(len(df))
 
         for i in tqdm.tqdm(range(len(df))):
             rhea = df.iloc[i].loc["rhea"]
@@ -2033,8 +2023,6 @@ def gold_standard_comparison_species(metabolite, direction):
         if not os.path.exists(gold_standard_overlap_file):
             rhea_chebi_protein_dict = rhea_chebi_df.groupby('ncbitaxon')['uniprotkb'].apply(lambda x: [get_node_label(conn, v) for v in x]).to_dict()
 
-            print(len(organismal_gs_overlap))
-            print(len(organismal_strains_list))
             # Create a DataFrame with columns indicating membership
             df = pd.DataFrame({
                 "Value": sorted_all_values,

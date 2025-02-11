@@ -211,7 +211,7 @@ def post_competency_analysis(conn, metabolite, direction, microbes_family_dict, 
                 microbes_list_genera.append(gen)
             else:
                 microbes_list_genera.append("none")
-                microbes_impt_families.append("none")
+                #microbes_impt_families.append("none")
             if fam:
                 fam_lab = get_node_label(conn, fam)
                 impt_fam = "impt_fam" if fam_lab in GUT_FAMILIES_LIST else "other"

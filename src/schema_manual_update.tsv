@@ -1,0 +1,106 @@
+S	P	O
+CAS-RN	occurs_in	assay
+CHEBI	associated_with	MONDO
+CHEBI	binds	UniprotKB
+CHEBI	location_of	NCBITaxon
+CHEBI	occurs_in	assay
+EC	consumes	CAS-RN
+EC	consumes	CHEBI
+EC	is_assessed_by	assay
+ENVO	location_of	NCBITaxon
+FOODON	location_of	NCBITaxon
+GO	enabled_by	UPA
+GO	related_to	UPA
+HGNC	has_gene_product	UniprotKB
+KEGG	occurs_in	assay
+MONDO	related_to	CHEBI   (From MONDO, not included)
+NCBITaxon	associated_with	BSL
+NCBITaxon	associated_with_decreased_likelihood_of	GO
+NCBITaxon	associated_with_decreased_likelihood_of	HP
+NCBITaxon	associated_with_decreased_likelihood_of	MONDO
+NCBITaxon	associated_with_increased_likelihood_of	GO
+NCBITaxon	associated_with_increased_likelihood_of	HP
+NCBITaxon	associated_with_increased_likelihood_of	MONDO
+NCBITaxon	associated_with_resistance_to	CHEBI
+NCBITaxon	associated_with_sensitivity_to	CHEBI
+NCBITaxon	capable_of	EC
+NCBITaxon	capable_of	motility
+NCBITaxon	capable_of	pathways
+NCBITaxon	capable_of	sporulation
+NCBITaxon	capable_of	trophic_type
+NCBITaxon	consumes	CHEBI
+NCBITaxon	consumes	carbon_substrates
+NCBITaxon	has_phenotype	NaCl_delta
+NCBITaxon	has_phenotype	NaCl_opt
+NCBITaxon	has_phenotype	NaCl_range
+NCBITaxon	has_phenotype	cell_length
+NCBITaxon	has_phenotype	cell_shape
+NCBITaxon	has_phenotype	cell_width
+NCBITaxon	has_phenotype	gc
+NCBITaxon	has_phenotype	gram_stain
+NCBITaxon	has_phenotype	oxygen
+NCBITaxon	has_phenotype	pH_delta
+NCBITaxon	has_phenotype	pH_opt
+NCBITaxon	has_phenotype	pH_range
+NCBITaxon	has_phenotype	pathogen
+NCBITaxon	has_phenotype	salinity
+NCBITaxon	has_phenotype	temp_delta
+NCBITaxon	has_phenotype	temp_opt
+NCBITaxon	has_phenotype	temp_range
+NCBITaxon	has_phenotype	temperature
+NCBITaxon	location_of	CHEBI
+NCBITaxon	location_of	ENVO
+NCBITaxon	location_of	NCBITaxon
+NCBITaxon	location_of	PO
+NCBITaxon	location_of	UBERON
+NCBITaxon	location_of	isolation_source
+NCBITaxon	occurs_in	medium
+NCBITaxon	produces	CHEBI
+NCBITaxon	produces	pigment (not included)
+NCBITaxon	produces	production (not included)
+PATO	location_of	NCBITaxon
+RHEA	enabled_by	EC
+RHEA	enables	GO
+RHEA	has_input	CHEBI (not included, described in text)
+RHEA	has_output	CHEBI (not included, described in text)
+RHEA	has_participant	CHEBI
+RHEA	part_of	UPA
+RHEA	subclass_of	RHEA (not included, described in text)
+UBERON	location_of	NCBITaxon
+UPA	part_of	UPA (not included)
+UPA	subclass_of	UPA (not included)
+UniprotKB	derives_from	NCBITaxon
+UniprotKB	enables	EC
+UniprotKB	located_in	GO
+UniprotKB	participates_in	GO
+UniprotKB	participates_in	RHEA
+assay	assesses	NCBITaxon
+assay	assesses	strain
+cell_shape	capable_of	cell_shape (weird, not included)
+isolation_source	location_of	NCBITaxon
+isolation_source	location_of	strain
+medium	has_part	solution
+medium	subclass_of	medium-type (not included)
+solution	has_part	CAS-RN
+solution	has_part	CHEBI
+solution	has_part	KEGG
+solution	has_part	PubChem
+solution	has_part	ingredient (not included, in text)
+solution	has_part	solution
+strain	capable_of	EC
+strain	capable_of	motility
+strain	capable_of	pathways
+strain	capable_of	sporulation
+strain	capable_of	trophic_type
+strain	consumes	CHEBI
+strain	has_phenotype	cell_shape
+strain	has_phenotype	gram_stain
+strain	has_phenotype	oxygen
+strain	has_phenotype	pathogen
+strain	has_phenotype	salinity
+strain	has_phenotype	temperature
+strain	occurs_in	medium
+strain	produces	CHEBI
+strain	produces	production (not included)
+strain	subclass_of	NCBITaxon
+trophic_type	capable_of	trophic_type (not included, weird)

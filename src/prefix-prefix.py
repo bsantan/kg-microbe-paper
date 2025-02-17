@@ -12,7 +12,14 @@ edges_file = "./Input_Files/kg-microbe-biomedical-function/merged-kg_edges.tsv"
 output_lines = []
 all_prefixes = []
 
-traits = ['oxygen', 'production', 'cell_length', 'motility', 'cell_width', 'NaCl_range', 'NaCl_opt', 'temp_delta', 'gc', 'pathways', 'pH_range', 'isolation_source', 'sporulation', 'trophic_type', 'pH_delta', 'strain', 'temp_range', 'pigment', 'gram_stain', 'solution', 'cell_shape', 'salinity', 'temperature', 'bacdive', 'pathogen', 'temp_opt', 'NaCl_delta', 'pH_opt']
+# cmd = r"grep -o '\b[A-Za-z0-9_-]*:' merged-kg_edges.tsv | sed 's/:$//' | sort -u"
+# result = subprocess.run(cmd, shell=True, capture_output=True, text=True)
+
+# # Convert output to a list of strings
+# unique_prefixes = result.stdout.strip().split("\n")
+
+# traits = ['oxygen', 'cell_length', 'motility', 'cell_width', 'NaCl_range', 'NaCl_opt', 'temp_delta', 'gc', 'pathways', 'pH_range', 'isolation_source', 'sporulation', 'trophic_type', 'pH_delta', 'strain', 'temp_range', 'pigment', 'gram_stain', 'solution', 'cell_shape', 'salinity', 'temperature', 'bacdive', 'pathogen', 'temp_opt', 'NaCl_delta', 'pH_opt']
+# traits = ['assay', 'BSL', 'carbon_substrates', 'cell_length', 'cell_shape', 'cell_width',  'gc', 'gram_stain', 'http', 'isolation_source', 'medium', 'motility', 'NaCl_delta', 'NaCl_opt', 'NaCl_range', 'oxygen', 'pathogen', 'pathways', 'pH_delta', 'pH_opt', 'pH_range', 'pigment', 'production', 'salinity', 'sporulation', 'temp_delta', 'temperature', 'temp_opt', 'temp_range', 'trophic_type']
 
 # with open(edges_file, "r") as file:
 #     csv_reader = csv.DictReader(file, delimiter="\t")

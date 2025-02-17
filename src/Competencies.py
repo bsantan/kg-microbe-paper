@@ -248,7 +248,7 @@ def plot_competencies_venn_diagrams_with_proteomes(conn):
         organismal_traits_proteomes = int(all_dfs.iloc[i].loc["Total_Traits_Proteome_Overlap"])
         if metabolite == "butyrate" and direction == "produces":
             functional_annotations = int(all_dfs.iloc[i].loc["Total_EC_and_Rhea-Chebi"])
-            overlap = int(all_dfs.iloc[i].loc["Total_Rhea-Chebi_and_EC_Traits_Overlap"])
+            overlap = int(all_dfs.iloc[i].loc["Total_Rhea-Chebi_Traits_Overlap"])
         else:
             functional_annotations = int(all_dfs.iloc[i].loc["Total_Rhea-Chebi_Annotations"])
             overlap = int(all_dfs.iloc[i].loc["Total_Rhea-Chebi_Traits_Overlap"])
@@ -1819,7 +1819,7 @@ def equilibrator_reaction_direction(conn, metabolite,direction):
 
 def get_reaction_direction(gibbs, metab_association):
 
-    # Positive gibbs means reaction procedes in forward direction
+    # Positive gibbs means reaction procedes in reverse direction
     if gibbs > 0 and metab_association == "input":
         return "output"
     elif gibbs > 0 and metab_association == "output":

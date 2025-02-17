@@ -10,10 +10,10 @@ EC	is_assessed_by	assay
 ENVO	location_of	NCBITaxon
 FOODON	location_of	NCBITaxon
 GO	enabled_by	UPA
+GO	related_to	GO
 GO	related_to	UPA
 HGNC	has_gene_product	UniprotKB
 KEGG	occurs_in	assay
-MONDO	related_to	CHEBI   (From MONDO, not included)
 NCBITaxon	associated_with	BSL
 NCBITaxon	associated_with_decreased_likelihood_of	GO
 NCBITaxon	associated_with_decreased_likelihood_of	HP
@@ -56,19 +56,17 @@ NCBITaxon	location_of	UBERON
 NCBITaxon	location_of	isolation_source
 NCBITaxon	occurs_in	medium
 NCBITaxon	produces	CHEBI
-NCBITaxon	produces	pigment (not included)
-NCBITaxon	produces	production (not included)
+NCBITaxon	produces	pigment
+NCBITaxon	subclass_of	NCBITaxon
 PATO	location_of	NCBITaxon
 RHEA	enabled_by	EC
 RHEA	enables	GO
-RHEA	has_input	CHEBI (not included, described in text)
-RHEA	has_output	CHEBI (not included, described in text)
+RHEA	has_input	CHEBI
+RHEA	has_output	CHEBI
 RHEA	has_participant	CHEBI
 RHEA	part_of	UPA
-RHEA	subclass_of	RHEA (not included, described in text)
+RHEA	subclass_of	RHEA
 UBERON	location_of	NCBITaxon
-UPA	part_of	UPA (not included)
-UPA	subclass_of	UPA (not included)
 UniprotKB	derives_from	NCBITaxon
 UniprotKB	enables	EC
 UniprotKB	located_in	GO
@@ -76,16 +74,16 @@ UniprotKB	participates_in	GO
 UniprotKB	participates_in	RHEA
 assay	assesses	NCBITaxon
 assay	assesses	strain
-cell_shape	capable_of	cell_shape (weird, not included)
+cell_shape	capable_of	cell_shape
 isolation_source	location_of	NCBITaxon
 isolation_source	location_of	strain
 medium	has_part	solution
-medium	subclass_of	medium-type (not included)
+medium	subclass_of	medium-type
 solution	has_part	CAS-RN
 solution	has_part	CHEBI
 solution	has_part	KEGG
 solution	has_part	PubChem
-solution	has_part	ingredient (not included, in text)
+solution	has_part	ingredient
 solution	has_part	solution
 strain	capable_of	EC
 strain	capable_of	motility
@@ -101,6 +99,5 @@ strain	has_phenotype	salinity
 strain	has_phenotype	temperature
 strain	occurs_in	medium
 strain	produces	CHEBI
-strain	produces	production (not included)
 strain	subclass_of	NCBITaxon
-trophic_type	capable_of	trophic_type (not included, weird)
+trophic_type	capable_of	trophic_type

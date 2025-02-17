@@ -113,12 +113,12 @@ Gold_Standard_Families_Overlap_butyrate_produces.csv: Summary of presence of tax
 Gold_Standard_Families_Venn_Diagrams.png: Visualization of number of taxa at the family level in KG vs. Vital et al. (excluding pathway EC sets)
 ```
 
-### Biomedical Analysis
+### Comparison to literature set
 
-The second script will use the outputs from the Metabolite Competencies to analyze microbial metabolism in the context of disease. 
+The second script will use the outputs from the Metabolite Competencies to compare to the Vital et al. 
 
 ```
-
+python Gold_standard_Competency_analysis.py
 ```
 
 #### Expected Outputs
@@ -138,7 +138,7 @@ The children of each taxa at the species or strain level is found next. The foll
 
 ```
 competencies_all_microbes_families_butyrate_produces_microbes_species.json: species of each taxon, taxon: species pairs
-competencies_all_microbes_families_butyrate_produces_microbes_strain.json: species of each taxon, taxon: species pairs
+competencies_all_microbes_families_butyrate_produces_microbes_strain.json: strains of each taxon, taxon: strain pairs
 competencies_all_microbes_families_butyrate_produces_microbes_strains_and_species.json: all children (strains if they exist or species if not) of each taxa, family: taxon pairs
 ```
 
@@ -156,7 +156,7 @@ all_no_gs: taxa with any butyrate production semantic representation in KG but n
 all_kg: taxa with any butyrate production semantic representation in KG
 ```
 
-Step 2: Summarize the ranks of relevant taxa, and assess the importance in the human gut. Each of the following files consists of a different set of taxa defined below with the following columns:
+Step 2: summarize the ranks of relevant taxa, and assess the importance in the human gut. Each of the following files consists of a different set of taxa defined below with the following columns:
 - Value: taxon NCBITaxon ID
 - Rank: taxon rank
 - Genus: genus that the taxon belongs to
@@ -195,10 +195,45 @@ Next this is done for only those with the 'impt_fam' annotation. This is done wi
 _Genus_Traits_Comparison_species_and_strain_all.tsv
 ```
 
+### Biomedical Analysis
+  
+The third script will use the outputs from the Metabolite Competencies to analyze microbial metabolism in the context of disease. 
 
+```
+python Classification_gold_standard_comparison.py
+```
 
+#### Expected Outputs
 
+Step 1: identify all taxa involved in diseases according to KG (for PD and IBD) and identify all children (strains if they exist otherwise species) for relevant taxa. These are output to './Intermdiate_Files':
 
+```
+classification_butyrate_produces_<IBD/PD_microbes_strain.json: species of each taxon, taxon: species pairs
+classification_butyrate_produces_<IBD/PD_microbes_strain.json: strains of each taxon, taxon: strain pairs
+```
 
+Step 2: summarize the number of species or strains per taxa in the disease set. These are output to './Intermdiate_Files':
 
+```
+outcome_to_NCBITaxon_cleaned_ranks_butyrate_production_<IBD/PD>.csv: each taxa annotated as being involved with disease and the number of butyrate producers by their children
+- Name: taxon NCBITaxon ID
+- Disease_Relationship: direction of disease involvement (increase or decrease likelihood of disease)
+- Rank: taxon rank
+- Num_Species: number of children that are species level
+- Num_Species_Butyrate_Producers: number of children that are species level and are butyrate producers according to the KG, where taxa are in edges of the patterns 'NCBITaxon,biolink:produces,butyrate' or 'NCBITaxon, biolink:derives_from, UniprotKB,biolink:participates_in, RHEA, <predicted to produce>, butyrate' or 'NCBITaxon, biolink:derives_from, UniprotKB,biolink:enables, <set of EC in defined pathway>'
+- Num_Strains: number of children that are strain level
+- Num_Strains_Butyrate_Producers: number of children that are strain level and are butyrate producers according to the KG, where taxa are in edges of the patterns 'NCBITaxon,biolink:produces,butyrate' or 'NCBITaxon, biolink:derives_from, UniprotKB,biolink:participates_in, RHEA, <predicted to produce>, butyrate' or 'NCBITaxon, biolink:derives_from, UniprotKB,biolink:enables, <set of EC in defined pathway>'
+```
+
+Step 3: determine significance of difference between butyrate producers in set of taxa that increase vs. decrease disease. These are output to './Intermediate_Files':
+
+```
+<IBD/PD>_Classification_butyrate_producers_summary.csv
+Num_Decreased_disease_Total: total taxa that decrease liklihood of disease
+Num_Increased_disease_Total: total taxa that increase liklihood of disease
+Num_Decreased_disease_Butyrate_Producers: total taxa that decrease liklihood of disease and are butyrate producers according to the KG, where taxa are in edges of the patterns 'NCBITaxon,biolink:produces,butyrate' or 'NCBITaxon, biolink:derives_from, UniprotKB,biolink:participates_in, RHEA, <predicted to produce>, butyrate' or 'NCBITaxon, biolink:derives_from, UniprotKB,biolink:enables, <set of EC in defined pathway>'
+Num_Increased_disease_Butyrate_Producers: total taxa that increase liklihood of disease and are butyrate producers according to the KG, where taxa are in edges of the patterns 'NCBITaxon,biolink:produces,butyrate' or 'NCBITaxon, biolink:derives_from, UniprotKB,biolink:participates_in, RHEA, <predicted to produce>, butyrate' or 'NCBITaxon, biolink:derives_from, UniprotKB,biolink:enables, <set of EC in defined pathway>'
+chi2: chi2 value of difference between butyrate producers in increased vs decreased group after a chi-squared test
+P_Val: p value of difference between butyrate producers in increased vs decreased group after a chi-squared test
+```
 

@@ -24,6 +24,20 @@ pandas==2.2.3
 
 ## Running the Analysis Scripts
 
+In order to create subfiles of the necessary edges in the graph, first run the following command:
+
+```
+make all
+```
+
+This will create 3 files that are used in this analysis.
+
+```
+merged-kg_edges_noEC.tsv
+merged-kg_edges_competency_specific_ec.tsv
+merged-kg_edges_ncbitaxon.tsv
+```
+
 ### Metabolite Competencies
   
 The first script will perform a series of DuckDB queries to identify taxa with with a given metabolic trait. Currently, this supports finding taxa with one of 4 semantic representations of butyrate production. 

@@ -14,6 +14,8 @@ def get_table_count(con, table):
     # Print the number of rows
     print(f"Number of rows in '{table}': {result[0]}")
 
+    return result[0]
+
 def duckdb_load_table(con, file, table_name, columns):
     """Create a duckDB tables for any given graph."""
     columns_str = ", ".join(columns)
@@ -192,3 +194,78 @@ def get_node_label(con, node_id):
         return node_id
 
     return result
+
+def query_with_edge_conditions(con, table_name, output_table_name, edge_names):
+    """
+    Execute a query with edge name constraints.
+
+    Parameters:
+    con (duckdb.DuckDBPyConnection): The DuckDB connection.
+    table_name (str): The name of the table to query.
+    edge_names (list of strings): A list of edge names.
+
+    Returns:
+    list: The query results.
+    """
+
+    edges_query =  '(' + ' OR '.join([f"{table_name}.predicate = '{term}'" for term in edge_names]) + ')'
+
+    query = (
+        f"""
+        CREATE TEMPORARY TABLE {output_table_name} AS 
+        SELECT * FROM {table_name} 
+        WHERE {edges_query};
+        """
+        ) 
+
+    print(query)
+    con.execute(query)
+
+def get_unique_values_with_substring(con, table_name, subject_object_names):
+
+    subject_query =  '(' + ' OR '.join([f"{table_name}.subject = '{term}'" for term in subject_object_names]) + ')'
+    object_query =  '(' + ' OR '.join([f"{table_name}.object = '{term}'" for term in subject_object_names]) + ')'
+
+    # Get count
+    query = (
+        f"""
+        SELECT COUNT(DISTINCT taxon) AS unique_values
+        FROM (
+            SELECT DISTINCT subject AS taxon
+            FROM organismal_traits_taxa
+            WHERE {subject_query}
+
+            UNION ALL
+
+            SELECT DISTINCT object AS taxon
+            FROM organismal_traits_taxa
+            WHERE {object_query}
+        )
+        AS unique_taxa;
+        """
+    )
+
+    result = con.execute(query).fetchone()
+
+    # Get actual list
+    query = (
+        f"""
+        SELECT DISTINCT taxon
+        FROM (
+            SELECT subject AS taxon
+            FROM organismal_traits_taxa
+            WHERE {subject_query}
+
+            UNION
+
+            SELECT object AS taxon
+            FROM organismal_traits_taxa
+            WHERE {object_query}
+        ) AS unique_taxa;
+        """
+    )
+    taxa_list = [row[0] for row in con.execute(query).fetchall()]
+
+    return result[0], taxa_list
+
+

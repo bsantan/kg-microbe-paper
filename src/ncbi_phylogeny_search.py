@@ -511,7 +511,7 @@ def get_ncbitaxon_with_traits(conn, output_dir):
     'EC', 'GO', 'cell_shape', 'gc', 'gram_stain', 'pH_.%', 'temp_.%', 
     'pigment', 'sporulation', 'trophic_type', 'motility', 'temperature',
     'salinity', 'NaCl_.%', 'oxygen', 'pathogen', 'isolation_source', 
-    'ENVO', 'UBERON', 'PO', 'PATO', 'cell_length:', 'cell_width', 'strain', 'FOODON', 'assay']
+    'ENVO', 'UBERON', 'PO', 'PATO', 'cell_length', 'cell_width', 'FOODON', 'assay', 'medium'] #'strain',
 
     trait_prefixes_subject_query =  '(' + ' OR '.join([f"split_part(e.subject, \':\', 1) = '{term}'" for term in traits_prefixes]) + ')'
     trait_prefixes_object_query =  '(' + ' OR '.join([f"split_part(e.object, \':\', 1) = '{term}'" for term in traits_prefixes]) + ')'

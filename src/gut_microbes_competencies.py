@@ -150,9 +150,10 @@ def main():
 
     # Get total taxa with functional annotations
     ncbitaxon_func_ids = get_ncbitaxon_with_uniprot(conn, "./Phylogeny_Search")
+    hmp_func_microbes = set(ncbitaxon_func_ids) & set(microbes_mapped_df["NCBITaxon_ID"].tolist())
     total_hmp_func_microbes = len(set(ncbitaxon_func_ids) & set(microbes_mapped_df["NCBITaxon_ID"].tolist()))
 
-    overlap_organismal_functional = len(set(ncbitaxon_func_ids).set(ncbitaxon_traits_ids))
+    overlap_organismal_functional = len(set(hmp_func_microbes).intersection(set(ncbitaxon_traits_ids)))
 
     microbes_mapped_summary_df = pd.DataFrame(columns=["Total_HMP_Taxa", "Total_Taxa_Found", "Total_Taxa_Organismal_Traits", "Total_Taxa_Functional_Annotations", "Total_Taxa_Species_Rank", "Taxa_Overlap_Organismal_Functional"])
     microbes_mapped_summary_df["Total_HMP_Taxa"] = total_hmp_taxa

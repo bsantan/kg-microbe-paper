@@ -74,6 +74,25 @@ def get_ncbitaxon_id(df, ncbitaxon_label_dict, input_id):
             taxa_id = "not_found"
     return taxa_id, taxa
 
+def get_taxa_rank(df, ncbitaxon_label_dict, input_id):
+
+    rank_dict = {
+        "k": "kingdom",
+        "p": "phylum",
+        "c": "class",
+        "o": "order",
+        "f": "family",
+        "g": "genus",
+        "s": "species"
+    }
+
+    parts = input_id.strip("|").split("|")
+    # Handle unclassified taxa
+    rank_symbol = parts[-1].split("__")[1]
+    rank = rank_dict[rank_symbol]
+
+    return rank
+
 def main():
 
     output_dir = "./Intermediate_Files"
@@ -89,31 +108,36 @@ def main():
     hmp_microbes_names = []
     hmp_microbes_mapped_name = []
     hmp_microbes_mapped_id = []
+    hmp_microbes_rank = []
     # Convert taxa names to NCBITaxon IDs
     for i in tqdm.tqdm(range(len(stool_microbes_df))):
         orig_taxa_id = stool_microbes_df.iloc[i].loc[HMP_FEATURE_COLUMN_NAME]
         hmp_microbes_names.append(orig_taxa_id)
         new_taxa_id, taxa_name = get_ncbitaxon_id(stool_microbes_df, ncbitaxon_label_dict, orig_taxa_id)
+        taxa_rank = get_taxa_rank(stool_microbes_df, ncbitaxon_label_dict, orig_taxa_id)
         hmp_microbes_mapped_name.append(taxa_name)
         hmp_microbes_mapped_id.append(new_taxa_id)
+        hmp_microbes_rank.append(taxa_rank)
 
     microbes_mapped_df = pd.DataFrame()
     microbes_mapped_df["HMP_Name"] = hmp_microbes_names
     microbes_mapped_df["NCBITaxon_Name"] = hmp_microbes_mapped_name
     microbes_mapped_df["NCBITaxon_ID"] = hmp_microbes_mapped_id
+    microbes_mapped_df["NCBITaxon_Rank"] = hmp_microbes_rank
 
     total_hmp_mapped_taxa = [len(microbes_mapped_df[microbes_mapped_df["NCBITaxon_ID"] != "not_found"])]
 
     # Get total taxa with organismal traits
     conn = duckdb.connect(":memory:")
-    duckdb_load_table(conn, "./Input_Files/merged-kg/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
-    duckdb_load_table(conn, "./Input_Files/merged-kg/merged-kg_nodes.tsv", "nodes", ["id", "name"])
+    duckdb_load_table(conn, "./Input_Files/kg-microbe-core/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
+    duckdb_load_table(conn, "./Input_Files/kg-microbe-core/merged-kg_nodes.tsv", "nodes", ["id", "name"])
 
     ### To run using new traits search
     query_with_edge_conditions(conn, "edges", "organismal_traits_taxa", ORGANISMAL_TRAITS_EDGES)
     get_table_count(conn, "organismal_traits_taxa")
     total_hmp_organismal_taxa, ncbitaxon_traits_ids = get_unique_values_with_substring(conn, "organismal_traits_taxa", hmp_microbes_mapped_id)
     ###)
+    print(len(ncbitaxon_traits_ids))
 
     ### To run using prior function; slower
     # ncbitaxon_traits_ids, ncbitaxon_traits_dict = get_ncbitaxon_with_traits(conn, output_dir)

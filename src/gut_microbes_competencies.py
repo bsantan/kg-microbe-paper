@@ -152,12 +152,15 @@ def main():
     ncbitaxon_func_ids = get_ncbitaxon_with_uniprot(conn, "./Phylogeny_Search")
     total_hmp_func_microbes = len(set(ncbitaxon_func_ids) & set(microbes_mapped_df["NCBITaxon_ID"].tolist()))
 
-    microbes_mapped_summary_df = pd.DataFrame(columns=["Total_HMP_Taxa", "Total_Taxa_Found", "Total_Taxa_Organismal_Traits", "Total_Taxa_Functional_Annotations", "Total_Taxa_Species_Rank"])
+    overlap_organismal_functional = len(set(ncbitaxon_func_ids).set(ncbitaxon_traits_ids))
+
+    microbes_mapped_summary_df = pd.DataFrame(columns=["Total_HMP_Taxa", "Total_Taxa_Found", "Total_Taxa_Organismal_Traits", "Total_Taxa_Functional_Annotations", "Total_Taxa_Species_Rank", "Taxa_Overlap_Organismal_Functional"])
     microbes_mapped_summary_df["Total_HMP_Taxa"] = total_hmp_taxa
     microbes_mapped_summary_df["Total_Taxa_Found"] = total_hmp_mapped_taxa
     microbes_mapped_summary_df["Total_Taxa_Organismal_Traits"] = total_hmp_organismal_taxa
     microbes_mapped_summary_df["Total_Taxa_Functional_Annotations"] = total_hmp_func_microbes
     microbes_mapped_summary_df["Total_Taxa_Species_Rank"] = hmp_total_species
+    microbes_mapped_summary_df["Taxa_Overlap_Organismal_Functional"] = overlap_organismal_functional
 
     microbes_mapped_file = output_dir + '/HMP_Microbes_Mapped.csv'
     microbes_mapped_summary_file = output_dir + '/HMP_Microbes_Mapped_Summary.csv'

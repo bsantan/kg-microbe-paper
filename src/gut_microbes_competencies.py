@@ -57,10 +57,16 @@ def get_ncbitaxon_id(df, ncbitaxon_label_dict, input_id):
 
     parts = input_id.strip("|").split("|")
     # Handle unclassified taxa
-    if parts[-1].endswith("unclassified"):
-        part2 = parts[-1].split("__")[1].replace("_", " ")
-        part1 = parts[-2].split("__")[1].replace("_", " ")
-        taxa = f"{part2} {part1}"
+    for i, part in enumerate(parts):
+        if part.endswith("unclassified"):
+            part_unclassified = part.split("__")[1].replace("_", " ")
+            # Use the one before it (if it exists) as the second word
+            if i > 0:
+                part_above = parts[i-1].split("__")[1].replace("_", " ")
+                taxa = f"{part_unclassified} {part_above}"
+            else:
+                taxa = part_unclassified  # If unclassified is first
+            break
     else:
         taxa = input_id.split("|")[-1].replace("k__", "").replace("p__", "").replace("c__", "").replace("o__", "").replace("f__", "").replace("g__", "").replace("s__", "").replace("_", " ")
     # Replace name when necessary

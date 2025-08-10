@@ -81,7 +81,8 @@ REPLACED_TAXA_NAMES = {
     "Eubacterium hallii": "Anaerobutyricum hallii",
     "Tenericutes": "Mycoplasmatota",
     "Bacteroidetes": "Bacteroidia",
-    "unclassified Catabacteriaceae": "unclassified Christensenellaceae"
+    "unclassified Catabacteriaceae": "unclassified Christensenellaceae",
+    "unclassified Clostridiales": "unclassified Eubacteriales"
 }
 
 ORGANISMAL_TRAITS_EDGES = [

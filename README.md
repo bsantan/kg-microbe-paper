@@ -23,6 +23,8 @@ pandas==2.2.3
 duckdb==1.0.0
 ```
 
+*Note that catboost v1.2.7 is not compatible with python >= 3.13.
+
 ## Running the Analysis Scripts
 
 In order to create subfiles of the necessary edges in the graph, first run the following command:

@@ -4,7 +4,7 @@ Repository for competency and biomedical analyses of kg-microbe-biomedical-funct
 
 
 ### Dependencies
-The following dependencies are listed in the environment.yml file, and installed in the installation step. This software has only been tested on Unix based OS systems, not Windows.
+This software has only been tested on Unix based OS systems, not Windows.
 ```
 Python>=3.11
 tqdm==4.67.1
@@ -20,7 +20,10 @@ seaborn==0.13.2
 kaleido==0.2.1
 numpy==1.26.4
 pandas==2.2.3
+duckdb==1.0.0
 ```
+
+*Note that catboost v1.2.7 is not compatible with python >= 3.13.
 
 ## Running the Analysis Scripts
 

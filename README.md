@@ -38,9 +38,34 @@ merged-kg_edges_competency_specific_ec.tsv
 merged-kg_edges_ncbitaxon.tsv
 ```
 
+### Gut Microbiome Competencies (Human Microbiome Project)
+  
+The first script will perform a series of DuckDB queries to evaluate the existance of taxa from the HMP, and examine the presence of organismal traits or functional annotations for those taxa. 
+
+```
+python gut_microbes_competencies.py
+```
+
+Note: in order for this to run, the 'ncbitaxon_nodes.tsv' file must be present in the Input_Files directory, which can be accessed at '/data/transformed/ontologies/ncbitaxon_nodes.tsv' by running the kg-microbe transform step: https://github.com/Knowledge-Graph-Hub/kg-microbe.git.
+
+#### Expected Outputs
+
+Step 1: identify which taxa have organismal traits or functional annotations. The organismal traits are identified by a DuckDB query internally, and the functional annotations are output to './Phylogeny_Search':
+
+```
+unique_ncbitaxon_uniprot_ids.txt
+```
+
+Step 2: download HMP supplementary file, map all HMP taxa to NCBI Taxonomy IDs, and evaluate which have organismal traits or functional annotations. These summary files are output to './Intermediate_Files':
+
+```
+HMP_Microbes_Mapped_Summary.csv
+HMP_Microbes_Mapped.csv
+```
+
 ### Metabolite Competencies
   
-The first script will perform a series of DuckDB queries to identify taxa with with a given metabolic trait. Currently, this supports finding taxa with one of 4 semantic representations of butyrate production. 
+The second script will perform a series of DuckDB queries to identify taxa with with a given metabolic trait. Currently, this supports finding taxa with one of 4 semantic representations of butyrate production. 
 
 ```
 python Process_competency_questions.py
@@ -129,7 +154,7 @@ Gold_Standard_Families_Venn_Diagrams.png: Visualization of number of taxa at the
 
 ### Comparison to literature set
 
-The second script will use the outputs from the Metabolite Competencies to compare to the Vital et al. 
+The third script will use the outputs from the Metabolite Competencies to compare to the Vital et al. 
 
 ```
 python Gold_standard_Competency_analysis.py
@@ -211,7 +236,7 @@ _Genus_Traits_Comparison_species_and_strain_all.tsv
 
 ### Biomedical Analysis
   
-The third script will use the outputs from the Metabolite Competencies to analyze microbial metabolism in the context of disease. 
+The fourth script will use the outputs from the Metabolite Competencies to analyze microbial metabolism in the context of disease. 
 
 ```
 python Classification_gold_standard_comparison.py

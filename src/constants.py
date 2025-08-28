@@ -60,3 +60,41 @@ COMPETENCY_DISEASE_MAP = {
 GUT_PHYLA_LIST = ["Bacteroidota", "Bacillota", "Actinomycetota", "Pseudomonadota", "Fusobacteriota"]
 
 GUT_FAMILIES_LIST = ["Ruminococcaceae", "Lachnospiraceae", "Bacteroidaceae", "Prevotellaceae", "Clostridaceae", "Oscillospiraceae", "Eubacteriaceae"]
+
+HMP_URL = "https://static-content.springer.com/esm/art%3A10.1038%2Fnature11234/MediaObjects/41586_2012_BFnature11234_MOESM104_ESM.zip"
+HMP_ASSOCIATIONS_FILE = "nature11234-s2/2011-09-12404C-tables3_associations.xlsx"
+HMP_SHEET_NAME = "massocs"
+HMP_STOOL_COLUMN_NAME = "stool"
+HMP_SITE_COLUMN_NAME = "Site"
+HMP_FEATURE_COLUMN_NAME = "Feature"
+
+REPLACED_TAXA_NAMES = {
+    "Bacteroides vulgatus" : "Phocaeicola vulgatus",
+    "unclassified Ruminococcaceae": "unclassified Oscillospiraceae",
+    "Ruminococcus gnavus": "Mediterraneibacter gnavus",
+    "unclassified ClostridialesFamilyXIII.IncertaeSedis": "unclassified Clostridiales Family XVII. Incertae Sedis",
+    "ClostridialesFamilyXIII.IncertaeSedis": "Eubacteriales Family XIII. Incertae Sedis",
+    "Ruminococcus obeum": "Blautia obeum",
+    "Clostridiales": "Eubacteriales",
+    "Firmicutes": "Terrabacteria group",
+    "Ruminococcaceae": "Oscillospiraceae",
+    "Eubacterium hallii": "Anaerobutyricum hallii",
+    "Tenericutes": "Mycoplasmatota",
+    "Bacteroidetes": "Bacteroidia",
+    "unclassified Catabacteriaceae": "unclassified Christensenellaceae",
+    "unclassified Clostridiales": "unclassified Eubacteriales"
+}
+
+ORGANISMAL_TRAITS_EDGES = [
+    "biolink:associated_with_sensitivity_to",
+    "biolink:associated_with_resistance_to",
+    "biolink:associated_with",
+    "biolink:produces",
+    "biolink:has_phenotype",
+    "biolink:capabale_of",
+    "biolink:location_of",
+    "biolink:occurs_in",
+    "biolink:assesses",
+    "biolink:produces",
+    "biolink:consumes"
+]

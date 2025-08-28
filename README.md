@@ -38,6 +38,17 @@ merged-kg_edges_competency_specific_ec.tsv
 merged-kg_edges_ncbitaxon.tsv
 ```
 
+Next, the following file will need to be downloaded into /src/Input_Files directory:
+
+https://github.com/Knowledge-Graph-Hub/kg-microbe/releases/download/2025-03-07/ontologies.tar.gz
+
+Then extract it:
+
+```
+cd src/Input_Files
+tar -xvzf ontologies.tar.gz ncbitaxon_nodes.tsv
+```
+
 ### Gut Microbiome Competencies (Human Microbiome Project)
   
 The first script will perform a series of DuckDB queries to evaluate the existance of taxa from the HMP, and examine the presence of organismal traits or functional annotations for those taxa. 

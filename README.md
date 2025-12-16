@@ -141,7 +141,9 @@ All_Sources_Competencies_Comparison_butyrate_produces.png: A visualization of al
 Monte_Carlos_Distribution.png: Monte Carlo simulation of 1,000 iterations to test significance of overlap between taxa in edges with the pattern 'NCBITaxon,biolink:produces,butyrate' vs. taxa in edges with the pattern 'NCBITaxon, biolink:derives_from, UniprotKB,biolink:participates_in, RHEA, <predicted to produce>, butyrate' or 'NCBITaxon, biolink:derives_from, UniprotKB,biolink:enables, <set of EC in defined pathway>'
 ```
   
-Step 6: The second part of this script compares the butyrate metabolite competency results in the KG to those of another analysis in Vital et al. Ensure that the ncbitaxon nodes file exists as 'Input_Files/ncbitaxon_nodes.tsv'.
+Step 6: The second part of this script compares the butyrate metabolite competency results in the KG to those of another analysis in Vital et al. Ensure that the ncbitaxon nodes file exists as 'Input_Files/ncbitaxon_nodes.tsv'. 
+
+Note: For systems with 24GB of RAM or less, this step may not be able to execute. The Gold_Standard_Species_Overlap_butyrate_produces.csv file can therefore be accessed in the '/data' directory of this repository in order to proceed to the next step (move this to the './Intermediate_Files' directory).
 
 ```
 gold_standard_ids.tsv: Taxa from Input_Files/Vital_etal_butyrate+producing_microbes.csv mapped to NCBITaxon IDs automatically using string matching.

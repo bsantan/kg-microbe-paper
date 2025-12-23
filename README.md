@@ -1,36 +1,55 @@
 # kg-microbe-paper
 
-Repository for competency and biomedical analyses of kg-microbe-biomedical-function. 
+Repository for competency and biomedical analyses of kg-microbe-biomedical-function.
 
+## Setup
+
+### Prerequisites
+- Unix-based OS (not tested on Windows)
+- Python >= 3.11, < 3.13 (catboost v1.2.7 is not compatible with Python >= 3.13)
+- [uv](https://docs.astral.sh/uv/) package manager
+
+### Installation
+
+1. Install uv if you haven't already:
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+2. Clone the repository and install dependencies:
+```bash
+git clone https://github.com/bsantan/kg-microbe-paper.git
+cd kg-microbe-paper
+uv sync
+```
 
 ### Dependencies
-This software has only been tested on Unix based OS systems, not Windows.
-```
-Python>=3.11
-tqdm==4.67.1
-matplotlib==3.10.0
-matplotlib_venn==1.1.1
-statsmodels==0.14.4
-equilibrator_api==0.6.0
-owlready2==0.47
-catboost==1.2.7
-scikit-learn==1.6.1
-shap==0.46.0
-seaborn==0.13.2
-kaleido==0.2.1
-numpy==1.26.4
-pandas==2.2.3
-duckdb==1.0.0
-```
-
-*Note that catboost v1.2.7 is not compatible with python >= 3.13.
+All dependencies are managed via `pyproject.toml`:
+- Python >= 3.11, < 3.13
+- tqdm==4.67.1
+- matplotlib==3.10.0
+- matplotlib_venn==1.1.1
+- statsmodels==0.14.4
+- equilibrator_api==0.6.0
+- owlready2==0.47
+- catboost==1.2.7
+- scikit-learn==1.6.1
+- shap==0.46.0
+- seaborn==0.13.2
+- kaleido==0.2.1
+- numpy==1.26.4
+- pandas==2.2.3
+- duckdb==1.0.0
 
 ## Running the Analysis Scripts
 
+All commands should be run with `uv run` to ensure the correct Python environment is used.
+
 In order to create subfiles of the necessary edges in the graph, first run the following command:
 
-```
-make all
+```bash
+cd src
+uv run make all
 ```
 
 This will create 3 files that are used in this analysis.
@@ -53,11 +72,12 @@ tar -xvzf ontologies.tar.gz ncbitaxon_nodes.tsv
 ```
 
 ### Gut Microbiome Competencies (Human Microbiome Project)
-  
-The first script will perform a series of DuckDB queries to evaluate the existance of taxa from the HMP, and examine the presence of organismal traits or functional annotations for those taxa. 
 
-```
-python gut_microbes_competencies.py
+The first script will perform a series of DuckDB queries to evaluate the existance of taxa from the HMP, and examine the presence of organismal traits or functional annotations for those taxa.
+
+```bash
+cd src
+uv run python gut_microbes_competencies.py
 ```
 
 Note: in order for this to run, the 'ncbitaxon_nodes.tsv' file must be present in the Input_Files directory, which can be accessed at '/data/transformed/ontologies/ncbitaxon_nodes.tsv' by running the kg-microbe transform step: https://github.com/Knowledge-Graph-Hub/kg-microbe.git.
@@ -78,11 +98,12 @@ HMP_Microbes_Mapped.csv
 ```
 
 ### Metabolite Competencies
-  
-The second script will perform a series of DuckDB queries to identify taxa with with a given metabolic trait. Currently, this supports finding taxa with one of 4 semantic representations of butyrate production. 
 
-```
-python Process_competency_questions.py
+The second script will perform a series of DuckDB queries to identify taxa with with a given metabolic trait. Currently, this supports finding taxa with one of 4 semantic representations of butyrate production.
+
+```bash
+cd src
+uv run python Process_competency_questions.py
 ```
 
 #### Expected Outputs
@@ -170,10 +191,11 @@ Gold_Standard_Families_Venn_Diagrams.png: Visualization of number of taxa at the
 
 ### Comparison to literature set
 
-The third script will use the outputs from the Metabolite Competencies to compare to the Vital et al. 
+The third script will use the outputs from the Metabolite Competencies to compare to the Vital et al.
 
-```
-python Gold_standard_Competency_analysis.py
+```bash
+cd src
+uv run python Gold_standard_Competency_analysis.py
 ```
 
 #### Expected Outputs
@@ -251,11 +273,12 @@ _Genus_Traits_Comparison_species_and_strain_all.tsv
 ```
 
 ### Biomedical Analysis
-  
-The fourth script will use the outputs from the Metabolite Competencies to analyze microbial metabolism in the context of disease. 
 
-```
-python Classification_gold_standard_comparison.py
+The fourth script will use the outputs from the Metabolite Competencies to analyze microbial metabolism in the context of disease.
+
+```bash
+cd src
+uv run python Classification_gold_standard_comparison.py
 ```
 
 #### Expected Outputs

@@ -2,4 +2,11 @@
 .DS_Store
 .tmp
 
+# Python virtual environments
+venv/
+.venv/
+
+# uv
+uv.lock
+
 src/Input_Files/kg-*

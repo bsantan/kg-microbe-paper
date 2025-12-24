@@ -290,7 +290,7 @@ def get_microbe_species(conn, microbe, species, microbes_species):
     microbe_list = [microbe]
     species_found = False
     while not species_found:
-        parent_taxa = search_subclass_phylogeny(conn, microbe)
+        parent_taxa = search_subclass_phylogeny_parent(conn, microbe)
 
         if parent_taxa in species or parent_taxa == 'not found':
             species_found = True
@@ -324,7 +324,7 @@ def get_microbe_family(conn, microbe, family, microbes_family):
     microbe_list = [microbe]
     family_found = False
     while not family_found:
-        parent_taxa = search_subclass_phylogeny(conn, microbe)
+        parent_taxa = search_subclass_phylogeny_parent(conn, microbe)
 
         if parent_taxa in family or parent_taxa == 'not found':
             family_found = True
@@ -341,7 +341,7 @@ def get_microbe_phylum(conn, microbe, phyla, microbes_phyla):
     microbe_list = [microbe]
     phyla_found = False
     while not phyla_found:
-        parent_taxa = search_subclass_phylogeny(conn, microbe)
+        parent_taxa = search_subclass_phylogeny_parent(conn, microbe)
 
         if parent_taxa in phyla or parent_taxa == 'not found':
             phyla_found = True

@@ -40,6 +40,7 @@ All dependencies are managed via `pyproject.toml`:
 - numpy==1.26.4
 - pandas==2.2.3
 - duckdb==1.0.0
+- openpyxl==3.1.5
 
 ## Running the Analysis
 

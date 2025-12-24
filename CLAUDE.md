@@ -168,6 +168,7 @@ The codebase relies heavily on:
 - **equilibrator_api**: Thermodynamic reaction direction prediction
 - **CatBoost**: Machine learning for trait prediction
 - **pandas**: Data manipulation throughout
+- **openpyxl**: Excel file reading for HMP data
 - **matplotlib/seaborn**: All visualizations
 
 ## Known Quirks

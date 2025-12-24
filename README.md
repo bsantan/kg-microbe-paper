@@ -41,46 +41,47 @@ All dependencies are managed via `pyproject.toml`:
 - pandas==2.2.3
 - duckdb==1.0.0
 
-## Running the Analysis Scripts
+## Running the Analysis
 
 All commands should be run with `uv run` to ensure the correct Python environment is used.
 
-In order to create subfiles of the necessary edges in the graph, first run the following command:
+### 1. Download and Prepare Data
+
+Download the knowledge graph and ontology data:
 
 ```bash
-cd src
 uv run make all
 ```
 
-This will create 3 files that are used in this analysis.
+This command will:
+- Download the KG-Microbe biomedical function knowledge graph from NERSC
+- Extract and create edge subfiles (merged-kg_edges_noEC.tsv, merged-kg_edges_competency_specific_ec.tsv, merged-kg_edges_ncbitaxon.tsv)
+- Download NCBI Taxonomy ontologies
+- Extract ncbitaxon_nodes.tsv
 
+### 2. Run Analysis Scripts
+
+Run the analysis scripts in order:
+
+```bash
+# Gut Microbiome Competencies (Human Microbiome Project)
+uv run python src/gut_microbes_competencies.py
+
+# Metabolite Competencies
+uv run python src/Process_competency_questions.py
+
+# Gold Standard Comparison
+uv run python src/Gold_standard_Competency_analysis.py
+
+# Biomedical Analysis
+uv run python src/Classification_gold_standard_comparison.py
 ```
-merged-kg_edges_noEC.tsv
-merged-kg_edges_competency_specific_ec.tsv
-merged-kg_edges_ncbitaxon.tsv
-```
 
-Next, the following file will need to be downloaded into /src/Input_Files directory:
-
-https://github.com/Knowledge-Graph-Hub/kg-microbe/releases/download/2025-03-07/ontologies.tar.gz
-
-Then extract it:
-
-```
-cd src/Input_Files
-tar -xvzf ontologies.tar.gz ncbitaxon_nodes.tsv
-```
+## Analysis Details
 
 ### Gut Microbiome Competencies (Human Microbiome Project)
 
-The first script will perform a series of DuckDB queries to evaluate the existance of taxa from the HMP, and examine the presence of organismal traits or functional annotations for those taxa.
-
-```bash
-cd src
-uv run python gut_microbes_competencies.py
-```
-
-Note: in order for this to run, the 'ncbitaxon_nodes.tsv' file must be present in the Input_Files directory, which can be accessed at '/data/transformed/ontologies/ncbitaxon_nodes.tsv' by running the kg-microbe transform step: https://github.com/Knowledge-Graph-Hub/kg-microbe.git.
+The first script performs a series of DuckDB queries to evaluate the existence of taxa from the HMP, and examine the presence of organismal traits or functional annotations for those taxa.
 
 #### Expected Outputs
 
@@ -99,12 +100,7 @@ HMP_Microbes_Mapped.csv
 
 ### Metabolite Competencies
 
-The second script will perform a series of DuckDB queries to identify taxa with with a given metabolic trait. Currently, this supports finding taxa with one of 4 semantic representations of butyrate production.
-
-```bash
-cd src
-uv run python Process_competency_questions.py
-```
+The second script performs a series of DuckDB queries to identify taxa with a given metabolic trait. Currently, this supports finding taxa with one of 4 semantic representations of butyrate production.
 
 #### Expected Outputs
 
@@ -191,12 +187,7 @@ Gold_Standard_Families_Venn_Diagrams.png: Visualization of number of taxa at the
 
 ### Comparison to literature set
 
-The third script will use the outputs from the Metabolite Competencies to compare to the Vital et al.
-
-```bash
-cd src
-uv run python Gold_standard_Competency_analysis.py
-```
+The third script uses the outputs from the Metabolite Competencies to compare to the Vital et al. literature set.
 
 #### Expected Outputs
 
@@ -274,12 +265,7 @@ _Genus_Traits_Comparison_species_and_strain_all.tsv
 
 ### Biomedical Analysis
 
-The fourth script will use the outputs from the Metabolite Competencies to analyze microbial metabolism in the context of disease.
-
-```bash
-cd src
-uv run python Classification_gold_standard_comparison.py
-```
+The fourth script uses the outputs from the Metabolite Competencies to analyze microbial metabolism in the context of disease.
 
 #### Expected Outputs
 

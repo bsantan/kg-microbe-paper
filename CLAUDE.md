@@ -14,7 +14,7 @@ This repository contains competency and biomedical analyses of the kg-microbe-bi
 
 ## Initial Setup
 
-### 0. Install Dependencies
+### 1. Install Dependencies
 
 Install project dependencies using uv:
 
@@ -22,62 +22,56 @@ Install project dependencies using uv:
 uv sync
 ```
 
-### 1. Download Knowledge Graph Data
+### 2. Download All Data
 
-First, run the Makefile to download the KG and create edge subfiles:
+Run the Makefile from the repository root to download all required data:
 
 ```bash
-cd src
 uv run make all
 ```
 
-This creates three essential edge files in `src/Input_Files/kg-microbe-biomedical-function-cat/`:
-- `merged-kg_edges_noEC.tsv` - NCBI Taxon, CHEBI, UniprotKB, and RHEA edges
-- `merged-kg_edges_competency_specific_ec.tsv` - EC enzyme classification edges
-- `merged-kg_edges_ncbitaxon.tsv` - NCBI Taxonomy edges
-
-### 2. Download NCBI Taxonomy Nodes
-
-Download and extract the NCBI Taxonomy nodes file:
-
-```bash
-cd src/Input_Files
-wget https://github.com/Knowledge-Graph-Hub/kg-microbe/releases/download/2025-03-07/ontologies.tar.gz
-tar -xvzf ontologies.tar.gz ncbitaxon_nodes.tsv
-```
+This single command will:
+- Download the KG-Microbe biomedical function knowledge graph from NERSC
+- Extract and create three essential edge files in `src/Input_Files/kg-microbe-biomedical-function-cat/`:
+  - `merged-kg_edges_noEC.tsv` - NCBI Taxon, CHEBI, UniprotKB, and RHEA edges
+  - `merged-kg_edges_competency_specific_ec.tsv` - EC enzyme classification edges
+  - `merged-kg_edges_ncbitaxon.tsv` - NCBI Taxonomy edges
+- Download NCBI Taxonomy ontologies from kg-microbe releases
+- Extract `ncbitaxon_nodes.tsv` to `src/Input_Files/`
 
 ## Running Analysis Scripts
 
-All Python scripts should be run from the `src/` directory using `uv run`:
+All Python scripts should be run from the repository root using `uv run`:
 
 ```bash
-cd src
-uv run python <script_name>.py
+uv run python src/<script_name>.py
 ```
 
 ### Main Analysis Pipeline (in order)
 
+Run these scripts sequentially from the repository root:
+
 1. **Gut Microbiome Competencies (HMP)**
    ```bash
-   uv run python gut_microbes_competencies.py
+   uv run python src/gut_microbes_competencies.py
    ```
    Analyzes Human Microbiome Project taxa for organismal traits and functional annotations.
 
 2. **Metabolite Competencies**
    ```bash
-   uv run python Process_competency_questions.py
+   uv run python src/Process_competency_questions.py
    ```
    Identifies taxa with metabolic traits (e.g., butyrate production) using multiple semantic representations.
 
 3. **Gold Standard Comparison**
    ```bash
-   uv run python Gold_standard_Competency_analysis.py
+   uv run python src/Gold_standard_Competency_analysis.py
    ```
    Compares KG results to literature (Vital et al.) for butyrate producers.
 
 4. **Biomedical Analysis**
    ```bash
-   uv run python Classification_gold_standard_comparison.py
+   uv run python src/Classification_gold_standard_comparison.py
    ```
    Analyzes microbial metabolism in disease contexts (IBD, PD).
 
@@ -178,7 +172,8 @@ The codebase relies heavily on:
 
 ## Known Quirks
 
-- Scripts assume execution from `src/` directory (use relative paths)
+- Scripts assume execution from repository root directory
+- The Makefile is located at the repository root (not in `src/`)
 - Large files like `ncbitaxon_rank.tsv` (60MB) are created on first run and cached
 - The `.venv` directory (created by uv) should not be committed (already in `.gitignore`)
 - NCBI Taxonomy names are sometimes outdated (see `REPLACED_TAXA_NAMES` in `constants.py`)

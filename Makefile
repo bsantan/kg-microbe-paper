@@ -12,9 +12,13 @@ download_kg:
 
 download_ontologies:
 	@echo "Downloading NCBI Taxonomy ontologies..."
-	wget -nc -P src/Input_Files https://github.com/Knowledge-Graph-Hub/kg-microbe/releases/download/2025-03-07/ontologies.tar.gz && \
+	wget -nc -P src/Input_Files https://github.com/Knowledge-Graph-Hub/kg-microbe/releases/download/2025-03-07/ontologies.tar.gz
+	@echo "Extracting ncbitaxon_nodes.tsv..."
 	cd src/Input_Files && \
-	tar -xzf ontologies.tar.gz --wildcards '*/ncbitaxon_nodes.tsv' --strip-components=1
+	mkdir -p tmp_ontologies && \
+	tar -xzf ontologies.tar.gz -C tmp_ontologies && \
+	find tmp_ontologies -name 'ncbitaxon_nodes.tsv' -exec mv {} . \; && \
+	rm -rf tmp_ontologies
 	@echo "Ontologies downloaded and extracted successfully."
 
 rhea_chebi_competencies:

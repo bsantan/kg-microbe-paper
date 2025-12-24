@@ -9,4 +9,9 @@ venv/
 # uv
 uv.lock
 
-src/Input_Files/kg-*
+# Data directories
+src/Input_Files/
+src/Intermediate_Files/
+src/Intermediate_Files_Competencies/
+src/Phylogeny_Search/
+Input_Files/

@@ -42,7 +42,9 @@ taxonomy_competencies:
 clean:
 	@echo "Cleaning downloaded files..."
 	rm -rf src/Input_Files/kg-microbe-biomedical-function-cat
+	rm -rf src/Input_Files/hmp_supplementary
 	rm -f src/Input_Files/KGMicrobe-biomedical-function-20250222.tar.gz
 	rm -f src/Input_Files/ontologies.tar.gz
 	rm -f src/Input_Files/ncbitaxon_nodes.tsv
+	rm -rf Input_Files
 	@echo "Clean complete."

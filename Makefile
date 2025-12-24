@@ -14,7 +14,7 @@ download_ontologies:
 	@echo "Downloading NCBI Taxonomy ontologies..."
 	wget -nc -P src/Input_Files https://github.com/Knowledge-Graph-Hub/kg-microbe/releases/download/2025-03-07/ontologies.tar.gz && \
 	cd src/Input_Files && \
-	tar -xzf ontologies.tar.gz ncbitaxon_nodes.tsv
+	tar -xzf ontologies.tar.gz --wildcards '*/ncbitaxon_nodes.tsv' --strip-components=1
 	@echo "Ontologies downloaded and extracted successfully."
 
 rhea_chebi_competencies:

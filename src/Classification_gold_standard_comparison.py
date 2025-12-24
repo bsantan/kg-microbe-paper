@@ -49,13 +49,13 @@ def combine_labels(taxonomic_labels_counts, keep_label, new_label):
 
 def main():
 
-    # feature_table = pd.read_csv("./Intermediate_Files_func/feature_table.csv", index_col="subject")
+    # feature_table = pd.read_csv("./src/Intermediate_Files_func/feature_table.csv", index_col="subject")
     # disease_microbes = feature_table.index.unique().to_list()
 
-    data_edges = pd.read_csv("./Input_Files/kg-microbe-biomedical/merged-kg_edges.tsv", header=0, sep="\t")
-    data_nodes = pd.read_csv("./Input_Files/kg-microbe-biomedical/merged-kg_nodes.tsv", header=0, sep="\t")
+    data_edges = pd.read_csv("./src/Input_Files/kg-microbe-biomedical/merged-kg_edges.tsv", header=0, sep="\t")
+    data_nodes = pd.read_csv("./src/Input_Files/kg-microbe-biomedical/merged-kg_nodes.tsv", header=0, sep="\t")
 
-    output_dir = "./Intermediate_Files"
+    output_dir = "./src/Intermediate_Files"
 
     original_taxon_labels_counts = []
     original_taxon_labels = []
@@ -73,7 +73,7 @@ def main():
         disease_microbes = disease_microbes_df["subject"].unique().tolist()
         
         # Get all bugs that are in disbiome disease set and gold standard analysis (butyrate produces)
-        butyrate_production_output_dir = "./Intermediate_Files_Competencies/butyrate_produces"
+        butyrate_production_output_dir = "./src/Intermediate_Files_Competencies/butyrate_produces"
 
         # Get all microbes annotated to butyrate production in KG using Vital et al analysis file
         gs_analysis_microbes_file = butyrate_production_output_dir + '/Gold_Standard_Species_Overlap_butyrate_produces.csv'
@@ -83,7 +83,7 @@ def main():
         gs_analysis_disease_overlap = set(kg_analysis_microbes) & set(disease_microbes)
         print(len(gs_analysis_disease_overlap))
 
-        phylogeny_output_dir = "./Phylogeny_Search"
+        phylogeny_output_dir = "./src/Phylogeny_Search"
         ncbi_taxa_ranks_df = get_all_ranks(phylogeny_output_dir)
 
         disease_microbes_ranks = []
@@ -96,8 +96,8 @@ def main():
         disease_microbes_strains_butyrate_producers = []
 
         conn = duckdb.connect(":memory:")
-        duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv", "ncbitaxon_edges", ["subject", "predicate", "object"])
-        # duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical/merged-kg_edges.tsv", "ncbitaxon_edges", ["subject", "predicate", "object"])
+        duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv", "ncbitaxon_edges", ["subject", "predicate", "object"])
+        # duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical/merged-kg_edges.tsv", "ncbitaxon_edges", ["subject", "predicate", "object"])
 
         microbes_strain_dict, microbes_species_dict = find_microbes_strain(conn, ncbi_taxa_ranks_df, disease_microbes, output_dir, "classification_butyrate_produces_" + disease_name)
 

@@ -14,15 +14,15 @@ def main():
     print("Loading full table.")
 
     #duckdb_load_table(conn, "/Users/brooksantangelo/Documents/LozuponeLab/FRMS_2024/uniprot_transform_20240725/edges.tsv", "edges", ["subject", "object"])
-    # duckdb_load_table(conn, "./Input_Files/merged-kg/merged-kg_edges.tsv", "edges", ["subject", "object"])
-    duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", "edges", ["subject", "object"])
+    # duckdb_load_table(conn, "./src/Input_Files/merged-kg/merged-kg_edges.tsv", "edges", ["subject", "object"])
+    duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", "edges", ["subject", "object"])
     conditions = [
         ('UniprotKB:%', 'NCBITaxon:%'),
         ('UniprotKB:%', 'GO:%')
     ]
 
-    if not os.path.exists("./Intermediate_Files"):
-        os.makedirs("./Intermediate_Files")
+    if not os.path.exists("./src/Intermediate_Files"):
+        os.makedirs("./src/Intermediate_Files")
     
     print("Relevant edges loaded.")
 
@@ -69,7 +69,7 @@ def main():
 
     get_table_count(conn, "ncbitaxon_go")
 
-    output_table_to_file(conn, "ncbitaxon_go", "./Intermediate_Files/NCBITaxon_to_GO.tsv")
+    output_table_to_file(conn, "ncbitaxon_go", "./src/Intermediate_Files/NCBITaxon_to_GO.tsv")
 
     num_unique_ncbitaxon_go_pairs = get_total_unique_pair(
         conn,

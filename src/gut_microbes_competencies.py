@@ -16,7 +16,7 @@ from ncbi_phylogeny_search import get_ncbitaxon_with_traits, get_ncbitaxon_with_
 
 from constants import HMP_URL, HMP_ASSOCIATIONS_FILE, HMP_SHEET_NAME, HMP_STOOL_COLUMN_NAME, HMP_SITE_COLUMN_NAME, HMP_FEATURE_COLUMN_NAME, REPLACED_TAXA_NAMES, ORGANISMAL_TRAITS_EDGES
 
-base_path = "Input_Files/hmp_supplementary/"
+base_path = "src/Input_Files/hmp_supplementary/"
 
 def load_data(input_dir, url):
 
@@ -101,7 +101,7 @@ def get_taxa_rank(df, ncbitaxon_label_dict, input_id):
 
 def main():
 
-    output_dir = "./Intermediate_Files"
+    output_dir = "./src/Intermediate_Files"
     
     load_data(base_path, HMP_URL)
     stool_microbes_df = extract_hmp_data(base_path, HMP_ASSOCIATIONS_FILE, HMP_SHEET_NAME)
@@ -136,8 +136,8 @@ def main():
 
     # Get total taxa with organismal traits
     conn = duckdb.connect(":memory:")
-    duckdb_load_table(conn, "./Input_Files/kg-microbe-core/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
-    duckdb_load_table(conn, "./Input_Files/kg-microbe-core/merged-kg_nodes.tsv", "nodes", ["id", "name"])
+    duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
+    duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
 
     ### To run using new traits search
     query_with_edge_conditions(conn, "edges", "organismal_traits_taxa", ORGANISMAL_TRAITS_EDGES)
@@ -155,7 +155,7 @@ def main():
     microbes_mapped_df["Has_Organismal_Trait"] = hmp_organismal_taxa_query
 
     # Get total taxa with functional annotations
-    ncbitaxon_func_ids = get_ncbitaxon_with_uniprot(conn, "./Phylogeny_Search")
+    ncbitaxon_func_ids = get_ncbitaxon_with_uniprot(conn, "./src/Phylogeny_Search")
     hmp_func_microbes = set(ncbitaxon_func_ids) & set(microbes_mapped_df["NCBITaxon_ID"].tolist())
     total_hmp_func_microbes = len(set(ncbitaxon_func_ids) & set(microbes_mapped_df["NCBITaxon_ID"].tolist()))
 

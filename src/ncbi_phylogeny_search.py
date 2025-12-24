@@ -45,8 +45,8 @@ def load_graph():
 
     print("Loading full table.")
 
-    duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
-    duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
+    duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
+    duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
 
     return conn
 
@@ -596,7 +596,7 @@ def get_ncbitaxon_with_uniprot(conn, output_dir):
 def get_ncbitaxon_with_functional_annotation(conn, output_dir):
 
     ncbitaxon_func_dict_file = output_dir + "/ncbitaxon_func_dict.json"
-    functional_mappings_df = pd.read_csv("./Intermediate_Files/NCBITaxon_to_GO.tsv", sep='\t',index_col=False)
+    functional_mappings_df = pd.read_csv("./src/Intermediate_Files/NCBITaxon_to_GO.tsv", sep='\t',index_col=False)
 
     if not os.path.exists(ncbitaxon_func_dict_file):
         ncbitaxon_func_dict = functional_mappings_df.groupby('GO')['NCBITaxon'].apply(lambda x: list(set(x))).to_dict()
@@ -726,7 +726,7 @@ def plot_taxa_by_phylum_and_feature(phyla_traits_dict, output_dir, feature_type)
 
 def main():
 
-    output_dir = "./Phylogeny_Search"
+    output_dir = "./src/Phylogeny_Search"
     os.makedirs(output_dir, exist_ok=True)
 
     ncbi_taxa_ranks_df = get_all_ranks(output_dir)

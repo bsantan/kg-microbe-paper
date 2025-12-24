@@ -15,3 +15,12 @@ src/Intermediate_Files/
 src/Intermediate_Files_Competencies/
 src/Phylogeny_Search/
 Input_Files/
+
+# Build artifacts
+src/.ipynb_checkpoints/
+*.egg-info/
+__pycache__/
+*.pyc
+
+# Temporary files
+tmp.json

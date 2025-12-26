@@ -179,3 +179,4 @@ The codebase relies heavily on:
 - The `.venv` directory (created by uv) should not be committed (already in `.gitignore`)
 - NCBI Taxonomy names are sometimes outdated (see `REPLACED_TAXA_NAMES` in `constants.py`)
 - All commands should be run with `uv run` to ensure the correct Python environment is used
+- **Low-memory systems (< 24GB RAM):** Step 6 of `Process_competency_questions.py` may fail. Use `uv run make setup_gold_standard` to copy the pre-generated Gold Standard file from `data/` to the correct location

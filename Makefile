@@ -1,4 +1,4 @@
-.PHONY: all download_kg download_ontologies rhea_chebi_competencies ec_competencies taxonomy_competencies clean
+.PHONY: all download_kg download_ontologies rhea_chebi_competencies ec_competencies taxonomy_competencies setup_gold_standard clean
 
 all: download_kg download_ontologies rhea_chebi_competencies ec_competencies taxonomy_competencies
 
@@ -38,6 +38,16 @@ taxonomy_competencies:
 	cd src/Input_Files/kg-microbe-biomedical-function-cat && \
 	awk -F '\t' 'BEGIN {print "subject\tpredicate\tobject"} ($$3 ~ /NCBITaxon:/ && $$1 ~ /NCBITaxon:/)' merged-kg_edges.tsv > merged-kg_edges_ncbitaxon.tsv
 	@echo "Created merged-kg_edges_ncbitaxon.tsv"
+
+setup_gold_standard:
+	@echo "Setting up Gold Standard file for low-memory systems..."
+	@if [ ! -f "src/Intermediate_Files_Competencies/butyrate_produces/Gold_Standard_Species_Overlap_butyrate_produces.csv" ]; then \
+		mkdir -p src/Intermediate_Files_Competencies/butyrate_produces && \
+		cp data/Gold_Standard_Species_Overlap_butyrate_produces.csv src/Intermediate_Files_Competencies/butyrate_produces/ && \
+		echo "Copied Gold_Standard_Species_Overlap_butyrate_produces.csv to src/Intermediate_Files_Competencies/butyrate_produces/"; \
+	else \
+		echo "Gold Standard file already exists, skipping."; \
+	fi
 
 clean:
 	@echo "Cleaning downloaded files..."

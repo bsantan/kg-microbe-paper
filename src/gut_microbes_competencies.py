@@ -45,11 +45,9 @@ def create_ncbitaxon_dict():
 
     print("Creating NCBITaxon dictionary")
     # Get all NCBITaxon IDs
-    ncbitaxon_label_dict = {}
     ncbitaxon_df = get_ncbitaxon_df()
-    # Get NCBITaxon IDs from ontology nodes file
-    for i, row in ncbitaxon_df.iterrows():
-        ncbitaxon_label_dict[row["name"]] = row["id"]
+    # Get NCBITaxon IDs from ontology nodes file - vectorized operation (10-100x faster than iterrows)
+    ncbitaxon_label_dict = ncbitaxon_df.set_index("name")["id"].to_dict()
 
     return ncbitaxon_label_dict
 
@@ -110,20 +108,21 @@ def main():
 
     ncbitaxon_label_dict = create_ncbitaxon_dict()
     
-    # Get total taxa in graph
-    hmp_microbes_names = []
-    hmp_microbes_mapped_name = []
-    hmp_microbes_mapped_id = []
-    hmp_microbes_rank = []
-    # Convert taxa names to NCBITaxon IDs
-    for i in tqdm.tqdm(range(len(stool_microbes_df))):
-        orig_taxa_id = stool_microbes_df.iloc[i].loc[HMP_FEATURE_COLUMN_NAME]
-        hmp_microbes_names.append(orig_taxa_id)
-        new_taxa_id, taxa_name = get_ncbitaxon_id(stool_microbes_df, ncbitaxon_label_dict, orig_taxa_id)
-        taxa_rank = get_taxa_rank(stool_microbes_df, ncbitaxon_label_dict, orig_taxa_id)
-        hmp_microbes_mapped_name.append(taxa_name)
-        hmp_microbes_mapped_id.append(new_taxa_id)
-        hmp_microbes_rank.append(taxa_rank)
+    # Convert taxa names to NCBITaxon IDs - vectorized operation (much faster than iloc loop)
+    print("Converting taxa names to NCBITaxon IDs...")
+    hmp_microbes_names = stool_microbes_df[HMP_FEATURE_COLUMN_NAME].tolist()
+
+    # Apply mapping functions using vectorized operations
+    def map_ncbitaxon_id(input_id):
+        new_taxa_id, taxa_name = get_ncbitaxon_id(None, ncbitaxon_label_dict, input_id)
+        return pd.Series([new_taxa_id, taxa_name])
+
+    mapped_results = stool_microbes_df[HMP_FEATURE_COLUMN_NAME].apply(map_ncbitaxon_id)
+    hmp_microbes_mapped_id = mapped_results[0].tolist()
+    hmp_microbes_mapped_name = mapped_results[1].tolist()
+    hmp_microbes_rank = stool_microbes_df[HMP_FEATURE_COLUMN_NAME].apply(
+        lambda x: get_taxa_rank(None, ncbitaxon_label_dict, x)
+    ).tolist()
 
     microbes_mapped_df = pd.DataFrame()
     microbes_mapped_df["HMP_Name"] = hmp_microbes_names

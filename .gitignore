@@ -24,3 +24,6 @@ __pycache__/
 
 # Temporary files
 tmp.json
+
+# SLURM job logs
+logs/

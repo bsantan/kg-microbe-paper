@@ -16,14 +16,23 @@ mkdir -p logs
 # Load any required modules (if needed)
 # module load python
 
+# Set uv cache to local scratch to avoid NFS locking issues
+export UV_CACHE_DIR="${TMPDIR:-/tmp}/uv-cache-$$"
+export UV_LINK_MODE=copy
+mkdir -p "$UV_CACHE_DIR"
+
 # Print job info
 echo "Job started at: $(date)"
 echo "Running on node: $(hostname)"
 echo "Job ID: $SLURM_JOB_ID"
 echo "Working directory: $(pwd)"
+echo "UV cache directory: $UV_CACHE_DIR"
 
 # Run the script
 time uv run python src/Classification_gold_standard_comparison.py
+
+# Cleanup local cache
+rm -rf "$UV_CACHE_DIR"
 
 # Print completion
 echo "Job completed at: $(date)"

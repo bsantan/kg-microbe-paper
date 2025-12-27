@@ -24,19 +24,30 @@ download_ontologies:
 rhea_chebi_competencies:
 	@echo "Creating RHEA-CHEBI competency edge file..."
 	cd src/Input_Files/kg-microbe-biomedical-function-cat && \
-	awk -F '\t' 'BEGIN {print "subject\tpredicate\tobject"} ($$1 ~ /NCBITaxon:/ && $$3 ~ /CHEBI:/) || ($$3 ~ /NCBITaxon:/ && $$1 ~ /CHEBI:/) || ($$3 ~ /NCBITaxon:/ && $$1 ~ /UniprotKB:/) || ($$1 ~ /RHEA:/ && $$3 ~ /CHEBI:/) || ($$1 ~ /UniprotKB:/ && $$3 ~ /RHEA:/) || ($$1 ~ /RHEA:/ && $$3 ~ /RHEA:/)' merged-kg_edges.tsv > merged-kg_edges_noEC.tsv
+	awk -F '\t' 'BEGIN {print "subject\tpredicate\tobject"} \
+	{s=$$1; o=$$3; \
+	 if ((index(s,"NCBITaxon:")==1 && index(o,"CHEBI:")==1) || \
+	     (index(o,"NCBITaxon:")==1 && index(s,"CHEBI:")==1) || \
+	     (index(o,"NCBITaxon:")==1 && index(s,"UniprotKB:")==1) || \
+	     (index(s,"RHEA:")==1 && index(o,"CHEBI:")==1) || \
+	     (index(s,"UniprotKB:")==1 && index(o,"RHEA:")==1) || \
+	     (index(s,"RHEA:")==1 && index(o,"RHEA:")==1)) print}' merged-kg_edges.tsv > merged-kg_edges_noEC.tsv
 	@echo "Created merged-kg_edges_noEC.tsv"
 
 ec_competencies:
 	@echo "Creating EC competency edge file..."
 	cd src/Input_Files/kg-microbe-biomedical-function-cat && \
-	awk -F '\t' 'BEGIN {print "subject\tpredicate\tobject"} ($$3 ~ /NCBITaxon:/ && $$1 ~ /UniprotKB:/) || ($$1 ~ /UniprotKB:/ && $$3 ~ /EC:2./) || ($$1 ~ /UniprotKB:/ && $$3 ~ /EC:1./) || ($$1 ~ /UniprotKB:/ && $$3 ~ /EC:4./) || ($$1 ~ /UniprotKB:/ && $$3 ~ /EC:5./)' merged-kg_edges.tsv > merged-kg_edges_competency_specific_ec.tsv
+	awk -F '\t' 'BEGIN {print "subject\tpredicate\tobject"} \
+	{s=$$1; o=$$3; \
+	 if ((index(o,"NCBITaxon:")==1 && index(s,"UniprotKB:")==1) || \
+	     (index(s,"UniprotKB:")==1 && (index(o,"EC:2.")==1 || index(o,"EC:1.")==1 || index(o,"EC:4.")==1 || index(o,"EC:5.")==1))) print}' merged-kg_edges.tsv > merged-kg_edges_competency_specific_ec.tsv
 	@echo "Created merged-kg_edges_competency_specific_ec.tsv"
 
 taxonomy_competencies:
 	@echo "Creating taxonomy competency edge file..."
 	cd src/Input_Files/kg-microbe-biomedical-function-cat && \
-	awk -F '\t' 'BEGIN {print "subject\tpredicate\tobject"} ($$3 ~ /NCBITaxon:/ && $$1 ~ /NCBITaxon:/)' merged-kg_edges.tsv > merged-kg_edges_ncbitaxon.tsv
+	awk -F '\t' 'BEGIN {print "subject\tpredicate\tobject"} \
+	{if (index($$1,"NCBITaxon:")==1 && index($$3,"NCBITaxon:")==1) print}' merged-kg_edges.tsv > merged-kg_edges_ncbitaxon.tsv
 	@echo "Created merged-kg_edges_ncbitaxon.tsv"
 
 setup_gold_standard:

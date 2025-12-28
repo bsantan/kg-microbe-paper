@@ -147,8 +147,10 @@ def main():
     representative_taxon_labels = []
 
     # Process each disease ONE AT A TIME (memory efficient)
-    for disease_id in COMPETENCY_DISEASE_MAP.values():
-        disease_name = [k for k, v in COMPETENCY_DISEASE_MAP.items() if v == disease_id][0]
+    for disease_name, disease_ids in COMPETENCY_DISEASE_MAP.items():
+        # Use the canonical disease ID (last in list) - this is what remains after replacement
+        # e.g., IBD: Crohn's/UC are replaced with MONDO:0005101 (IBD), which is the last element
+        disease_id = disease_ids[-1]
         print(f"\n{'='*60}")
         print(f"Processing disease: {disease_name}")
         print(f"{'='*60}")

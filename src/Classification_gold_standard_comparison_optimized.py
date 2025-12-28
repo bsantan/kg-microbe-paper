@@ -33,8 +33,8 @@ def get_disease_pairs_optimized(conn, output_dir, disease_id, disease_name):
 
     # Query DuckDB to get only disease-relevant edges with NCBITaxon subjects
     # This replaces the massive pandas filtering operations
-    # Use parameterized query to avoid SQL parsing issues with colons
-    query = """
+    # Note: disease_id comes from trusted COMPETENCY_DISEASE_MAP constants
+    query = f"""
     SELECT DISTINCT
         CASE
             WHEN subject = 'NCBITaxon:Actinomyces sp. ICM47' THEN 'NCBITaxon:936548'
@@ -42,10 +42,10 @@ def get_disease_pairs_optimized(conn, output_dir, disease_id, disease_name):
         END as subject,
         predicate,
         object,
-        predicate || '_' || object as predicate_object
+        CONCAT(predicate, '_', object) as predicate_object
     FROM edges
     WHERE subject LIKE 'NCBITaxon:%'
-      AND (object = ?
+      AND (object = '{disease_id}'
            OR object = 'MONDO:0005011'
            OR object = 'MONDO:0005265'
            OR object = 'MONDO:0005101')
@@ -54,7 +54,7 @@ def get_disease_pairs_optimized(conn, output_dir, disease_id, disease_name):
       AND object IS NOT NULL
     """
 
-    data_edges = conn.execute(query, [disease_id]).df()
+    data_edges = conn.execute(query).df()
     print(f"  Found {len(data_edges)} disease-relevant edges")
 
     if len(data_edges) == 0:

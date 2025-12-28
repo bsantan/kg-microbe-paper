@@ -1,12 +1,12 @@
 #!/bin/bash
 #SBATCH --qos=regular
-#SBATCH --time=02:00:00
+#SBATCH --time=01:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=32GB
 #SBATCH --constraint=cpu
-#SBATCH --job-name=kg_classification
+#SBATCH --job-name=kg_classification_opt
 #SBATCH --output=logs/classification_%j.out
 #SBATCH --error=logs/classification_%j.err
 
@@ -28,8 +28,8 @@ echo "Job ID: $SLURM_JOB_ID"
 echo "Working directory: $(pwd)"
 echo "UV cache directory: $UV_CACHE_DIR"
 
-# Run the script
-time uv run python src/Classification_gold_standard_comparison.py
+# Run the optimized script (uses DuckDB queries to avoid loading 30GB into pandas)
+time uv run python src/Classification_gold_standard_comparison_optimized.py
 
 # Cleanup local cache
 rm -rf "$UV_CACHE_DIR"

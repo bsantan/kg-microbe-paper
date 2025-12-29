@@ -52,8 +52,8 @@ def main():
     # feature_table = pd.read_csv("./src/Intermediate_Files_func/feature_table.csv", index_col="subject")
     # disease_microbes = feature_table.index.unique().to_list()
 
-    data_edges = pd.read_csv("./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", header=0, sep="\t")
-    data_nodes = pd.read_csv("./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", header=0, sep="\t")
+    data_edges = pd.read_csv("./data/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", header=0, sep="\t")
+    data_nodes = pd.read_csv("./data/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", header=0, sep="\t")
 
     output_dir = "./src/Intermediate_Files"
 
@@ -96,8 +96,8 @@ def main():
         disease_microbes_strains_butyrate_producers = []
 
         conn = duckdb.connect(":memory:")
-        duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv", "ncbitaxon_edges", ["subject", "predicate", "object"])
-        # duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", "ncbitaxon_edges", ["subject", "predicate", "object"])
+        duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv", "ncbitaxon_edges", ["subject", "predicate", "object"])
+        # duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", "ncbitaxon_edges", ["subject", "predicate", "object"])
 
         microbes_strain_dict, microbes_species_dict = find_microbes_strain(conn, ncbi_taxa_ranks_df, disease_microbes, output_dir, "classification_butyrate_produces_" + disease_name)
 

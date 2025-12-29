@@ -16,7 +16,7 @@ from ncbi_phylogeny_search import get_ncbitaxon_with_traits, get_ncbitaxon_with_
 
 from constants import HMP_URL, HMP_ASSOCIATIONS_FILE, HMP_SHEET_NAME, HMP_STOOL_COLUMN_NAME, HMP_SITE_COLUMN_NAME, HMP_FEATURE_COLUMN_NAME, REPLACED_TAXA_NAMES, ORGANISMAL_TRAITS_EDGES
 
-base_path = "src/Input_Files/hmp_supplementary/"
+base_path = "data/hmp_supplementary/"
 
 def load_data(input_dir, url):
 
@@ -135,8 +135,8 @@ def main():
 
     # Get total taxa with organismal traits
     conn = duckdb.connect(":memory:")
-    duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
-    duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
+    duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
+    duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
 
     ### To run using new traits search
     query_with_edge_conditions(conn, "edges", "organismal_traits_taxa", ORGANISMAL_TRAITS_EDGES)

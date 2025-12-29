@@ -49,7 +49,7 @@ MODEL_PARAMETERS = {
     }
 
 GOLD_STANDARD_FILES = {
-    "butyrate_produces": "src/Input_Files/Vital_etal_butyrate+producing_microbes.csv"
+    "butyrate_produces": "data/Vital_etal_butyrate+producing_microbes.csv"
 }
 
 COMPETENCY_DISEASE_MAP = {

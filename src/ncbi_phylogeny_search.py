@@ -45,8 +45,8 @@ def load_graph():
 
     print("Loading full table.")
 
-    duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
-    duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
+    duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
+    duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
 
     return conn
 

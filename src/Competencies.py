@@ -41,8 +41,8 @@ def get_rhea_participants(metabolite):
 
     print("Loading full table.")
 
-    duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
-    duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
+    duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
+    duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
 
     query = (
         f"""
@@ -140,7 +140,7 @@ def get_total_proteomes_from_graph():
 
     print("Loading full table.")
 
-    duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
+    duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
 
     # Get only NCBITaxon from organismal traits that have proteomes in genomic traits
     query = (
@@ -918,8 +918,8 @@ def genomic_ec_competency(metabolite, direction):
 
     print("Loading EC, RHEA relevant table.")
 
-    duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_competency_specific_ec.tsv", "edges", ["subject", "predicate", "object"])
-    duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
+    duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_edges_competency_specific_ec.tsv", "edges", ["subject", "predicate", "object"])
+    duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
     output_dir = "./src/Intermediate_Files_Competencies" + "/" + metabolite + "_" + direction
 
     query = (
@@ -988,8 +988,8 @@ def organismal_genomic_competency(metabolite, direction):
 
     print("Loading full table.")
 
-    duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_noEC.tsv", "edges", ["subject", "predicate", "object"])
-    duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
+    duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_edges_noEC.tsv", "edges", ["subject", "predicate", "object"])
+    duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
 
     # Get corresponding GO and CHEBI mappings
     # GO_terms_list = GO_mappings[metabolite]
@@ -1479,8 +1479,8 @@ def congruency_competencies():
 
     print("Loading full table.")
 
-    duckdb_load_table(conn, "./src/Input_Files/merged-kg/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
-    duckdb_load_table(conn, "./src/Input_Files/merged-kg/merged-kg_nodes.tsv", "nodes", ["id", "name"])
+    duckdb_load_table(conn, "./data/merged-kg/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
+    duckdb_load_table(conn, "./data/merged-kg/merged-kg_nodes.tsv", "nodes", ["id", "name"])
 
     # Get all Uniprot Protein-RHEA-GO
     
@@ -1583,7 +1583,7 @@ def congruency_competencies():
 
 def get_chemical_direction_upa():
 
-    upa_edges = pd.read_csv('./src/Input_Files/upa_edges.tsv', sep='\t')
+    upa_edges = pd.read_csv('./data/upa_edges.tsv', sep='\t')
 
     # Pivot the table
     pivot_df = upa_edges.pivot_table(
@@ -1604,8 +1604,8 @@ def get_chemical_direction_upa():
 
     print("Loading full table.")
 
-    duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
-    duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
+    duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
+    duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
     chebi_labels = []
     # Convert CHEBI to labels
     for chebi in pivot_df["chemical"]:
@@ -1732,8 +1732,8 @@ def equilibrator_reaction_direction(conn, metabolite,direction):
 
         #print("Loading full nodes table.")
 
-        #duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
-        #duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
+        #duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
+        #duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
 
         df = pd.read_csv(directory + "/" + RHEA_CHEBI_ANNOTATIONS_FILE + ".tsv", sep = "\t")
         df = df.drop(columns=['ncbitaxon', "uniprotkb"]).drop_duplicates()
@@ -1860,7 +1860,7 @@ def get_ncbitaxon_df():
 
     #! TODO: Find a better way to get this path
     ncbitaxon_nodes_file = (
-        "./src/Input_Files/ncbitaxon_nodes.tsv"
+        "./data/ncbitaxon_nodes.tsv"
     )
     # Get NCBITaxon IDs from ontology nodes file
     if os.path.exists(ncbitaxon_nodes_file):
@@ -1887,7 +1887,7 @@ def create_gs_file(metabolite, direction):
         ncbitaxon_df = get_ncbitaxon_df()
 
         if len(ncbitaxon_df) < 0:
-            raise RuntimeError("Ensure Input_Files/ncbitaxon_nodes.tsv exists")
+            raise RuntimeError("Ensure data/ncbitaxon_nodes.tsv exists")
         
 
         all_species_id = []
@@ -1958,8 +1958,8 @@ def gold_standard_comparison_species(metabolite, direction):
             
     print("Loading ncbitaxon relevant table.")
         
-    duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv", "edges", ["subject", "predicate", "object"])
-    duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
+    duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv", "edges", ["subject", "predicate", "object"])
+    duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
 
     directory = "./src/Intermediate_Files_Competencies/" + metabolite + "_" + direction
 
@@ -2085,7 +2085,7 @@ def convert_to_species(conn, taxa_list, taxa_list_type):
     '''
     conn = duckdb.connect(":memory:")
              
-    duckdb_load_table(conn, "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_og.tsv", "edges", ["subject", "predicate", "object"])
+    duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_edges_og.tsv", "edges", ["subject", "predicate", "object"])
     '''
     output_dir = "./src/Phylogeny_Search"
     os.makedirs(output_dir, exist_ok=True)

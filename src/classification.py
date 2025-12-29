@@ -18,8 +18,8 @@ def main():
     # data_nodes = pd.read_csv("/Users/brooksantangelo/Documents/LozuponeLab/FRMS_2024/duckdb/merged-kg_kg-microbe-host_subset/merged-kg_nodes.tsv", header=0, sep="\t")
     ###
 
-    data_edges = pd.read_csv("./src/Input_Files/kg-microbe-biomedical-function/merged-kg_edges.tsv", header=0, sep="\t")
-    data_nodes = pd.read_csv("./src/Input_Files/kg-microbe-biomedical-function/merged-kg_nodes.tsv", header=0, sep="\t")
+    data_edges = pd.read_csv("./data/kg-microbe-biomedical-function/merged-kg_edges.tsv", header=0, sep="\t")
+    data_nodes = pd.read_csv("./data/kg-microbe-biomedical-function/merged-kg_nodes.tsv", header=0, sep="\t")
     function_edges = pd.read_csv("./src/Intermediate_Files/NCBITaxon_to_GO.tsv", header=0, sep="\t")
 
     # Remove NaN rows

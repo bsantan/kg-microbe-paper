@@ -108,7 +108,7 @@ def main():
     # DuckDB handles large files efficiently without loading entirely into RAM
     duckdb_load_table(
         conn,
-        "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv",
+        "./data/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv",
         "edges",
         ["subject", "predicate", "object"]
     )
@@ -119,7 +119,7 @@ def main():
     conn_taxonomy = duckdb.connect(":memory:")
     duckdb_load_table(
         conn_taxonomy,
-        "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv",
+        "./data/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv",
         "edges",  # Must be "edges" for ncbi_phylogeny_search.py compatibility
         ["subject", "predicate", "object"]
     )

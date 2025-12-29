@@ -29,8 +29,8 @@ def main():
 
     NUMBER_PERMUTATIONS = 100
 
-    data_edges = pd.read_csv("./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", header=0, sep="\t")
-    data_nodes = pd.read_csv("./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", header=0, sep="\t")
+    data_edges = pd.read_csv("./data/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", header=0, sep="\t")
+    data_nodes = pd.read_csv("./data/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", header=0, sep="\t")
     # function_edges = pd.read_csv("./src/Intermediate_Files/NCBITaxon_to_GO.tsv", header=0, sep="\t")
 
     # Remove NaN rows

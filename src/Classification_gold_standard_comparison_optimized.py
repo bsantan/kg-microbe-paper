@@ -115,11 +115,12 @@ def main():
     print("  DuckDB edges table loaded")
 
     # Load taxonomy edges for phylogeny searches
+    # Note: Table must be named "edges" to match queries in ncbi_phylogeny_search.py
     conn_taxonomy = duckdb.connect(":memory:")
     duckdb_load_table(
         conn_taxonomy,
         "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv",
-        "ncbitaxon_edges",
+        "edges",  # Must be "edges" for ncbi_phylogeny_search.py compatibility
         ["subject", "predicate", "object"]
     )
     print("  DuckDB taxonomy edges loaded")

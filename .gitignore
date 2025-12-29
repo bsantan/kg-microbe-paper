@@ -15,6 +15,7 @@ src/Intermediate_Files/
 src/Intermediate_Files_Competencies/
 src/Phylogeny_Search/
 Input_Files/
+data/Input_Files/
 
 # Build artifacts
 src/.ipynb_checkpoints/
@@ -26,4 +27,4 @@ __pycache__/
 tmp.json
 
 # SLURM job logs
-logs/data/
+logs/

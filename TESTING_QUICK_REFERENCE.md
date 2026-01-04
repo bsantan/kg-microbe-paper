@@ -70,10 +70,10 @@ git status
 ```
 
 **Should show ONLY these untracked files:**
-- `data/KGMicrobe-biomedical-function-20250222.tar.gz`
-- `data/kg-microbe-biomedical-function-cat/`
-- `data/ncbitaxon_nodes.tsv`
-- `data/ontologies.tar.gz`
+- `data/Input_Files/KGMicrobe-biomedical-function-20250222.tar.gz`
+- `data/Input_Files/kg-microbe-biomedical-function-cat/`
+- `data/Input_Files/ncbitaxon_nodes.tsv`
+- `data/Input_Files/ontologies.tar.gz`
 
 **Should NOT show:**
 - Any files in `data/Intermediate_Files/`

@@ -135,8 +135,8 @@ def main():
 
     # Get total taxa with organismal traits
     conn = duckdb.connect(":memory:")
-    duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
-    duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
+    duckdb_load_table(conn, "./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
+    duckdb_load_table(conn, "./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
 
     ### To run using new traits search
     query_with_edge_conditions(conn, "edges", "organismal_traits_taxa", ORGANISMAL_TRAITS_EDGES)

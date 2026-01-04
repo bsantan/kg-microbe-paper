@@ -19,8 +19,8 @@ def main():
             
             # print("Loading og relevant table.")
              
-            # duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv", "edges", ["subject", "predicate", "object"])
-            # duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
+            # duckdb_load_table(conn, "./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv", "edges", ["subject", "predicate", "object"])
+            # duckdb_load_table(conn, "./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
             #output_dir = "./data/Intermediate_Files_Competencies" + "/" + metabolite + "_" + direction
             reaction_direction_dict = equilibrator_reaction_direction(c, metabolite,direction)
             genomic_ec_competency(metabolite, direction)

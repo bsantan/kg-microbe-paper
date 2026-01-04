@@ -15,7 +15,7 @@ def main():
 
     #duckdb_load_table(conn, "/Users/brooksantangelo/Documents/LozuponeLab/FRMS_2024/uniprot_transform_20240725/edges.tsv", "edges", ["subject", "object"])
     # duckdb_load_table(conn, "./data/merged-kg/merged-kg_edges.tsv", "edges", ["subject", "object"])
-    duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", "edges", ["subject", "object"])
+    duckdb_load_table(conn, "./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", "edges", ["subject", "object"])
     conditions = [
         ('UniprotKB:%', 'NCBITaxon:%'),
         ('UniprotKB:%', 'GO:%')

@@ -16,7 +16,7 @@ data/Input_Files/kg-microbe-biomedical-function-cat/
 data/Input_Files/hmp_supplementary/
 
 # Keep Gold Standard and SHAP files tracked (small reference files)
-!data/Input_Files/Gold_Standard_Species_Overlap_butyrate_produces.csv
+!data/Gold_Standard_Species_Overlap_butyrate_produces.csv
 
 # Legacy paths (for backwards compatibility - these directories have been moved to data/)
 src/Input_Files/

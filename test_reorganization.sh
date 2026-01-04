@@ -83,8 +83,8 @@ fi
 echo -e "\n[4/5] Running Python analysis pipeline..."
 cd src
 
-echo "  → python gut_microbes_competencies.py..."
-if python gut_microbes_competencies.py > ../logs/test_hmp.log 2>&1; then
+echo "  → uv run python gut_microbes_competencies.py..."
+if uv run python gut_microbes_competencies.py > ../logs/test_hmp.log 2>&1; then
     echo "  ✓ HMP analysis complete"
     if [ -f ../data/Intermediate_Files/HMP_species.tsv ]; then
         echo "    - HMP_species.tsv created ($(wc -l < ../data/Intermediate_Files/HMP_species.tsv) lines)"
@@ -94,8 +94,8 @@ else
     exit 1
 fi
 
-echo "  → python Process_competency_questions.py..."
-if python Process_competency_questions.py > ../logs/test_competency.log 2>&1; then
+echo "  → uv run python Process_competency_questions.py..."
+if uv run python Process_competency_questions.py > ../logs/test_competency.log 2>&1; then
     echo "  ✓ Competency analysis complete"
     if [ -f ../data/Intermediate_Files_Competencies/butyrate_produces/butyrate_produces_all_methods.tsv ]; then
         echo "    - butyrate_produces_all_methods.tsv created ($(wc -l < ../data/Intermediate_Files_Competencies/butyrate_produces/butyrate_produces_all_methods.tsv) lines)"
@@ -108,8 +108,8 @@ else
     exit 1
 fi
 
-echo "  → python Gold_standard_Competency_analysis.py..."
-if python Gold_standard_Competency_analysis.py > ../logs/test_gold_standard.log 2>&1; then
+echo "  → uv run python Gold_standard_Competency_analysis.py..."
+if uv run python Gold_standard_Competency_analysis.py > ../logs/test_gold_standard.log 2>&1; then
     echo "  ✓ Gold standard comparison complete"
     gs_files=$(ls ../data/Intermediate_Files_Competencies/butyrate_produces/gold_standard*.tsv 2>/dev/null | wc -l)
     echo "    - $gs_files gold standard output files created"
@@ -118,8 +118,8 @@ else
     exit 1
 fi
 
-echo "  → python Classification_gold_standard_comparison_optimized.py..."
-if python Classification_gold_standard_comparison_optimized.py > ../logs/test_classification.log 2>&1; then
+echo "  → uv run python Classification_gold_standard_comparison_optimized.py..."
+if uv run python Classification_gold_standard_comparison_optimized.py > ../logs/test_classification.log 2>&1; then
     echo "  ✓ Disease classification complete"
     if [ -f ../data/Intermediate_Files/outcome_to_NCBITaxon_cleaned.tsv ]; then
         echo "    - outcome_to_NCBITaxon_cleaned.tsv created ($(wc -l < ../data/Intermediate_Files/outcome_to_NCBITaxon_cleaned.tsv) lines)"

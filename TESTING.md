@@ -134,7 +134,7 @@ cd src
 
 ### Test 2.1: HMP Gut Microbiome Analysis
 ```bash
-python gut_microbes_competencies.py
+uv run python gut_microbes_competencies.py
 ```
 
 **Expected outputs in `data/Intermediate_Files/`:**
@@ -153,7 +153,7 @@ Should show multiple TSV files with reasonable line counts.
 
 ### Test 2.2: Metabolite Competency Analysis
 ```bash
-python Process_competency_questions.py
+uv run python Process_competency_questions.py
 ```
 
 **Expected outputs in `data/Intermediate_Files_Competencies/butyrate_produces/`:**
@@ -175,7 +175,7 @@ head -n 5 ../data/Intermediate_Files_Competencies/butyrate_produces/butyrate_pro
 
 ### Test 2.3: Gold Standard Comparison
 ```bash
-python Gold_standard_Competency_analysis.py
+uv run python Gold_standard_Competency_analysis.py
 ```
 
 **Expected outputs in `data/Intermediate_Files_Competencies/butyrate_produces/`:**
@@ -195,12 +195,12 @@ wc -l ../data/Intermediate_Files_Competencies/butyrate_produces/gold_standard_ov
 
 **Option A: Full version (requires more memory):**
 ```bash
-python classification.py
+uv run python classification.py
 ```
 
 **Option B: Optimized version (recommended for memory-constrained systems):**
 ```bash
-python Classification_gold_standard_comparison_optimized.py
+uv run python Classification_gold_standard_comparison_optimized.py
 ```
 
 **Expected outputs in `data/Intermediate_Files/`:**
@@ -365,16 +365,16 @@ echo "✓ KG files downloaded and processed"
 # Test 4: Run Python scripts
 echo "4. Running Python analysis scripts..."
 cd src
-python gut_microbes_competencies.py
+uv run python gut_microbes_competencies.py
 echo "✓ HMP analysis complete"
 
-python Process_competency_questions.py
+uv run python Process_competency_questions.py
 echo "✓ Competency analysis complete"
 
-python Gold_standard_Competency_analysis.py
+uv run python Gold_standard_Competency_analysis.py
 echo "✓ Gold standard comparison complete"
 
-python Classification_gold_standard_comparison_optimized.py
+uv run python Classification_gold_standard_comparison_optimized.py
 echo "✓ Disease classification complete"
 
 cd ..

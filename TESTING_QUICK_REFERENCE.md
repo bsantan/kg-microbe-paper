@@ -37,16 +37,16 @@ make all
 cd src
 
 # 1. HMP gut microbiome analysis
-python gut_microbes_competencies.py
+uv run python gut_microbes_competencies.py
 
 # 2. Metabolite competency analysis
-python Process_competency_questions.py
+uv run python Process_competency_questions.py
 
 # 3. Gold standard comparison
-python Gold_standard_Competency_analysis.py
+uv run python Gold_standard_Competency_analysis.py
 
 # 4. Disease classification (optimized version)
-python Classification_gold_standard_comparison_optimized.py
+uv run python Classification_gold_standard_comparison_optimized.py
 ```
 
 ### Step 3: Verify File Locations

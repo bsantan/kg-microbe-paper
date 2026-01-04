@@ -31,7 +31,7 @@ def main():
 
     data_edges = pd.read_csv("./data/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", header=0, sep="\t")
     data_nodes = pd.read_csv("./data/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", header=0, sep="\t")
-    # function_edges = pd.read_csv("./src/Intermediate_Files/NCBITaxon_to_GO.tsv", header=0, sep="\t")
+    # function_edges = pd.read_csv("./data/Intermediate_Files/NCBITaxon_to_GO.tsv", header=0, sep="\t")
 
     # Remove NaN rows
     data_edges = data_edges[~data_edges['predicate'].apply(lambda x: isinstance(x, float))]
@@ -70,7 +70,7 @@ def main():
     #     axis=1 
     # )
 
-    generic_input_dir = "./src/Intermediate_Files"
+    generic_input_dir = "./data/Intermediate_Files"
     
     # Target Class
     data_subset = subset_by_features(generic_input_dir, data_pairs, "NCBITaxon:", True, "MONDO:0005011", "MONDO:0005265", "MONDO:0005101")
@@ -88,15 +88,15 @@ def main():
     data_pairs_cleaned.to_csv(generic_input_dir + "/outcome_to_NCBITaxon_cleaned.tsv", sep="\t", header=True, index=False)
 
 
-    for input_dir in ["./src/Intermediate_Files_traits"]:#,"./src/Intermediate_Files_traits_func", "./src/Intermediate_Files_func"]:
+    for input_dir in ["./data/Intermediate_Files_traits"]:#,"./data/Intermediate_Files_traits_func", "./data/Intermediate_Files_func"]:
 
         os.makedirs(input_dir, exist_ok=True)
-        if input_dir == "./src/Intermediate_Files_traits" or input_dir == "./src/Intermediate_Files_traits_func":
+        if input_dir == "./data/Intermediate_Files_traits" or input_dir == "./data/Intermediate_Files_traits_func":
             # To include traits in feature table
             data_pairs_rest = concatenate_features(data_pairs, data_pairs_cleaned, "NCBITaxon:", "MONDO:0005101", input_dir, None, True)
 
             # To include func in feature table
-            if input_dir == "./src/Intermediate_Files_traits_func":
+            if input_dir == "./data/Intermediate_Files_traits_func":
                     data_pairs_rest = pd.concat([data_pairs_rest, function_edges], ignore_index=True)
 
             # print("orig len edges before isolation sources")
@@ -111,7 +111,7 @@ def main():
 
             feature_table = create_feature_table(data_pairs_rest, data_pairs_cleaned, "MONDO:0005101", input_dir, True)
 
-        elif input_dir == "./src/Intermediate_Files_func":
+        elif input_dir == "./data/Intermediate_Files_func":
 
             # To include function only in feature table
             function_edges['Value'] = 1

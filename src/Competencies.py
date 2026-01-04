@@ -30,7 +30,7 @@ cc = ComponentContribution()
 
 def get_rhea_participants(metabolite):
 
-    directory = "./src/Intermediate_Files_Competencies/" + metabolite
+    directory = "./data/Intermediate_Files_Competencies/" + metabolite
     df = pd.read_csv(directory + "/" + RHEA_CHEBI_ANNOTATIONS_FILE + ".tsv", sep = "\t")
 
     rhea_ids = df["rhea"].unique().tolist()
@@ -208,7 +208,7 @@ def plot_competencies_venn_diagrams_with_proteomes(conn):
 
     # # Get total number of bugs with proteomes
     # total_proteomes = get_total_proteomes_from_graph()
-    ncbitaxon_func_ids = get_ncbitaxon_with_uniprot(conn, "./src/Phylogeny_Search")
+    ncbitaxon_func_ids = get_ncbitaxon_with_uniprot(conn, "./data/Phylogeny_Search")
     print("Len Taxa with a functional annotation")
     print(len(ncbitaxon_func_ids))
     total_proteomes = ncbitaxon_func_ids
@@ -453,7 +453,7 @@ def round_percentages(x):
 
 def create_metabolite_competency_df(metabolite, direction, reaction_direction_dict):
 
-    directory = "./src/Intermediate_Files_Competencies/" + metabolite + "_" + direction
+    directory = "./data/Intermediate_Files_Competencies/" + metabolite + "_" + direction
 
     new_row = {}
     # competency_df = pd.DataFrame(columns = ["Metabolite", "Traits_Annotations", "Rhea-Chebi_Annotations",  "Traits_Annotations_Proteome_Overlap", "Total Rhea-Chebi_Traits_Overlap", "Rhea-Chebi_Traits_Overlap_Percentage", "Traits_Rhea-Chebi_Overlap_Percentage"])
@@ -581,7 +581,7 @@ def visualize_all_competencies(final_df, direction):
 
 def process_metabolite_competency_questions(metabolite):
 
-    directory = "./src/Intermediate_Files_Competencies/" + metabolite
+    directory = "./data/Intermediate_Files_Competencies/" + metabolite
 
     # Open a text file in write mode
     with open(directory + '/' + metabolite + '_output.txt', 'w') as f:
@@ -1455,14 +1455,14 @@ def organismal_genomic_competency(metabolite, direction):
     output_table_to_file(conn, "(SELECT subject_id FROM matching_strain_organismal_rhea)", output_dir + "/NCBI_organismal_genomic_rhea_go_comparison_strain.tsv")
 
     # Get uniprot microbes
-    ncbitaxon_func_ids = get_ncbitaxon_with_uniprot(conn, "./src/Phylogeny_Search")
+    ncbitaxon_func_ids = get_ncbitaxon_with_uniprot(conn, "./data/Phylogeny_Search")
 
     return conn
     #genomic_ec_competency(conn, metabolite, direction, output_dir)
 
 def process_congruency_competency_questions():
 
-    directory = "./src/Intermediate_Files_Competencies/Congruency"
+    directory = "./data/Intermediate_Files_Competencies/Congruency"
 
     # Open a text file in write mode
     with open(directory + '/Congruency_output.txt', 'w') as f:
@@ -1616,7 +1616,7 @@ def get_chemical_direction_upa():
 
     pivot_df = calc_significance(pivot_df)
 
-    pivot_df.to_csv('./src/Intermediate_Files_Competencies/upa_chemical_directons.tsv',sep='\t',index=False)
+    pivot_df.to_csv('./data/Intermediate_Files_Competencies/upa_chemical_directons.tsv',sep='\t',index=False)
 
     return pivot_df, conn
 
@@ -1681,7 +1681,7 @@ def get_reactions_with_sig_chemicals(conn,pivot_df, reactions, metabolite, predi
         chebi_labels.append(lab)
     sig_rhea_df["object_label"] = chebi_labels
 
-    sig_rhea_df.to_csv('./src/Intermediate_Files_Competencies/reactions_with_sig_chemicals_' + metabolite + '.tsv', sep='\t')
+    sig_rhea_df.to_csv('./data/Intermediate_Files_Competencies/reactions_with_sig_chemicals_' + metabolite + '.tsv', sep='\t')
 
     # Get total # of undirected reactions in graph for all
     # CREATE OR REPLACE TABLE all_rhea_undirected AS
@@ -1710,7 +1710,7 @@ def get_reactions_with_sig_chemicals(conn,pivot_df, reactions, metabolite, predi
 
 def get_all_reactions(metabolite):
 
-    directory = "./src/Intermediate_Files_Competencies/" + metabolite
+    directory = "./data/Intermediate_Files_Competencies/" + metabolite
     df = pd.read_csv(directory + "/" + RHEA_CHEBI_ANNOTATIONS_FILE + ".tsv", sep = "\t")
 
     rhea_ids = df["rhea"].unique().tolist()
@@ -1719,7 +1719,7 @@ def get_all_reactions(metabolite):
 
 def equilibrator_reaction_direction(conn, metabolite,direction):
 
-    directory = "./src/Intermediate_Files_Competencies/" + metabolite + "_" + direction
+    directory = "./data/Intermediate_Files_Competencies/" + metabolite + "_" + direction
 
     metabolite_mappings_df = pd.read_csv(directory + "/term_mappings.csv")
     reaction_direction_dict_file = directory + "/reaction_direction_dict.json"
@@ -1875,7 +1875,7 @@ def create_gs_file(metabolite, direction):
     gs_file = GOLD_STANDARD_FILES.get(metabolite + "_" + direction, None)
     if not gs_file:
         return None
-    directory = "./src/Intermediate_Files_Competencies/" + metabolite + "_" + direction
+    directory = "./data/Intermediate_Files_Competencies/" + metabolite + "_" + direction
     
     microbe_labels_ids_file = directory + "/gold_standard_ids.tsv"
     microbe_labels_ids_manual_file = directory + "/gold_standard_ids_manual.tsv"
@@ -1961,7 +1961,7 @@ def gold_standard_comparison_species(metabolite, direction):
     duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv", "edges", ["subject", "predicate", "object"])
     duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
 
-    directory = "./src/Intermediate_Files_Competencies/" + metabolite + "_" + direction
+    directory = "./data/Intermediate_Files_Competencies/" + metabolite + "_" + direction
 
     gs_df = create_gs_file(metabolite, direction)
     if gs_df is not None:
@@ -1997,7 +1997,7 @@ def gold_standard_comparison_species(metabolite, direction):
 
     #conn = load_graph()
     
-    ncbitaxon_func_ids = get_ncbitaxon_with_uniprot(conn, "./src/Phylogeny_Search")
+    ncbitaxon_func_ids = get_ncbitaxon_with_uniprot(conn, "./data/Phylogeny_Search")
     print("Len Taxa with a functional annotation")
     print(len(ncbitaxon_func_ids))
 
@@ -2087,7 +2087,7 @@ def convert_to_species(conn, taxa_list, taxa_list_type):
              
     duckdb_load_table(conn, "./data/kg-microbe-biomedical-function-cat/merged-kg_edges_og.tsv", "edges", ["subject", "predicate", "object"])
     '''
-    output_dir = "./src/Phylogeny_Search"
+    output_dir = "./data/Phylogeny_Search"
     os.makedirs(output_dir, exist_ok=True)
 
     ncbi_taxa_ranks_df = get_all_ranks(output_dir)
@@ -2102,7 +2102,7 @@ def convert_to_species(conn, taxa_list, taxa_list_type):
 
 def convert_to_family(conn, taxa_list, taxa_list_type):
 
-    output_dir = "./src/Phylogeny_Search"
+    output_dir = "./data/Phylogeny_Search"
     os.makedirs(output_dir, exist_ok=True)
 
     ncbi_taxa_ranks_df = get_all_ranks(output_dir)
@@ -2133,7 +2133,7 @@ def convert_to_family(conn, taxa_list, taxa_list_type):
 
 def gold_standard_comparison_family(conn, metabolite, direction):
 
-    directory = "./src/Intermediate_Files_Competencies/" + metabolite + "_" + direction
+    directory = "./data/Intermediate_Files_Competencies/" + metabolite + "_" + direction
 
     gs_df = create_gs_file(metabolite, direction)
     if gs_df is not None:

@@ -98,7 +98,7 @@ def combine_labels(taxonomic_labels_counts, keep_label, new_label):
 
 
 def main():
-    output_dir = "./src/Intermediate_Files"
+    output_dir = "./data/Intermediate_Files"
 
     # Initialize DuckDB connection and load edges ONCE
     print("Initializing DuckDB and loading edges (this may take a few minutes)...")
@@ -108,7 +108,7 @@ def main():
     # DuckDB handles large files efficiently without loading entirely into RAM
     duckdb_load_table(
         conn,
-        "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv",
+        "./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv",
         "edges",
         ["subject", "predicate", "object"]
     )
@@ -118,19 +118,19 @@ def main():
     conn_taxonomy = duckdb.connect(":memory:")
     duckdb_load_table(
         conn_taxonomy,
-        "./src/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv",
+        "./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv",
         "ncbitaxon_edges",
         ["subject", "predicate", "object"]
     )
     print("  DuckDB taxonomy edges loaded")
 
     # Load phylogeny ranks (small file)
-    phylogeny_output_dir = "./src/Phylogeny_Search"
+    phylogeny_output_dir = "./data/Phylogeny_Search"
     ncbi_taxa_ranks_df = get_all_ranks(phylogeny_output_dir)
     print(f"  Loaded {len(ncbi_taxa_ranks_df)} taxonomy ranks")
 
     # Load butyrate producers (small file)
-    butyrate_production_output_dir = "./src/Intermediate_Files_Competencies/butyrate_produces"
+    butyrate_production_output_dir = "./data/Intermediate_Files_Competencies/butyrate_produces"
     gs_analysis_microbes_file = f"{butyrate_production_output_dir}/Gold_Standard_Species_Overlap_butyrate_produces.csv"
     gs_analysis_microbes_df = pd.read_csv(gs_analysis_microbes_file)
     kg_analysis_microbes = gs_analysis_microbes_df[

@@ -9,13 +9,21 @@ venv/
 # uv
 uv.lock
 
-# Data directories
+# Large downloaded/generated data files (exclude from git)
+data/Input_Files/*.tar.gz
+data/Input_Files/*.tsv
+data/Input_Files/kg-microbe-biomedical-function-cat/
+data/Input_Files/hmp_supplementary/
+
+# Keep Gold Standard and SHAP files tracked (small reference files)
+!data/Input_Files/Gold_Standard_Species_Overlap_butyrate_produces.csv
+
+# Legacy paths (for backwards compatibility - these directories have been moved to data/)
 src/Input_Files/
 src/Intermediate_Files/
 src/Intermediate_Files_Competencies/
 src/Phylogeny_Search/
-Input_Files/
-data/Input_Files/
+/Input_Files/
 
 # Build artifacts
 src/.ipynb_checkpoints/

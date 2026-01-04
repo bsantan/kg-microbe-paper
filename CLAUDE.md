@@ -32,12 +32,12 @@ uv run make all
 
 This single command will:
 - Download the KG-Microbe biomedical function knowledge graph from NERSC
-- Extract and create three essential edge files in `src/Input_Files/kg-microbe-biomedical-function-cat/`:
+- Extract and create three essential edge files in `data/Input_Files/kg-microbe-biomedical-function-cat/`:
   - `merged-kg_edges_noEC.tsv` - NCBI Taxon, CHEBI, UniprotKB, and RHEA edges
   - `merged-kg_edges_competency_specific_ec.tsv` - EC enzyme classification edges
   - `merged-kg_edges_ncbitaxon.tsv` - NCBI Taxonomy edges
 - Download NCBI Taxonomy ontologies from kg-microbe releases
-- Extract `ncbitaxon_nodes.tsv` to `src/Input_Files/`
+- Extract `ncbitaxon_nodes.tsv` to `data/Input_Files/`
 
 ## Running Analysis Scripts
 
@@ -122,7 +122,7 @@ The Jupyter notebooks in `src/` provide additional analyses:
 
 ### Key Design Patterns
 
-- **Directory Structure**: Each metabolite/direction creates subdirectories under `Intermediate_Files_Competencies/`
+- **Directory Structure**: Each metabolite/direction creates subdirectories under `data/Intermediate_Files_Competencies/`
 - **File Naming**: Consistent patterns like `{metabolite}_{direction}` (e.g., `butyrate_produces`)
 - **Graph Patterns**: Edge patterns like `NCBITaxon -> produces -> CHEBI` or `NCBITaxon -> derives_from -> UniprotKB -> participates_in -> RHEA`
 - **Caching**: Intermediate files avoid re-downloading/re-computing (check existence before downloading)
@@ -138,9 +138,9 @@ Update `constants.py` to modify:
 ## Output Files
 
 Analysis outputs are organized into:
-- `src/Intermediate_Files/` - HMP analysis, disease analysis
-- `src/Intermediate_Files_Competencies/{metabolite}_{direction}/` - Competency results per metabolite
-- `src/Phylogeny_Search/` - NCBI Taxonomy rank files, phylogeny searches
+- `data/Intermediate_Files/` - HMP analysis, disease analysis
+- `data/data/Intermediate_Files_Competencies/{metabolite}_{direction}/` - Competency results per metabolite
+- `data/Phylogeny_Search/` - NCBI Taxonomy rank files, phylogeny searches
 - `data/` - SHAP feature importance from ML models
 
 ## Common Workflows

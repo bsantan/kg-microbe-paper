@@ -116,8 +116,8 @@ def remove_conflicting_directionality(data_pairs):
     num_unique_values = data_pairs['subject'].nunique()
     r = len(subjects_with_multiple_links)/num_unique_values
 
-    os.makedirs("./src/Intermediate_Files", exist_ok=True)
-    with open('./src/Intermediate_Files/Used_data_results.txt', 'w') as file:
+    os.makedirs("./data/Intermediate_Files", exist_ok=True)
+    with open('./data/Intermediate_Files/Used_data_results.txt', 'w') as file:
         file.write(f'Proportion of microbes both increased and decreased in IBD: {r}\n')
 
         #Remove bugs that are associated with both increased and decreased Crohns

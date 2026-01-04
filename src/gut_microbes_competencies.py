@@ -99,7 +99,7 @@ def get_taxa_rank(df, ncbitaxon_label_dict, input_id):
 
 def main():
 
-    output_dir = "./src/Intermediate_Files"
+    output_dir = "./data/Intermediate_Files"
     
     load_data(base_path, HMP_URL)
     stool_microbes_df = extract_hmp_data(base_path, HMP_ASSOCIATIONS_FILE, HMP_SHEET_NAME)
@@ -154,7 +154,7 @@ def main():
     microbes_mapped_df["Has_Organismal_Trait"] = hmp_organismal_taxa_query
 
     # Get total taxa with functional annotations
-    ncbitaxon_func_ids = get_ncbitaxon_with_uniprot(conn, "./src/Phylogeny_Search")
+    ncbitaxon_func_ids = get_ncbitaxon_with_uniprot(conn, "./data/Phylogeny_Search")
     hmp_func_microbes = set(ncbitaxon_func_ids) & set(microbes_mapped_df["NCBITaxon_ID"].tolist())
     total_hmp_func_microbes = len(set(ncbitaxon_func_ids) & set(microbes_mapped_df["NCBITaxon_ID"].tolist()))
 

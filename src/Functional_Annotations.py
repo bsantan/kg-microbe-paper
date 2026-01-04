@@ -21,8 +21,8 @@ def main():
         ('UniprotKB:%', 'GO:%')
     ]
 
-    if not os.path.exists("./src/Intermediate_Files"):
-        os.makedirs("./src/Intermediate_Files")
+    if not os.path.exists("./data/Intermediate_Files"):
+        os.makedirs("./data/Intermediate_Files")
     
     print("Relevant edges loaded.")
 
@@ -69,7 +69,7 @@ def main():
 
     get_table_count(conn, "ncbitaxon_go")
 
-    output_table_to_file(conn, "ncbitaxon_go", "./src/Intermediate_Files/NCBITaxon_to_GO.tsv")
+    output_table_to_file(conn, "ncbitaxon_go", "./data/Intermediate_Files/NCBITaxon_to_GO.tsv")
 
     num_unique_ncbitaxon_go_pairs = get_total_unique_pair(
         conn,

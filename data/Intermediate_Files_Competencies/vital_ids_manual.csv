@@ -1,0 +1,146 @@
+    Family  Name    Family_ID   Name_ID
+0	Lachnospiraceae	Anaerostipes caccae DSM 14662	NCBITaxon:186803	NCBITaxon:411490
+1	Lachnospiraceae	Anaerostipes sp. 3_2_56FAA	NCBITaxon:186803	NCBITaxon:105841
+2	Lachnospiraceae	Butyrivibrio crossotus DSM 2876	NCBITaxon:186803	NCBITaxon:511680
+3	Lachnospiraceae	Butyrivibrio fibrisolvens 16/4	NCBITaxon:186803	NCBITaxon:657324
+4	Lachnospiraceae	Butyrivibrio proteoclasticus B316	NCBITaxon:186803	NCBITaxon:515622
+5	Lachnospiraceae	Clostridiales sp. SS3/4	NCBITaxon:186803	not found
+6	Lachnospiraceae	Clostridiales sp. SSC/2	NCBITaxon:186803	not found
+7	Lachnospiraceae	Coprococcus catus GD/7	NCBITaxon:186803	NCBITaxon:717962
+8	Lachnospiraceae	Coprococcus comes ATCC 27758	NCBITaxon:186803	NCBITaxon:470146
+9	Lachnospiraceae	Coprococcus eutactus ATCC 27759	NCBITaxon:186803	NCBITaxon:411474
+10	Lachnospiraceae	Eubacterium cellulolocolvens 6	NCBITaxon:186803	NCBITaxon:633697
+11	Lachnospiraceae	Eubacterium hallii DSM 3353	NCBITaxon:186803	NCBITaxon:411469
+12	Lachnospiraceae	Eubacterium rectale ATCC 33656	NCBITaxon:186803	NCBITaxon:515619
+13	Lachnospiraceae	Eubacterium rectale DSM 17629	NCBITaxon:186803	NCBITaxon:657318
+14	Lachnospiraceae	Eubacterium rectale M104/1	NCBITaxon:186803	NCBITaxon:657317
+15	Lachnospiraceae	Eubacterium ventriosum ATCC 27560	NCBITaxon:186803	NCBITaxon:411463
+16	Lachnospiraceae	Lachnospiraceae bacterium 3_1_57FAA_CT1	NCBITaxon:186803	NCBITaxon:658086
+17	Lachnospiraceae	Lachnospiraceae bacterium sp. 5_1_63FAA	NCBITaxon:186803	NCBITaxon:658089
+18	Lachnospiraceae	Lachnospiraceae sp. F0167	NCBITaxon:186803	NCBITaxon:575593
+19	Lachnospiraceae	Roseburia intestinalis L1-82	NCBITaxon:186803	NCBITaxon:536231
+20	Lachnospiraceae	Roseburia intestinalis M50/1	NCBITaxon:186803	NCBITaxon:657315
+21	Lachnospiraceae	Roseburia intestinalis XB6B4	NCBITaxon:186803	NCBITaxon:718255
+22	Lachnospiraceae	Roseburia inulinivorans DSM 16841	NCBITaxon:186803	NCBITaxon:622312
+23	Lachnospiraceae	Shuttleworthia satelles DSM 14600	NCBITaxon:186803	NCBITaxon:626523
+24	C. Incertae Sedis XI	Anaerococcus hydrogenalis ACS-025-V-Sch4	NCBITaxon:1570339	NCBITaxon:879306
+25	C. Incertae Sedis XI	Anaerococcus hydrogenalis DSM 7454	NCBITaxon:1570339	NCBITaxon:561177
+26	C. Incertae Sedis XI	Anaerococcus lactolyticus ATCC 51172	NCBITaxon:1570339	NCBITaxon:525254
+27	C. Incertae Sedis XI	Anaerococcus prevotii PC 1, DSM 20548	NCBITaxon:1570339	NCBITaxon:525919
+28	C. Incertae Sedis XI	Anaerococcus tetradius ATCC 35098	NCBITaxon:1570339	NCBITaxon:525255
+29	C. Incertae Sedis XI	Anaerococcus vaginalis ATCC 51170	NCBITaxon:1570339	NCBITaxon:655811
+30	C. Incertae Sedis XI	Peptoniphilus duerdenii ATCC BAA-1640	NCBITaxon:1570339	NCBITaxon:862517
+31	C. Incertae Sedis XI	Peptoniphilus harei ACS-146-V-Sch2b	NCBITaxon:1570339	NCBITaxon:908338
+32	C. Incertae Sedis XI	Peptoniphilus lacrimalis 315-B	NCBITaxon:1570339	NCBITaxon:596330
+33	C. Incertae Sedis XI	Peptoniphilus sp. F0131	NCBITaxon:1570339	NCBITaxon:575609
+34	C. Incertae Sedis XI	Peptoniphilus sp. F0141	NCBITaxon:1570339	NCBITaxon:575609
+35	Peptostreptococcaceae	Alkaliphilus metalliredigens QYMF	NCBITaxon:186804	NCBITaxon:293826
+36	Peptostreptococcaceae	Alkaliphilus oremlandii OhILAs	NCBITaxon:186804	NCBITaxon:350688
+37	Peptostreptococcaceae	Clostridium difficile 630 (epidemic type X)	NCBITaxon:186804	NCBITaxon:272563
+38	Peptostreptococcaceae	Clostridium difficile BI9	NCBITaxon:186804	NCBITaxon:699032
+39	Peptostreptococcaceae	Clostridium difficile CD196	NCBITaxon:186804	NCBITaxon:645462
+40	Peptostreptococcaceae	Clostridium difficile CIP 107932	NCBITaxon:186804	NCBITaxon:499176
+41	Peptostreptococcaceae	Clostridium difficile NAP07	NCBITaxon:186804	NCBITaxon:525258
+42	Peptostreptococcaceae	Clostridium difficile NAP08	NCBITaxon:186804	NCBITaxon:525259
+43	Peptostreptococcaceae	Clostridium difficile QCD-23m63	NCBITaxon:186804	NCBITaxon:499174
+44	Peptostreptococcaceae	Clostridium difficile QCD-32g58	NCBITaxon:186804	NCBITaxon:367459
+45	Peptostreptococcaceae	Clostridium difficile QCD-37x79, NAP1a/001	NCBITaxon:186804	NCBITaxon:479834
+46	Peptostreptococcaceae	Clostridium difficile QCD-63q42	NCBITaxon:186804	NCBITaxon:479831
+47	Peptostreptococcaceae	Clostridium difficile QCD-66c26	NCBITaxon:186804	NCBITaxon:455631
+48	Peptostreptococcaceae	Clostridium difficile QCD-76w55, NAP1	NCBITaxon:186804	NCBITaxon:479832
+49	Peptostreptococcaceae	Clostridium difficile QCD-97b34, NAP1b/006	NCBITaxon:186804	NCBITaxon:479833
+50	Peptostreptococcaceae	Clostridium difficile R20291	NCBITaxon:186804	NCBITaxon:645463
+51	Peptostreptococcaceae	Clostridium sticklandii DSM 519	NCBITaxon:186804	NCBITaxon:499177
+52	Peptostreptococcaceae	Eubacterium saphenum ATCC 49989	NCBITaxon:186804	NCBITaxon:592031
+53	Peptostreptococcaceae	Eubacterium yurii margaretiae ATCC 43715	NCBITaxon:186804	NCBITaxon:864565
+54	Eubacteriaceae	Anaerofustis stercorihominis DSM 17244	NCBITaxon:186806	NCBITaxon:445971
+55	Eubacteriaceae	Eubacterium limosum KIST612	NCBITaxon:186806	NCBITaxon:903814
+56	Eubacteriaceae	Pseudoramibacter alactolyticus ATCC 23263	NCBITaxon:186806	NCBITaxon:887929
+57	Clostridiaceae	Clostridium acetobutylicum ATCC 824	NCBITaxon:31979	NCBITaxon:272562
+58	Clostridiaceae	Clostridium acetobutylicum DSM 1731	NCBITaxon:31979	NCBITaxon:991791
+59	Clostridiaceae	Clostridium acetobutylicum EA 2018	NCBITaxon:31979	NCBITaxon:863638
+60	Clostridiaceae	Clostridium beijerinckii NCIMB 8052	NCBITaxon:31979	NCBITaxon:290402
+61	Clostridiaceae	Clostridium botulinum A2 Kyoto-F	NCBITaxon:31979	NCBITaxon:536232
+62	Clostridiaceae	Clostridium botulinum B Eklund 17B	NCBITaxon:31979	NCBITaxon:935198
+63	Clostridiaceae	Clostridium botulinum Ba4 657	NCBITaxon:31979	NCBITaxon:515621
+64	Clostridiaceae	Clostridium botulinum Bf	NCBITaxon:31979	NCBITaxon:445336
+65	Clostridiaceae	Clostridium botulinum BKT015925	NCBITaxon:31979	NCBITaxon:929506
+66	Clostridiaceae	Clostridium botulinum BoNT/A1 Hall	NCBITaxon:31979	not found
+67	Clostridiaceae	Clostridium botulinum BoNT/A1 ATCC 19397	NCBITaxon:31979	NCBITaxon:441770
+68	Clostridiaceae	Clostridium botulinum BoNT/A3 Loch Maree	NCBITaxon:31979	NCBITaxon:498214
+69	Clostridiaceae	Clostridium botulinum BoNT/B1 Okra	NCBITaxon:31979	NCBITaxon:498213
+70	Clostridiaceae	Clostridium botulinum D 1873	NCBITaxon:31979	NCBITaxon:592027
+71	Clostridiaceae	Clostridium botulinum E1 BoNT E Beluga	NCBITaxon:31979	NCBITaxon:536233
+72	Clostridiaceae	Clostridium botulinum E3 Alaska E43	NCBITaxon:31979	NCBITaxon:508767
+73	Clostridiaceae	Clostridium botulinum F 230613	NCBITaxon:31979	NCBITaxon:758678
+74	Clostridiaceae	Clostridium botulinum F Langeland	NCBITaxon:31979	NCBITaxon:441772
+75	Clostridiaceae	Clostridium botulinum H04402 065	NCBITaxon:31979	NCBITaxon:941968
+76	Clostridiaceae	Clostridium botulinum NCTC 2916	NCBITaxon:31979	NCBITaxon:445335
+77	Clostridiaceae	Clostridium botulinum type A - Hall	NCBITaxon:31979	NCBITaxon:441771
+78	Clostridiaceae	Clostridium botulinum type C - Eklund	NCBITaxon:31979	NCBITaxon:445337
+79	Clostridiaceae	Clostridium butyricum 5521	NCBITaxon:31979	NCBITaxon:447214
+80	Clostridiaceae	Clostridium butyricum E4, BoNT E BL5262	NCBITaxon:31979	NCBITaxon:632245
+81	Clostridiaceae	Clostridium carboxidivorans P7, DSM 15243	NCBITaxon:31979	NCBITaxon:217159
+82	Clostridiaceae	Clostridium cellulovorans 743B, ATCC 35296	NCBITaxon:31979	NCBITaxon:1493
+83	Clostridiaceae	Clostridium cf. saccharolyticum K10	NCBITaxon:31979	NCBITaxon:717608
+84	Clostridiaceae	Clostridium kluyveri DSM 555	NCBITaxon:31979	NCBITaxon:431943
+85	Clostridiaceae	Clostridium kluyveri NBRC 12016	NCBITaxon:31979	NCBITaxon:583346
+86	Clostridiaceae	Clostridium novyi NT	NCBITaxon:31979	NCBITaxon:386415
+87	Clostridiaceae	Clostridium perfringens 13	NCBITaxon:31979	NCBITaxon:195102
+88	Clostridiaceae	Clostridium perfringens ATCC 13124	NCBITaxon:31979	NCBITaxon:195103
+89	Clostridiaceae	Clostridium perfringens CPE F4969	NCBITaxon:31979	NCBITaxon:451756
+90	Clostridiaceae	Clostridium perfringens NCTC 8239	NCBITaxon:31979	NCBITaxon:451757
+91	Clostridiaceae	Clostridium perfringens SM101	NCBITaxon:31979	NCBITaxon:289380
+92	Clostridiaceae	Clostridium perfringens type B - ATCC 3626	NCBITaxon:31979	NCBITaxon:451754
+93	Clostridiaceae	Clostridium perfringens type C - JGS1495	NCBITaxon:31979	NCBITaxon:445334
+94	Clostridiaceae	Clostridium perfringens type D - JGS1721	NCBITaxon:31979	NCBITaxon:488537
+95	Clostridiaceae	Clostridium perfringens type E - JGS1987	NCBITaxon:31979	NCBITaxon:451755 
+96	Clostridiaceae	Clostridium sp. M62/1	NCBITaxon:31979	NCBITaxon:411486
+97	Clostridiaceae	Clostridium sp. 7_2_43FAA	NCBITaxon:31979	NCBITaxon:457396
+98	Clostridiaceae	Clostridium sp. L2-50	NCBITaxon:31979	NCBITaxon:411489
+99	Clostridiaceae	Clostridium sp. SS2/1	NCBITaxon:31979	NCBITaxon:411484
+100	Clostridiaceae	Clostridium sp. SY8519	NCBITaxon:31979	NCBITaxon:1042156
+101	Clostridiaceae	Clostridium sporogenes ATCC 15579	NCBITaxon:31979	NCBITaxon:471871
+102	Clostridiaceae	Clostridium symbiosum WAL-14163	NCBITaxon:31979	NCBITaxon:742740
+103	Clostridiaceae	Clostridium symbiosum WAL-14673	NCBITaxon:31979	NCBITaxon:742741
+104	Clostridiaceae	Clostridium tetani Massachusetts E88	NCBITaxon:31979	NCBITaxon:212717
+105	Ruminococcaceae	Anaerotruncus colihominis DSM 17241	NCBITaxon:216572	NCBITaxon:445972
+106	Ruminococcaceae	Faecalibacterium cf. prausnitzii KLE1255	NCBITaxon:216572	NCBITaxon:748224
+107	Ruminococcaceae	Faecalibacterium prausnitzii A2-165	NCBITaxon:216572	NCBITaxon:411483
+108	Ruminococcaceae	Faecalibacterium prausnitzii L2-6	NCBITaxon:216572	NCBITaxon:718252
+109	Ruminococcaceae	Faecalibacterium prausnitzii M21/2	NCBITaxon:216572	NCBITaxon:411485
+110	Ruminococcaceae	Faecalibacterium prausnitzii SL3/3	NCBITaxon:216572	NCBITaxon:657322
+111	Ruminococcaceae	Ruminococcus bacteroium D16	NCBITaxon:216572	NCBITaxon:552398
+112	Ruminococcaceae	Subdoligranulum variabile DSM 15176	NCBITaxon:216572	NCBITaxon:411471
+113	Syntrophomonadaceae	Syntrophomonas wolfei Goettingen, DSM 2245B	NCBITaxon:68298	NCBITaxon:335541
+114	Syntrophomonadaceae	Syntrophothermus lipocalidus DSM 12680	NCBITaxon:68298	NCBITaxon:643648
+115	C. Incertae Sedis III	Thermoanaerobacterium thermosaccharolyticum DSM 571	NCBITaxon:186814	NCBITaxon:580327
+116	Thermoanaerobacteraceae	Carboxydibrachium pacificum JM, DSM 12653	NCBITaxon:186814	NCBITaxon:391606
+117	Thermoanaerobacteraceae	Carboxydothermus hydrogenoformans Z-2901	NCBITaxon:186814	NCBITaxon:246194
+118	Thermoanaerobacteraceae	Thermoanaerobacter tengcongensis MB4T	NCBITaxon:186814	NCBITaxon:273068
+119	Thermoanaerobacteraceae	Thermoanaerobacter wiegelii Rt8.B1	NCBITaxon:186814	NCBITaxon:697303
+120	Erysipelotrichaceae	Clostridium sp. HGF2	NCBITaxon:128827	NCBITaxon:908340
+121	Erysipelotrichaceae	Erysipelotrichaceae bacterium 5_2_54FAA	NCBITaxon:128827	NCBITaxon:552396
+122	Erysipelotrichaceae	Erysipelotrichaceae bacterium sp. 3_1_53	NCBITaxon:128827	NCBITaxon:658659
+123	Erysipelotrichaceae	Eubacterium biforme DSM 3989	NCBITaxon:128827	NCBITaxon:518637
+124	Erysipelotrichaceae	Eubacterium dolichum DSM 3991	NCBITaxon:128827	NCBITaxon:428127
+125	Erysipelotrichaceae	Eubacterium saburreum DSM 3986	NCBITaxon:128827	NCBITaxon:887325
+126	Carnobacteriaceae	Carnobacterium sp. 17-4	NCBITaxon:186828	NCBITaxon:208596
+127	Carnobacteriaceae	Carnobacterium sp. AT7	NCBITaxon:186828	NCBITaxon:333990
+128	Thermoactinomycetaceae	Desmospora sp. 8437	NCBITaxon:186824	NCBITaxon:997346
+129	Peptococcaceae I	Desulfitobacterium hafniense DCB-2	NCBITaxon:2937909	NCBITaxon:272564
+130	Peptococcaceae I	Desulfitobacterium hafniense Y51	NCBITaxon:2937909	NCBITaxon:138119
+131	Peptococcaceae II	Desulfotomaculum acetoxidans 5575, DSM 771	NCBITaxon:186807	NCBITaxon:485916
+132	Peptococcaceae II	Desulfotomaculum reducens MI-1	NCBITaxon:186807	NCBITaxon:349161
+133	Heliobacteriaceae	Heliobacterium modesticaldum Ice1	NCBITaxon:31984	NCBITaxon:498761
+134	Veillonellaceae	Acetomena longum APO-1, DSM 6540	NCBITaxon:31977	NCBITaxon:1009370
+135	Veillonellaceae	Acidaminococcus fermentans VR4, DSM 20731	NCBITaxon:31977	NCBITaxon:591001
+136	Veillonellaceae	Acidaminococcus sp. D21	NCBITaxon:31977	NCBITaxon:187327
+137	Veillonellaceae	Megasphaera genomosp. type-1 28L	NCBITaxon:31977	NCBITaxon:1000568
+138	Veillonellaceae	Megasphaera genomosp. UPII 199-6	NCBITaxon:31977	NCBITaxon:1000568
+139	Veillonellaceae	Megasphaera micronuciformis F0359	NCBITaxon:31977	NCBITaxon:706434
+140	Veillonellaceae	Thermosinus carboxydivorans Nor1	NCBITaxon:31977	NCBITaxon:401526
+141	Natranerobiaceae	Dethiobacter alkaliphilus AHT 1	NCBITaxon:972	NCBITaxon:555088
+142	Natranerobiaceae	Natranaerobius thermophilus JW/NM-WN-LF	NCBITaxon:972	NCBITaxon:457570
+143	Halanaerobiaceae	Halanaerobium praevalens GSL, DSM 2228	NCBITaxon:972	NCBITaxon:572479
+144	C. Incertae Sedis XVIII	Symbiobacterium thermophilum IAM 14863	NCBITaxo:543349	NCBITaxon:292459

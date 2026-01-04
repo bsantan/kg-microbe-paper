@@ -92,7 +92,7 @@ Step 1: identify which taxa have organismal traits or functional annotations. Th
 unique_ncbitaxon_uniprot_ids.txt
 ```
 
-Step 2: download HMP supplementary file, map all HMP taxa to NCBI Taxonomy IDs, and evaluate which have organismal traits or functional annotations. These summary files are output to './Intermediate_Files':
+Step 2: download HMP supplementary file, map all HMP taxa to NCBI Taxonomy IDs, and evaluate which have organismal traits or functional annotations. These summary files are output to './data/Intermediate_Files':
 
 ```
 HMP_Microbes_Mapped_Summary.csv
@@ -105,7 +105,7 @@ The second script performs a series of DuckDB queries to identify taxa with a gi
 
 #### Expected Outputs
 
-Step 1: perform competencies in KG that involve microbe-metabolite annotation or microbe-protein-biochemical_reaction-metabolite annotation. This supports any metabolite or any direction, and also produces a 'term_mappings.csv' file for cases where multiple mappings terms are available for a given metabolite. For butyrate production, these are output to './Intermediate_Files_Competencies/butyrate_produces':
+Step 1: perform competencies in KG that involve microbe-metabolite annotation or microbe-protein-biochemical_reaction-metabolite annotation. This supports any metabolite or any direction, and also produces a 'term_mappings.csv' file for cases where multiple mappings terms are available for a given metabolite. For butyrate production, these are output to './dat./data/Intermediate_Files_Competencies/butyrate_produces':
 
 ```
 NCBI_organismal_traits.tsv: edges with pattern 'NCBITaxon/strain,biolink:produces,butyrate'
@@ -115,21 +115,21 @@ NCBI_genomic_traits_GO.tsv: taxa that have at least one protein with a GO annota
 NCBI_genomic_traits_RHEA.tsv: taxa that have at least one protein with a RHEA annotation that has 'butyrate' as a participant
 ```
 
-Step 2: Predict reaction direction for microbe-protein-biochemical_reaction-metabolite annotations. This step uses the eQuilibrator API. For butyrate production, these are output to './Intermediate_Files_Competencies/butyrate_produces':
+Step 2: Predict reaction direction for microbe-protein-biochemical_reaction-metabolite annotations. This step uses the eQuilibrator API. For butyrate production, these are output to './dat./data/Intermediate_Files_Competencies/butyrate_produces':
 
 ```
 reaction_direction_dict.json: A dictionary of all RHEA terms from NCBI_genomic_traits_RHEA.tsv and the predicted predicate representing reaction direction for butyrate (input or output)
 NCBI_genomic_traits_RHEA.tsv: UPDATED version, taxa that have at least one protein with a RHEA annotation that has 'butyrate' as an output
 ```
 
-Step 3: perform competencies in KG that involve a set of ECs that are defined as being part of a pathway involved in the metabolite/direction (butyrate production in this case). 4 butyrate production pathways are represented in this case with a unique set of ECs. For butyrate production, these are output to './Intermediate_Files_Competencies/butyrate_produces':
+Step 3: perform competencies in KG that involve a set of ECs that are defined as being part of a pathway involved in the metabolite/direction (butyrate production in this case). 4 butyrate production pathways are represented in this case with a unique set of ECs. For butyrate production, these are output to './dat./data/Intermediate_Files_Competencies/butyrate_produces':
 
 ```
 NCBI_genomic_traits_EC_pathway_N.tsv: taxa that have at least one functional protein with at least all but one EC in the corresponding pathway (N)
 NCBI_genomic_traits_EC_pathway_all.tsv: taxa that have at least one functional protein any pathway annotation from the 4 defined EC sets
 ```
 
-Step 4: Create summary files. These are output to './Intermediate_Files_Competencies':
+Step 4: Create summary files. These are output to './dat./data/Intermediate_Files_Competencies':
 
 ```
 All_Competencies_produces_raw.tsv: for each metabolite given (butyrate in this case), the following values are recorded:
@@ -152,7 +152,7 @@ All_Competencies_produces_summary.tsv: for each metabolite given (butyrate in th
 - traits_rhea_chebi_ec_only: total edges with only all patterns 'NCBITaxon,biolink:produces,butyrate' and 'NCBITaxon, biolink:derives_from, UniprotKB,biolink:participates_in, RHEA, <predicted to produce>, butyrate' and 'NCBITaxon, biolink:derives_from, UniprotKB,biolink:enables, <set of EC in defined pathway>' 
 ```
 
-Step 5: Create visualizations of competencies. These are output to './Intermediate_Files_Competencies':
+Step 5: Create visualizations of competencies. These are output to './dat./data/Intermediate_Files_Competencies':
 
 ```
 All_Sources_Competencies_Comparison_butyrate_produces.png: A visualization of all semantic representations of butyrate production in the KG (from All_Competencies_produces_summary.tsv)
@@ -167,7 +167,7 @@ Step 6: The second part of this script compares the butyrate metabolite competen
 uv run make setup_gold_standard
 ```
 
-This copies `data/Gold_Standard_Species_Overlap_butyrate_produces.csv` to `src/Intermediate_Files_Competencies/butyrate_produces/` so you can skip directly to running `Gold_standard_Competency_analysis.py`.
+This copies `data/Input_Files/Gold_Standard_Species_Overlap_butyrate_produces.csv` to `sr./dat./data/Intermediate_Files_Competencies/butyrate_produces/` so you can skip directly to running `Gold_standard_Competency_analysis.py`.
 
 ```
 gold_standard_ids.tsv: Taxa from Input_Files/Vital_etal_butyrate+producing_microbes.csv mapped to NCBITaxon IDs automatically using string matching.
@@ -209,7 +209,7 @@ Gold_Standard_Species_Overlap_all_butyrate_produces_microbes_family.json: family
 Gold_Standard_Species_Overlap_all_butyrate_produces_microbes_genus.json: genus of each taxa from either the semantic representations in the KG or Vital et al. that can produce butyrate (using Gold_Standard_Species_Overlap_butyrate_produces.csv), genus: taxon pairs
 ```
 
-The children of each taxa at the species or strain level is found next. The following files include each taxa at the family level from either the semantic representations in the KG or Vital et al. that can produce butyrate (using Gold_Standard_Species_Overlap_butyrate_produces.csv). This is output to './Intermediate_Files':
+The children of each taxa at the species or strain level is found next. The following files include each taxa at the family level from either the semantic representations in the KG or Vital et al. that can produce butyrate (using Gold_Standard_Species_Overlap_butyrate_produces.csv). This is output to './data/Intermediate_Files':
 
 ```
 competencies_all_microbes_families_butyrate_produces_microbes_species.json: species of each taxon, taxon: species pairs
@@ -246,7 +246,7 @@ The first file is output to './Phylogeny_Search':
 all_microbes_butyrate_produces_families.tsv: taxa from KG or Vital et al. set
 ```
 
-The other files are output to './Intermediate_Files_Competencies/butyrate_produces/Competency_Analysis'. This is done for the set of taxa listed above and creates files with the substring:
+The other files are output to './dat./data/Intermediate_Files_Competencies/butyrate_produces/Competency_Analysis'. This is done for the set of taxa listed above and creates files with the substring:
 
 ```
 _butyrate_produces_families.tsv
@@ -264,7 +264,7 @@ Step 3: Analyze the number of butyrate producers per genus. This is done for the
 _Genus_Traits_Comparison_species_and_strain_all.tsv
 ```
 
-Next this is done for only those with the 'impt_fam' annotation. This is done with a threshold for including only the top X percent of families by the number of butyrate producers per family (100% or 10%). These are output to './Intermediate_Files_Competencies/butyrate_produces/Competency_Analysis/Thresold_<1.0 or 0.1>':
+Next this is done for only those with the 'impt_fam' annotation. This is done with a threshold for including only the top X percent of families by the number of butyrate producers per family (100% or 10%). These are output to './dat./data/Intermediate_Files_Competencies/butyrate_produces/Competency_Analysis/Thresold_<1.0 or 0.1>':
 
 ```
 _Genus_Traits_Comparison_species_and_strain_all.tsv
@@ -296,7 +296,7 @@ outcome_to_NCBITaxon_cleaned_ranks_butyrate_production_<IBD/PD>.csv: each taxa a
 - Num_Strains_Butyrate_Producers: number of children that are strain level and are butyrate producers according to the KG, where taxa are in edges of the patterns 'NCBITaxon,biolink:produces,butyrate' or 'NCBITaxon, biolink:derives_from, UniprotKB,biolink:participates_in, RHEA, <predicted to produce>, butyrate' or 'NCBITaxon, biolink:derives_from, UniprotKB,biolink:enables, <set of EC in defined pathway>'
 ```
 
-Step 3: determine significance of difference between butyrate producers in set of taxa that increase vs. decrease disease. These are output to './Intermediate_Files':
+Step 3: determine significance of difference between butyrate producers in set of taxa that increase vs. decrease disease. These are output to './data/Intermediate_Files':
 
 ```
 <IBD/PD>_Classification_butyrate_producers_summary.csv

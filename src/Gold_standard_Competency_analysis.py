@@ -280,12 +280,12 @@ def main():
 
     for direction in ALL_DIRECTIONS:
         for metabolite in ALL_METABOLITES:
-            metab_direction_output_dir = "./src/Intermediate_Files_Competencies/" + metabolite + "_" + direction
+            metab_direction_output_dir = "./data/Intermediate_Files_Competencies/" + metabolite + "_" + direction
 
             gs_analysis_microbes_file = metab_direction_output_dir + '/Gold_Standard_Species_Overlap_'+ metabolite + "_" + direction + '.csv'
             gs_analysis_microbes_df = pd.read_csv(gs_analysis_microbes_file)
             
-            phylogeny_output_dir = "./src/Phylogeny_Search"
+            phylogeny_output_dir = "./data/Phylogeny_Search"
             ncbi_taxa_ranks_df = get_all_ranks(phylogeny_output_dir)
 
             conn = duckdb.connect(":memory:")
@@ -309,13 +309,13 @@ def main():
             genera_list = sorted(genera_list)
 
             # Get all species & strains from each family found
-            microbes_strain_dict, microbes_species_dict = find_microbes_strain(conn, ncbi_taxa_ranks_df, families_list, "./src/Intermediate_Files", "competencies_all_microbes_families_"+ metabolite + "_" + direction)
+            microbes_strain_dict, microbes_species_dict = find_microbes_strain(conn, ncbi_taxa_ranks_df, families_list, "./data/Intermediate_Files", "competencies_all_microbes_families_"+ metabolite + "_" + direction)
 
             # Only include bugs that have a proteome in the graph
-            ncbitaxon_func_ids = get_ncbitaxon_with_uniprot(conn, "./src/Phylogeny_Search")
+            ncbitaxon_func_ids = get_ncbitaxon_with_uniprot(conn, "./data/Phylogeny_Search")
 
             # Combine species and strain dictionaries
-            microbes_species_and_strain_dict = combine_microbes_dicts(microbes_species_dict, microbes_strain_dict, "./src/Intermediate_Files", "competencies_all_microbes_families_"+ metabolite + "_" + direction + "_microbes_strains_and_species.json")
+            microbes_species_and_strain_dict = combine_microbes_dicts(microbes_species_dict, microbes_strain_dict, "./data/Intermediate_Files", "competencies_all_microbes_families_"+ metabolite + "_" + direction + "_microbes_strains_and_species.json")
             filtered_microbes_species_and_strain_dict = {
                 key: [value for value in values if value in ncbitaxon_func_ids]
                 for key, values in microbes_species_and_strain_dict.items()

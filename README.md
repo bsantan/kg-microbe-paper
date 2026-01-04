@@ -167,7 +167,7 @@ Step 6: The second part of this script compares the butyrate metabolite competen
 uv run make setup_gold_standard
 ```
 
-This copies `data/Gold_Standard_Species_Overlap_butyrate_produces.csv` to `sr./dat./data/Intermediate_Files_Competencies/butyrate_produces/` so you can skip directly to running `Gold_standard_Competency_analysis.py`.
+This copies `data/Input_Files/Gold_Standard_Species_Overlap_butyrate_produces.csv` to `sr./dat./data/Intermediate_Files_Competencies/butyrate_produces/` so you can skip directly to running `Gold_standard_Competency_analysis.py`.
 
 ```
 gold_standard_ids.tsv: Taxa from Input_Files/Vital_etal_butyrate+producing_microbes.csv mapped to NCBITaxon IDs automatically using string matching.

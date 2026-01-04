@@ -10,13 +10,11 @@ venv/
 uv.lock
 
 # Large downloaded/generated data files (exclude from git)
-data/Input_Files/*.tar.gz
-data/Input_Files/*.tsv
-data/Input_Files/kg-microbe-biomedical-function-cat/
-data/Input_Files/hmp_supplementary/
+data/Input_Files/*
+data/Input_Files/*/
 
-# Keep Gold Standard and SHAP files tracked (small reference files)
-!data/Gold_Standard_Species_Overlap_butyrate_produces.csv
+# Keep Gold Standard tracked (small reference file)
+!data/Input_Files/Gold_Standard_Species_Overlap_butyrate_produces.csv
 
 # Legacy paths (for backwards compatibility - these directories have been moved to data/)
 src/Input_Files/

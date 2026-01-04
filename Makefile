@@ -54,7 +54,7 @@ setup_gold_standard:
 	@echo "Setting up Gold Standard file for low-memory systems..."
 	@if [ ! -f "data/Intermediate_Files_Competencies/butyrate_produces/Gold_Standard_Species_Overlap_butyrate_produces.csv" ]; then \
 		mkdir -p data/Intermediate_Files_Competencies/butyrate_produces && \
-		cp data/Gold_Standard_Species_Overlap_butyrate_produces.csv data/Intermediate_Files_Competencies/butyrate_produces/ && \
+		cp data/Input_Files/Gold_Standard_Species_Overlap_butyrate_produces.csv data/Intermediate_Files_Competencies/butyrate_produces/ && \
 		echo "Copied Gold_Standard_Species_Overlap_butyrate_produces.csv to data/Intermediate_Files_Competencies/butyrate_produces/"; \
 	else \
 		echo "Gold Standard file already exists, skipping."; \

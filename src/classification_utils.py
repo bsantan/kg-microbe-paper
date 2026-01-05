@@ -445,7 +445,7 @@ def remove_duplicate_patterns(feature_table, input_dir, intermediate_files=False
     )
 
     if intermediate_files:
-        os.makedirs("src/Intermediate_Files", exist_ok=True)
+        os.makedirs("data/Intermediate_Files", exist_ok=True)
         # Write to CSV file
         retention_df.to_csv(input_dir + '/feature_table_duplicate_column_mapping.csv', index=False)
 

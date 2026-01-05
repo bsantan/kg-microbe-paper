@@ -1,0 +1,5 @@
+,Genus,Genus_ID,Ranked_Mapping_family,fractions_produces_but,total_fam_sizes
+0,Roseburia,NCBITaxon:841,Lachnospiraceae,0.36363636363636365,11
+1,Faecalibacterium,NCBITaxon:216851,Oscillospiraceae,0.4166666666666667,12
+2,Anaerotruncus,NCBITaxon:244127,Oscillospiraceae,0.25,4
+3,Subdoligranulum,NCBITaxon:292632,Oscillospiraceae,0.16666666666666666,6

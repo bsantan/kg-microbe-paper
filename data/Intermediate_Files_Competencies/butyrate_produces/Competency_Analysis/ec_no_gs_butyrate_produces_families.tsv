@@ -1,0 +1,912 @@
+Value	Rank	Genus	Family	Phylum	Location	Impt_Family
+NCBITaxon:2053306	species	not found	not found	NCBITaxon:1134404	other	other
+NCBITaxon:1037362	species	NCBITaxon:1434029	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:1109412	species	NCBITaxon:71655	NCBITaxon:1903410	NCBITaxon:1224	human	other
+NCBITaxon:1117707	species	NCBITaxon:662	NCBITaxon:641	NCBITaxon:1224	human	other
+NCBITaxon:1123237	strain	NCBITaxon:263377	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:1123498	strain	NCBITaxon:662	NCBITaxon:641	NCBITaxon:1224	human	other
+NCBITaxon:113574	species	NCBITaxon:81	NCBITaxon:45401	NCBITaxon:1224	human	other
+NCBITaxon:115553	species	NCBITaxon:3137766	NCBITaxon:28256	NCBITaxon:1224	human	other
+NCBITaxon:1173585	species	NCBITaxon:97050	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:1200281	strain	NCBITaxon:2854184	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:1200284	strain	NCBITaxon:2854184	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:1216006	strain	NCBITaxon:662	NCBITaxon:641	NCBITaxon:1224	human	other
+NCBITaxon:121719	species	NCBITaxon:227873	NCBITaxon:2821832	NCBITaxon:1224	human	other
+NCBITaxon:1229727	species	NCBITaxon:263377	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:1247867	species	NCBITaxon:74030	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:1250539	species	NCBITaxon:263377	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:1287735	species	NCBITaxon:222	NCBITaxon:506	NCBITaxon:1224	human	other
+NCBITaxon:1287737	species	NCBITaxon:222	NCBITaxon:506	NCBITaxon:1224	human	other
+NCBITaxon:1294297	species	NCBITaxon:335927	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:1312363	species	NCBITaxon:74030	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:1343159	species	NCBITaxon:2211638	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:1348468	species	NCBITaxon:28209	NCBITaxon:2036754	NCBITaxon:1224	human	other
+NCBITaxon:1353889	species	NCBITaxon:222	NCBITaxon:506	NCBITaxon:1224	human	other
+NCBITaxon:1353890	species	NCBITaxon:222	NCBITaxon:506	NCBITaxon:1224	human	other
+NCBITaxon:1356575	species	NCBITaxon:74030	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:1389006	species	NCBITaxon:573139	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:1389922	species	NCBITaxon:222	NCBITaxon:506	NCBITaxon:1224	human	other
+NCBITaxon:1389935	species	NCBITaxon:222	NCBITaxon:506	NCBITaxon:1224	human	other
+NCBITaxon:1391910	species	NCBITaxon:1686374	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:1396826	species	NCBITaxon:191028	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:1397108	species	NCBITaxon:875170	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:1402135	species	NCBITaxon:2854186	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:1430884	species	NCBITaxon:316612	NCBITaxon:2975441	NCBITaxon:1224	human	other
+NCBITaxon:1437443	species	NCBITaxon:316612	NCBITaxon:2975441	NCBITaxon:1224	human	other
+NCBITaxon:1439726	species	NCBITaxon:1775716	NCBITaxon:2843308	NCBITaxon:1224	human	other
+NCBITaxon:1445552	species	NCBITaxon:1678397	not found	NCBITaxon:1224	human	other
+NCBITaxon:1445730	species	NCBITaxon:374	NCBITaxon:41294	NCBITaxon:1224	human	other
+NCBITaxon:1446476	species	NCBITaxon:97050	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:1454000	species	NCBITaxon:327159	not found	NCBITaxon:1224	human	other
+NCBITaxon:1454001	species	NCBITaxon:327159	not found	NCBITaxon:1224	human	other
+NCBITaxon:1454005	species	NCBITaxon:327159	not found	NCBITaxon:1224	human	other
+NCBITaxon:1458307	species	NCBITaxon:53945	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:1470561	species	NCBITaxon:1648497	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:1481914	species	NCBITaxon:662	NCBITaxon:641	NCBITaxon:1224	human	other
+NCBITaxon:1482074	species	NCBITaxon:1572860	NCBITaxon:2843308	NCBITaxon:1224	human	other
+NCBITaxon:1486246	species	NCBITaxon:2745	NCBITaxon:28256	NCBITaxon:1224	human	other
+NCBITaxon:1499973	species	NCBITaxon:561	NCBITaxon:543	NCBITaxon:1224	human	other
+NCBITaxon:1501240	species	NCBITaxon:315422	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:1506587	species	NCBITaxon:32008	NCBITaxon:119060	NCBITaxon:1224	human	other
+NCBITaxon:1510460	species	NCBITaxon:1648492	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:1519096	species	NCBITaxon:1774278	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:1524263	species	NCBITaxon:1433986	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:1529041	species	NCBITaxon:93682	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:1537215	species	NCBITaxon:1679449	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:1538103	species	NCBITaxon:1654719	NCBITaxon:2036754	NCBITaxon:1224	human	other
+NCBITaxon:1542388	species	NCBITaxon:1097466	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:1549949	species	NCBITaxon:374	NCBITaxon:41294	NCBITaxon:1224	human	other
+NCBITaxon:1608628	species	NCBITaxon:119044	NCBITaxon:45401	NCBITaxon:1224	human	other
+NCBITaxon:1620421	species	NCBITaxon:274591	NCBITaxon:82115	NCBITaxon:1224	human	other
+NCBITaxon:1639689	species	NCBITaxon:1844015	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:1639690	species	NCBITaxon:1658781	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:1655543	species	NCBITaxon:53945	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:1666914	species	not found	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:1666917	species	not found	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:1673631	species	NCBITaxon:1817584	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:1689867	species	not found	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:1695997	species	NCBITaxon:2846763	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:1712645	species	NCBITaxon:302485	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:1715691	species	NCBITaxon:2211635	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:1715692	species	NCBITaxon:97050	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:1715693	species	NCBITaxon:573139	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:1735584	species	NCBITaxon:258255	NCBITaxon:2821832	NCBITaxon:1224	human	other
+NCBITaxon:1735585	species	NCBITaxon:258255	NCBITaxon:2821832	NCBITaxon:1224	human	other
+NCBITaxon:1736465	species	NCBITaxon:75	NCBITaxon:76892	NCBITaxon:1224	human	other
+NCBITaxon:1737357	species	NCBITaxon:379	NCBITaxon:82115	NCBITaxon:1224	human	other
+NCBITaxon:1768241	species	NCBITaxon:2083206	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:1819565	species	NCBITaxon:2211637	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:1867952	species	NCBITaxon:196080	NCBITaxon:2813951	NCBITaxon:1224	human	other
+NCBITaxon:1869214	species	NCBITaxon:67575	NCBITaxon:1046	NCBITaxon:1224	human	other
+NCBITaxon:1874361	species	NCBITaxon:135575	NCBITaxon:267893	NCBITaxon:1224	human	other
+NCBITaxon:1883446	species	NCBITaxon:75309	NCBITaxon:1775411	NCBITaxon:1224	human	other
+NCBITaxon:1891229	species	not found	not found	NCBITaxon:1224	human	other
+NCBITaxon:1909294	species	not found	not found	NCBITaxon:1224	human	other
+NCBITaxon:1913989	species	not found	not found	NCBITaxon:1224	human	other
+NCBITaxon:1918945	species	NCBITaxon:662	NCBITaxon:641	NCBITaxon:1224	human	other
+NCBITaxon:1977087	species	not found	not found	NCBITaxon:1224	human	other
+NCBITaxon:2013070	species	not found	not found	NCBITaxon:1224	human	other
+NCBITaxon:2013071	species	not found	not found	NCBITaxon:1224	human	other
+NCBITaxon:2013074	species	not found	not found	NCBITaxon:1224	human	other
+NCBITaxon:2013104	species	not found	not found	NCBITaxon:1224	human	other
+NCBITaxon:2013106	species	not found	not found	NCBITaxon:1224	human	other
+NCBITaxon:2021405	species	NCBITaxon:34072	NCBITaxon:80864	NCBITaxon:1224	human	other
+NCBITaxon:2024830	species	NCBITaxon:34067	NCBITaxon:135616	NCBITaxon:1224	human	other
+NCBITaxon:2024888	species	not found	not found	NCBITaxon:1224	human	other
+NCBITaxon:2026722	species	not found	not found	NCBITaxon:1224	human	other
+NCBITaxon:2026743	species	not found	NCBITaxon:1706372	NCBITaxon:1224	human	other
+NCBITaxon:2026782	species	not found	NCBITaxon:1706374	NCBITaxon:1224	human	other
+NCBITaxon:2026785	species	not found	NCBITaxon:119043	NCBITaxon:1224	human	other
+NCBITaxon:2038394	species	NCBITaxon:74030	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:2058088	species	NCBITaxon:662	NCBITaxon:641	NCBITaxon:1224	human	other
+NCBITaxon:2058152	species	NCBITaxon:570	NCBITaxon:543	NCBITaxon:1224	human	other
+NCBITaxon:2069367	species	NCBITaxon:222	NCBITaxon:506	NCBITaxon:1224	human	other
+NCBITaxon:2072972	species	NCBITaxon:335927	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:208962	species	NCBITaxon:561	NCBITaxon:543	NCBITaxon:1224	human	other
+NCBITaxon:208964	strain	NCBITaxon:286	NCBITaxon:135621	NCBITaxon:1224	human	other
+NCBITaxon:213554	species	NCBITaxon:2745	NCBITaxon:28256	NCBITaxon:1224	human	other
+NCBITaxon:215743	species	NCBITaxon:74030	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:217168	species	NCBITaxon:186650	NCBITaxon:119045	NCBITaxon:1224	human	other
+NCBITaxon:217204	species	NCBITaxon:222	NCBITaxon:506	NCBITaxon:1224	human	other
+NCBITaxon:224729	strain	NCBITaxon:590	NCBITaxon:543	NCBITaxon:1224	human	other
+NCBITaxon:227946		NCBITaxon:338	NCBITaxon:32033	NCBITaxon:1224	human	other
+NCBITaxon:2304625	species	NCBITaxon:28228	NCBITaxon:267889	NCBITaxon:1224	human	other
+NCBITaxon:245188	species	NCBITaxon:2211641	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:2483812	species	NCBITaxon:2663134	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:2483814	species	not found	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:2489010	species	NCBITaxon:570	NCBITaxon:543	NCBITaxon:1224	human	other
+NCBITaxon:2491866	species	NCBITaxon:265	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:254356	species	NCBITaxon:1400060	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:2565930	species	NCBITaxon:2891324	NCBITaxon:2008794	NCBITaxon:1224	human	other
+NCBITaxon:257772	species	NCBITaxon:2745	NCBITaxon:28256	NCBITaxon:1224	human	other
+NCBITaxon:2584084	species	NCBITaxon:407	NCBITaxon:119045	NCBITaxon:1224	human	other
+NCBITaxon:2587121	species	NCBITaxon:279	NCBITaxon:335928	NCBITaxon:1224	human	other
+NCBITaxon:2587842	species	NCBITaxon:315422	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:2587844	species	NCBITaxon:2745	NCBITaxon:28256	NCBITaxon:1224	human	other
+NCBITaxon:2587847	species	NCBITaxon:74030	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:2587849	species	NCBITaxon:2745	NCBITaxon:28256	NCBITaxon:1224	human	other
+NCBITaxon:2587850	species	NCBITaxon:74030	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:2587852	species	NCBITaxon:93682	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:2587855	species	NCBITaxon:60136	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:2587860	species	NCBITaxon:662	NCBITaxon:641	NCBITaxon:1224	human	other
+NCBITaxon:2587861	species	NCBITaxon:478070	NCBITaxon:2821832	NCBITaxon:1224	human	other
+NCBITaxon:2588299	species	NCBITaxon:93682	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:2607506	species	NCBITaxon:2745	NCBITaxon:28256	NCBITaxon:1224	human	other
+NCBITaxon:2607908	species	NCBITaxon:286	NCBITaxon:135621	NCBITaxon:1224	human	other
+NCBITaxon:2651833	species	NCBITaxon:1658781	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:2653182	species	NCBITaxon:85413	NCBITaxon:2831100	NCBITaxon:1224	human	other
+NCBITaxon:2663836	species	NCBITaxon:374	NCBITaxon:41294	NCBITaxon:1224	human	other
+NCBITaxon:2663837	species	NCBITaxon:374	NCBITaxon:41294	NCBITaxon:1224	human	other
+NCBITaxon:2663839	species	NCBITaxon:374	NCBITaxon:41294	NCBITaxon:1224	human	other
+NCBITaxon:2663840	species	NCBITaxon:374	NCBITaxon:41294	NCBITaxon:1224	human	other
+NCBITaxon:2663841	species	NCBITaxon:374	NCBITaxon:41294	NCBITaxon:1224	human	other
+NCBITaxon:2666134	species	NCBITaxon:152053	NCBITaxon:335928	NCBITaxon:1224	human	other
+NCBITaxon:266809	species	NCBITaxon:266808	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:2681465	species	NCBITaxon:13134	NCBITaxon:41295	NCBITaxon:1224	human	other
+NCBITaxon:2681466	species	NCBITaxon:13134	NCBITaxon:41295	NCBITaxon:1224	human	other
+NCBITaxon:2681467	species	NCBITaxon:13134	NCBITaxon:41295	NCBITaxon:1224	human	other
+NCBITaxon:2686094	species	NCBITaxon:2768684	NCBITaxon:76892	NCBITaxon:1224	human	other
+NCBITaxon:269796	strain	NCBITaxon:1081	NCBITaxon:41295	NCBITaxon:1224	human	other
+NCBITaxon:2705548	species	NCBITaxon:1827195	NCBITaxon:119060	NCBITaxon:1224	human	other
+NCBITaxon:2712852	species	NCBITaxon:1033	NCBITaxon:41294	NCBITaxon:1224	human	other
+NCBITaxon:2723311	species	NCBITaxon:561	NCBITaxon:543	NCBITaxon:1224	human	other
+NCBITaxon:2730946	species	NCBITaxon:561	NCBITaxon:543	NCBITaxon:1224	human	other
+NCBITaxon:2744555	species	NCBITaxon:97050	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:2805096	subspecies	NCBITaxon:29487	NCBITaxon:1903414	NCBITaxon:1224	human	other
+NCBITaxon:2817726	species	NCBITaxon:13687	NCBITaxon:41297	NCBITaxon:1224	human	other
+NCBITaxon:282199	species	NCBITaxon:282198	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:282217	species	NCBITaxon:34072	NCBITaxon:80864	NCBITaxon:1224	human	other
+NCBITaxon:2842456	species	NCBITaxon:48736	NCBITaxon:119060	NCBITaxon:1224	human	other
+NCBITaxon:292	species	NCBITaxon:32008	NCBITaxon:119060	NCBITaxon:1224	human	other
+NCBITaxon:2954382	species	NCBITaxon:327159	not found	NCBITaxon:1224	human	other
+NCBITaxon:2954383	species	NCBITaxon:327159	not found	NCBITaxon:1224	human	other
+NCBITaxon:3058596	species	NCBITaxon:48736	NCBITaxon:119060	NCBITaxon:1224	human	other
+NCBITaxon:3058599	species	NCBITaxon:48736	NCBITaxon:119060	NCBITaxon:1224	human	other
+NCBITaxon:3058601	species	NCBITaxon:48736	NCBITaxon:119060	NCBITaxon:1224	human	other
+NCBITaxon:3058602	species	NCBITaxon:48736	NCBITaxon:119060	NCBITaxon:1224	human	other
+NCBITaxon:315423	species	NCBITaxon:315422	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:316056	strain	NCBITaxon:1073	NCBITaxon:41294	NCBITaxon:1224	human	other
+NCBITaxon:317	species	NCBITaxon:286	NCBITaxon:135621	NCBITaxon:1224	human	other
+NCBITaxon:32001	subspecies	NCBITaxon:507	NCBITaxon:506	NCBITaxon:1224	human	other
+NCBITaxon:321267	species	NCBITaxon:573139	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:327160	species	NCBITaxon:327159	not found	NCBITaxon:1224	human	other
+NCBITaxon:33051	species	NCBITaxon:13687	NCBITaxon:41297	NCBITaxon:1224	human	other
+NCBITaxon:340021	species	NCBITaxon:335927	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:34073	species	NCBITaxon:34072	NCBITaxon:80864	NCBITaxon:1224	human	other
+NCBITaxon:344880	species	NCBITaxon:13687	NCBITaxon:41297	NCBITaxon:1224	human	other
+NCBITaxon:345073	strain	NCBITaxon:662	NCBITaxon:641	NCBITaxon:1224	human	other
+NCBITaxon:35703	species	NCBITaxon:544	NCBITaxon:543	NCBITaxon:1224	human	other
+NCBITaxon:35806	species	NCBITaxon:34008	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:375451	strain	NCBITaxon:2433	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:390880	species	NCBITaxon:86671	NCBITaxon:41295	NCBITaxon:1224	human	other
+NCBITaxon:393278	species	NCBITaxon:393277	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:393663	species	NCBITaxon:311411	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:393664	species	NCBITaxon:3070965	NCBITaxon:82115	NCBITaxon:1224	human	other
+NCBITaxon:395965	strain	NCBITaxon:120652	NCBITaxon:45404	NCBITaxon:1224	human	other
+NCBITaxon:396013	species	NCBITaxon:1679449	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:420998	species	NCBITaxon:188905	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:441103	species	NCBITaxon:599653	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:460265	strain	NCBITaxon:407	NCBITaxon:119045	NCBITaxon:1224	human	other
+NCBITaxon:474394	species	NCBITaxon:662	NCBITaxon:641	NCBITaxon:1224	human	other
+NCBITaxon:475083	species	NCBITaxon:74030	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:47917	species	NCBITaxon:613	NCBITaxon:1903411	NCBITaxon:1224	human	other
+NCBITaxon:481446	species	NCBITaxon:302485	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:505353	species	NCBITaxon:74030	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:522306	species	NCBITaxon:327159	not found	NCBITaxon:1224	human	other
+NCBITaxon:53249	species	NCBITaxon:53246	NCBITaxon:267888	NCBITaxon:1224	human	other
+NCBITaxon:53501	species	NCBITaxon:335927	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:540747	species	NCBITaxon:74030	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:546367	species	NCBITaxon:568	NCBITaxon:1903412	NCBITaxon:1224	human	other
+NCBITaxon:560405	species	NCBITaxon:407	NCBITaxon:119045	NCBITaxon:1224	human	other
+NCBITaxon:562	species	NCBITaxon:561	NCBITaxon:543	NCBITaxon:1224	human	other
+NCBITaxon:564	species	NCBITaxon:561	NCBITaxon:543	NCBITaxon:1224	human	other
+NCBITaxon:57001	species	NCBITaxon:56999	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:573	species	NCBITaxon:570	NCBITaxon:543	NCBITaxon:1224	human	other
+NCBITaxon:577	species	NCBITaxon:160674	NCBITaxon:543	NCBITaxon:1224	human	other
+NCBITaxon:58051	species	NCBITaxon:58050	NCBITaxon:267891	NCBITaxon:1224	human	other
+NCBITaxon:582	species	NCBITaxon:581	NCBITaxon:1903414	NCBITaxon:1224	human	other
+NCBITaxon:616675	species	NCBITaxon:2745	NCBITaxon:28256	NCBITaxon:1224	human	other
+NCBITaxon:623	species	NCBITaxon:620	NCBITaxon:543	NCBITaxon:1224	human	other
+NCBITaxon:627669	species	NCBITaxon:1822464	NCBITaxon:119060	NCBITaxon:1224	human	other
+NCBITaxon:646534	species	NCBITaxon:246861	NCBITaxon:641	NCBITaxon:1224	human	other
+NCBITaxon:658057	species	NCBITaxon:1042323	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:663	species	NCBITaxon:662	NCBITaxon:641	NCBITaxon:1224	human	other
+NCBITaxon:666	species	NCBITaxon:662	NCBITaxon:641	NCBITaxon:1224	human	other
+NCBITaxon:67827	species	NCBITaxon:544	NCBITaxon:543	NCBITaxon:1224	human	other
+NCBITaxon:696762	species	NCBITaxon:1195766	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:72557	species	NCBITaxon:222	NCBITaxon:506	NCBITaxon:1224	human	other
+NCBITaxon:74031	species	NCBITaxon:74030	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:74033	species	NCBITaxon:74032	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:745714	species	NCBITaxon:1314700	NCBITaxon:510685	NCBITaxon:1224	human	other
+NCBITaxon:754436	species	NCBITaxon:657	NCBITaxon:641	NCBITaxon:1224	human	other
+NCBITaxon:78556	species	NCBITaxon:58050	NCBITaxon:267891	NCBITaxon:1224	human	other
+NCBITaxon:81569	species	NCBITaxon:97050	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:87461	species	NCBITaxon:1073	NCBITaxon:41294	NCBITaxon:1224	human	other
+NCBITaxon:89772	species	NCBITaxon:69278	NCBITaxon:69277	NCBITaxon:1224	human	other
+NCBITaxon:928856	species	NCBITaxon:2083206	NCBITaxon:31989	NCBITaxon:1224	human	other
+NCBITaxon:935700	species	NCBITaxon:188905	NCBITaxon:2854170	NCBITaxon:1224	human	other
+NCBITaxon:941280	strain	NCBITaxon:561	NCBITaxon:543	NCBITaxon:1224	human	other
+NCBITaxon:945555	strain	NCBITaxon:469	NCBITaxon:468	NCBITaxon:1224	human	other
+NCBITaxon:983917	strain	NCBITaxon:28067	NCBITaxon:2975441	NCBITaxon:1224	human	other
+NCBITaxon:989403	species	NCBITaxon:258255	NCBITaxon:2821832	NCBITaxon:1224	human	other
+NCBITaxon:989410	species	NCBITaxon:258255	NCBITaxon:2821832	NCBITaxon:1224	human	other
+NCBITaxon:1017270	species	NCBITaxon:1329200	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1033734	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1037680	species	NCBITaxon:2837507	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1042163	strain	NCBITaxon:55080	NCBITaxon:186822	NCBITaxon:1239	human	other
+NCBITaxon:1048380	species	NCBITaxon:76008	NCBITaxon:543313	NCBITaxon:1239	human	other
+NCBITaxon:1052585	strain	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1071078	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1071080	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1071718	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1073571	strain	NCBITaxon:44249	NCBITaxon:186822	NCBITaxon:1239	human	other
+NCBITaxon:1095383	species	NCBITaxon:129337	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1095750	strain	NCBITaxon:1164882	NCBITaxon:186803	NCBITaxon:1239	human	impt_fam
+NCBITaxon:1095777	species	NCBITaxon:1649504	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1105031	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:1117379	strain	NCBITaxon:2675232	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1121305	strain	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:1121318	strain	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:1121326	strain	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:1121328	strain	NCBITaxon:3120163	NCBITaxon:3120162	NCBITaxon:1239	human	other
+NCBITaxon:1121338	strain	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:1121340	strain	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:1123286	strain	NCBITaxon:2375	NCBITaxon:1843490	NCBITaxon:1239	human	other
+NCBITaxon:112331	species	NCBITaxon:1372	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:1125967	species	NCBITaxon:55080	NCBITaxon:186822	NCBITaxon:1239	human	other
+NCBITaxon:1131730	strain	NCBITaxon:2675232	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1150625	strain	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1155777	strain	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1178540	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1185653	strain	NCBITaxon:1372	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:1192197	strain	NCBITaxon:365348	NCBITaxon:1843490	NCBITaxon:1239	human	other
+NCBITaxon:1196324	strain	NCBITaxon:1329200	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1198630	strain	NCBITaxon:1754	NCBITaxon:186814	NCBITaxon:1239	human	other
+NCBITaxon:1202534	strain	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:1215031	species	NCBITaxon:2675232	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1216932	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:1217737	strain	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1218175	strain	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1223503	strain	NCBITaxon:1906945	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1229268	species	NCBITaxon:320933	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1229621	species	NCBITaxon:207244	NCBITaxon:186803	NCBITaxon:1239	human	impt_fam
+NCBITaxon:1233873	species	NCBITaxon:129337	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1235825	strain	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1246484	species	NCBITaxon:45667	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1266720	species	NCBITaxon:44260	NCBITaxon:3039168	NCBITaxon:1239	human	other
+NCBITaxon:1286404	strain	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1288971	strain	NCBITaxon:2794837	NCBITaxon:2992719	NCBITaxon:1239	human	other
+NCBITaxon:1293	species	NCBITaxon:1279	NCBITaxon:90964	NCBITaxon:1239	human	other
+NCBITaxon:1293054	strain	NCBITaxon:2330	NCBITaxon:972	NCBITaxon:1239	human	other
+NCBITaxon:1294142	strain	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:1295	species	NCBITaxon:1279	NCBITaxon:90964	NCBITaxon:1239	human	other
+NCBITaxon:1295642	species	NCBITaxon:1906945	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1297617	species	NCBITaxon:1392389	not found	NCBITaxon:1239	human	other
+NCBITaxon:1301086	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1304284	species	NCBITaxon:1640153	NCBITaxon:2848916	NCBITaxon:1239	human	other
+NCBITaxon:1307436	strain	NCBITaxon:2675230	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1321606	strain	NCBITaxon:2675231	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1323	species	NCBITaxon:1573536	NCBITaxon:128827	NCBITaxon:1239	human	other
+NCBITaxon:1326968	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1328	species	NCBITaxon:1301	NCBITaxon:1300	NCBITaxon:1239	human	other
+NCBITaxon:1329516	species	NCBITaxon:2023	NCBITaxon:186824	NCBITaxon:1239	human	other
+NCBITaxon:1330043	strain	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1345695	strain	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:135461	subspecies	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:135735	species	NCBITaxon:2800373	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1367477	strain	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1368424	strain	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:137838	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:1380685	species	NCBITaxon:1274351	NCBITaxon:186824	NCBITaxon:1239	human	other
+NCBITaxon:1385510	strain	NCBITaxon:289201	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1385511	strain	NCBITaxon:289201	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1385512	strain	NCBITaxon:289201	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1385513	strain	NCBITaxon:289201	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1385514	strain	NCBITaxon:289201	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1390	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1392	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1396	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1399	species	NCBITaxon:2675230	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1403243	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1404	species	NCBITaxon:2800373	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1405	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1408	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1408103	species	NCBITaxon:2675231	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1408282	species	NCBITaxon:129337	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1409	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1414648	species	NCBITaxon:2800373	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1417629	species	NCBITaxon:1780299	NCBITaxon:3118657	NCBITaxon:1239	human	other
+NCBITaxon:1422	species	NCBITaxon:129337	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1423	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1423143	strain	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1428	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1436363	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1450648	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:1452	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1455638	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1456	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1457158	strain	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1459	species	NCBITaxon:1569	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:1473	species	NCBITaxon:84406	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1476	species	NCBITaxon:1569	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:1478	species	NCBITaxon:2675229	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1482739	species	NCBITaxon:129337	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1490290	species	NCBITaxon:2756134	NCBITaxon:186824	NCBITaxon:1239	human	other
+NCBITaxon:1491830	species	NCBITaxon:2675233	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1494	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:1496	species	NCBITaxon:1870884	NCBITaxon:186804	NCBITaxon:1239	human	other
+NCBITaxon:1506	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:1507512	species	NCBITaxon:1501226	NCBITaxon:186804	NCBITaxon:1239	human	other
+NCBITaxon:1509	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:1511746	species	NCBITaxon:1754	NCBITaxon:186814	NCBITaxon:1239	human	other
+NCBITaxon:152268	species	NCBITaxon:2675233	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1529117	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:153151	species	NCBITaxon:1906945	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1532552	species	NCBITaxon:704093	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1535751	species	NCBITaxon:150247	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1543706	species	NCBITaxon:45667	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1548213	species	NCBITaxon:2005375	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1548597	species	NCBITaxon:704093	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1553	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:1553429	species	NCBITaxon:1930795	NCBITaxon:186824	NCBITaxon:1239	human	other
+NCBITaxon:1559	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:1561	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:156205	species	NCBITaxon:45667	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1565146	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:157733	species	NCBITaxon:2675234	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1578198	species	NCBITaxon:2675232	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:157838	species	NCBITaxon:2837504	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1586290	species	NCBITaxon:129337	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:158847	species	NCBITaxon:158846	NCBITaxon:1843491	NCBITaxon:1239	human	other
+NCBITaxon:1588630	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1602942	species	NCBITaxon:2675230	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1609979	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1628206	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1628211	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1637975	species	NCBITaxon:2675230	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1642702	species	NCBITaxon:1905726	NCBITaxon:186824	NCBITaxon:1239	human	other
+NCBITaxon:1643452	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1659191	species	NCBITaxon:129337	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1664069	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1665556	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1683636	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1684312	species	NCBITaxon:33986	not found	NCBITaxon:1239	human	other
+NCBITaxon:1691940	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:169679	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:1699078	species	NCBITaxon:129337	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1705566	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1723382	species	NCBITaxon:2024199	NCBITaxon:1570339	NCBITaxon:1239	human	other
+NCBITaxon:1736388	species	NCBITaxon:44249	NCBITaxon:186822	NCBITaxon:1239	human	other
+NCBITaxon:1742358	species	NCBITaxon:2675230	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1742359	species	NCBITaxon:2675230	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1758642	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1780378	species	not found	not found	NCBITaxon:1239	human	other
+NCBITaxon:1808955	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1848460	species	NCBITaxon:1372	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:1852883	species	not found	not found	NCBITaxon:1239	human	other
+NCBITaxon:1852884	species	not found	not found	NCBITaxon:1239	human	other
+NCBITaxon:1852886	species	not found	not found	NCBITaxon:1239	human	other
+NCBITaxon:1890302	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1891289	species	NCBITaxon:165812	NCBITaxon:2992718	NCBITaxon:1239	human	other
+NCBITaxon:1891914	subspecies	NCBITaxon:1301	NCBITaxon:1300	NCBITaxon:1239	human	other
+NCBITaxon:189381	species	NCBITaxon:2837508	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:189382	species	NCBITaxon:2837508	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1898203	species	not found	NCBITaxon:186803	NCBITaxon:1239	human	impt_fam
+NCBITaxon:1898204	species	not found	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:1902136	species	NCBITaxon:1301	NCBITaxon:1300	NCBITaxon:1239	human	other
+NCBITaxon:1903720	species	not found	not found	NCBITaxon:1239	human	other
+NCBITaxon:1912856	species	NCBITaxon:162289	NCBITaxon:1570339	NCBITaxon:1239	human	other
+NCBITaxon:1917180	species	NCBITaxon:2675231	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1921421	species	NCBITaxon:129337	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:192421	species	NCBITaxon:1372	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:1925020	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1925021	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:192814	species	NCBITaxon:45667	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:1983721	species	NCBITaxon:2675233	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:200989	species	NCBITaxon:2005375	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2014076	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2018042	species	NCBITaxon:392825	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2020506	species	NCBITaxon:2079189	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:2024	species	NCBITaxon:2023	NCBITaxon:186824	NCBITaxon:1239	human	other
+NCBITaxon:2026188	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2026191	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2041346	species	NCBITaxon:889388	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:2045207	species	NCBITaxon:1884449	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2045244	species	NCBITaxon:2823237	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2048547	species	not found	NCBITaxon:186823	NCBITaxon:1239	human	other
+NCBITaxon:2049045	species	not found	NCBITaxon:186806	NCBITaxon:1239	human	impt_fam
+NCBITaxon:2052179	species	not found	NCBITaxon:186807	NCBITaxon:1239	human	other
+NCBITaxon:2081970	species	NCBITaxon:44249	NCBITaxon:186822	NCBITaxon:1239	human	other
+NCBITaxon:208199	species	NCBITaxon:2893058	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2093811	species	not found	NCBITaxon:68298	NCBITaxon:1239	human	other
+NCBITaxon:213419	species	NCBITaxon:129337	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:217090	species	NCBITaxon:44249	NCBITaxon:186822	NCBITaxon:1239	human	other
+NCBITaxon:218284	species	NCBITaxon:2837508	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2201815	species	NCBITaxon:1279	NCBITaxon:90964	NCBITaxon:1239	human	other
+NCBITaxon:220687	species	NCBITaxon:2675232	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:220753	species	NCBITaxon:45667	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:221109	strain	NCBITaxon:182709	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2217816	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2217818	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2217823	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2217826	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2217828	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2217829	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2217831	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2217833	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2217834	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:221799	species	NCBITaxon:1372	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:2233542	species	NCBITaxon:1372	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:224308	strain	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:225345	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:2259171	species	NCBITaxon:2675232	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:226900	strain	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:227866	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2292307	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:2293000	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:2293005	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:2293033	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:2293037	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:2293038	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:2293045	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:2293093	species	NCBITaxon:33042	NCBITaxon:186803	NCBITaxon:1239	human	impt_fam
+NCBITaxon:2293095	species	NCBITaxon:33042	NCBITaxon:186803	NCBITaxon:1239	human	impt_fam
+NCBITaxon:2293325	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2302943	species	NCBITaxon:33042	NCBITaxon:186803	NCBITaxon:1239	human	impt_fam
+NCBITaxon:2304039	species	not found	not found	NCBITaxon:1239	human	other
+NCBITaxon:230470	species	NCBITaxon:150247	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2315464	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2320858	species	NCBITaxon:651660	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:235909	strain	NCBITaxon:129337	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:245014	species	not found	not found	NCBITaxon:1239	human	other
+NCBITaxon:246786	species	NCBITaxon:2675233	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:247480	species	NCBITaxon:150247	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2478915	species	NCBITaxon:1270155	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2483811	species	NCBITaxon:34100	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:2492960	species	NCBITaxon:2837507	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2495421	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2495582	species	NCBITaxon:44249	NCBITaxon:186822	NCBITaxon:1239	human	other
+NCBITaxon:2499077	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2499213	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2507566	species	NCBITaxon:2026172	NCBITaxon:186822	NCBITaxon:1239	human	other
+NCBITaxon:2508525	species	NCBITaxon:129337	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2518176	species	NCBITaxon:175304	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2528958	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2547811	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2552189	species	NCBITaxon:157226	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:2555897	species	NCBITaxon:157226	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:2567941	species	NCBITaxon:2675233	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2568878	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2574798	species	NCBITaxon:2893058	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2576356	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:257985		NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2584627	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:258475	species	NCBITaxon:191373	NCBITaxon:2937910	NCBITaxon:1239	human	other
+NCBITaxon:2587157	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2595057	species	NCBITaxon:129337	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2597344	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2597347	species	NCBITaxon:1372	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:2597358	species	NCBITaxon:1569	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:2597691	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2599617	species	NCBITaxon:1372	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:2599618	species	NCBITaxon:162291	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:2599619	species	NCBITaxon:162291	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:2603622	species	NCBITaxon:1906945	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2604836	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:260554	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:261474	species	NCBITaxon:191373	NCBITaxon:2937910	NCBITaxon:1239	human	other
+NCBITaxon:2653219	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2654513	species	NCBITaxon:175304	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:265546	species	NCBITaxon:150247	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:265948	species	NCBITaxon:150247	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2660750	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2664442	species	NCBITaxon:2761542	NCBITaxon:186827	NCBITaxon:1239	human	other
+NCBITaxon:2666190	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2672567	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2678566	species	NCBITaxon:484508	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2682541	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2692425	species	NCBITaxon:289201	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2700081	species	NCBITaxon:84406	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2704462	species	NCBITaxon:44249	NCBITaxon:186822	NCBITaxon:1239	human	other
+NCBITaxon:2704463	species	NCBITaxon:44249	NCBITaxon:186822	NCBITaxon:1239	human	other
+NCBITaxon:270498	species	NCBITaxon:990721	NCBITaxon:990719	NCBITaxon:1239	human	other
+NCBITaxon:2722703	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2723064	species	NCBITaxon:1569	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:273032	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2737049	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2745198	species	NCBITaxon:2675233	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2748684	species	NCBITaxon:2862144	NCBITaxon:186827	NCBITaxon:1239	human	other
+NCBITaxon:2751313	species	NCBITaxon:2786989	NCBITaxon:2786988	NCBITaxon:1239	human	other
+NCBITaxon:2756294	species	NCBITaxon:2023	NCBITaxon:186824	NCBITaxon:1239	human	other
+NCBITaxon:2762329	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2762563	species	NCBITaxon:1569	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:2763039	species	NCBITaxon:33042	NCBITaxon:186803	NCBITaxon:1239	human	impt_fam
+NCBITaxon:2764176	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2770510	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2771432	species	NCBITaxon:3079942	NCBITaxon:186824	NCBITaxon:1239	human	other
+NCBITaxon:2771434	species	NCBITaxon:2675233	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2794590	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2799561	species	not found	NCBITaxon:216572	NCBITaxon:1239	human	impt_fam
+NCBITaxon:2799563	species	not found	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:28037	species	NCBITaxon:1301	NCBITaxon:1300	NCBITaxon:1239	human	other
+NCBITaxon:2806598	species	NCBITaxon:44249	NCBITaxon:186822	NCBITaxon:1239	human	other
+NCBITaxon:2810514	species	NCBITaxon:1569	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:2812055	species	NCBITaxon:84406	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:281309	strain	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2818390	species	NCBITaxon:1569	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:2820819	species	NCBITaxon:2837503	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2833578	species	NCBITaxon:2675232	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2833579	species	NCBITaxon:2675232	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2833581	species	NCBITaxon:2804231	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2833582	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2840824	species	NCBITaxon:2840590	not found	NCBITaxon:1239	human	other
+NCBITaxon:284581	species	NCBITaxon:2800373	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:285983	species	NCBITaxon:2675231	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2880968	species	NCBITaxon:2946549	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2884272	species	NCBITaxon:2675229	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:288681	strain	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2917806	species	NCBITaxon:2800373	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:292800	species	NCBITaxon:946234	NCBITaxon:216572	NCBITaxon:1239	human	impt_fam
+NCBITaxon:2931921	species	NCBITaxon:29330	NCBITaxon:186823	NCBITaxon:1239	human	other
+NCBITaxon:2933563	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:293387	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:29349	species	NCBITaxon:3120163	NCBITaxon:3120162	NCBITaxon:1239	human	other
+NCBITaxon:29367	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:29385	species	NCBITaxon:1279	NCBITaxon:90964	NCBITaxon:1239	human	other
+NCBITaxon:2940535	species	NCBITaxon:44249	NCBITaxon:186822	NCBITaxon:1239	human	other
+NCBITaxon:2940557	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2940626	species	NCBITaxon:44249	NCBITaxon:186822	NCBITaxon:1239	human	other
+NCBITaxon:2961894	species	NCBITaxon:2837502	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:2980102	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:3018084	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:3043332	species	NCBITaxon:2675231	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:3047871	species	NCBITaxon:2675232	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:3047873	species	NCBITaxon:2675232	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:3047874	species	NCBITaxon:2675232	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:3047875	species	NCBITaxon:2675232	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:308892	species	NCBITaxon:2675231	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:3094893	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:311194	species	NCBITaxon:45667	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:313627	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:315750	strain	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:324767	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:324768	species	NCBITaxon:2675233	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:326423	strain	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:33030	species	NCBITaxon:162289	NCBITaxon:1570339	NCBITaxon:1239	human	other
+NCBITaxon:33031	species	NCBITaxon:162289	NCBITaxon:1570339	NCBITaxon:1239	human	other
+NCBITaxon:33035	species	NCBITaxon:572511	NCBITaxon:186803	NCBITaxon:1239	human	impt_fam
+NCBITaxon:33040	species	NCBITaxon:1301	NCBITaxon:1300	NCBITaxon:1239	human	other
+NCBITaxon:33934	species	NCBITaxon:150247	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:33941	species	NCBITaxon:129337	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:339854	strain	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:349938	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:352858	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:35841	species	NCBITaxon:1276290	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:365346	species	NCBITaxon:651660	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:36839	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:388741	species	NCBITaxon:2675231	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:394506	species	NCBITaxon:394505	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:39490	species	NCBITaxon:1730	NCBITaxon:186806	NCBITaxon:1239	human	impt_fam
+NCBITaxon:39493	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:403957	species	NCBITaxon:84406	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:40520	species	NCBITaxon:572511	NCBITaxon:186803	NCBITaxon:1239	human	impt_fam
+NCBITaxon:405535	strain	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:410072	species	NCBITaxon:33042	NCBITaxon:186803	NCBITaxon:1239	human	impt_fam
+NCBITaxon:412384	species	NCBITaxon:2800373	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:412694	strain	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:417367	species	NCBITaxon:651660	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:418240	species	NCBITaxon:572511	NCBITaxon:186803	NCBITaxon:1239	human	impt_fam
+NCBITaxon:43131	species	NCBITaxon:41273	NCBITaxon:1737406	NCBITaxon:1239	human	other
+NCBITaxon:447199	species	NCBITaxon:84406	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:451755	strain	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:452565	species	NCBITaxon:150247	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:45634	species	NCBITaxon:1301	NCBITaxon:1300	NCBITaxon:1239	human	other
+NCBITaxon:45668	species	NCBITaxon:45667	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:459472	species	NCBITaxon:1372	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:462910	species	NCBITaxon:289201	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:471514	species	NCBITaxon:29330	NCBITaxon:186823	NCBITaxon:1239	human	other
+NCBITaxon:48256	species	NCBITaxon:1508657	NCBITaxon:216572	NCBITaxon:1239	human	impt_fam
+NCBITaxon:483913	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:484770	species	NCBITaxon:365348	NCBITaxon:1843490	NCBITaxon:1239	human	other
+NCBITaxon:492670	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:520767	species	NCBITaxon:159730	NCBITaxon:2770093	NCBITaxon:1239	human	other
+NCBITaxon:52694	species	NCBITaxon:33951	NCBITaxon:186806	NCBITaxon:1239	human	impt_fam
+NCBITaxon:529122	strain	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:536227	strain	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:537007	strain	NCBITaxon:572511	NCBITaxon:186803	NCBITaxon:1239	human	impt_fam
+NCBITaxon:54005	species	NCBITaxon:162289	NCBITaxon:1570339	NCBITaxon:1239	human	other
+NCBITaxon:545693	strain	NCBITaxon:2800373	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:546023	species	NCBITaxon:157226	NCBITaxon:186818	NCBITaxon:1239	human	other
+NCBITaxon:546269	strain	NCBITaxon:44259	NCBITaxon:3118655	NCBITaxon:1239	human	other
+NCBITaxon:56774	species	not found	NCBITaxon:543314	NCBITaxon:1239	human	other
+NCBITaxon:572264	strain	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:574375	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:574376	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:575178	species	NCBITaxon:150247	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:576944	species	NCBITaxon:150247	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:592022	strain	NCBITaxon:2800373	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:632773	species	NCBITaxon:1434042	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:64104	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:649756	species	NCBITaxon:207244	NCBITaxon:186803	NCBITaxon:1239	human	impt_fam
+NCBITaxon:673271	species	NCBITaxon:2316203	NCBITaxon:186803	NCBITaxon:1239	human	impt_fam
+NCBITaxon:692420	strain	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:76860	species	NCBITaxon:1301	NCBITaxon:1300	NCBITaxon:1239	human	other
+NCBITaxon:768724	strain	NCBITaxon:162289	NCBITaxon:1570339	NCBITaxon:1239	human	other
+NCBITaxon:78350	species	NCBITaxon:191373	NCBITaxon:2937910	NCBITaxon:1239	human	other
+NCBITaxon:78535	species	NCBITaxon:1301	NCBITaxon:1300	NCBITaxon:1239	human	other
+NCBITaxon:796606	strain	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:796937	species	NCBITaxon:1913599	NCBITaxon:3118655	NCBITaxon:1239	human	other
+NCBITaxon:79883	species	NCBITaxon:2837511	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:81408	species	NCBITaxon:1906945	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:84022	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:84024	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:857293	strain	NCBITaxon:44258	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:864567	strain	NCBITaxon:1301	NCBITaxon:1300	NCBITaxon:1239	human	other
+NCBITaxon:864570	strain	NCBITaxon:1301	NCBITaxon:1300	NCBITaxon:1239	human	other
+NCBITaxon:86664	species	NCBITaxon:2800373	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:86668	species	NCBITaxon:2675232	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:866895	strain	NCBITaxon:45667	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:87458	species	NCBITaxon:2862144	NCBITaxon:186827	NCBITaxon:1239	human	other
+NCBITaxon:886559	species	NCBITaxon:129337	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:908809	species	NCBITaxon:44258	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:936556	species	not found	NCBITaxon:186804	NCBITaxon:1239	human	other
+NCBITaxon:936574	species	NCBITaxon:177971	NCBITaxon:186803	NCBITaxon:1239	human	impt_fam
+NCBITaxon:936594	species	NCBITaxon:1164882	NCBITaxon:186803	NCBITaxon:1239	human	impt_fam
+NCBITaxon:936596	species	NCBITaxon:1164882	NCBITaxon:186803	NCBITaxon:1239	human	impt_fam
+NCBITaxon:94137	species	NCBITaxon:160794	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:941824	strain	NCBITaxon:150333	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:96241	species	NCBITaxon:1386	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:986075	strain	NCBITaxon:379065	NCBITaxon:186817	NCBITaxon:1239	human	other
+NCBITaxon:99675	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:997350	strain	NCBITaxon:162289	NCBITaxon:1570339	NCBITaxon:1239	human	other
+NCBITaxon:999898	species	not found	NCBITaxon:186807	NCBITaxon:1239	human	other
+NCBITaxon:521158	species	NCBITaxon:758601	NCBITaxon:183710	NCBITaxon:1297	other	other
+NCBITaxon:670487	strain	NCBITaxon:208447	NCBITaxon:188786	NCBITaxon:1297	other	other
+NCBITaxon:869210	strain	NCBITaxon:186191	NCBITaxon:188786	NCBITaxon:1297	other	other
+NCBITaxon:2053527	species	not found	not found	NCBITaxon:1379697	other	other
+NCBITaxon:2026742	species	not found	not found	NCBITaxon:142182	other	other
+NCBITaxon:1640509	species	not found	not found	NCBITaxon:1752708	other	other
+NCBITaxon:2212469	species	not found	not found	NCBITaxon:1930617	other	other
+NCBITaxon:1852857	species	not found	not found	NCBITaxon:200795	other	other
+NCBITaxon:2026724	species	not found	not found	NCBITaxon:200795	other	other
+NCBITaxon:2026734	species	not found	not found	NCBITaxon:200795	other	other
+NCBITaxon:2052143	species	not found	not found	NCBITaxon:200795	other	other
+NCBITaxon:768670	strain	NCBITaxon:545865	NCBITaxon:2945021	NCBITaxon:200930	other	other
+NCBITaxon:1246637	species	NCBITaxon:1246635	NCBITaxon:213119	NCBITaxon:200940	other	other
+NCBITaxon:1286635	strain	NCBITaxon:115780	NCBITaxon:213119	NCBITaxon:200940	other	other
+NCBITaxon:1811697	species	NCBITaxon:182623	NCBITaxon:2964538	NCBITaxon:200940	other	other
+NCBITaxon:1811698	species	NCBITaxon:513557	NCBITaxon:513556	NCBITaxon:200940	other	other
+NCBITaxon:1811700	species	NCBITaxon:513557	NCBITaxon:513556	NCBITaxon:200940	other	other
+NCBITaxon:1811702	species	NCBITaxon:513557	NCBITaxon:513556	NCBITaxon:200940	other	other
+NCBITaxon:1811703	species	NCBITaxon:513557	NCBITaxon:513556	NCBITaxon:200940	other	other
+NCBITaxon:1811704	species	NCBITaxon:513557	NCBITaxon:513556	NCBITaxon:200940	other	other
+NCBITaxon:1811705	species	NCBITaxon:513557	NCBITaxon:513556	NCBITaxon:200940	other	other
+NCBITaxon:1811711	species	NCBITaxon:43773	NCBITaxon:213468	NCBITaxon:200940	other	other
+NCBITaxon:1811712	species	NCBITaxon:43773	NCBITaxon:213468	NCBITaxon:200940	other	other
+NCBITaxon:1811713	species	NCBITaxon:43773	NCBITaxon:213468	NCBITaxon:200940	other	other
+NCBITaxon:1811715	species	not found	NCBITaxon:513556	NCBITaxon:200940	other	other
+NCBITaxon:1811716	species	not found	NCBITaxon:213468	NCBITaxon:200940	other	other
+NCBITaxon:1811717	species	not found	NCBITaxon:213468	NCBITaxon:200940	other	other
+NCBITaxon:1811718	species	not found	NCBITaxon:213468	NCBITaxon:200940	other	other
+NCBITaxon:1032476	species	NCBITaxon:83681	NCBITaxon:2004	NCBITaxon:201174	human	other
+NCBITaxon:1036020	species	NCBITaxon:1839	NCBITaxon:85015	NCBITaxon:201174	human	other
+NCBITaxon:103725	species	NCBITaxon:43356	NCBITaxon:2070	NCBITaxon:201174	human	other
+NCBITaxon:1042984	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:1051531	species	NCBITaxon:2071	NCBITaxon:2070	NCBITaxon:201174	human	other
+NCBITaxon:1069963	species	NCBITaxon:53457	NCBITaxon:85021	NCBITaxon:201174	human	other
+NCBITaxon:1076397	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:1077946	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:1079985	strain	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:1105143	species	NCBITaxon:182639	NCBITaxon:2726069	NCBITaxon:201174	human	other
+NCBITaxon:1105145	species	NCBITaxon:2071	NCBITaxon:2070	NCBITaxon:201174	human	other
+NCBITaxon:1119534	species	NCBITaxon:1839	NCBITaxon:85015	NCBITaxon:201174	human	other
+NCBITaxon:1121877	strain	NCBITaxon:121038	NCBITaxon:84994	NCBITaxon:201174	human	other
+NCBITaxon:1124761	species	NCBITaxon:83681	NCBITaxon:2004	NCBITaxon:201174	human	other
+NCBITaxon:1128677	species	NCBITaxon:1851	NCBITaxon:2070	NCBITaxon:201174	human	other
+NCBITaxon:1160718	strain	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:1181879	species	NCBITaxon:1813	NCBITaxon:2070	NCBITaxon:201174	human	other
+NCBITaxon:1185650	subspecies	NCBITaxon:670516	NCBITaxon:1762	NCBITaxon:201174	human	other
+NCBITaxon:1188745	species	NCBITaxon:83681	NCBITaxon:2004	NCBITaxon:201174	human	other
+NCBITaxon:1272	species	NCBITaxon:57493	NCBITaxon:1268	NCBITaxon:201174	human	other
+NCBITaxon:1280514	species	NCBITaxon:1609233	NCBITaxon:84994	NCBITaxon:201174	human	other
+NCBITaxon:1282883	species	NCBITaxon:1873	NCBITaxon:28056	NCBITaxon:201174	human	other
+NCBITaxon:1285192	species	NCBITaxon:53457	NCBITaxon:85021	NCBITaxon:201174	human	other
+NCBITaxon:1287877	species	NCBITaxon:1873	NCBITaxon:28056	NCBITaxon:201174	human	other
+NCBITaxon:1300347	strain	NCBITaxon:1839	NCBITaxon:85015	NCBITaxon:201174	human	other
+NCBITaxon:1319510	strain	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:1411118	species	NCBITaxon:2019	NCBITaxon:2012	NCBITaxon:201174	human	other
+NCBITaxon:1436133	species	NCBITaxon:2995702	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:1440053	strain	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:1457234	species	NCBITaxon:1839	NCBITaxon:85015	NCBITaxon:201174	human	other
+NCBITaxon:146820	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:1522757	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:1522758	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:1522759	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:1522760	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:1522762	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:1522763	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:1540520	species	NCBITaxon:182639	NCBITaxon:2726069	NCBITaxon:201174	human	other
+NCBITaxon:1572659	species	NCBITaxon:182639	NCBITaxon:2726069	NCBITaxon:201174	human	other
+NCBITaxon:1592326	species	not found	not found	NCBITaxon:201174	human	other
+NCBITaxon:1612552	species	NCBITaxon:65496	NCBITaxon:2070	NCBITaxon:201174	human	other
+NCBITaxon:1616117	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:1641811	species	not found	not found	NCBITaxon:201174	human	other
+NCBITaxon:1650658	species	not found	not found	NCBITaxon:201174	human	other
+NCBITaxon:1716141	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:1737066	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:1768010	species	NCBITaxon:695999	NCBITaxon:2070	NCBITaxon:201174	human	other
+NCBITaxon:1773	species	NCBITaxon:1763	NCBITaxon:1762	NCBITaxon:201174	human	other
+NCBITaxon:1783352	species	NCBITaxon:1874625	NCBITaxon:83676	NCBITaxon:201174	human	other
+NCBITaxon:1816182	species	NCBITaxon:2000	NCBITaxon:2004	NCBITaxon:201174	human	other
+NCBITaxon:1819298	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:182080	species	NCBITaxon:1988	NCBITaxon:2012	NCBITaxon:201174	human	other
+NCBITaxon:1825094	species	NCBITaxon:1813	NCBITaxon:2070	NCBITaxon:201174	human	other
+NCBITaxon:1836972	species	NCBITaxon:1854	NCBITaxon:74712	NCBITaxon:201174	human	other
+NCBITaxon:1839617	species	NCBITaxon:1873	NCBITaxon:28056	NCBITaxon:201174	human	other
+NCBITaxon:1841	species	NCBITaxon:1839	NCBITaxon:85015	NCBITaxon:201174	human	other
+NCBITaxon:1857892	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:1868	species	not found	NCBITaxon:28056	NCBITaxon:201174	human	other
+NCBITaxon:1914755	species	NCBITaxon:1839	NCBITaxon:85015	NCBITaxon:201174	human	other
+NCBITaxon:1921566	species	NCBITaxon:1839	NCBITaxon:85015	NCBITaxon:201174	human	other
+NCBITaxon:1930	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:1931	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:1940758	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:1945509	species	NCBITaxon:1873	NCBITaxon:28056	NCBITaxon:201174	human	other
+NCBITaxon:1960	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:1963	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:1967	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:200618	species	NCBITaxon:1839	NCBITaxon:85015	NCBITaxon:201174	human	other
+NCBITaxon:2026353	species	NCBITaxon:2997369	NCBITaxon:85030	NCBITaxon:201174	human	other
+NCBITaxon:2072505	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:2074	species	NCBITaxon:1847	NCBITaxon:2070	NCBITaxon:201174	human	other
+NCBITaxon:2083010	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:2094022	species	NCBITaxon:1873	NCBITaxon:28056	NCBITaxon:201174	human	other
+NCBITaxon:2136401	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:2259644	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:236067	species	NCBITaxon:182639	NCBITaxon:2726069	NCBITaxon:201174	human	other
+NCBITaxon:237656	species	NCBITaxon:1847	NCBITaxon:2070	NCBITaxon:201174	human	other
+NCBITaxon:258050	species	NCBITaxon:2063	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:2585196	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:2585197	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:2585198	species	NCBITaxon:1817	NCBITaxon:85025	NCBITaxon:201174	human	other
+NCBITaxon:2585200	species	NCBITaxon:1988	NCBITaxon:2012	NCBITaxon:201174	human	other
+NCBITaxon:2653126	species	NCBITaxon:2040	NCBITaxon:85015	NCBITaxon:201174	human	other
+NCBITaxon:2653157	species	NCBITaxon:1839	NCBITaxon:85015	NCBITaxon:201174	human	other
+NCBITaxon:2653857	species	NCBITaxon:1813	NCBITaxon:2070	NCBITaxon:201174	human	other
+NCBITaxon:2663842	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:2678616	species	NCBITaxon:1988	NCBITaxon:2012	NCBITaxon:201174	human	other
+NCBITaxon:2690249	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:2690279	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:2690325	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:2690339	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:2705439	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:2723074	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:2745196	species	NCBITaxon:1813	NCBITaxon:2070	NCBITaxon:201174	human	other
+NCBITaxon:2761496	species	NCBITaxon:2828348	NCBITaxon:1331736	NCBITaxon:201174	human	other
+NCBITaxon:2772433	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:278992	strain	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:2817710	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:2819179	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:2819187	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:2819188	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:284028	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:285473	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:2884022	species	NCBITaxon:2976759	NCBITaxon:2976758	NCBITaxon:201174	human	other
+NCBITaxon:336628	species	NCBITaxon:1813	NCBITaxon:2070	NCBITaxon:201174	human	other
+NCBITaxon:33900	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:340345	species	NCBITaxon:65496	NCBITaxon:2070	NCBITaxon:201174	human	other
+NCBITaxon:349522	species	NCBITaxon:1839	NCBITaxon:85015	NCBITaxon:201174	human	other
+NCBITaxon:36816	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:374514	species	NCBITaxon:1839	NCBITaxon:85015	NCBITaxon:201174	human	other
+NCBITaxon:39478	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:396712	species	NCBITaxon:2053	NCBITaxon:85026	NCBITaxon:201174	human	other
+NCBITaxon:39695	species	NCBITaxon:1866885	NCBITaxon:1762	NCBITaxon:201174	human	other
+NCBITaxon:419476	species	NCBITaxon:1839	NCBITaxon:85015	NCBITaxon:201174	human	other
+NCBITaxon:42684	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:429133	species	NCBITaxon:88138	NCBITaxon:85030	NCBITaxon:201174	human	other
+NCBITaxon:43355	species	NCBITaxon:130795	NCBITaxon:2070	NCBITaxon:201174	human	other
+NCBITaxon:46158	species	NCBITaxon:1988	NCBITaxon:2012	NCBITaxon:201174	human	other
+NCBITaxon:46159	species	NCBITaxon:1988	NCBITaxon:2012	NCBITaxon:201174	human	other
+NCBITaxon:46163	species	NCBITaxon:1988	NCBITaxon:2012	NCBITaxon:201174	human	other
+NCBITaxon:46180	species	NCBITaxon:83681	NCBITaxon:2004	NCBITaxon:201174	human	other
+NCBITaxon:463642	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:47479	species	NCBITaxon:2000	NCBITaxon:2004	NCBITaxon:201174	human	other
+NCBITaxon:477641	species	NCBITaxon:88138	NCBITaxon:85030	NCBITaxon:201174	human	other
+NCBITaxon:55404	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:58110	species	NCBITaxon:1988	NCBITaxon:2012	NCBITaxon:201174	human	other
+NCBITaxon:582680	species	NCBITaxon:33882	NCBITaxon:85023	NCBITaxon:201174	human	other
+NCBITaxon:58340	subspecies	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:58351	species	NCBITaxon:2063	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:60450	species	NCBITaxon:182639	NCBITaxon:2726069	NCBITaxon:201174	human	other
+NCBITaxon:619741	species	NCBITaxon:203522	NCBITaxon:28056	NCBITaxon:201174	human	other
+NCBITaxon:634462	species	NCBITaxon:1839	NCBITaxon:85015	NCBITaxon:201174	human	other
+NCBITaxon:661491	species	NCBITaxon:1839	NCBITaxon:85015	NCBITaxon:201174	human	other
+NCBITaxon:661492	species	NCBITaxon:1839	NCBITaxon:85015	NCBITaxon:201174	human	other
+NCBITaxon:663602	species	NCBITaxon:402649	NCBITaxon:2070	NCBITaxon:201174	human	other
+NCBITaxon:66375	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:66427	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:664693	species	NCBITaxon:1835	NCBITaxon:2070	NCBITaxon:201174	human	other
+NCBITaxon:66895	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:67282	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:67283	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:67293	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:67304	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:67380	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:675635	strain	NCBITaxon:1847	NCBITaxon:2070	NCBITaxon:201174	human	other
+NCBITaxon:68172	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:68233	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:68270	species	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:69370	species	NCBITaxon:33882	NCBITaxon:85023	NCBITaxon:201174	human	other
+NCBITaxon:85688	species	NCBITaxon:1817	NCBITaxon:85025	NCBITaxon:201174	human	other
+NCBITaxon:860233	species	NCBITaxon:1813	NCBITaxon:2070	NCBITaxon:201174	human	other
+NCBITaxon:860243	species	NCBITaxon:1839	NCBITaxon:85015	NCBITaxon:201174	human	other
+NCBITaxon:882448	species	NCBITaxon:83681	NCBITaxon:2004	NCBITaxon:201174	human	other
+NCBITaxon:887465	species	NCBITaxon:2995702	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:95160	species	NCBITaxon:1988	NCBITaxon:2012	NCBITaxon:201174	human	other
+NCBITaxon:953739	strain	NCBITaxon:1883	NCBITaxon:2062	NCBITaxon:201174	human	other
+NCBITaxon:2026780	species	not found	not found	NCBITaxon:203682	other	other
+NCBITaxon:2052181	species	not found	not found	NCBITaxon:203682	other	other
+NCBITaxon:2528011	species	not found	not found	NCBITaxon:203682	other	other
+NCBITaxon:1307761	species	NCBITaxon:1616789	NCBITaxon:137	NCBITaxon:203691	other	other
+NCBITaxon:150	species	NCBITaxon:146	NCBITaxon:137	NCBITaxon:203691	other	other
+NCBITaxon:162	species	NCBITaxon:157	NCBITaxon:2845253	NCBITaxon:203691	other	other
+NCBITaxon:1852907	species	not found	not found	NCBITaxon:203691	other	other
+NCBITaxon:1852908	species	not found	not found	NCBITaxon:203691	other	other
+NCBITaxon:1898206	species	not found	NCBITaxon:137	NCBITaxon:203691	other	other
+NCBITaxon:2026792	species	not found	not found	NCBITaxon:203691	other	other
+NCBITaxon:2202144	species	not found	not found	NCBITaxon:203691	other	other
+NCBITaxon:381802	species	NCBITaxon:29521	NCBITaxon:143786	NCBITaxon:203691	other	other
+NCBITaxon:2026763	species	not found	not found	NCBITaxon:2818505	other	other
+NCBITaxon:215803	species	NCBITaxon:215802	not found	NCBITaxon:2818505	other	other
+NCBITaxon:2484252	species	not found	NCBITaxon:31	NCBITaxon:2818505	other	other
+NCBITaxon:2056316	species	not found	not found	NCBITaxon:28890	other	other
+NCBITaxon:1032505	species	NCBITaxon:848	NCBITaxon:203492	NCBITaxon:32066	human	other
+NCBITaxon:209882	strain	NCBITaxon:848	NCBITaxon:203492	NCBITaxon:32066	human	other
+NCBITaxon:393480	strain	NCBITaxon:848	NCBITaxon:203492	NCBITaxon:32066	human	other
+NCBITaxon:936561	species	NCBITaxon:848	NCBITaxon:203492	NCBITaxon:32066	human	other
+NCBITaxon:936563	species	NCBITaxon:848	NCBITaxon:203492	NCBITaxon:32066	human	other
+NCBITaxon:997347	strain	NCBITaxon:848	NCBITaxon:203492	NCBITaxon:32066	human	other
+NCBITaxon:2026770	species	not found	NCBITaxon:189779	NCBITaxon:40117	other	other
+NCBITaxon:2030808	species	not found	not found	NCBITaxon:456828	other	other
+NCBITaxon:459349	strain	NCBITaxon:456826	NCBITaxon:3039865	NCBITaxon:456828	other	other
+NCBITaxon:1852787	species	not found	not found	NCBITaxon:57723	other	other
+NCBITaxon:1978231	species	not found	not found	NCBITaxon:57723	other	other
+NCBITaxon:981385	species	NCBITaxon:1172428	NCBITaxon:2562244	NCBITaxon:57723	other	other
+NCBITaxon:2026760	species	not found	not found	NCBITaxon:62680	other	other
+NCBITaxon:1353260	species	NCBITaxon:1826864	NCBITaxon:1033997	NCBITaxon:651137	other	other
+NCBITaxon:2033014	species	not found	not found	NCBITaxon:67819	other	other
+NCBITaxon:2053570	species	not found	not found	NCBITaxon:74015	other	other
+NCBITaxon:2030800	species	not found	not found	NCBITaxon:74152	other	other
+NCBITaxon:2026771	species	not found	not found	NCBITaxon:74201	other	other
+NCBITaxon:2026799	species	not found	not found	NCBITaxon:74201	other	other
+NCBITaxon:2026801	species	not found	not found	NCBITaxon:74201	other	other
+NCBITaxon:2499141	species	not found	not found	NCBITaxon:74201	other	other
+NCBITaxon:1400053	species	not found	not found	NCBITaxon:976	human	other
+NCBITaxon:1411316	species	NCBITaxon:84567	NCBITaxon:84566	NCBITaxon:976	human	other
+NCBITaxon:1472416	species	NCBITaxon:574697	NCBITaxon:1853231	NCBITaxon:976	human	other
+NCBITaxon:1472417	species	NCBITaxon:574697	NCBITaxon:1853231	NCBITaxon:976	human	other
+NCBITaxon:1852798	species	not found	not found	NCBITaxon:976	human	other
+NCBITaxon:1871037	species	not found	NCBITaxon:49546	NCBITaxon:976	human	other
+NCBITaxon:1898104	species	not found	not found	NCBITaxon:976	human	other
+NCBITaxon:2021391	species	not found	not found	NCBITaxon:976	human	other
+NCBITaxon:2030927	species	not found	not found	NCBITaxon:976	human	other
+NCBITaxon:2044936	species	not found	not found	NCBITaxon:976	human	other
+NCBITaxon:2044944	species	not found	not found	NCBITaxon:976	human	other
+NCBITaxon:2781388		NCBITaxon:104267	NCBITaxon:49546	NCBITaxon:976	human	other
+NCBITaxon:2940648	species	NCBITaxon:156973	NCBITaxon:2005520	NCBITaxon:976	human	other
+NCBITaxon:1017277	species	not found	not found	not found	other	other
+NCBITaxon:1852867	species	not found	not found	not found	other	other
+NCBITaxon:1852868	species	not found	not found	not found	other	other
+NCBITaxon:1866925	species	not found	not found	not found	other	other
+NCBITaxon:1866935	species	not found	not found	not found	other	other
+NCBITaxon:1869227	species	not found	not found	not found	other	other
+NCBITaxon:2005733	species	not found	not found	not found	other	other
+NCBITaxon:2035414	species	not found	not found	not found	other	other
+NCBITaxon:2035416	species	not found	not found	not found	other	other
+NCBITaxon:2035418	species	not found	not found	not found	other	other
+NCBITaxon:2035419	species	not found	not found	not found	other	other
+NCBITaxon:2035424	species	not found	not found	not found	other	other
+NCBITaxon:2035435	species	not found	not found	not found	other	other
+NCBITaxon:2080452	species	not found	not found	not found	other	other
+NCBITaxon:698986	species	not found	not found	not found	other	other
+NCBITaxon:77133	species	not found	not found	not found	other	other

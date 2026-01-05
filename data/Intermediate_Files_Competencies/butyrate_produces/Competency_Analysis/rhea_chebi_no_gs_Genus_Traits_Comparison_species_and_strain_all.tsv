@@ -1,0 +1,5 @@
+,Genus,Genus_ID,Ranked_Mapping_family,fractions_produces_but,total_fam_sizes
+0,Alistipes,NCBITaxon:239759,NCBITaxon:171550,0.26666666666666666,45
+1,Roseburia,NCBITaxon:841,NCBITaxon:186803,0.6363636363636364,11
+2,Listeria,NCBITaxon:1637,NCBITaxon:186820,0.225,160
+3,Clostridium,NCBITaxon:1485,NCBITaxon:31979,0.6746031746031746,126

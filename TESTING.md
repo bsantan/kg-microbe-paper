@@ -57,6 +57,8 @@ make download_kg
 - `data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv` (~29 GB)
 - `data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv` (~15 GB)
 
+**Note:** When running competency scripts, equilibrator_api will download a cache file (~130 MB) to `data/Input_Files/equilibrator_cache/compounds.sqlite`
+
 **Verification:**
 ```bash
 ls -lh data/Input_Files/KGMicrobe-biomedical-function-20250222.tar.gz

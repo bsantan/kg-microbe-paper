@@ -23,6 +23,14 @@ import sys
 from scipy.stats import binomtest
 from statsmodels.stats.multitest import multipletests
 
+# Set equilibrator cache to data/Input_Files/ before importing
+equilibrator_cache_dir = os.path.abspath("./data/Input_Files/equilibrator_cache")
+os.makedirs(equilibrator_cache_dir, exist_ok=True)
+os.environ['POOCH_BASE_URL'] = 'doi:10.5281/zenodo.4128543'
+# Try multiple environment variables that pooch/equilibrator might use
+for env_var in ['POOCH_CACHE_DIR', 'XDG_CACHE_HOME', 'EQUILIBRATOR_CACHE_DIR']:
+    os.environ[env_var] = equilibrator_cache_dir
+
 from equilibrator_api import ComponentContribution, Q_
 
 from ncbi_phylogeny_search import find_microbes_family, find_microbes_species, get_all_kg_taxa, get_all_ranks, get_ncbitaxon_with_uniprot, get_taxa_per_rank, load_graph

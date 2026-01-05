@@ -64,6 +64,7 @@ clean:
 	@echo "Cleaning downloaded files..."
 	rm -rf data/Input_Files/kg-microbe-biomedical-function-cat
 	rm -rf data/Input_Files/hmp_supplementary
+	rm -rf data/Input_Files/equilibrator_cache
 	rm -f data/Input_Files/KGMicrobe-biomedical-function-20250222.tar.gz
 	rm -f data/Input_Files/ontologies.tar.gz
 	rm -f data/Input_Files/ncbitaxon_nodes.tsv

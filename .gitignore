@@ -16,6 +16,9 @@ data/Input_Files/*/
 # Keep Gold Standard tracked (small reference file)
 !data/Input_Files/Gold_Standard_Species_Overlap_butyrate_produces.csv
 
+# Equilibrator cache
+data/Input_Files/equilibrator_cache/
+
 # Legacy paths (for backwards compatibility - these directories have been moved to data/)
 src/Input_Files/
 src/Intermediate_Files/

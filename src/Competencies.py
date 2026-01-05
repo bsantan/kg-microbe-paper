@@ -121,7 +121,7 @@ def get_rhea_participants(metabolite):
 
 def plot_competencies_barplot(df, direction):
 
-    directory = "./src/Intermediate_Files_Competencies"
+    directory = "./data/Intermediate_Files_Competencies"
 
     print(df)
     ax = df.plot(kind='bar', x='Metabolite', y=['Rhea-Chebi_Traits_Overlap_Percentage', 'Traits_Rhea-Chebi_Overlap_Percentage'], figsize=(8, 6))
@@ -181,7 +181,7 @@ def get_total_proteomes_from_graph():
 
 def monte_carlo_simulations(metabolite, direction, comparison_group, actual_overlap, num_inputs,  all_possible_inputs, ax, random_seeds):
 
-    directory = "./src/Intermediate_Files_Competencies"
+    directory = "./data/Intermediate_Files_Competencies"
     print("all_possible_inputs")
     print(all_possible_inputs)
     print("comparison_group")
@@ -223,7 +223,7 @@ def get_microbial_list(filename, col_name):
 
 def plot_competencies_venn_diagrams_with_proteomes(conn):
 
-    directory = "./src/Intermediate_Files_Competencies"
+    directory = "./data/Intermediate_Files_Competencies"
 
     # # Get total number of bugs with proteomes
     # total_proteomes = get_total_proteomes_from_graph()
@@ -375,7 +375,7 @@ def plot_competencies_venn_diagrams_with_proteomes(conn):
 
 def plot_competencies_venn_diagrams():
 
-    directory = "./src/Intermediate_Files_Competencies"
+    directory = "./data/Intermediate_Files_Competencies"
 
     all_dfs = pd.DataFrame()
     for direction in ALL_DIRECTIONS:
@@ -562,7 +562,7 @@ def create_metabolite_competency_df(metabolite, direction, reaction_direction_di
 
 def combine_all_competency_dfs(competency_dfs, direction, filename):
 
-    directory = "./src/Intermediate_Files_Competencies"
+    directory = "./data/Intermediate_Files_Competencies"
 
     cols = competency_dfs[0].columns
     final_df = pd.DataFrame(columns = cols)
@@ -576,7 +576,7 @@ def combine_all_competency_dfs(competency_dfs, direction, filename):
 
 def visualize_all_competencies(final_df, direction):
 
-    directory = "./src/Intermediate_Files_Competencies"
+    directory = "./data/Intermediate_Files_Competencies"
     metabolite = final_df.iloc[0].loc["Metabolite"]
 
     values = final_df.iloc[0].tolist()
@@ -931,7 +931,7 @@ FROM final_taxa;
 
 def genomic_ec_competency(metabolite, direction):
 
-    output_dir = "./src/Intermediate_Files_Competencies" + "/" + metabolite + "_" + direction
+    output_dir = "./data/Intermediate_Files_Competencies" + "/" + metabolite + "_" + direction
 
     conn = duckdb.connect(":memory:")
 
@@ -939,7 +939,7 @@ def genomic_ec_competency(metabolite, direction):
 
     duckdb_load_table(conn, "./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_competency_specific_ec.tsv", "edges", ["subject", "predicate", "object"])
     duckdb_load_table(conn, "./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
-    output_dir = "./src/Intermediate_Files_Competencies" + "/" + metabolite + "_" + direction
+    output_dir = "./data/Intermediate_Files_Competencies" + "/" + metabolite + "_" + direction
 
     query = (
         f"""
@@ -998,7 +998,7 @@ def genomic_ec_competency(metabolite, direction):
 
 def organismal_genomic_competency(metabolite, direction):
 
-    output_dir = "./src/Intermediate_Files_Competencies" + "/" + metabolite + "_" + direction
+    output_dir = "./data/Intermediate_Files_Competencies" + "/" + metabolite + "_" + direction
 
     os.makedirs(output_dir, exist_ok=True)
 

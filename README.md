@@ -60,7 +60,13 @@ This command will:
 - Download NCBI Taxonomy ontologies
 - Extract ncbitaxon_nodes.tsv
 
-**Note:** When running the competency scripts (`Process_competency_questions.py`), the equilibrator_api library will automatically download a cache file (~130 MB) to `data/Input_Files/equilibrator_cache/`. This only happens once and is reused for subsequent runs.
+**Note:** When running the competency scripts (`Process_competency_questions.py`), the equilibrator_api library will automatically download cache files to `data/Input_Files/equilibrator_cache/`:
+- `compounds.sqlite` (~130 MB)
+- `cc_params.npz` (~50 MB)
+
+These files are downloaded once and reused for subsequent runs.
+
+If you have previously run these scripts and have an old cache in `~/Library/Caches/equilibrator/` (Mac) or `~/.cache/equilibrator/` (Linux), you can safely remove it as it's no longer used.
 
 ### 2. Run Analysis Scripts
 

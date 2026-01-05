@@ -24,12 +24,14 @@ from scipy.stats import binomtest
 from statsmodels.stats.multitest import multipletests
 
 # Set equilibrator cache to data/Input_Files/ before importing
+# Must be set BEFORE any equilibrator/pooch imports
 equilibrator_cache_dir = os.path.abspath("./data/Input_Files/equilibrator_cache")
 os.makedirs(equilibrator_cache_dir, exist_ok=True)
-os.environ['POOCH_BASE_URL'] = 'doi:10.5281/zenodo.4128543'
-# Try multiple environment variables that pooch/equilibrator might use
-for env_var in ['POOCH_CACHE_DIR', 'XDG_CACHE_HOME', 'EQUILIBRATOR_CACHE_DIR']:
-    os.environ[env_var] = equilibrator_cache_dir
+
+# Set pooch cache directory for equilibrator downloads
+os.environ['POOCH_CACHE_DIR'] = equilibrator_cache_dir
+# Also set XDG_CACHE_HOME as a fallback (pooch uses this on Unix)
+os.environ['XDG_CACHE_HOME'] = equilibrator_cache_dir
 
 from equilibrator_api import ComponentContribution, Q_
 

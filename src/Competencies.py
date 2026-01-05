@@ -28,10 +28,19 @@ from statsmodels.stats.multitest import multipletests
 equilibrator_cache_dir = os.path.abspath("./data/Input_Files/equilibrator_cache")
 os.makedirs(equilibrator_cache_dir, exist_ok=True)
 
-# Set pooch cache directory for equilibrator downloads
-os.environ['POOCH_CACHE_DIR'] = equilibrator_cache_dir
-# Also set XDG_CACHE_HOME as a fallback (pooch uses this on Unix)
-os.environ['XDG_CACHE_HOME'] = equilibrator_cache_dir
+# equilibrator_cache uses appdirs.user_cache_dir(), so we need to monkey-patch it
+# Import appdirs and override user_cache_dir to return our custom path
+import appdirs
+_original_user_cache_dir = appdirs.user_cache_dir
+
+def _custom_user_cache_dir(appname=None, appauthor=None, version=None, opinion=True):
+    """Override appdirs.user_cache_dir to use our custom cache directory for equilibrator."""
+    if appname == "equilibrator":
+        return equilibrator_cache_dir
+    # Fall back to original for other apps
+    return _original_user_cache_dir(appname, appauthor, version, opinion)
+
+appdirs.user_cache_dir = _custom_user_cache_dir
 
 from equilibrator_api import ComponentContribution, Q_
 

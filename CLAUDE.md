@@ -179,7 +179,8 @@ The codebase relies heavily on:
 - The `.venv` directory (created by uv) should not be committed (already in `.gitignore`)
 - NCBI Taxonomy names are sometimes outdated (see `REPLACED_TAXA_NAMES` in `constants.py`)
 - All commands should be run with `uv run` to ensure the correct Python environment is used
-- **equilibrator_api cache:** Downloads cache files to `data/Input_Files/equilibrator_cache/` on first run (configured in `Competencies.py` via POOCH_CACHE_DIR environment variable):
+- **equilibrator_api cache:** Downloads cache files to `data/Input_Files/equilibrator_cache/` on first run (configured in `Competencies.py` by monkey-patching `appdirs.user_cache_dir()`):
   - `compounds.sqlite` (~130 MB)
   - `cc_params.npz` (~50 MB)
+  - equilibrator_cache explicitly sets cache path using appdirs, so we override the function before importing
 - **Low-memory systems (< 24GB RAM):** Step 6 of `Process_competency_questions.py` may fail. Use `uv run make setup_gold_standard` to copy the pre-generated Gold Standard file from `data/` to the correct location

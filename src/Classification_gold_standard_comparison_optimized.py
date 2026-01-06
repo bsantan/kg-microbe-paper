@@ -140,6 +140,13 @@ def main():
     ]["Value"].tolist()
     print(f"  Loaded {len(kg_analysis_microbes)} butyrate producers")
 
+    # Load taxa with proteomes (protein annotations in KG)
+    # From Methods: "From the collection of protein annotations to these taxa, we then characterized them as being butyrate producers"
+    proteomes_file = f"{phylogeny_output_dir}/unique_ncbitaxon_uniprot_ids.txt"
+    proteomes_df = pd.read_csv(proteomes_file, header=None, names=['taxon'])
+    ncbitaxa_with_proteomes = set(proteomes_df['taxon'].tolist())
+    print(f"  Loaded {len(ncbitaxa_with_proteomes)} taxa with proteomes (UniprotKB annotations)")
+
     # Storage for plotting
     original_taxon_labels_counts = []
     original_taxon_labels = []
@@ -211,8 +218,11 @@ def main():
             else:
                 ibd_species = [microbe]
 
-            species_with_trait = set(kg_analysis_microbes) & set(ibd_species)
-            disease_microbes_species_numbers.append(len(ibd_species))
+            # Filter species to only those with proteomes (protein annotations in KG)
+            ibd_species_with_proteomes = [s for s in ibd_species if s in ncbitaxa_with_proteomes]
+
+            species_with_trait = set(kg_analysis_microbes) & set(ibd_species_with_proteomes)
+            disease_microbes_species_numbers.append(len(ibd_species_with_proteomes))
             disease_microbes_species_butyrate_producers.append(len(species_with_trait))
 
             # Get strains
@@ -223,8 +233,11 @@ def main():
             else:
                 ibd_strains = [microbe]
 
-            strains_with_trait = set(kg_analysis_microbes) & set(ibd_strains)
-            disease_microbes_strains_numbers.append(len(ibd_strains))
+            # Filter strains to only those with proteomes (protein annotations in KG)
+            ibd_strains_with_proteomes = [s for s in ibd_strains if s in ncbitaxa_with_proteomes]
+
+            strains_with_trait = set(kg_analysis_microbes) & set(ibd_strains_with_proteomes)
+            disease_microbes_strains_numbers.append(len(ibd_strains_with_proteomes))
             disease_microbes_strains_butyrate_producers.append(len(strains_with_trait))
 
         # Create results dataframe

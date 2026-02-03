@@ -2125,9 +2125,24 @@ def convert_to_family(conn, taxa_list, taxa_list_type):
     microbes_family_dict = find_microbes_family(conn, ncbi_taxa_ranks_df, taxa_list, output_dir, taxa_list_type)
 
     family_list = []
+    taxa_without_family = []
     for i in taxa_list:
         # family_list.append(microbes_family_dict[i])
-        family_list.append([key for key, values in microbes_family_dict.items() if i in values][0])
+        matching_families = [key for key, values in microbes_family_dict.items() if i in values]
+        if matching_families:
+            family_list.append(matching_families[0])
+        else:
+            # Taxa without family mapping - use the taxon itself as placeholder
+            family_list.append(i)
+            taxa_without_family.append(i)
+
+    if taxa_without_family:
+        print(f"Warning: {len(taxa_without_family)} taxa without family mapping (using taxon ID as placeholder)")
+        # Optionally log the first few for debugging
+        if len(taxa_without_family) <= 5:
+            print(f"  Taxa without family: {taxa_without_family}")
+        else:
+            print(f"  First 5 taxa without family: {taxa_without_family[:5]}")
 
     return family_list
 

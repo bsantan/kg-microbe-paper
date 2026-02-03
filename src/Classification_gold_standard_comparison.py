@@ -52,8 +52,8 @@ def main():
     # feature_table = pd.read_csv("./Intermediate_Files_func/feature_table.csv", index_col="subject")
     # disease_microbes = feature_table.index.unique().to_list()
 
-    data_edges = pd.read_csv("./Input_Files/kg-microbe-biomedical/merged-kg_edges.tsv", header=0, sep="\t")
-    data_nodes = pd.read_csv("./Input_Files/kg-microbe-biomedical/merged-kg_nodes.tsv", header=0, sep="\t")
+    data_edges = pd.read_csv("./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", header=0, sep="\t")
+    data_nodes = pd.read_csv("./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", header=0, sep="\t")
 
     output_dir = "./Intermediate_Files"
 

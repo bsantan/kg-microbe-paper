@@ -25,7 +25,7 @@ def duckdb_load_table(con, file, table_name, columns):
         f"""
     CREATE OR REPLACE TABLE {table_name} AS
     SELECT {columns_str}
-    FROM read_csv_auto('{file}', delim='\t');
+    FROM read_csv_auto('{file}', delim='\t', null_padding=true);
     """
     )
 

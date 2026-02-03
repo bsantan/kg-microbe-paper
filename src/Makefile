@@ -22,7 +22,7 @@ extract_ncbitaxon:
 	@if [ ! -f "Input_Files/ncbitaxon_nodes.tsv" ]; then \
 		if [ -f "Input_Files/ontologies.tar.gz" ]; then \
 			echo "Extracting ncbitaxon_nodes.tsv from ontologies.tar.gz..." && \
-			tar -xzf Input_Files/ontologies.tar.gz -C Input_Files ncbitaxon_nodes.tsv && \
+			cd Input_Files && tar -xzf ontologies.tar.gz ./ncbitaxon_nodes.tsv && \
 			echo "Extracted ncbitaxon_nodes.tsv"; \
 		else \
 			echo "Warning: ontologies.tar.gz not found, cannot extract ncbitaxon_nodes.tsv"; \

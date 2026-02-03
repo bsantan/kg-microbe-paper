@@ -52,8 +52,36 @@ def main():
     # feature_table = pd.read_csv("./Intermediate_Files_func/feature_table.csv", index_col="subject")
     # disease_microbes = feature_table.index.unique().to_list()
 
-    data_edges = pd.read_csv("./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", header=0, sep="\t")
-    data_nodes = pd.read_csv("./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", header=0, sep="\t")
+    print("="*80)
+    print("MEMORY OPTIMIZATION: Using DuckDB to filter data before loading into pandas")
+    print("This prevents loading 150M+ rows into memory")
+    print("="*80)
+
+    # Use DuckDB to filter edges before loading into pandas (massive memory savings)
+    conn_filter = duckdb.connect(":memory:")
+
+    # Only load edges that involve NCBITaxon or disease (MONDO) entities
+    # This reduces ~150M rows to ~few thousand rows before pandas loading
+    print("Filtering edges to disease-relevant subset...")
+    query = """
+    SELECT subject, predicate, object
+    FROM read_csv_auto('./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv', delim='\t', null_padding=true)
+    WHERE (subject LIKE 'NCBITaxon:%' OR object LIKE 'NCBITaxon:%'
+           OR subject LIKE 'MONDO:%' OR object LIKE 'MONDO:%')
+      AND predicate IS NOT NULL
+      AND subject IS NOT NULL
+      AND object IS NOT NULL
+    """
+    data_edges = conn_filter.execute(query).df()
+    print(f"✓ Loaded {len(data_edges):,} filtered edges (instead of full 150M+ rows)")
+
+    # Load only necessary columns from nodes
+    print("Loading nodes...")
+    data_nodes = pd.read_csv("./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv",
+                             header=0, sep="\t", usecols=['id', 'name'])
+    print(f"✓ Loaded {len(data_nodes):,} nodes")
+
+    conn_filter.close()
 
     output_dir = "./Intermediate_Files"
 
@@ -86,6 +114,9 @@ def main():
         phylogeny_output_dir = "./Phylogeny_Search"
         ncbi_taxa_ranks_df = get_all_ranks(phylogeny_output_dir)
 
+        # Pre-compute rank lookup to avoid repeated DataFrame indexing (performance optimization)
+        rank_lookup = ncbi_taxa_ranks_df.set_index("NCBITaxon_ID")["Rank"].to_dict()
+
         disease_microbes_ranks = []
         disease_microbes_disease_relationship = []
         # disease_microbes_children_numbers = []
@@ -104,7 +135,7 @@ def main():
         for microbe in disease_microbes: #["NCBITaxon:853"]:#tqdm.tqdm(relevant_ncbitaxa):
             ibd_relationship = disease_microbes_df.loc[disease_microbes_df["subject"] == microbe, "object"].values[0]
             disease_microbes_disease_relationship.append(ibd_relationship)
-            microbe_rank = ncbi_taxa_ranks_df.set_index("NCBITaxon_ID")["Rank"].get(microbe, "not_found")
+            microbe_rank = rank_lookup.get(microbe, "not_found")
             disease_microbes_ranks.append(microbe_rank)
             # # Search traits from only children
             # children = search_lower_subclass_phylogeny(conn, microbe)

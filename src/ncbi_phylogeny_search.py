@@ -245,13 +245,13 @@ def find_relevant_taxa(phyla, ncbitaxa, ncbi_taxa_ranks_df):
     
     return relevant_ncbitaxa
 
-def search_strains(conn_or_hierarchy, ncbi_taxa_ranks_df, microbe, strains_found, species_found, use_hierarchy=False):
+def search_strains(conn_or_hierarchy, rank_lookup, microbe, strains_found, species_found, use_hierarchy=False):
     """
     Recursive function to search for strains.
 
     Args:
         conn_or_hierarchy: Either DuckDB connection (legacy) or pre-computed hierarchy dict (optimized)
-        ncbi_taxa_ranks_df: DataFrame with taxonomy ranks
+        rank_lookup: Pre-computed dictionary mapping NCBITaxon_ID -> Rank (replaces DataFrame lookups)
         microbe: Current taxon to search
         strains_found: List to accumulate found strains
         species_found: List to accumulate found species
@@ -266,8 +266,8 @@ def search_strains(conn_or_hierarchy, ncbi_taxa_ranks_df, microbe, strains_found
         child_taxa = search_lower_subclass_phylogeny(conn_or_hierarchy, microbe)
 
     for child in child_taxa:
-        # Check if the child is a strain
-        microbe_rank = ncbi_taxa_ranks_df.set_index("NCBITaxon_ID")["Rank"].get(child, None)
+        # Check if the child is a strain (using pre-computed rank lookup)
+        microbe_rank = rank_lookup.get(child, None)
         if microbe_rank is None:
             continue
         if microbe_rank == "species":
@@ -278,7 +278,7 @@ def search_strains(conn_or_hierarchy, ncbi_taxa_ranks_df, microbe, strains_found
                 strains_found.append(child)
         else:
             # Continue searching subclasses
-            search_strains(conn_or_hierarchy, ncbi_taxa_ranks_df, child, strains_found, species_found, use_hierarchy)
+            search_strains(conn_or_hierarchy, rank_lookup, child, strains_found, species_found, use_hierarchy)
 
 def find_all_strains(conn, ncbi_taxa_ranks_df, microbes, microbes_traits_strain, microbes_traits_species, taxonomy_hierarchy=None):
     """
@@ -305,15 +305,19 @@ def find_all_strains(conn, ncbi_taxa_ranks_df, microbes, microbes_traits_strain,
     else:
         print(f"⚠ Using DuckDB queries for {len(microbes)} microbes (slow - consider pre-computing hierarchy)")
 
+    # CRITICAL OPTIMIZATION: Pre-compute rank lookup dictionary once
+    # This avoids calling set_index() thousands of times (major bottleneck)
+    print("Pre-computing rank lookup dictionary...")
+    rank_lookup = ncbi_taxa_ranks_df.set_index("NCBITaxon_ID")["Rank"].to_dict()
+    print(f"✓ Rank lookup pre-computed: {len(rank_lookup):,} taxa")
+
     # Perform search for each microbe
     for microbe in tqdm.tqdm(microbes, desc="Processing microbes"):
-        print(f"Starting search for microbe: {microbe}")
         if microbe not in microbes_traits_strain.keys():
-            microbe_rank = ncbi_taxa_ranks_df.set_index("NCBITaxon_ID")["Rank"].get(microbe, None)
-            print(microbe_rank)
+            microbe_rank = rank_lookup.get(microbe, None)
             # if microbe_rank not in ["phylum","class"] and microbe != "NCBITaxon:1280" and microbe != "NCBITaxon:1763":
             # if (microbe_rank in ["phylum","class"] or microbe == "NCBITaxon:1763" or microbe == "NCBITaxon:1280") and microbe != "NCBITaxon:1224" and microbe != "NCBITaxon:1236" and microbe != "NCBITaxon:1239":
-            search_strains(conn_or_hierarchy, ncbi_taxa_ranks_df, microbe, microbes_traits_strain[microbe], microbes_traits_species[microbe], use_hierarchy)
+            search_strains(conn_or_hierarchy, rank_lookup, microbe, microbes_traits_strain[microbe], microbes_traits_species[microbe], use_hierarchy)
             # else:
             #     microbes_traits_strain[microbe].extend([])
 

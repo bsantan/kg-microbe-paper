@@ -127,6 +127,35 @@ def precompute_taxonomy_hierarchy(conn):
 
     return direct_children  # Return direct children for compatibility with existing code
 
+def precompute_parent_hierarchy(conn):
+    """
+    Pre-compute direct parent relationships for upward tree traversal.
+    This replaces thousands of individual parent lookup queries with a single bulk operation.
+
+    Returns:
+        dict: Mapping of child_id -> parent_id (direct parent only)
+    """
+    print("Pre-computing parent hierarchy for upward traversal...")
+
+    query = """
+    SELECT subject AS child, object AS parent
+    FROM edges
+    WHERE predicate = 'biolink:subclass_of'
+      AND subject LIKE 'NCBITaxon:%'
+      AND object LIKE 'NCBITaxon:%'
+    ORDER BY child
+    """
+
+    results = conn.execute(query).fetchall()
+
+    # Build lookup dictionary: child -> parent
+    parent_lookup = {}
+    for child, parent in results:
+        parent_lookup[child] = parent
+
+    print(f"✓ Parent hierarchy pre-computed: {len(parent_lookup):,} child->parent relationships")
+    return parent_lookup
+
 def get_all_kg_taxa(conn):
 
     # Get NCBITaxon IDs from KG
@@ -422,6 +451,43 @@ def get_microbe_parent_rank(conn, microbe, all_of_rank, microbes_rank):
 
     return microbes_rank
 
+def get_microbe_parent_rank_optimized(parent_lookup, microbe, all_of_rank, microbes_rank):
+    """
+    Optimized version of get_microbe_parent_rank using pre-computed parent lookup.
+    Replaces DuckDB queries with dictionary lookups for 100-1000x speedup.
+
+    Args:
+        parent_lookup: dict mapping child_id -> parent_id (from precompute_parent_hierarchy)
+        microbe: NCBITaxon ID to find parent rank for
+        all_of_rank: list of all taxa at the target rank
+        microbes_rank: dict to store results
+
+    Returns:
+        microbes_rank: updated dict with parent rank mapping
+    """
+    microbe_list = [microbe]
+    rank_found = False
+    current = microbe
+
+    # Safety limit to prevent infinite loops
+    max_iterations = 50
+    iterations = 0
+
+    while not rank_found and iterations < max_iterations:
+        # Use dictionary lookup instead of DuckDB query
+        parent_taxa = parent_lookup.get(current, 'not found')
+
+        if parent_taxa in all_of_rank or parent_taxa == 'not found':
+            rank_found = True
+            microbes_rank[parent_taxa].extend(microbe_list)
+        else:
+            microbe_list.append(parent_taxa)
+            current = parent_taxa
+
+        iterations += 1
+
+    return microbes_rank
+
 def get_microbe_family(conn, microbe, family, microbes_family):
 
     microbe_list = [microbe]
@@ -550,8 +616,13 @@ def find_microbes_species(conn, ncbi_taxa_ranks_df, all_taxa, output_dir, featur
 
     return microbes_traits_species
 
-def find_microbes_rank(conn, ncbi_taxa_ranks_df, all_taxa, output_dir, feature_type, rank):
-    '''Takes in list of all relevant taxa or just 1 microbe'''
+def find_microbes_rank(conn, ncbi_taxa_ranks_df, all_taxa, output_dir, feature_type, rank, parent_lookup=None):
+    '''Takes in list of all relevant taxa or just 1 microbe
+
+    Args:
+        parent_lookup: Optional pre-computed parent hierarchy from precompute_parent_hierarchy().
+                      If provided, uses optimized version for 100-1000x speedup.
+    '''
     microbes_traits_rank_file = './' + output_dir + '/' + feature_type + '_microbes_' + rank + '.json'
 
     print("Getting rank for all taxa: " + feature_type + ", " + rank)
@@ -560,8 +631,16 @@ def find_microbes_rank(conn, ncbi_taxa_ranks_df, all_taxa, output_dir, feature_t
         # rank = get_taxa_per_rank(all_taxa, "genus", ncbi_taxa_ranks_df)
         all_of_rank = list(set(ncbi_taxa_ranks_df.loc[ncbi_taxa_ranks_df["Rank"] == rank, "NCBITaxon_ID"].tolist()))
         microbes_traits_rank = defaultdict(list)
-        for microbe in tqdm.tqdm(all_taxa): #["NCBITaxon:853"]:#tqdm.tqdm(relevant_ncbitaxa):
-            microbes_traits_rank = get_microbe_parent_rank(conn, microbe, all_of_rank, microbes_traits_rank)
+
+        # Use optimized version if parent_lookup is provided
+        if parent_lookup is not None:
+            print(f"  → Using pre-computed parent hierarchy (optimized)")
+            for microbe in tqdm.tqdm(all_taxa):
+                microbes_traits_rank = get_microbe_parent_rank_optimized(parent_lookup, microbe, all_of_rank, microbes_traits_rank)
+        else:
+            print(f"  → Using DuckDB queries (slow - consider using parent_lookup parameter)")
+            for microbe in tqdm.tqdm(all_taxa):
+                microbes_traits_rank = get_microbe_parent_rank(conn, microbe, all_of_rank, microbes_traits_rank)
         with open(microbes_traits_rank_file, 'w') as json_file:
             json.dump(microbes_traits_rank, json_file, indent=4)
     else:

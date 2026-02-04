@@ -6,8 +6,8 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=4
-#SBATCH --mem=32GB
-#SBATCH --time=01:00:00
+#SBATCH --mem=64GB
+#SBATCH --time=02:00:00
 #SBATCH --output=Classification_gold_standard_comparison_%j.out
 #SBATCH --error=Classification_gold_standard_comparison_%j.err
 
@@ -23,7 +23,7 @@ cd /global/cfs/cdirs/m4689/kg-microbe-paper/src
 # Run the script
 echo "Starting Classification_gold_standard_comparison.py at $(date)"
 echo "Running on node: $HOSTNAME"
-echo "Memory allocated: 32GB"
+echo "Memory allocated: 64GB"
 echo ""
 
 time python Classification_gold_standard_comparison.py

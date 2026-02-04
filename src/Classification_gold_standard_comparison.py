@@ -127,8 +127,9 @@ def main():
         disease_microbes_strains_butyrate_producers = []
 
         conn = duckdb.connect(":memory:")
-        duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv", "ncbitaxon_edges", ["subject", "predicate", "object"])
-        # duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical/merged-kg_edges.tsv", "ncbitaxon_edges", ["subject", "predicate", "object"])
+        # Table must be named "edges" for precompute_taxonomy_hierarchy() to work
+        duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv", "edges", ["subject", "predicate", "object"])
+        # duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
 
         microbes_strain_dict, microbes_species_dict = find_microbes_strain(conn, ncbi_taxa_ranks_df, disease_microbes, output_dir, "classification_butyrate_produces_" + disease_name)
 

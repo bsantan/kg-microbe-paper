@@ -3,3 +3,6 @@
 .tmp
 
 src/Input_Files/kg-*
+# Documentation and notes directories (not tracked)
+docs/
+notes/

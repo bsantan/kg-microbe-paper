@@ -1,0 +1,12 @@
+Value	Rank	Genus	Family	Phylum	Location	Impt_Family
+NCBITaxon:1120921	strain	NCBITaxon:904	NCBITaxon:909930	NCBITaxon:1239	human	other
+NCBITaxon:1121323	strain	NCBITaxon:2039240	NCBITaxon:3118652	NCBITaxon:1239	human	other
+NCBITaxon:1121327	strain	NCBITaxon:2039240	NCBITaxon:3118652	NCBITaxon:1239	human	other
+NCBITaxon:1469948	species	NCBITaxon:2163168	NCBITaxon:186803	NCBITaxon:1239	human	impt_fam
+NCBITaxon:1628085	species	NCBITaxon:2048137	NCBITaxon:3085642	NCBITaxon:1239	human	other
+NCBITaxon:1945634	species	NCBITaxon:580596	NCBITaxon:3085642	NCBITaxon:1239	human	other
+NCBITaxon:1962263	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:332101	species	NCBITaxon:1485	NCBITaxon:31979	NCBITaxon:1239	human	other
+NCBITaxon:433287	species	NCBITaxon:2039240	NCBITaxon:3118652	NCBITaxon:1239	human	other
+NCBITaxon:991789	strain	NCBITaxon:2039240	NCBITaxon:3118652	NCBITaxon:1239	human	other
+NCBITaxon:1472416	species	NCBITaxon:574697	NCBITaxon:1853231	NCBITaxon:976	human	other

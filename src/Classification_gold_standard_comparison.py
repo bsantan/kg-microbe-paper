@@ -65,7 +65,7 @@ def main():
     print("Filtering edges to disease-relevant subset...")
     query = """
     SELECT subject, predicate, object
-    FROM read_csv_auto('./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv', delim='\t', null_padding=true)
+    FROM read_csv_auto('./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv', delim='\t', null_padding=true)
     WHERE (subject LIKE 'NCBITaxon:%' OR object LIKE 'NCBITaxon:%'
            OR subject LIKE 'MONDO:%' OR object LIKE 'MONDO:%')
       AND predicate IS NOT NULL
@@ -77,7 +77,7 @@ def main():
 
     # Load only necessary columns from nodes
     print("Loading nodes...")
-    data_nodes = pd.read_csv("./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv",
+    data_nodes = pd.read_csv("./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv",
                              header=0, sep="\t", usecols=['id', 'name'])
     print(f"✓ Loaded {len(data_nodes):,} nodes")
 
@@ -128,8 +128,8 @@ def main():
 
         conn = duckdb.connect(":memory:")
         # Table must be named "edges" for precompute_taxonomy_hierarchy() to work
-        duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv", "edges", ["subject", "predicate", "object"])
-        # duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
+        duckdb_load_table(conn, "./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv", "edges", ["subject", "predicate", "object"])
+        # duckdb_load_table(conn, "./data/Input_Files/kg-microbe-biomedical/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
 
         microbes_strain_dict, microbes_species_dict = find_microbes_strain(conn, ncbi_taxa_ranks_df, disease_microbes, output_dir, "classification_butyrate_produces_" + disease_name)
 

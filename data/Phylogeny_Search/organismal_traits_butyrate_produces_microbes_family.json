@@ -1,0 +1,54 @@
+{
+    "NCBITaxon:3085642": [
+        "NCBITaxon:1945634",
+        "NCBITaxon:580596",
+        "NCBITaxon:1628085",
+        "NCBITaxon:2048137"
+    ],
+    "NCBITaxon:31979": [
+        "NCBITaxon:332101",
+        "NCBITaxon:1485",
+        "NCBITaxon:217159",
+        "NCBITaxon:1485",
+        "NCBITaxon:1493",
+        "NCBITaxon:1485",
+        "NCBITaxon:1962263",
+        "NCBITaxon:1485"
+    ],
+    "NCBITaxon:909930": [
+        "NCBITaxon:1120921",
+        "NCBITaxon:187327",
+        "NCBITaxon:904"
+    ],
+    "NCBITaxon:3118652": [
+        "NCBITaxon:433287",
+        "NCBITaxon:2039240",
+        "NCBITaxon:991789",
+        "NCBITaxon:28446",
+        "NCBITaxon:2039240",
+        "NCBITaxon:1121323",
+        "NCBITaxon:160404",
+        "NCBITaxon:2039240",
+        "NCBITaxon:1121327",
+        "NCBITaxon:36847",
+        "NCBITaxon:2039240"
+    ],
+    "NCBITaxon:186803": [
+        "NCBITaxon:1469948",
+        "NCBITaxon:2163168"
+    ],
+    "NCBITaxon:186806": [
+        "NCBITaxon:887929",
+        "NCBITaxon:113287",
+        "NCBITaxon:113286"
+    ],
+    "NCBITaxon:1853231": [
+        "NCBITaxon:1472416",
+        "NCBITaxon:574697"
+    ],
+    "NCBITaxon:216572": [
+        "NCBITaxon:445972",
+        "NCBITaxon:169435",
+        "NCBITaxon:244127"
+    ]
+}

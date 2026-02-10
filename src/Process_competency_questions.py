@@ -19,9 +19,9 @@ def main():
             
             # print("Loading og relevant table.")
              
-            # duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv", "edges", ["subject", "predicate", "object"])
-            # duckdb_load_table(conn, "./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
-            #output_dir = "./Intermediate_Files_Competencies" + "/" + metabolite + "_" + direction
+            # duckdb_load_table(conn, "./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv", "edges", ["subject", "predicate", "object"])
+            # duckdb_load_table(conn, "./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
+            #output_dir = "./data/Intermediate_Files_Competencies" + "/" + metabolite + "_" + direction
             reaction_direction_dict = equilibrator_reaction_direction(c, metabolite,direction)
             genomic_ec_competency(metabolite, direction)
             metabolite_df, combined_competency_kg_summary_df = create_metabolite_competency_df(metabolite, direction, reaction_direction_dict)
@@ -72,7 +72,7 @@ def main():
     #     reactions = get_all_reactions(metabolite)
     #     predicted_direction_reactions_df = get_reactions_with_sig_chemicals(conn,chemicals_sig_df, reactions, metabolite, predicted_direction_reactions_df)
 
-    # predicted_direction_reactions_df.to_csv('./Intermediate_Files_Competencies/overlapping_direction_reactions_per_metabolite.tsv', sep='\t', index=False)
+    # predicted_direction_reactions_df.to_csv('./data/Intermediate_Files_Competencies/overlapping_direction_reactions_per_metabolite.tsv', sep='\t', index=False)
 
 
     # process_metabolite_competency_questions("butyrate")

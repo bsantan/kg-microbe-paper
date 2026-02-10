@@ -116,8 +116,8 @@ def remove_conflicting_directionality(data_pairs):
     num_unique_values = data_pairs['subject'].nunique()
     r = len(subjects_with_multiple_links)/num_unique_values
 
-    os.makedirs("./Intermediate_Files", exist_ok=True)
-    with open('./Intermediate_Files/Used_data_results.txt', 'w') as file:
+    os.makedirs("./data/Intermediate_Files", exist_ok=True)
+    with open('./data/Intermediate_Files/Used_data_results.txt', 'w') as file:
         file.write(f'Proportion of microbes both increased and decreased in IBD: {r}\n')
 
         #Remove bugs that are associated with both increased and decreased Crohns
@@ -445,7 +445,7 @@ def remove_duplicate_patterns(feature_table, input_dir, intermediate_files=False
     )
 
     if intermediate_files:
-        os.makedirs("Intermediate_Files", exist_ok=True)
+        os.makedirs("data/Intermediate_Files", exist_ok=True)
         # Write to CSV file
         retention_df.to_csv(input_dir + '/feature_table_duplicate_column_mapping.csv', index=False)
 

@@ -2,7 +2,43 @@
 .DS_Store
 .tmp
 
-src/Input_Files/kg-*
+# Python virtual environments
+venv/
+.venv/
+
+# uv
+uv.lock
+
+# Large downloaded/generated data files (exclude from git)
+data/Input_Files/*
+data/Input_Files/*/
+
+# Keep Gold Standard tracked (small reference file)
+!data/Input_Files/Gold_Standard_Species_Overlap_butyrate_produces.csv
+
+# Equilibrator cache
+data/Input_Files/equilibrator_cache/
+
+# Legacy paths (for backwards compatibility - these directories have been moved to data/)
+src/Input_Files/
+src/Intermediate_Files/
+src/Intermediate_Files_Competencies/
+src/Phylogeny_Search/
+/Input_Files/
+
+# Build artifacts
+src/.ipynb_checkpoints/
+*.egg-info/
+__pycache__/
+*.pyc
+
+# Temporary files
+tmp.json
+*.tar.gz
+
+# SLURM job logs
+logs/
+
 # Documentation and notes directories (not tracked)
 docs/
 notes/

@@ -1,0 +1,3 @@
+Proportion of microbes both increased and decreased in IBD: 0.07171314741035857
+Length before removing conflicting pairs: 269
+Length after removing conflicting pairs: 233

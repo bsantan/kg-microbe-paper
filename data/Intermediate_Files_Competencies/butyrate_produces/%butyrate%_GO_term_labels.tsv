@@ -1,0 +1,57 @@
+id	name
+GO:0036241	glutamate catabolic process to 4-hydroxybutyrate
+GO:0006540	gamma-aminobutyrate shunt
+GO:0045303	diaminobutyrate-2-oxoglutarate transaminase activity
+GO:0050526	poly(3-hydroxybutyrate) depolymerase activity
+GO:1902698	obsolete pentose catabolic process to butyrate
+GO:0030645	glucose catabolic process to butyrate
+GO:0044581	butyryl-CoA catabolic process to butyrate
+GO:0019672	ethanol-acetate fermentation to butyrate and caproate
+GO:0019605	butyrate metabolic process
+GO:0019606	2-oxobutyrate catabolic process
+GO:1902705	obsolete hexose catabolic process to butyrate
+GO:0034386	4-aminobutyrate:2-oxoglutarate transaminase activity
+GO:0034387	4-aminobutyrate:pyruvate transaminase activity
+GO:1903545	cellular response to butyrate
+GO:1903544	response to butyrate
+GO:0097253	beta-hydroxybutyrate transmembrane transporter activity
+GO:0010123	obsolete acetate catabolic process to butyrate, ethanol, acetone and butanol
+GO:0102722	obsolete gamma-hydroxybutyrate dehydrogenase activity (NAD(P)-dependent
+GO:0033816	diaminobutyrate acetyltransferase activity
+GO:0033983	diaminobutyrate decarboxylase activity
+GO:0033969	gamma-glutamyl-gamma-aminobutyrate hydrolase activity
+GO:0018491	2-oxobutyrate synthase activity
+GO:0018599	obsolete 2-hydroxyisobutyrate 3-monooxygenase activity
+GO:0102351	obsolete gamma-aminobutyrate transaminase (glyoxylate dependent) activity
+GO:0102317	4-methylaminobutyrate oxidase (demethylating) activity
+GO:0018794	obsolete 2-hydroxyisobutyrate decarboxylase activity
+GO:0043728	obsolete 2-keto-4-methylthiobutyrate aminotransferase activity
+GO:0043875	2-ketobutyrate formate-lyase activity
+GO:0018816	obsolete 2-hydroxyisobutyrate dehydratase activity
+GO:0043840	obsolete branched-chain amino acid:2-keto-4-methylthiobutyrate aminotransferase activity
+GO:0047573	4-acetamidobutyrate deacetylase activity
+GO:0047577	4-hydroxybutyrate dehydrogenase activity
+GO:0047760	obsolete butyrate-CoA ligase activity
+GO:0047761	butyrate kinase activity
+GO:0047989	hydroxybutyrate-dimer hydrolase activity
+GO:0008442	3-hydroxyisobutyrate dehydrogenase activity
+GO:0008411	4-hydroxybutyrate CoA-transferase activity
+GO:0033508	glutamate catabolic process to butyrate
+GO:0003858	3-hydroxybutyrate dehydrogenase activity
+GO:0003867	obsolete 4-aminobutyrate transaminase activity
+GO:0047027	benzyl-2-methyl-hydroxybutyrate dehydrogenase activity
+GO:0047371	butyrate-acetoacetate CoA-transferase activity
+GO:0047307	diaminobutyrate-pyruvate transaminase activity
+GO:0042619	poly-hydroxybutyrate biosynthetic process
+GO:0042618	poly-hydroxybutyrate metabolic process
+GO:0052638	indole-3-butyrate beta-glucosyltransferase activity
+GO:0062124	4-hydroxybutyrate receptor activity
+GO:1900502	positive regulation of butyryl-CoA catabolic process to butyrate
+GO:1900501	negative regulation of butyryl-CoA catabolic process to butyrate
+GO:1900500	regulation of butyryl-CoA catabolic process to butyrate
+GO:0046359	butyrate catabolic process
+GO:0046358	butyrate biosynthetic process
+GO:0046361	2-oxobutyrate metabolic process
+GO:0046360	2-oxobutyrate biosynthetic process
+GO:0046571	obsolete aspartate-2-keto-4-methylthiobutyrate transaminase activity
+GO:0032144	4-aminobutyrate transaminase complex

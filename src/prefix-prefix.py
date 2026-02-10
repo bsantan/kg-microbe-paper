@@ -7,7 +7,7 @@ from py4cytoscape import gen_node_color_map, gen_edge_color_map
 from py4cytoscape import palette_color_brewer_d_RdBu
 from tqdm import tqdm
 
-edges_file = "./Input_Files/kg-microbe-biomedical-function/merged-kg_edges.tsv"
+edges_file = "./data/kg-microbe-biomedical-function/merged-kg_edges.tsv"
 
 output_lines = []
 all_prefixes = []

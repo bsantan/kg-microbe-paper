@@ -38,3 +38,7 @@ tmp.json
 
 # SLURM job logs
 logs/
+
+# Documentation and notes directories (not tracked)
+docs/
+notes/

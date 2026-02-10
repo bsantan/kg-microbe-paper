@@ -21,12 +21,11 @@ def duckdb_load_table(con, file, table_name, columns):
     columns_str = ", ".join(columns)
 
     # Read the subset file into a DuckDB table
-    # Use ignore_errors=true to skip malformed lines with column count mismatches
     query = (
         f"""
     CREATE OR REPLACE TABLE {table_name} AS
     SELECT {columns_str}
-    FROM read_csv_auto('{file}', delim='\t', ignore_errors=true);
+    FROM read_csv_auto('{file}', delim='\t', null_padding=true);
     """
     )
 

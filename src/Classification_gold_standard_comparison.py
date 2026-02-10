@@ -49,13 +49,41 @@ def combine_labels(taxonomic_labels_counts, keep_label, new_label):
 
 def main():
 
-    # feature_table = pd.read_csv("./data/Intermediate_Files_func/feature_table.csv", index_col="subject")
+    # feature_table = pd.read_csv("./Intermediate_Files_func/feature_table.csv", index_col="subject")
     # disease_microbes = feature_table.index.unique().to_list()
 
-    data_edges = pd.read_csv("./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", header=0, sep="\t")
-    data_nodes = pd.read_csv("./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", header=0, sep="\t")
+    print("="*80)
+    print("MEMORY OPTIMIZATION: Using DuckDB to filter data before loading into pandas")
+    print("This prevents loading 150M+ rows into memory")
+    print("="*80)
 
-    output_dir = "./data/Intermediate_Files"
+    # Use DuckDB to filter edges before loading into pandas (massive memory savings)
+    conn_filter = duckdb.connect(":memory:")
+
+    # Only load edges that involve NCBITaxon or disease (MONDO) entities
+    # This reduces ~150M rows to ~few thousand rows before pandas loading
+    print("Filtering edges to disease-relevant subset...")
+    query = """
+    SELECT subject, predicate, object
+    FROM read_csv_auto('./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv', delim='\t', null_padding=true)
+    WHERE (subject LIKE 'NCBITaxon:%' OR object LIKE 'NCBITaxon:%'
+           OR subject LIKE 'MONDO:%' OR object LIKE 'MONDO:%')
+      AND predicate IS NOT NULL
+      AND subject IS NOT NULL
+      AND object IS NOT NULL
+    """
+    data_edges = conn_filter.execute(query).df()
+    print(f"✓ Loaded {len(data_edges):,} filtered edges (instead of full 150M+ rows)")
+
+    # Load only necessary columns from nodes
+    print("Loading nodes...")
+    data_nodes = pd.read_csv("./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv",
+                             header=0, sep="\t", usecols=['id', 'name'])
+    print(f"✓ Loaded {len(data_nodes):,} nodes")
+
+    conn_filter.close()
+
+    output_dir = "./Intermediate_Files"
 
     original_taxon_labels_counts = []
     original_taxon_labels = []
@@ -73,7 +101,7 @@ def main():
         disease_microbes = disease_microbes_df["subject"].unique().tolist()
         
         # Get all bugs that are in disbiome disease set and gold standard analysis (butyrate produces)
-        butyrate_production_output_dir = "./data/Intermediate_Files_Competencies/butyrate_produces"
+        butyrate_production_output_dir = "./Intermediate_Files_Competencies/butyrate_produces"
 
         # Get all microbes annotated to butyrate production in KG using Vital et al analysis file
         gs_analysis_microbes_file = butyrate_production_output_dir + '/Gold_Standard_Species_Overlap_butyrate_produces.csv'
@@ -83,8 +111,11 @@ def main():
         gs_analysis_disease_overlap = set(kg_analysis_microbes) & set(disease_microbes)
         print(len(gs_analysis_disease_overlap))
 
-        phylogeny_output_dir = "./data/Phylogeny_Search"
+        phylogeny_output_dir = "./Phylogeny_Search"
         ncbi_taxa_ranks_df = get_all_ranks(phylogeny_output_dir)
+
+        # Pre-compute rank lookup to avoid repeated DataFrame indexing (performance optimization)
+        rank_lookup = ncbi_taxa_ranks_df.set_index("NCBITaxon_ID")["Rank"].to_dict()
 
         disease_microbes_ranks = []
         disease_microbes_disease_relationship = []
@@ -96,15 +127,16 @@ def main():
         disease_microbes_strains_butyrate_producers = []
 
         conn = duckdb.connect(":memory:")
-        duckdb_load_table(conn, "./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv", "ncbitaxon_edges", ["subject", "predicate", "object"])
-        # duckdb_load_table(conn, "./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", "ncbitaxon_edges", ["subject", "predicate", "object"])
+        # Table must be named "edges" for precompute_taxonomy_hierarchy() to work
+        duckdb_load_table(conn, "./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv", "edges", ["subject", "predicate", "object"])
+        # duckdb_load_table(conn, "./data/Input_Files/kg-microbe-biomedical/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
 
         microbes_strain_dict, microbes_species_dict = find_microbes_strain(conn, ncbi_taxa_ranks_df, disease_microbes, output_dir, "classification_butyrate_produces_" + disease_name)
 
         for microbe in disease_microbes: #["NCBITaxon:853"]:#tqdm.tqdm(relevant_ncbitaxa):
             ibd_relationship = disease_microbes_df.loc[disease_microbes_df["subject"] == microbe, "object"].values[0]
             disease_microbes_disease_relationship.append(ibd_relationship)
-            microbe_rank = ncbi_taxa_ranks_df.set_index("NCBITaxon_ID")["Rank"].get(microbe, "not_found")
+            microbe_rank = rank_lookup.get(microbe, "not_found")
             disease_microbes_ranks.append(microbe_rank)
             # # Search traits from only children
             # children = search_lower_subclass_phylogeny(conn, microbe)

@@ -16,7 +16,7 @@ import tqdm
 from duckdb_utils import duckdb_load_table, get_node_label
 from Competencies import convert_to_species
 from constants import ALL_DIRECTIONS, ALL_METABOLITES, GUT_FAMILIES_LIST, GUT_PHYLA_LIST
-from ncbi_phylogeny_search import find_microbes_family, find_microbes_phylum, find_microbes_rank, find_microbes_strain, get_all_ranks, get_ncbitaxon_with_uniprot, precompute_parent_hierarchy
+from ncbi_phylogeny_search import find_microbes_rank, find_microbes_strain, get_all_ranks, get_ncbitaxon_with_uniprot, precompute_parent_hierarchy
 
 import plotly.express as px
 import plotly.io as pio

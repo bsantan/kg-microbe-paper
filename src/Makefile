@@ -10,8 +10,8 @@ download_ontologies:
 	@if [ ! -f "Input_Files/ontologies.tar.gz" ]; then \
 		mkdir -p Input_Files && \
 		echo "Downloading ontologies.tar.gz..." && \
-		wget -nc -P Input_Files https://github.com/Knowledge-Graph-Hub/kg-microbe/releases/download/2025-03-07/ontologies.tar.gz || \
-		echo "Warning: Could not download ontologies.tar.gz"; \
+		(wget -nc -P Input_Files https://github.com/Knowledge-Graph-Hub/kg-microbe/releases/download/2025-03-07/ontologies.tar.gz || \
+		(echo "Error: Could not download ontologies.tar.gz" && exit 1)); \
 	else \
 		echo "ontologies.tar.gz already exists"; \
 	fi
@@ -33,15 +33,18 @@ extract_ncbitaxon:
 	fi
 
 # Restore Vital et al. gold standard file from git history
+# Note: This depends on git history being available (fails in shallow clones/archives)
 restore_vital_file:
 	@echo "Checking for Vital et al. gold standard file..."
 	@if [ ! -f "Input_Files/Vital_etal_butyrate+producing_microbes.csv" ]; then \
 		mkdir -p Input_Files && \
 		echo "Restoring Vital_etal_butyrate_producing_microbes.csv from git history..." && \
-		git show f760bf0:src/Input_Files/Vital_etal_butyrate_producing_microbes.csv > Input_Files/Vital_etal_butyrate_producing_microbes.csv 2>/dev/null && \
+		(git show f760bf0:src/Input_Files/Vital_etal_butyrate_producing_microbes.csv > Input_Files/Vital_etal_butyrate_producing_microbes.csv 2>/dev/null && \
 		cp Input_Files/Vital_etal_butyrate_producing_microbes.csv Input_Files/Vital_etal_butyrate+producing_microbes.csv && \
-		echo "Vital et al. file restored" || \
-		echo "Warning: Could not restore Vital et al. file from git history"; \
+		echo "Vital et al. file restored") || \
+		(echo "Error: Could not restore Vital et al. file from git history (commit f760bf0 not available)" && \
+		 echo "This may fail in shallow clones or source archives. Consider sourcing from release artifacts." && \
+		 exit 1); \
 	else \
 		echo "Vital et al. file already exists"; \
 	fi

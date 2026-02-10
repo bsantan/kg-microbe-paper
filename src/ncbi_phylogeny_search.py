@@ -1,4 +1,4 @@
-from collections import Counter
+from collections import Counter, defaultdict
 import json
 import duckdb
 from matplotlib import pyplot as plt
@@ -264,6 +264,9 @@ def search_strains(conn_or_hierarchy, rank_lookup, microbe, strains_found, speci
     else:
         # Legacy: query DuckDB
         child_taxa = search_lower_subclass_phylogeny(conn_or_hierarchy, microbe)
+        # Normalize legacy lookup failures to avoid iterating over 'not found' string
+        if child_taxa == 'not found' or child_taxa is None:
+            child_taxa = []
 
     for child in child_taxa:
         # Check if the child is a strain (using pre-computed rank lookup)
@@ -489,6 +492,12 @@ def get_microbe_parent_rank_optimized(parent_lookup, microbe, all_of_rank, micro
             current = parent_taxa
 
         iterations += 1
+
+    # If max_iterations hit without finding rank, record as 'not found' and warn
+    if not rank_found:
+        import warnings
+        warnings.warn(f"Max iterations ({max_iterations}) reached for {microbe} without finding rank. Possible taxonomy cycle or deep hierarchy.")
+        microbes_rank['not found'].extend(microbe_list)
 
     return microbes_rank
 

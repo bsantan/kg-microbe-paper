@@ -83,7 +83,7 @@ def main():
 
     conn_filter.close()
 
-    output_dir = "./Intermediate_Files"
+    output_dir = "./data/Intermediate_Files"
 
     original_taxon_labels_counts = []
     original_taxon_labels = []
@@ -101,7 +101,7 @@ def main():
         disease_microbes = disease_microbes_df["subject"].unique().tolist()
         
         # Get all bugs that are in disbiome disease set and gold standard analysis (butyrate produces)
-        butyrate_production_output_dir = "./Intermediate_Files_Competencies/butyrate_produces"
+        butyrate_production_output_dir = "./data/Intermediate_Files_Competencies/butyrate_produces"
 
         # Get all microbes annotated to butyrate production in KG using Vital et al analysis file
         gs_analysis_microbes_file = butyrate_production_output_dir + '/Gold_Standard_Species_Overlap_butyrate_produces.csv'
@@ -111,7 +111,7 @@ def main():
         gs_analysis_disease_overlap = set(kg_analysis_microbes) & set(disease_microbes)
         print(len(gs_analysis_disease_overlap))
 
-        phylogeny_output_dir = "./Phylogeny_Search"
+        phylogeny_output_dir = "./data/Phylogeny_Search"
         ncbi_taxa_ranks_df = get_all_ranks(phylogeny_output_dir)
 
         # Pre-compute rank lookup to avoid repeated DataFrame indexing (performance optimization)

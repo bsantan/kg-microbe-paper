@@ -536,30 +536,16 @@ def get_microbe_phylum(conn, microbe, phyla, microbes_phyla):
     return microbes_phyla
 
 def create_species_strains_dictionary(output_dir):
-
-    microbes_traits_strain = defaultdict(list)
-    # To also keep track of species if strains are not found
-    microbes_traits_species = defaultdict(list)
-
-    dictionary_map = {
-        "_microbes_strain.json" : microbes_traits_strain,
-        "_microbes_species.json" : microbes_traits_species
-    }
-
-    for file_substring, dic in dictionary_map.items():
-        for root, _, files in os.walk(output_dir):
-            for file in files:
-                if file_substring in file:
-                    filepath = os.path.join(root, file)
-                    with open(filepath, 'r') as f:
-                        try:
-                            data = json.load(f)  # Load JSON data
-                            for key, value in data.items():
-                                dic[key].extend(value if isinstance(value, list) else [value])
-                        except json.JSONDecodeError as e:
-                            print(f"Error reading {filepath}: {e}")
-
-    return microbes_traits_strain, microbes_traits_species
+    # Why: The previous implementation walked output_dir for any file whose
+    # name contained '_microbes_strain.json' / '_microbes_species.json' and
+    # extended the dicts with their contents. That substring match pulled in
+    # unrelated competency runs (e.g. competencies_all_microbes_families_*),
+    # and find_all_strains then .extend()-ed onto already-populated lists,
+    # producing duplicate strain entries that inflated downstream chi-square
+    # totals 2-5×. The caller (find_microbes_strain) already short-circuits
+    # on the specific feature_type file at line 573, so per-feature caching
+    # is handled there — this function only needs to seed empty containers.
+    return defaultdict(list), defaultdict(list)
 
 def find_microbes_strain(conn, ncbi_taxa_ranks_df, all_taxa, output_dir, feature_type):
     '''Takes in list of all relevant taxa or just 1 microbe'''

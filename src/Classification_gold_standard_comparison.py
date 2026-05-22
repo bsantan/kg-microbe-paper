@@ -29,7 +29,7 @@ def get_disease_pairs(output_dir, data_edges, data_nodes, disease_id,disease_nam
 
     print("len original")
     print(len(data_subset))
-    data_pairs_cleaned = remove_conflicting_directionality(data_subset)
+    data_pairs_cleaned = remove_conflicting_directionality(data_subset, disease_name=disease_name)
     # 239 bugs leftover after this for IBD
 
     print(len(data_pairs_cleaned))

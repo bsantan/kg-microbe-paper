@@ -1,0 +1,13 @@
+File	Current_Size	NERSC_Size	Size_Diff	Path_Changes	Logic_Changes	Comment_Changes	Category	Impact_Level	Key_Changes
+src/Classification_gold_standard_comparison.py	14092.0	14013.0	79.0	15	1	0	Path updates	Medium	Updated paths to data/, KG version change to biomedical-function-cat
+src/Gold_standard_Competency_analysis.py	21070.0	21035.0	35.0	12	2	0	Path updates	Medium	Path updates to data/ directories
+src/Process_competency_questions.py	4950.0	4930.0	20.0	8	0	0	Path updates	Low	Path updates to data/ directories
+src/Competencies.py	96371.0	95312.0	1059.0	85	22	0	Path updates	High	Path updates to data/ directories
+src/constants.py	4210.0	4153.0	57.0	2	3	0	Logic changes	Medium	Gold standard path update; new taxonomy name replacement
+src/duckdb_utils.py	7204.0	7102.0	102.0	0	3	0	Logic changes	Medium	Minor updates
+src/ncbi_phylogeny_search.py	33429.0	33388.0	41.0	7	7	0	Logic changes	High	Path to data/
+src/classification.py	6438.0	6412.0	26.0	14	0	0	Path updates	Low	Path updates to data/ directories
+src/classification_utils.py	44632.0	44617.0	15.0	6	0	0	Path updates	Low	Path updates to data/ directories
+src/classification_permutations.py	9921.0	9840.0	81.0	16	0	0	Path updates	Low	Path updates to data/ directories
+src/Functional_Annotations.py	2841.0	2828.0	13.0	10	0	0	Path updates	Low	Path to data/
+src/Functional_Annotations_EC.py	3567.0	3566.0	1.0	10	0	0	Path updates	Low	Path to data/

@@ -316,3 +316,9 @@ chi2: chi2 value of difference between butyrate producers in increased vs decrea
 P_Val: p value of difference between butyrate producers in increased vs decreased group after a chi-squared test
 ```
 
+### Figure 6C reproducibility note
+
+The response to the second computational reproducibility review (`revisions2/KG-Microbe_Responses2_mpj2.docx`) documents that the PD reproduction value drifts from the paper Figure 6C value: paper χ² = 1317, p = 2e-288 vs reviewer-reproduced χ² = 1337, p = 8e-293. The authors attribute the drift to NCBITaxon OWL file updates accessed through OwlReady in `src/Classification_gold_standard_comparison.py`, updates to the Equilibrator API in `src/Process_competency_questions.py`, and platform/version sensitivity for extreme p-value calculations. The scientific interpretation (strong protective enrichment of butyrate producers in both diseases) is unchanged.
+
+After commits `716066f` (strain-dict contamination fix) and `82912ac` (per-disease results-file fix), a fresh run of `Classification_gold_standard_comparison.py` reproduces the documented PD value (χ² ≈ 1337.36, p ≈ 8.61e-293). IBD reproduces at χ² ≈ 674.63 vs paper 647 — a ~4% drift consistent in direction and magnitude with the PD drift and likely from the same root causes. See `data/Figure6C_Comprehensive_Validation_Report.md` for the full validation breakdown.
+

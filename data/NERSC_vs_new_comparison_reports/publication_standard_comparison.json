@@ -1,0 +1,128 @@
+{
+  "IBD": {
+    "current": {
+      "status": "DIFFERS",
+      "message": "Repository data differs from publication standard",
+      "comparisons": {
+        "total_microbes": {
+          "standard": 54952,
+          "repository": 10800,
+          "match": false,
+          "difference": -44152,
+          "percent_diff": -80.34648420439656
+        },
+        "increased_total": {
+          "standard": 15398,
+          "repository": 7764,
+          "match": false,
+          "difference": -7634,
+          "percent_diff": -49.577867255487725
+        },
+        "decreased_total": {
+          "standard": 39554,
+          "repository": 3036,
+          "match": false,
+          "difference": -36518,
+          "percent_diff": -92.32441725236386
+        },
+        "increased_butyrate": {
+          "standard": 514,
+          "repository": 186,
+          "match": false,
+          "difference": -328,
+          "percent_diff": -63.81322957198443
+        },
+        "decreased_butyrate": {
+          "standard": 221,
+          "repository": 478,
+          "match": false,
+          "difference": 257,
+          "percent_diff": 116.28959276018101
+        },
+        "chi2": {
+          "standard": 647,
+          "repository": 671.6827574772602,
+          "match": false,
+          "difference": 24.682757477260225,
+          "percent_diff": 3.8149547878300196
+        },
+        "pvalue": {
+          "standard": 1e-142,
+          "repository": 4.301859210585492e-148,
+          "match": false,
+          "difference": null,
+          "percent_diff": null
+        }
+      },
+      "source": "data/Intermediate_Files/IBD_Classification_butyrate_producers_summary.csv"
+    },
+    "nersc": {
+      "status": "MISSING",
+      "message": "No data found in repository",
+      "differences": {}
+    }
+  },
+  "PD": {
+    "current": {
+      "status": "DIFFERS",
+      "message": "Repository data differs from publication standard",
+      "comparisons": {
+        "total_microbes": {
+          "standard": 25521,
+          "repository": 8641,
+          "match": false,
+          "difference": -16880,
+          "percent_diff": -66.14160887112574
+        },
+        "increased_total": {
+          "standard": 2990,
+          "repository": 7401,
+          "match": false,
+          "difference": 4411,
+          "percent_diff": 147.52508361204013
+        },
+        "decreased_total": {
+          "standard": 22531,
+          "repository": 1240,
+          "match": false,
+          "difference": -21291,
+          "percent_diff": -94.49647152811681
+        },
+        "increased_butyrate": {
+          "standard": 299,
+          "repository": 150,
+          "match": false,
+          "difference": -149,
+          "percent_diff": -49.83277591973244
+        },
+        "decreased_butyrate": {
+          "standard": 152,
+          "repository": 302,
+          "match": false,
+          "difference": 150,
+          "percent_diff": 98.68421052631578
+        },
+        "chi2": {
+          "standard": 1317,
+          "repository": 1063.5953362765647,
+          "match": false,
+          "difference": -253.4046637234353,
+          "percent_diff": -19.241052674520525
+        },
+        "pvalue": {
+          "standard": 2e-288,
+          "repository": 2.699925100350924e-233,
+          "match": false,
+          "difference": null,
+          "percent_diff": null
+        }
+      },
+      "source": "data/Intermediate_Files/PD_Classification_butyrate_producers_summary.csv"
+    },
+    "nersc": {
+      "status": "MISSING",
+      "message": "No data found in repository",
+      "differences": {}
+    }
+  }
+}

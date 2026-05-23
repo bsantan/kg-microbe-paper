@@ -1,0 +1,441 @@
+file	lines_changed	diff_preview
+src/Classification_gold_standard_comparison.py	16	"--- /Users/marcin/Documents/VIMSS/ontology/KG-Hub/KG-Microbe/paper_KGM/kg-microbe-paper_NERSC/kg-microbe-paper/src/Classification_gold_standard_comparison.py	2025-01-20 13:26:51
++++ /Users/marcin/Documents/VIMSS/ontology/KG-Hub/KG-Microbe/paper_KGM/kg-microbe-paper/src/Classification_gold_standard_comparison.py	2026-01-03 23:53:27
+@@ -49,13 +49,13 @@
+ 
+ def main():
+ 
+-    # feature_table = pd.read_csv(""./Intermediate_Files_func/feature_table.csv"", index_col=""subject"")
++    # feature_table = pd.read_csv(""./data/Intermediate_Files_func/feature_table.csv"", index_col=""subject"")
+     # disease_microbes = feature_table.index.unique().to_list()
+ 
+-    data_edges = pd.read_csv(""./Input_Files/kg-microbe-biomedical/merged-kg_edges.tsv"", header=0, sep=""\t"")
+-    data_nodes = pd.read_csv(""./Input_Files/kg-microbe-biomedical/merged-kg_nodes.tsv"", header=0, sep=""\t"")
++    data_edges = pd.read_csv(""./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv"", header=0, sep=""\t"")
++    data_nodes = pd.read_csv(""./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv"", header=0, sep=""\t"")
+ 
+-    output_dir = ""./Intermediate_Files""
++    output_dir = ""./data/Intermediate_Files""
+ 
+     original_taxon_labels_counts = []
+     original_taxon_labels = []
+@@ -73,7 +73,7 @@
+         disease_microbes = disease_microbes_df[""subject""].unique().tolist()
+         
+         # Get all bugs that are in disbiome disease set and gold standard analysis (butyrate produces)
+-        butyrate_production_output_dir = ""./Intermediate_Files_Competencies/butyrate_produces""
++        butyrate_production_output_dir = ""./data/Intermediate_Files_Competencies/butyrate_produces""
+ 
+         # Get all microbes annotated to butyrate production in KG using Vital et al analysis file
+         gs_analysis_microbes_file = butyrate_production_output_dir + '/Gold_Standard_Species_Overlap_butyrate_produces.csv'
+@@ -83,7 +83,7 @@
+         gs_analysis_disease_overlap = set(kg_analysis_microbes) & set(disease_microbes)
+         print(len(gs_analysis_disease_overlap))
+ 
+-        phylogeny_output_dir = ""./Phylogeny_Search""
++        phylogeny_output_dir = ""./data/Phylogeny_Search""
+         ncbi_taxa_ranks_df = get_all_ranks(phylogeny_output_dir)
+ 
+         disease_microbes_ranks = []
+@@ -96,8 +96,8 @@
+         disease_microbes_strains_butyrate_producers = []
+ 
+         conn = duckdb.connect("":memory:"")
+-        duckdb_load_table(conn, ""./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv"", ""ncbitaxon_edges"", [""subject"", ""predicate"", ""object""])
+-        # duckdb_load_table(conn, ""./Input_Files/kg-microbe-biomedical/merged-kg_edges.tsv"", ""ncbitaxon_edges"", [""subject"", ""predicate"", ""object""])
++        duckdb_load_table(conn, ""./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv"", ""ncbitaxon_edges"", [""subject"", ""predicate"", ""object""])
++        # duckdb_load_table(conn, ""./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv"", ""ncbitaxon_edges"", [""subject"", ""predicate"", ""object""])
+ 
+         microbes_strain_dict, microbes_species_dict = find_microbes_strain(conn, ncbi_taxa_ranks_df, disease_microbes, output_dir, ""classification_butyrate_produces_"" + disease_name)
+ 
+"
+src/Gold_standard_Competency_analysis.py	14	"--- /Users/marcin/Documents/VIMSS/ontology/KG-Hub/KG-Microbe/paper_KGM/kg-microbe-paper_NERSC/kg-microbe-paper/src/Gold_standard_Competency_analysis.py	2025-02-06 14:12:48
++++ /Users/marcin/Documents/VIMSS/ontology/KG-Hub/KG-Microbe/paper_KGM/kg-microbe-paper/src/Gold_standard_Competency_analysis.py	2026-01-03 23:53:27
+@@ -280,17 +280,17 @@
+ 
+     for direction in ALL_DIRECTIONS:
+         for metabolite in ALL_METABOLITES:
+-            metab_direction_output_dir = ""./Intermediate_Files_Competencies/"" + metabolite + ""_"" + direction
++            metab_direction_output_dir = ""./data/Intermediate_Files_Competencies/"" + metabolite + ""_"" + direction
+ 
+             gs_analysis_microbes_file = metab_direction_output_dir + '/Gold_Standard_Species_Overlap_'+ metabolite + ""_"" + direction + '.csv'
+             gs_analysis_microbes_df = pd.read_csv(gs_analysis_microbes_file)
+             
+-            phylogeny_output_dir = ""./Phylogeny_Search""
++            phylogeny_output_dir = ""./data/Phylogeny_Search""
+             ncbi_taxa_ranks_df = get_all_ranks(phylogeny_output_dir)
+ 
+             conn = duckdb.connect("":memory:"")
+-            duckdb_load_table(conn, ""./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv"", ""edges"", [""subject"", ""predicate"", ""object""])
+-            duckdb_load_table(conn, ""./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv"", ""nodes"", [""id"", ""name""])
++            duckdb_load_table(conn, ""./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv"", ""edges"", [""subject"", ""predicate"", ""object""])
++            duckdb_load_table(conn, ""./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv"", ""nodes"", [""id"", ""name""])
+ 
+             # First create list of colors that will be used in every treemap to align family boxes
+             all_microbes_list = gs_analysis_microbes_df[""Value""].unique().tolist()
+@@ -309,13 +309,13 @@
+             genera_list = sorted(genera_list)
+ 
+             # Get all species & strains from each family found
+-            microbes_strain_dict, microbes_species_dict = find_microbes_strain(conn, ncbi_taxa_ranks_df, families_list, ""./Intermediate_Files"", ""competencies_all_microbes_families_""+ metabolite + ""_"" + direction)
++            microbes_strain_dict, microbes_species_dict = find_microbes_strain(conn, ncbi_taxa_ranks_df, families_list, ""./data/Intermediate_Files"", ""competencies_all_microbes_families_""+ metabolite + ""_"" + direction)
+ 
+             # Only include bugs that have a proteome in the graph
+-            ncbitaxon_func_ids = get_ncbitaxon_with_uniprot(conn, ""./Phylogeny_Search"")
++            ncbitaxon_func_ids = get_ncbitaxon_with_uniprot(conn, ""./data/Phylogeny_Search"")
+ 
+             # Combine species and strain dictionaries
+-            microbes_species_and_strain_dict = combine_microbes_dicts(microbes_species_dict, microbes_strain_dict, ""./Intermediate_Files"", ""competencies_all_microbes_families_""+ metabolite + ""_"" + direction + ""_microbes_strains_and_species.json"")
++            microbes_species_and_strain_dict = combine_microbes_dicts(microbes_species_dict, microbes_strain_dict, ""./data/Intermediate_Files"", ""competencies_all_microbes_families_""+ metabolite + ""_"" + direction + ""_microbes_strains_and_species.json"")
+             filtered_microbes_species_and_strain_dict = {
+                 key: [value for value in values if value in ncbitaxon_func_ids]
+                 for key, values in microbes_species_and_strain_dict.items()
+"
+src/Process_competency_questions.py	8	"--- /Users/marcin/Documents/VIMSS/ontology/KG-Hub/KG-Microbe/paper_KGM/kg-microbe-paper_NERSC/kg-microbe-paper/src/Process_competency_questions.py	2025-01-23 08:40:24
++++ /Users/marcin/Documents/VIMSS/ontology/KG-Hub/KG-Microbe/paper_KGM/kg-microbe-paper/src/Process_competency_questions.py	2026-01-03 23:53:27
+@@ -19,9 +19,9 @@
+             
+             # print(""Loading og relevant table."")
+              
+-            # duckdb_load_table(conn, ""./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv"", ""edges"", [""subject"", ""predicate"", ""object""])
+-            # duckdb_load_table(conn, ""./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv"", ""nodes"", [""id"", ""name""])
+-            #output_dir = ""./Intermediate_Files_Competencies"" + ""/"" + metabolite + ""_"" + direction
++            # duckdb_load_table(conn, ""./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv"", ""edges"", [""subject"", ""predicate"", ""object""])
++            # duckdb_load_table(conn, ""./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv"", ""nodes"", [""id"", ""name""])
++            #output_dir = ""./data/Intermediate_Files_Competencies"" + ""/"" + metabolite + ""_"" + direction
+             reaction_direction_dict = equilibrator_reaction_direction(c, metabolite,direction)
+             genomic_ec_competency(metabolite, direction)
+             metabolite_df, combined_competency_kg_summary_df = create_metabolite_competency_df(metabolite, direction, reaction_direction_dict)
+@@ -72,7 +72,7 @@
+     #     reactions = get_all_reactions(metabolite)
+     #     predicted_direction_reactions_df = get_reactions_with_sig_chemicals(conn,chemicals_sig_df, reactions, metabolite, predicted_direction_reactions_df)
+ 
+-    # predicted_direction_reactions_df.to_csv('./Intermediate_Files_Competencies/overlapping_direction_reactions_per_metabolite.tsv', sep='\t', index=False)
++    # predicted_direction_reactions_df.to_csv('./data/Intermediate_Files_Competencies/overlapping_direction_reactions_per_metabolite.tsv', sep='\t', index=False)
+ 
+ 
+     # process_metabolite_competency_questions(""butyrate"")
+"
+src/Competencies.py	107	"--- /Users/marcin/Documents/VIMSS/ontology/KG-Hub/KG-Microbe/paper_KGM/kg-microbe-paper_NERSC/kg-microbe-paper/src/Competencies.py	2025-04-05 07:17:34
++++ /Users/marcin/Documents/VIMSS/ontology/KG-Hub/KG-Microbe/paper_KGM/kg-microbe-paper/src/Competencies.py	2026-01-04 18:52:52
+@@ -23,6 +23,25 @@
+ from scipy.stats import binomtest
+ from statsmodels.stats.multitest import multipletests
+ 
++# Set equilibrator cache to data/Input_Files/ before importing
++# Must be set BEFORE any equilibrator/pooch imports
++equilibrator_cache_dir = os.path.abspath(""./data/Input_Files/equilibrator_cache"")
++os.makedirs(equilibrator_cache_dir, exist_ok=True)
++
++# equilibrator_cache uses appdirs.user_cache_dir(), so we need to monkey-patch it
++# Import appdirs and override user_cache_dir to return our custom path
++import appdirs
++_original_user_cache_dir = appdirs.user_cache_dir
++
++def _custom_user_cache_dir(appname=None, appauthor=None, version=None, opinion=True):
++    """"""Override appdirs.user_cache_dir to use our custom cache directory for equilibrator.""""""
++    if appname == ""equilibrator"":
++        return equilibrator_cache_dir
++    # Fall back to original for other apps
++    return _original_user_cache_dir(appname, appauthor, version, opinion)
++
++appdirs.user_cache_dir = _custom_user_cache_dir
++
+ from equilibrator_api import ComponentContribution, Q_
+ 
+ from ncbi_phylogeny_search import find_microbes_family, find_microbes_species, get_all_kg_taxa, get_all_ranks, get_ncbitaxon_with_uniprot, get_taxa_per_rank, load_graph
+@@ -30,7 +49,7 @@
+ 
+ def get_rhea_participants(metabolite):
+ 
+-    directory = ""./Intermediate_Files_Competencies/"" + metabolite
++    directory = ""./data/Intermediate_Files_Competencies/"" + metabolite
+     df = pd.read_csv(directory + ""/"" + RHEA_CHEBI_ANNOTATIONS_FILE + "".tsv"", sep = ""\t"")
+ 
+     rhea_ids = df[""rhea""].unique().tolist()
+@@ -41,8 +60,8 @@
+ 
+     print(""Loading full table."")
+ 
+-    duckdb_load_table(conn, ""./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv"", ""edges"", [""subject"", ""predicate"", ""object""])
+-    duckdb_load_table(conn, ""./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv"", ""nodes"", [""id"", ""name""])
++    duckdb_load_table(conn, ""./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv"", ""edges"", [""subject"", ""predicate"", ""object""])
++    duckdb_load_table(conn, ""./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv"", ""nodes"", [""id"", ""name""])
+ 
+     query = (
+         f""""""
+@@ -102,7 +121,7 @@
+ "
+src/constants.py	5	"--- /Users/marcin/Documents/VIMSS/ontology/KG-Hub/KG-Microbe/paper_KGM/kg-microbe-paper_NERSC/kg-microbe-paper/src/constants.py	2025-08-03 06:36:34
++++ /Users/marcin/Documents/VIMSS/ontology/KG-Hub/KG-Microbe/paper_KGM/kg-microbe-paper/src/constants.py	2026-01-03 23:53:27
+@@ -49,7 +49,7 @@
+     }
+ 
+ GOLD_STANDARD_FILES = {
+-    ""butyrate_produces"": ""Input_Files/Vital_etal_butyrate+producing_microbes.csv""
++    ""butyrate_produces"": ""data/Vital_etal_butyrate+producing_microbes.csv""
+ }
+ 
+ COMPETENCY_DISEASE_MAP = {
+\ No newline at end of file
+@@ -81,7 +81,8 @@
+     ""Eubacterium hallii"": ""Anaerobutyricum hallii"",
+     ""Tenericutes"": ""Mycoplasmatota"",
+     ""Bacteroidetes"": ""Bacteroidia"",
+-    ""unclassified Catabacteriaceae"": ""unclassified Christensenellaceae""
++    ""unclassified Catabacteriaceae"": ""unclassified Christensenellaceae"",
++    ""unclassified Clostridiales"": ""unclassified Eubacteriales""
+ }
+ 
+ ORGANISMAL_TRAITS_EDGES = [
+\ No newline at end of file
+"
+src/duckdb_utils.py	3	"--- /Users/marcin/Documents/VIMSS/ontology/KG-Hub/KG-Microbe/paper_KGM/kg-microbe-paper_NERSC/kg-microbe-paper/src/duckdb_utils.py	2025-08-03 06:36:34
++++ /Users/marcin/Documents/VIMSS/ontology/KG-Hub/KG-Microbe/paper_KGM/kg-microbe-paper/src/duckdb_utils.py	2026-01-03 23:53:27
+@@ -21,11 +21,12 @@
+     columns_str = "", "".join(columns)
+ 
+     # Read the subset file into a DuckDB table
++    # Use ignore_errors=true to skip malformed lines with column count mismatches
+     query = (
+         f""""""
+     CREATE OR REPLACE TABLE {table_name} AS
+     SELECT {columns_str}
+-    FROM read_csv_auto('{file}', delim='\t');
++    FROM read_csv_auto('{file}', delim='\t', ignore_errors=true);
+     """"""
+     )
+ 
+"
+src/ncbi_phylogeny_search.py	14	"--- /Users/marcin/Documents/VIMSS/ontology/KG-Hub/KG-Microbe/paper_KGM/kg-microbe-paper_NERSC/kg-microbe-paper/src/ncbi_phylogeny_search.py	2025-08-03 06:36:34
++++ /Users/marcin/Documents/VIMSS/ontology/KG-Hub/KG-Microbe/paper_KGM/kg-microbe-paper/src/ncbi_phylogeny_search.py	2026-01-03 23:53:27
+@@ -45,8 +45,8 @@
+ 
+     print(""Loading full table."")
+ 
+-    duckdb_load_table(conn, ""./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv"", ""edges"", [""subject"", ""predicate"", ""object""])
+-    duckdb_load_table(conn, ""./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv"", ""nodes"", [""id"", ""name""])
++    duckdb_load_table(conn, ""./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv"", ""edges"", [""subject"", ""predicate"", ""object""])
++    duckdb_load_table(conn, ""./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv"", ""nodes"", [""id"", ""name""])
+ 
+     return conn
+ 
+@@ -290,7 +290,7 @@
+     microbe_list = [microbe]
+     species_found = False
+     while not species_found:
+-        parent_taxa = search_subclass_phylogeny(conn, microbe)
++        parent_taxa = search_subclass_phylogeny_parent(conn, microbe)
+ 
+         if parent_taxa in species or parent_taxa == 'not found':
+             species_found = True
+@@ -324,7 +324,7 @@
+     microbe_list = [microbe]
+     family_found = False
+     while not family_found:
+-        parent_taxa = search_subclass_phylogeny(conn, microbe)
++        parent_taxa = search_subclass_phylogeny_parent(conn, microbe)
+ 
+         if parent_taxa in family or parent_taxa == 'not found':
+             family_found = True
+@@ -341,7 +341,7 @@
+     microbe_list = [microbe]
+     phyla_found = False
+     while not phyla_found:
+-        parent_taxa = search_subclass_phylogeny(conn, microbe)
++        parent_taxa = search_subclass_phylogeny_parent(conn, microbe)
+ 
+         if parent_taxa in phyla or parent_taxa == 'not found':
+             phyla_found = True
+@@ -596,7 +596,7 @@
+ def get_ncbitaxon_with_functional_annotation(conn, output_dir):
+ 
+     ncbitaxon_func_dict_file = output_dir + ""/ncbitaxon_func_dict.json""
+-    functional_mappings_df = pd.read_csv(""./Intermediate_Files/NCBITaxon_to_GO.tsv"", sep='\t',index_col=False)
++    functional_mappings_df = pd.read_csv(""./data/Intermediate_Files/NCBITaxon_to_GO.tsv"", sep='\t',index_col=False)
+ 
+     if not os.path.exists(ncbitaxon_func_dict_file):
+         ncbitaxon_func_dict = functional_mappings_df.groupby('GO')['NCBITaxon'].apply(lambda x: list(set(x))).to_dict()
+@@ -726,7 +726,7 @@"
+src/classification.py	14	"--- /Users/marcin/Documents/VIMSS/ontology/KG-Hub/KG-Microbe/paper_KGM/kg-microbe-paper_NERSC/kg-microbe-paper/src/classification.py	2025-01-20 13:26:51
++++ /Users/marcin/Documents/VIMSS/ontology/KG-Hub/KG-Microbe/paper_KGM/kg-microbe-paper/src/classification.py	2026-01-03 23:53:27
+@@ -18,9 +18,9 @@
+     # data_nodes = pd.read_csv(""/Users/brooksantangelo/Documents/LozuponeLab/FRMS_2024/duckdb/merged-kg_kg-microbe-host_subset/merged-kg_nodes.tsv"", header=0, sep=""\t"")
+     ###
+ 
+-    data_edges = pd.read_csv(""./Input_Files/kg-microbe-biomedical-function/merged-kg_edges.tsv"", header=0, sep=""\t"")
+-    data_nodes = pd.read_csv(""./Input_Files/kg-microbe-biomedical-function/merged-kg_nodes.tsv"", header=0, sep=""\t"")
+-    function_edges = pd.read_csv(""./Intermediate_Files/NCBITaxon_to_GO.tsv"", header=0, sep=""\t"")
++    data_edges = pd.read_csv(""./data/kg-microbe-biomedical-function/merged-kg_edges.tsv"", header=0, sep=""\t"")
++    data_nodes = pd.read_csv(""./data/kg-microbe-biomedical-function/merged-kg_nodes.tsv"", header=0, sep=""\t"")
++    function_edges = pd.read_csv(""./data/Intermediate_Files/NCBITaxon_to_GO.tsv"", header=0, sep=""\t"")
+ 
+     # Remove NaN rows
+     data_edges = data_edges[~data_edges['predicate'].apply(lambda x: isinstance(x, float))]
+@@ -68,15 +68,15 @@
+     print(len(data_pairs_cleaned))
+ 
+ 
+-    for input_dir in [""./Intermediate_Files_traits"",""./Intermediate_Files_traits_func"", ""./Intermediate_Files_func""]:
++    for input_dir in [""./data/Intermediate_Files_traits"",""./data/Intermediate_Files_traits_func"", ""./data/Intermediate_Files_func""]:
+ 
+         os.makedirs(input_dir, exist_ok=True)
+-        if input_dir == ""./Intermediate_Files_traits"" or input_dir == ""./Intermediate_Files_traits_func"":
++        if input_dir == ""./data/Intermediate_Files_traits"" or input_dir == ""./data/Intermediate_Files_traits_func"":
+             # To include traits in feature table
+             data_pairs_rest = concatenate_features(data_pairs, data_pairs_cleaned, ""NCBITaxon:"", ""MONDO:0005101"", input_dir, function_edges, True)
+ 
+             # To include func in feature table
+-            if input_dir == ""./Intermediate_Files_traits_func"":
++            if input_dir == ""./data/Intermediate_Files_traits_func"":
+                     data_pairs_rest = pd.concat([data_pairs_rest, function_edges], ignore_index=True)
+ 
+             # print(""orig len edges before isolation sources"")
+@@ -94,7 +94,7 @@
+             print(feature_table.columns)
+             print(feature_table.shape)
+ 
+-        elif input_dir == ""./Intermediate_Files_func"":
++        elif input_dir == ""./data/Intermediate_Files_func"":
+ 
+             # To include function only in feature table
+             function_edges['Value'] = 1
+"
+src/classification_utils.py	6	"--- /Users/marcin/Documents/VIMSS/ontology/KG-Hub/KG-Microbe/paper_KGM/kg-microbe-paper_NERSC/kg-microbe-paper/src/classification_utils.py	2025-01-20 13:26:51
++++ /Users/marcin/Documents/VIMSS/ontology/KG-Hub/KG-Microbe/paper_KGM/kg-microbe-paper/src/classification_utils.py	2026-01-04 18:54:50
+@@ -116,8 +116,8 @@
+     num_unique_values = data_pairs['subject'].nunique()
+     r = len(subjects_with_multiple_links)/num_unique_values
+ 
+-    os.makedirs(""./Intermediate_Files"", exist_ok=True)
+-    with open('./Intermediate_Files/Used_data_results.txt', 'w') as file:
++    os.makedirs(""./data/Intermediate_Files"", exist_ok=True)
++    with open('./data/Intermediate_Files/Used_data_results.txt', 'w') as file:
+         file.write(f'Proportion of microbes both increased and decreased in IBD: {r}\n')
+ 
+         #Remove bugs that are associated with both increased and decreased Crohns
+@@ -445,7 +445,7 @@
+     )
+ 
+     if intermediate_files:
+-        os.makedirs(""Intermediate_Files"", exist_ok=True)
++        os.makedirs(""data/Intermediate_Files"", exist_ok=True)
+         # Write to CSV file
+         retention_df.to_csv(input_dir + '/feature_table_duplicate_column_mapping.csv', index=False)
+ 
+"
+src/classification_permutations.py	16	"--- /Users/marcin/Documents/VIMSS/ontology/KG-Hub/KG-Microbe/paper_KGM/kg-microbe-paper_NERSC/kg-microbe-paper/src/classification_permutations.py	2025-01-20 13:26:51
++++ /Users/marcin/Documents/VIMSS/ontology/KG-Hub/KG-Microbe/paper_KGM/kg-microbe-paper/src/classification_permutations.py	2026-01-03 23:53:27
+@@ -29,9 +29,9 @@
+ 
+     NUMBER_PERMUTATIONS = 100
+ 
+-    data_edges = pd.read_csv(""./Input_Files/kg-microbe-biomedical/merged-kg_edges.tsv"", header=0, sep=""\t"")
+-    data_nodes = pd.read_csv(""./Input_Files/kg-microbe-biomedical/merged-kg_nodes.tsv"", header=0, sep=""\t"")
+-    # function_edges = pd.read_csv(""./Intermediate_Files/NCBITaxon_to_GO.tsv"", header=0, sep=""\t"")
++    data_edges = pd.read_csv(""./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv"", header=0, sep=""\t"")
++    data_nodes = pd.read_csv(""./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv"", header=0, sep=""\t"")
++    # function_edges = pd.read_csv(""./data/Intermediate_Files/NCBITaxon_to_GO.tsv"", header=0, sep=""\t"")
+ 
+     # Remove NaN rows
+     data_edges = data_edges[~data_edges['predicate'].apply(lambda x: isinstance(x, float))]
+@@ -70,7 +70,7 @@
+     #     axis=1 
+     # )
+ 
+-    generic_input_dir = ""./Intermediate_Files""
++    generic_input_dir = ""./data/Intermediate_Files""
+     
+     # Target Class
+     data_subset = subset_by_features(generic_input_dir, data_pairs, ""NCBITaxon:"", True, ""MONDO:0005011"", ""MONDO:0005265"", ""MONDO:0005101"")
+@@ -88,15 +88,15 @@
+     data_pairs_cleaned.to_csv(generic_input_dir + ""/outcome_to_NCBITaxon_cleaned.tsv"", sep=""\t"", header=True, index=False)
+ 
+ 
+-    for input_dir in [""./Intermediate_Files_traits""]:#,""./Intermediate_Files_traits_func"", ""./Intermediate_Files_func""]:
++    for input_dir in [""./data/Intermediate_Files_traits""]:#,""./data/Intermediate_Files_traits_func"", ""./data/Intermediate_Files_func""]:
+ 
+         os.makedirs(input_dir, exist_ok=True)
+-        if input_dir == ""./Intermediate_Files_traits"" or input_dir == ""./Intermediate_Files_traits_func"":
++        if input_dir == ""./data/Intermediate_Files_traits"" or input_dir == ""./data/Intermediate_Files_traits_func"":
+             # To include traits in feature table
+             data_pairs_rest = concatenate_features(data_pairs, data_pairs_cleaned, ""NCBITaxon:"", ""MONDO:0005101"", input_dir, None, True)
+ 
+             # To include func in feature table
+-            if input_dir == ""./Intermediate_Files_traits_func"":
++            if input_dir == ""./data/Intermediate_Files_traits_func"":
+                     data_pairs_rest = pd.concat([data_pairs_rest, function_edges], ignore_index=True)
+ 
+             # print(""orig len edges before isolation sources"")
+@@ -111,7 +111,7 @@
+ 
+             feature_table = create_feature_table(data_pairs_rest, data_pairs_cleaned, ""MONDO:0005101"", input_dir, True)
+ 
+-        elif input_dir == ""./Intermediate_Files_func"":
++        elif input_dir == ""./data/Intermediate_Files_func"":
+ "
+src/Functional_Annotations.py	10	"--- /Users/marcin/Documents/VIMSS/ontology/KG-Hub/KG-Microbe/paper_KGM/kg-microbe-paper_NERSC/kg-microbe-paper/src/Functional_Annotations.py	2025-01-20 13:26:51
++++ /Users/marcin/Documents/VIMSS/ontology/KG-Hub/KG-Microbe/paper_KGM/kg-microbe-paper/src/Functional_Annotations.py	2026-01-03 23:53:27
+@@ -14,15 +14,15 @@
+     print(""Loading full table."")
+ 
+     #duckdb_load_table(conn, ""/Users/brooksantangelo/Documents/LozuponeLab/FRMS_2024/uniprot_transform_20240725/edges.tsv"", ""edges"", [""subject"", ""object""])
+-    # duckdb_load_table(conn, ""./Input_Files/merged-kg/merged-kg_edges.tsv"", ""edges"", [""subject"", ""object""])
+-    duckdb_load_table(conn, ""./Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv"", ""edges"", [""subject"", ""object""])
++    # duckdb_load_table(conn, ""./data/merged-kg/merged-kg_edges.tsv"", ""edges"", [""subject"", ""object""])
++    duckdb_load_table(conn, ""./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv"", ""edges"", [""subject"", ""object""])
+     conditions = [
+         ('UniprotKB:%', 'NCBITaxon:%'),
+         ('UniprotKB:%', 'GO:%')
+     ]
+ 
+-    if not os.path.exists(""./Intermediate_Files""):
+-        os.makedirs(""./Intermediate_Files"")
++    if not os.path.exists(""./data/Intermediate_Files""):
++        os.makedirs(""./data/Intermediate_Files"")
+     
+     print(""Relevant edges loaded."")
+ 
+@@ -69,7 +69,7 @@
+ 
+     get_table_count(conn, ""ncbitaxon_go"")
+ 
+-    output_table_to_file(conn, ""ncbitaxon_go"", ""./Intermediate_Files/NCBITaxon_to_GO.tsv"")
++    output_table_to_file(conn, ""ncbitaxon_go"", ""./data/Intermediate_Files/NCBITaxon_to_GO.tsv"")
+ 
+     num_unique_ncbitaxon_go_pairs = get_total_unique_pair(
+         conn,
+"
+src/Functional_Annotations_EC.py	10	"--- /Users/marcin/Documents/VIMSS/ontology/KG-Hub/KG-Microbe/paper_KGM/kg-microbe-paper_NERSC/kg-microbe-paper/src/Functional_Annotations_EC.py	2025-01-20 13:26:51
++++ /Users/marcin/Documents/VIMSS/ontology/KG-Hub/KG-Microbe/paper_KGM/kg-microbe-paper/src/Functional_Annotations_EC.py	2026-01-03 23:53:27
+@@ -14,16 +14,16 @@
+     print(""Loading full table."")
+ 
+     #duckdb_load_table(conn, ""/Users/brooksantangelo/Documents/LozuponeLab/FRMS_2024/uniprot_transform_20240725/edges.tsv"", ""edges"", [""subject"", ""object""])
+-    # duckdb_load_table(conn, ""./Input_Files/merged-kg/merged-kg_edges.tsv"", ""edges"", [""subject"", ""object""])
+-    duckdb_load_table(conn, ""./Input_Files/kg-microbe-biomedical-function/merged-kg_edges.tsv"", ""edges"", [""subject"", ""object""])
++    # duckdb_load_table(conn, ""./data/merged-kg/merged-kg_edges.tsv"", ""edges"", [""subject"", ""object""])
++    duckdb_load_table(conn, ""./data/kg-microbe-biomedical-function/merged-kg_edges.tsv"", ""edges"", [""subject"", ""object""])
+     conditions = [
+         ('UniprotKB:%', 'Proteomes:%'),
+         ('Proteomes:%', 'NCBITaxon:%'),
+         ('UniprotKB:%', 'EC:%')
+     ]
+ 
+-    if not os.path.exists(""./Intermediate_Files""):
+-        os.makedirs(""./Intermediate_Files"")
++    if not os.path.exists(""./data/Intermediate_Files""):
++        os.makedirs(""./data/Intermediate_Files"")
+     
+     print(""Relevant edges loaded."")
+ 
+@@ -94,7 +94,7 @@
+ 
+     get_table_count(conn, ""ncbitaxon_ec"")
+ 
+-    output_table_to_file(conn, ""ncbitaxon_ec"", ""./Intermediate_Files/NCBITaxon_to_EC.tsv"")
++    output_table_to_file(conn, ""ncbitaxon_ec"", ""./data/Intermediate_Files/NCBITaxon_to_EC.tsv"")
+ 
+     num_unique_ncbitaxon_ec_pairs = get_total_unique_pair(
+         conn,
+"

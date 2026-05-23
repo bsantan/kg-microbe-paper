@@ -193,7 +193,13 @@ def explain_count_differences():
         }
     }
 
-    # Published counts (from manuscript)
+    # Published counts.
+    # Reference: revisions2/KG-Microbe_Responses2_mpj2.docx ("Summary of the
+    # second computational reproducibility review") confirms paper chi²/p-values
+    # for PD as 1317 / 2e-288 and notes IBD was "consistent" between paper and
+    # reviewer reproduction. The per-cell totals/butyrate counts below are not
+    # restated in that responses doc; they are from Figure 6 panels (transcribed
+    # in data/NERSC_vs_new_comparison_reports/figure6_publication_results.txt).
     published = {
         'IBD': {
             'increased_total': 15_398,

@@ -134,6 +134,13 @@ verify:
 		echo "  ✗ Missing: data/Intermediate_Files_Competencies/butyrate_produces/Gold_Standard_Species_Overlap_butyrate_produces.csv"; \
 	fi
 	@echo ""
+	@echo "Checking shipped NCBITaxon rank cache:"
+	@if [ -f "data/Phylogeny_Search/ncbitaxon_rank.tsv" ]; then \
+		ls -lh data/Phylogeny_Search/ncbitaxon_rank.tsv | awk '{print "  ✓ File exists: " $$9 " (" $$5 ") — owlready2 OWL download will be skipped"}'; \
+	else \
+		echo "  ✗ Missing: data/Phylogeny_Search/ncbitaxon_rank.tsv (will trigger owlready2 OWL download on first run)"; \
+	fi
+	@echo ""
 	@echo "Checking KG files:"
 	@if [ -d "data/Input_Files/kg-microbe-biomedical-function-cat" ]; then \
 		FILE_COUNT=$$(ls data/Input_Files/kg-microbe-biomedical-function-cat 2>/dev/null | wc -l | xargs); \

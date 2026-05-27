@@ -99,9 +99,9 @@ The Jupyter notebooks in `src/` provide additional analyses:
 - All KG queries use DuckDB in-memory databases
 
 **`ncbi_phylogeny_search.py`**
-- NCBI Taxonomy phylogeny traversal using owlready2
-- Functions for finding parent/child taxa at different ranks
-- Downloads and caches NCBI Taxonomy OWL ontology
+- NCBI Taxonomy phylogeny traversal
+- Parent/child traversal is done via DuckDB recursive CTEs against `merged-kg_edges_ncbitaxon.tsv` (see `precompute_taxonomy_hierarchy()`)
+- owlready2 is only used by `get_all_ranks()` to build `data/Phylogeny_Search/ncbitaxon_rank.tsv` from the live NCBITaxon OWL — and only as a fallback. The rank file is shipped in the repository (~58 MB, tracked in git), so a fresh clone reproduces results without any OWL download.
 
 **`Competencies.py`**
 - Main competency analysis logic (~95KB, largest module)
@@ -115,7 +115,7 @@ The Jupyter notebooks in `src/` provide additional analyses:
 
 1. **Knowledge Graph Loading**: DuckDB loads TSV edge/node files into in-memory tables
 2. **Competency Queries**: Multiple DuckDB queries identify taxa with metabolite-related annotations
-3. **Phylogeny Resolution**: owlready2 resolves taxonomic hierarchies and ranks
+3. **Phylogeny Resolution**: DuckDB recursive CTEs resolve taxonomic hierarchies from `merged-kg_edges_ncbitaxon.tsv`; ranks come from the cached `data/Phylogeny_Search/ncbitaxon_rank.tsv` (owlready2 only regenerates this file if missing)
 4. **Gold Standard Mapping**: String matching + manual curation maps literature taxa to NCBI Taxonomy
 5. **Statistical Analysis**: Monte Carlo simulations test significance of overlaps
 6. **Visualization**: matplotlib/seaborn create Venn diagrams, treemaps, bar plots
@@ -164,7 +164,7 @@ Update `COMPETENCY_DISEASE_MAP` in `constants.py` with MONDO disease IDs.
 
 The codebase relies heavily on:
 - **DuckDB**: All KG queries (in-memory SQL database)
-- **owlready2**: NCBI Taxonomy OWL ontology loading and traversal
+- **owlready2**: Fallback path for regenerating `data/Phylogeny_Search/ncbitaxon_rank.tsv` from the live NCBITaxon OWL. Not used by the default pipeline because the cached rank file is shipped in-repo. Listed in dependencies so the regeneration path still works if the cache is ever deleted.
 - **equilibrator_api**: Thermodynamic reaction direction prediction
 - **CatBoost**: Machine learning for trait prediction
 - **pandas**: Data manipulation throughout
@@ -175,7 +175,7 @@ The codebase relies heavily on:
 
 - Scripts assume execution from repository root directory
 - The Makefile is located at the repository root (not in `src/`)
-- Large files like `ncbitaxon_rank.tsv` (60MB) are created on first run and cached
+- `data/Phylogeny_Search/ncbitaxon_rank.tsv` (~58 MB) is tracked in git so reproductions use a frozen NCBITaxon snapshot rather than the live OWL. Delete the file to force regeneration via owlready2 against the current ontology.
 - The `.venv` directory (created by uv) should not be committed (already in `.gitignore`)
 - NCBI Taxonomy names are sometimes outdated (see `REPLACED_TAXA_NAMES` in `constants.py`)
 - All commands should be run with `uv run` to ensure the correct Python environment is used

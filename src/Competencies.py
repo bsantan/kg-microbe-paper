@@ -2151,8 +2151,11 @@ def convert_to_family(conn, taxa_list, taxa_list_type):
         if matching_families:
             family_list.append(matching_families[0])
         else:
-            # Taxa without family mapping - use the taxon itself as placeholder
-            family_list.append(i)
+            # Taxa without family mapping - use a sentinel so downstream
+            # "group by family" aggregations (treemap colour map, family count,
+            # etc.) collapse all unmapped taxa into one explicit bucket instead
+            # of mixing raw NCBITaxon IDs into the family dimension.
+            family_list.append("unmapped")
             taxa_without_family.append(i)
 
     if taxa_without_family:

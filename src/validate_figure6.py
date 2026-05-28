@@ -22,11 +22,11 @@ from scipy.stats import chi2_contingency
 from pathlib import Path
 from collections import defaultdict, Counter
 
-# Base directories
-BASE_DIR = Path(__file__).parent
-INTERMEDIATE_DIR = BASE_DIR / "Intermediate_Files"
-COMPETENCIES_DIR = BASE_DIR / "Intermediate_Files_Competencies" / "butyrate_produces"
-DATA_DIR = BASE_DIR.parent / "data"
+# Base directories. BASE_DIR resolves to the project root (this file lives in src/).
+BASE_DIR = Path(__file__).parent.parent
+DATA_DIR = BASE_DIR / "data"
+INTERMEDIATE_DIR = DATA_DIR / "Intermediate_Files"
+COMPETENCIES_DIR = DATA_DIR / "Intermediate_Files_Competencies" / "butyrate_produces"
 
 # Published results (from bioRxiv paper Figure 6)
 PUBLISHED_RESULTS = {
@@ -48,23 +48,25 @@ PUBLISHED_RESULTS = {
     }
 }
 
-# Current repository results (from comparison report)
+# Current repository results. Post-fix values from the committed summary CSVs
+# (data/Intermediate_Files/{IBD,PD}_Classification_butyrate_producers_summary.csv)
+# after commits 716066f (strain-dict contamination) and 82912ac (per-disease results file).
 CURRENT_RESULTS = {
     'IBD': {
-        'decreased_total': 3_036,
-        'increased_total': 7_764,
-        'decreased_producers': 478,
-        'increased_producers': 186,
-        'chi2': 671.68,
-        'pval': 4.30e-148
+        'decreased_total': 15_394,
+        'increased_total': 39_485,
+        'decreased_producers': 514,
+        'increased_producers': 207,
+        'chi2': 674.63,
+        'pval': 9.83e-149
     },
     'PD': {
-        'decreased_total': 1_240,
-        'increased_total': 7_401,
-        'decreased_producers': 302,
-        'increased_producers': 150,
-        'chi2': 1063.60,
-        'pval': 2.70e-233
+        'decreased_total': 2_988,
+        'increased_total': 22_382,
+        'decreased_producers': 299,
+        'increased_producers': 145,
+        'chi2': 1337.36,
+        'pval': 8.61e-293
     }
 }
 

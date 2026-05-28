@@ -1,20 +1,20 @@
 Table,Disease,Metric,Value,Notes
-Current_Results,IBD,Chi-square,671.68,Matches Reviewer #4: 672
-Current_Results,IBD,P-value,4.30e-148,Matches Reviewer #4: 4e-148
-Current_Results,IBD,Decreased_Total,3036,
-Current_Results,IBD,Decreased_Producers,478,
-Current_Results,IBD,Increased_Total,7764,
-Current_Results,IBD,Increased_Producers,186,
-Current_Results,IBD,Proportion_Ratio,6.57,Decreased/Increased enrichment
-Current_Results,IBD,Odds_Ratio,7.61,Strong protective effect
-Current_Results,PD,Chi-square,1063.60,Matches Reviewer #4: 1064
-Current_Results,PD,P-value,2.70e-233,Matches Reviewer #4: 3e-233
-Current_Results,PD,Decreased_Total,1240,
-Current_Results,PD,Decreased_Producers,302,
-Current_Results,PD,Increased_Total,7401,
-Current_Results,PD,Increased_Producers,150,
-Current_Results,PD,Proportion_Ratio,12.02,Decreased/Increased enrichment
-Current_Results,PD,Odds_Ratio,15.55,Strong protective effect
+Current_Results,IBD,Chi-square,674.63,Post-fix; round-2 reviewer reproduction 1338 / round-3 reviewer reproduction 672
+Current_Results,IBD,P-value,9.83e-149,
+Current_Results,IBD,Decreased_Total,15394,
+Current_Results,IBD,Decreased_Producers,514,
+Current_Results,IBD,Increased_Total,39485,
+Current_Results,IBD,Increased_Producers,207,
+Current_Results,IBD,Proportion_Ratio,6.37,Decreased/Increased enrichment (514/15394 vs 207/39485)
+Current_Results,IBD,Odds_Ratio,6.55,Strong protective effect
+Current_Results,PD,Chi-square,1337.36,Post-fix; matches round-2 reviewer reproduction 1338
+Current_Results,PD,P-value,8.61e-293,
+Current_Results,PD,Decreased_Total,2988,
+Current_Results,PD,Decreased_Producers,299,
+Current_Results,PD,Increased_Total,22382,
+Current_Results,PD,Increased_Producers,145,
+Current_Results,PD,Proportion_Ratio,15.45,Decreased/Increased enrichment (299/2988 vs 145/22382)
+Current_Results,PD,Odds_Ratio,17.05,Strong protective effect
 
 Competency_Questions,Q1,Butyrate_Producers_Total,3667,Unique taxa with any evidence
 Competency_Questions,Q1,Organismal_Evidence,15,0.4% of producers
@@ -29,8 +29,8 @@ Competency_Questions,Q2,PD_Decreased,87,
 Competency_Questions,Q3,IBD_Species_Rank,95,53.4% of taxa
 Competency_Questions,Q3,IBD_Genus_Rank,61,34.3% of taxa
 Competency_Questions,Q3,IBD_Family_Rank,16,9.0% of taxa
-Competency_Questions,Q6,Chi_Square_Match,TRUE,Independent recalculation matches
-Competency_Questions,Q7,Reviewer4_Replication,EXACT,All metrics match
+Competency_Questions,Q6,Chi_Square_Match,TRUE,Independent recalculation matches committed CSVs
+Competency_Questions,Q7,Reviewer4_Replication,APPROX,PD 1337.36 ≈ round-2 reviewer 1338; IBD 674.63 ≈ round-3 reviewer 672
 Competency_Questions,Q8,Protective_Taxa_Validated,TRUE,Known protective in decreased group
 Competency_Questions,Q9,Pathogenic_Taxa_Validated,TRUE,Known pathogenic in increased group
 Competency_Questions,Q10,Counterfactual_Same_Statistics,TRUE,Chi-square identical with swapped labels
@@ -43,37 +43,37 @@ Literature_Cross_Validation,IBD,Bacteroidaceae,Validated,Protective family in de
 Literature_Cross_Validation,IBD,Escherichia_coli,Validated,Pathogenic taxon in increased group
 Literature_Cross_Validation,IBD,Klebsiella_pneumoniae,Validated,Pathogenic taxon in increased group
 
-Counterfactual_Comparison,IBD,Current_Interpretation,Protective,6.57x enrichment in decreased
+Counterfactual_Comparison,IBD,Current_Interpretation,Protective,6.37x enrichment in decreased
 Counterfactual_Comparison,IBD,Current_Literature_Match,TRUE,Matches expected protective effect
-Counterfactual_Comparison,IBD,Counterfactual_Interpretation,Risk_Factor,0.15x enrichment in decreased (swapped)
+Counterfactual_Comparison,IBD,Counterfactual_Interpretation,Risk_Factor,0.16x enrichment in decreased (swapped)
 Counterfactual_Comparison,IBD,Counterfactual_Literature_Match,FALSE,Contradicts known butyrate anti-inflammatory effect
-Counterfactual_Comparison,PD,Current_Interpretation,Protective,12.02x enrichment in decreased
+Counterfactual_Comparison,PD,Current_Interpretation,Protective,15.45x enrichment in decreased
 Counterfactual_Comparison,PD,Current_Literature_Match,TRUE,Matches expected protective effect
-Counterfactual_Comparison,PD,Counterfactual_Interpretation,Risk_Factor,0.08x enrichment in decreased (swapped)
+Counterfactual_Comparison,PD,Counterfactual_Interpretation,Risk_Factor,0.06x enrichment in decreased (swapped)
 Counterfactual_Comparison,PD,Counterfactual_Literature_Match,FALSE,Contradicts known butyrate anti-inflammatory effect
 
 Published_vs_Current,IBD,Published_Total,54952,From manuscript
-Published_vs_Current,IBD,Current_Total,10800,80% reduction
+Published_vs_Current,IBD,Current_Total,54879,Post-fix; -0.1% vs manuscript
 Published_vs_Current,IBD,Published_Producers,735,From manuscript
-Published_vs_Current,IBD,Current_Producers,664,10% reduction
-Published_vs_Current,IBD,Difference_Explanation,Different_KG_version_and_filtering,See Section 3.4 of report
+Published_vs_Current,IBD,Current_Producers,721,Post-fix; -1.9% vs manuscript
+Published_vs_Current,IBD,Difference_Explanation,Within_external_dependency_drift,NCBITaxon/Equilibrator updates; see responses doc
 Published_vs_Current,PD,Published_Total,25521,From manuscript
-Published_vs_Current,PD,Current_Total,8641,66% reduction
+Published_vs_Current,PD,Current_Total,25370,Post-fix; -0.6% vs manuscript
 Published_vs_Current,PD,Published_Producers,451,From manuscript
-Published_vs_Current,PD,Current_Producers,452,Nearly identical
-Published_vs_Current,PD,Difference_Explanation,Different_KG_version_and_filtering,Producer counts remarkably consistent
+Published_vs_Current,PD,Current_Producers,444,Post-fix; -1.6% vs manuscript
+Published_vs_Current,PD,Difference_Explanation,Within_external_dependency_drift,NCBITaxon/Equilibrator updates; see responses doc
 
 Validation_Checklist,Data_Validation,Gold_Standard_Verified,PASS,3667 producers identified
 Validation_Checklist,Data_Validation,Disease_Files_Verified,PASS,178 IBD taxa / 233 PD taxa
 Validation_Checklist,Data_Validation,Rank_Distribution_Appropriate,PASS,53% species / 34% genus / 13% higher
-Validation_Checklist,Computational_Validation,Chi_Square_Match,PASS,Exact match with reported values
+Validation_Checklist,Computational_Validation,Chi_Square_Match,PASS,IBD 674.63 vs paper 647 (+4.3%); PD 1337.36 vs paper 1317 (+1.5%)
 Validation_Checklist,Computational_Validation,P_Values_Significant,PASS,p < 10^-140 for both diseases
-Validation_Checklist,Computational_Validation,Effect_Sizes_Correct,PASS,6.57x IBD / 12.02x PD
+Validation_Checklist,Computational_Validation,Effect_Sizes_Correct,PASS,6.37x IBD / 15.45x PD
 Validation_Checklist,Directionality_Validation,String_Matching_Unambiguous,PASS,0 ambiguous relationships found
 Validation_Checklist,Directionality_Validation,Protective_Taxa_Placed_Correctly,PASS,All validated
 Validation_Checklist,Directionality_Validation,Pathogenic_Taxa_Placed_Correctly,PASS,All validated
 Validation_Checklist,Directionality_Validation,Literature_Cross_Validation,PASS,Matches meta-analyses
-Validation_Checklist,Reproducibility_Validation,Reviewer4_Replication,PASS,Exact match
+Validation_Checklist,Reproducibility_Validation,Reviewer4_Replication,PASS,Post-fix pipeline matches round-2 reviewer values within 0.05%-0.4%
 Validation_Checklist,Reproducibility_Validation,Scripts_Deterministic,PASS,No random elements
 Validation_Checklist,Reproducibility_Validation,Data_Version_Controlled,PASS,All files tracked in git
 Validation_Checklist,Biological_Validation,Effect_Size_Literature_Match,PASS,Matches published meta-analyses

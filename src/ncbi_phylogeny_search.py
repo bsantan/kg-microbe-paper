@@ -273,10 +273,13 @@ def search_strains(conn_or_hierarchy, rank_lookup, microbe, strains_found, speci
         microbe_rank = rank_lookup.get(child, None)
         if microbe_rank is None:
             continue
+        # elif chain so species and subspecies/strain terminate the descent.
+        # Previous if/if/else also recursed into species children, double-counting
+        # their descendant strains.
         if microbe_rank == "species":
             if child not in species_found:
                 species_found.append(child)
-        if microbe_rank in ["subspecies","strain"]:
+        elif microbe_rank in ["subspecies","strain"]:
             if child not in strains_found:
                 strains_found.append(child)
         else:

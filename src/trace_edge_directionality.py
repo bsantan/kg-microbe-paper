@@ -24,33 +24,31 @@ import sys
 sys.path.insert(0, str(Path(__file__).parent))
 
 from classification_utils import differentiate_edge_direction
+from constants import COMPETENCY_DISEASE_MAP
 
-BASE_DIR = Path(__file__).parent
-INPUT_DIR = BASE_DIR / "Input_Files"
-
-# Try alternative input locations
-if not INPUT_DIR.exists():
-    INPUT_DIR = BASE_DIR.parent / "data" / "Input_Files"
+BASE_DIR = Path(__file__).parent.parent
+INPUT_DIR = BASE_DIR / "data" / "Input_Files"
 
 KG_EDGES_FILE = INPUT_DIR / "kg-microbe-biomedical-function-cat" / "merged-kg_edges.tsv"
 
-DISEASE_MAP = {
-    'IBD': 'MONDO:0005265',  # Inflammatory Bowel Disease
-    'PD': 'MONDO:0005180'    # Parkinson's Disease
-}
+# Use the same multi-MONDO sets that the actual Figure 6C pipeline consumes:
+# IBD = Crohn's + IBD + UC; PD = Parkinson's. Defined once in constants.COMPETENCY_DISEASE_MAP.
+DISEASE_MAP = COMPETENCY_DISEASE_MAP
 
-def load_disease_edges(disease_id, sample_size=None):
+def load_disease_edges(disease_ids, sample_size=None):
     """
     Load disease-microbe edges from KG using DuckDB for efficient filtering.
 
     Args:
-        disease_id: MONDO ID for the disease
+        disease_ids: One MONDO ID (str) or list of MONDO IDs (e.g. IBD = Crohn's + IBD + UC)
         sample_size: Number of edges to sample (None = all)
 
     Returns:
         DataFrame with subject, predicate, object columns
     """
-    print(f"\nLoading edges for {disease_id}...")
+    if isinstance(disease_ids, str):
+        disease_ids = [disease_ids]
+    print(f"\nLoading edges for {disease_ids}...")
 
     if not KG_EDGES_FILE.exists():
         print(f"❌ ERROR: KG edges file not found at {KG_EDGES_FILE}")
@@ -59,12 +57,14 @@ def load_disease_edges(disease_id, sample_size=None):
 
     conn = duckdb.connect(":memory:")
 
-    # Filter to disease-relevant edges only
+    id_list_sql = ", ".join(f"'{d}'" for d in disease_ids)
+
+    # Filter to disease-relevant edges only (union across all IDs that map to this disease)
     query = f"""
     SELECT subject, predicate, object
     FROM read_csv_auto('{KG_EDGES_FILE}', delim='\\t', null_padding=true)
-    WHERE ((subject LIKE 'NCBITaxon:%' AND object = '{disease_id}')
-           OR (object LIKE 'NCBITaxon:%' AND subject = '{disease_id}'))
+    WHERE ((subject LIKE 'NCBITaxon:%' AND object IN ({id_list_sql}))
+           OR (object LIKE 'NCBITaxon:%' AND subject IN ({id_list_sql})))
       AND predicate IS NOT NULL
       AND subject IS NOT NULL
       AND object IS NOT NULL
@@ -275,15 +275,15 @@ def main():
     args = parser.parse_args()
 
     disease_name = args.disease
-    disease_id = DISEASE_MAP[disease_name]
+    disease_ids = DISEASE_MAP[disease_name]
     sample_size = None if args.show_all else args.sample_size
 
     print("="*80)
     print(f"EDGE DIRECTIONALITY TRACING - {disease_name}".center(80))
     print("="*80)
 
-    # Load edges
-    edges_df = load_disease_edges(disease_id, sample_size)
+    # Load edges (across all MONDO IDs mapped to this disease in COMPETENCY_DISEASE_MAP)
+    edges_df = load_disease_edges(disease_ids, sample_size)
 
     if edges_df is None or len(edges_df) == 0:
         print("❌ No edges to trace. Exiting.")
@@ -308,14 +308,28 @@ def main():
         # Trace original
         original_info = trace_single_edge(original_row, idx)
 
-        # Find corresponding transformed row
-        # Match by microbe ID (should be subject after transformation)
-        transformed_row = transformed_df[
-            transformed_df['subject'] == original_info['microbe']
-        ]
+        # Compute the exact (subject, object) the transformation should have
+        # produced for THIS original row, then look up that specific row.
+        # Matching only on microbe would always return the same first row
+        # (since the same NCBITaxon appears across many predicate/disease combos),
+        # masking real inversions and producing spurious mismatches.
+        pred_short = original_row['predicate'].replace('biolink:', '')
+        if original_row['subject'].startswith('NCBITaxon:'):
+            expected_subj = original_row['subject']
+            expected_obj = f"{pred_short}_{original_row['object']}"
+        else:
+            expected_subj = original_row['object']
+            expected_obj = f"{original_row['subject']}_{pred_short}"
+
+        match_mask = (
+            (transformed_df['subject'] == expected_subj)
+            & (transformed_df['object'] == expected_obj)
+        )
+        transformed_row = transformed_df[match_mask]
 
         if len(transformed_row) == 0:
-            print(f"\n⚠️ Edge #{idx}: Could not find transformed version")
+            print(f"\n⚠️ Edge #{idx}: Could not find transformed version "
+                  f"(expected subject={expected_subj}, object={expected_obj})")
             continue
 
         transformed_row = transformed_row.iloc[0]

@@ -119,13 +119,14 @@ def remove_conflicting_directionality(data_pairs, disease_name=None):
     os.makedirs("./data/Intermediate_Files", exist_ok=True)
     # When disease_name is provided (e.g. Classification_gold_standard_comparison
     # iterating IBD then PD), write per-disease files so PD doesn't silently
-    # clobber IBD. Default to the legacy single-file path for other callers.
+    # clobber IBD. Default to the legacy single-file path for other callers and
+    # derive the label from disease_name so legacy callers don't mis-label their
+    # disease as IBD when they were actually processing something else.
+    label = disease_name or 'unknown'
     if disease_name:
         results_path = f'./data/Intermediate_Files/Used_data_results_{disease_name}.txt'
-        label = disease_name
     else:
         results_path = './data/Intermediate_Files/Used_data_results.txt'
-        label = 'IBD'
     with open(results_path, 'w') as file:
         file.write(f'Proportion of microbes both increased and decreased in {label}: {r}\n')
 

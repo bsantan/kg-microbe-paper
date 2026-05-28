@@ -12,9 +12,17 @@ from duckdb_utils import duckdb_load_table, get_node_label
 def get_all_ranks(output_dir):
 
     rank_file = './' + output_dir + '/ncbitaxon_rank.tsv'
+    rank_file_gz = rank_file + '.gz'
 
-    if not os.path.exists(rank_file):
-
+    # Prefer the compressed cache shipped in the repo (~6 MB vs ~58 MB).
+    # pandas reads/writes gzip transparently from the .gz extension.
+    if os.path.exists(rank_file_gz):
+        df = pd.read_csv(rank_file_gz, index_col=False)
+    elif os.path.exists(rank_file):
+        df = pd.read_csv(rank_file, index_col=False)
+    else:
+        # Fallback: regenerate from the live NCBITaxon OWL via owlready2 and
+        # write the compressed cache. Only runs if neither cache file exists.
         onto = get_ontology("http://purl.obolibrary.org/obo/ncbitaxon.owl")
         onto.load()
         data = []
@@ -31,10 +39,7 @@ def get_all_ranks(output_dir):
                 data.append([taxon_id, rank_id])  # Append to the data list
 
         df = pd.DataFrame(data, columns=['NCBITaxon_ID', 'Rank'])
-        df.to_csv(rank_file,index=False)
-    
-    else:
-        df = pd.read_csv(rank_file, index_col=False)
+        df.to_csv(rank_file_gz, index=False)
 
     return df
 

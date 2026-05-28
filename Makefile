@@ -135,10 +135,12 @@ verify:
 	fi
 	@echo ""
 	@echo "Checking shipped NCBITaxon rank cache:"
-	@if [ -f "data/Phylogeny_Search/ncbitaxon_rank.tsv" ]; then \
+	@if [ -f "data/Phylogeny_Search/ncbitaxon_rank.tsv.gz" ]; then \
+		ls -lh data/Phylogeny_Search/ncbitaxon_rank.tsv.gz | awk '{print "  ✓ File exists: " $$9 " (" $$5 ") — owlready2 OWL download will be skipped"}'; \
+	elif [ -f "data/Phylogeny_Search/ncbitaxon_rank.tsv" ]; then \
 		ls -lh data/Phylogeny_Search/ncbitaxon_rank.tsv | awk '{print "  ✓ File exists: " $$9 " (" $$5 ") — owlready2 OWL download will be skipped"}'; \
 	else \
-		echo "  ✗ Missing: data/Phylogeny_Search/ncbitaxon_rank.tsv (will trigger owlready2 OWL download on first run)"; \
+		echo "  ✗ Missing: data/Phylogeny_Search/ncbitaxon_rank.tsv.gz (will trigger owlready2 OWL download on first run)"; \
 	fi
 	@echo ""
 	@echo "Checking KG files:"

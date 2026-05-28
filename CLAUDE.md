@@ -101,7 +101,7 @@ The Jupyter notebooks in `src/` provide additional analyses:
 **`ncbi_phylogeny_search.py`**
 - NCBI Taxonomy phylogeny traversal
 - Parent/child traversal is done via DuckDB recursive CTEs against `merged-kg_edges_ncbitaxon.tsv` (see `precompute_taxonomy_hierarchy()`)
-- owlready2 is only used by `get_all_ranks()` to build `data/Phylogeny_Search/ncbitaxon_rank.tsv` from the live NCBITaxon OWL — and only as a fallback. The rank file is shipped in the repository (~58 MB, tracked in git), so a fresh clone reproduces results without any OWL download.
+- owlready2 is only used by `get_all_ranks()` to build `data/Phylogeny_Search/ncbitaxon_rank.tsv.gz` from the live NCBITaxon OWL — and only as a fallback. The rank file is shipped gzip-compressed in the repository (~6 MB, tracked in git; pandas reads gzip transparently), so a fresh clone reproduces results without any OWL download.
 
 **`Competencies.py`**
 - Main competency analysis logic (~95KB, largest module)
@@ -115,7 +115,7 @@ The Jupyter notebooks in `src/` provide additional analyses:
 
 1. **Knowledge Graph Loading**: DuckDB loads TSV edge/node files into in-memory tables
 2. **Competency Queries**: Multiple DuckDB queries identify taxa with metabolite-related annotations
-3. **Phylogeny Resolution**: DuckDB recursive CTEs resolve taxonomic hierarchies from `merged-kg_edges_ncbitaxon.tsv`; ranks come from the cached `data/Phylogeny_Search/ncbitaxon_rank.tsv` (owlready2 only regenerates this file if missing)
+3. **Phylogeny Resolution**: DuckDB recursive CTEs resolve taxonomic hierarchies from `merged-kg_edges_ncbitaxon.tsv`; ranks come from the cached `data/Phylogeny_Search/ncbitaxon_rank.tsv.gz` (owlready2 only regenerates this file if missing)
 4. **Gold Standard Mapping**: String matching + manual curation maps literature taxa to NCBI Taxonomy
 5. **Statistical Analysis**: Monte Carlo simulations test significance of overlaps
 6. **Visualization**: matplotlib/seaborn create Venn diagrams, treemaps, bar plots
@@ -175,7 +175,7 @@ The codebase relies heavily on:
 
 - Scripts assume execution from repository root directory
 - The Makefile is located at the repository root (not in `src/`)
-- `data/Phylogeny_Search/ncbitaxon_rank.tsv` (~58 MB) is tracked in git so reproductions use a frozen NCBITaxon snapshot rather than the live OWL. Delete the file to force regeneration via owlready2 against the current ontology.
+- `data/Phylogeny_Search/ncbitaxon_rank.tsv.gz` (~6 MB gzip; ~58 MB uncompressed) is tracked in git so reproductions use a frozen NCBITaxon snapshot rather than the live OWL. `get_all_ranks()` reads the `.gz` directly (also accepts an uncompressed `.tsv` if present). Delete both to force regeneration via owlready2 against the current ontology.
 - The `.venv` directory (created by uv) should not be committed (already in `.gitignore`)
 - NCBI Taxonomy names are sometimes outdated (see `REPLACED_TAXA_NAMES` in `constants.py`)
 - All commands should be run with `uv run` to ensure the correct Python environment is used

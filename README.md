@@ -209,7 +209,7 @@ The third script uses the outputs from the Metabolite Competencies to compare to
 Step 1: identify ranks of relevant taxa. These are output to './data/Phylogeny_Search':
 
 ```
-ncbitaxon_rank.tsv: The corresponding rank of each taxa in NCBI Taxonomy. This file (~58 MB) is shipped in the repository so a fresh clone reproduces results without re-downloading the NCBITaxon OWL ontology. If the file is missing, `get_all_ranks()` falls back to building it with owlready2 from `http://purl.obolibrary.org/obo/ncbitaxon.owl`. 
+ncbitaxon_rank.tsv.gz: The corresponding rank of each taxa in NCBI Taxonomy, gzip-compressed (~6 MB; ~58 MB uncompressed). This file is shipped in the repository so a fresh clone reproduces results without re-downloading the NCBITaxon OWL ontology; `get_all_ranks()` reads it directly (pandas decompresses gzip transparently). If neither `ncbitaxon_rank.tsv.gz` nor `ncbitaxon_rank.tsv` is present, `get_all_ranks()` falls back to building it with owlready2 from `http://purl.obolibrary.org/obo/ncbitaxon.owl` and writes the compressed cache. 
 - NCBITaxon_ID: taxon ID
 - Rank: taxon rank
 Gold_Standard_Species_Overlap_all_butyrate_produces_microbes_phylum.json: phylum of each taxa from either the semantic representations in the KG or Vital et al. that can produce butyrate (using Gold_Standard_Species_Overlap_butyrate_produces.csv), phylum: taxon pairs
@@ -320,7 +320,7 @@ P_Val: p value of difference between butyrate producers in increased vs decrease
 
 The response to the second computational reproducibility review (`revisions2/KG-Microbe_Responses2_mpj2.docx`) documents that the PD reproduction value drifts from the paper Figure 6C value: paper χ² = 1317, p = 2e-288 vs reviewer-reproduced χ² = 1337, p = 8e-293. The authors attribute the drift to NCBITaxon OWL file updates accessed through OwlReady in `src/Classification_gold_standard_comparison.py`, updates to the Equilibrator API in `src/Process_competency_questions.py`, and platform/version sensitivity for extreme p-value calculations. The scientific interpretation (strong protective enrichment of butyrate producers in both diseases) is unchanged.
 
-To freeze out the OWL-update source of drift going forward, the cached `data/Phylogeny_Search/ncbitaxon_rank.tsv` (the only OWL-derived artifact consumed by the pipeline) is now shipped in the repo. Subsequent runs read from this cached file rather than re-fetching the live NCBITaxon OWL, so rank assignments are reproducible across machines and dates. The owlready2 path remains only as a fallback if the cached file is ever deleted.
+To freeze out the OWL-update source of drift going forward, the cached `data/Phylogeny_Search/ncbitaxon_rank.tsv.gz` (the only OWL-derived artifact consumed by the pipeline, gzip-compressed to ~6 MB) is now shipped in the repo. Subsequent runs read from this cached file rather than re-fetching the live NCBITaxon OWL, so rank assignments are reproducible across machines and dates. The owlready2 path remains only as a fallback if the cached file is ever deleted.
 
 After commits `716066f` (strain-dict contamination fix) and `82912ac` (per-disease results-file fix), a fresh run of `Classification_gold_standard_comparison.py` reproduces the documented PD value (χ² ≈ 1337.36, p ≈ 8.61e-293). IBD reproduces at χ² ≈ 674.63 vs paper 647 — a ~4% drift consistent in direction and magnitude with the PD drift and likely from the same root causes. See `data/Figure6C_Comprehensive_Validation_Report.md` for the full validation breakdown.
 

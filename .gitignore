@@ -42,3 +42,6 @@ logs/
 # Documentation and notes directories (not tracked)
 docs/
 notes/
+
+# Reviewer/editor response files and review-related generated content (not tracked)
+revisions*/

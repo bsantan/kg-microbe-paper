@@ -166,7 +166,12 @@ def per_parent_descendants(ranks_df, strain_dict, species_dict):
     for _, row in ranks_df.iterrows():
         parent = row["Name"]
         d = parent_direction(row["Disease_Relationship"])
-        if row["Num_Strains"] > 0:
+        if row["Rank"] in ("strain", "subspecies"):
+            # A parent that is itself a strain/subspecies represents itself
+            # (consistent with how ranks_df / the A0 contingency count it).
+            descs = [parent]
+            unit = "strain"
+        elif row["Num_Strains"] > 0:
             descs = list(strain_dict.get(parent, []))
             unit = "strain"
         else:

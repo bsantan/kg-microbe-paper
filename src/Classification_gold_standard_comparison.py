@@ -193,17 +193,21 @@ def main():
         # descend from more than one disease-associated parent, and the same
         # strain can fall under parents of both directions. For Figure 6C we
         # count each descendant once and drop descendants that appear under
-        # both increased- and decreased-likelihood parents. Each parent
-        # contributes its strain descendants when it has any (Num_Strains > 0),
-        # otherwise its species descendants (or itself when it is a species).
-        # This is the "A2" analysis unit and matches
-        # src/figure6_sensitivity_analysis.py.
+        # both increased- and decreased-likelihood parents. A parent that is
+        # itself a strain or subspecies contributes itself (consistent with how
+        # ranks_df counts it); otherwise it contributes its strain descendants
+        # when it has any (Num_Strains > 0), else its species descendants (or
+        # itself when it is a species). This is the "A2" analysis unit and
+        # matches src/figure6_sensitivity_analysis.py.
         kg_producers = set(kg_analysis_microbes)
         increased_set, decreased_set, strain_pool = set(), set(), set()
         for i in range(len(ranks_df)):
             row = ranks_df.iloc[i]
             parent = row.loc["Name"]
-            if row.loc["Num_Strains"] > 0:
+            if row.loc["Rank"] in ("strain", "subspecies"):
+                descendants = {parent}
+                pool = "strain"
+            elif row.loc["Num_Strains"] > 0:
                 descendants = set(microbes_strain_dict.get(parent, []))
                 pool = "strain"
             else:

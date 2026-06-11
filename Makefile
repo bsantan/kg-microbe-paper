@@ -1,4 +1,4 @@
-.PHONY: all setup_input_files download_ontologies extract_ncbitaxon restore_vital_file download_kg rhea_chebi_competencies ec_competencies taxonomy_competencies setup_gold_standard verify clean clean-all help
+.PHONY: all setup_input_files download_ontologies extract_ncbitaxon restore_vital_file download_kg rhea_chebi_competencies ec_competencies taxonomy_competencies setup_gold_standard verify clean clean-all help regenerate-figure6 figure6-sensitivity
 
 all: setup_input_files download_kg rhea_chebi_competencies ec_competencies taxonomy_competencies setup_gold_standard
 
@@ -175,6 +175,22 @@ clean-all: clean
 	rm -rf data/Input_Files/
 	rm -rf data/Intermediate_Files_Competencies/
 	@echo "Done"
+
+# Force a from-scratch regeneration of the Figure 6C strain/species JSONs and
+# summary CSVs. KGM_FORCE_STRAIN_REGEN=1 bypasses the manifest cache so this
+# target always rebuilds the artifacts the published chi-square depends on.
+regenerate-figure6:
+	@echo "Forcing from-scratch regeneration of Figure 6C inputs..."
+	KGM_FORCE_STRAIN_REGEN=1 uv run python src/Classification_gold_standard_comparison.py
+	@echo "Done."
+
+# Run the Figure 6C sensitivity analysis (A0 self-check, A1 unique strains,
+# A2 unique-no-overlap, A3 Cochran–Mantel–Haenszel) and emit per-disease
+# sensitivity + multiplicity diagnostic CSVs next to the existing outputs.
+figure6-sensitivity:
+	@echo "Running Figure 6C sensitivity analysis..."
+	uv run python src/figure6_sensitivity_analysis.py
+	@echo "Done."
 
 # Display help information
 help:

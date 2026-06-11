@@ -1,5 +1,6 @@
 from collections import Counter, defaultdict
 import json
+import os
 import duckdb
 from matplotlib import pyplot as plt
 import numpy as np
@@ -8,6 +9,24 @@ import pandas as pd
 import tqdm
 
 from duckdb_utils import duckdb_load_table, get_node_label
+from _cache_utils import (
+    atomic_write_json,
+    cache_is_valid,
+    compute_input_fingerprint,
+    write_manifest,
+)
+
+# When set truthy (e.g. KGM_FORCE_STRAIN_REGEN=1), find_microbes_strain/species
+# recompute their classification JSONs from scratch instead of loading a cached
+# file. The cache short-circuit otherwise lets a stale *_microbes_strain/species.json
+# masquerade as a reproducible run — this is exactly what hid the Figure 6C
+# strain-traversal regression (see search_strains note below).
+FORCE_STRAIN_REGEN = os.environ.get("KGM_FORCE_STRAIN_REGEN", "").strip().lower() in ("1", "true", "yes", "on")
+
+# Bump this whenever search_strains / find_all_strains semantics change so that
+# any cache produced under the old semantics is invalidated. The label is
+# informational; the change in string value is what triggers regeneration.
+SEARCH_STRAINS_CODE_VERSION_MARKER = "search_strains:if-recurse-into-species:v1"
 
 def get_all_ranks(output_dir):
 
@@ -278,13 +297,21 @@ def search_strains(conn_or_hierarchy, rank_lookup, microbe, strains_found, speci
         microbe_rank = rank_lookup.get(child, None)
         if microbe_rank is None:
             continue
-        # elif chain so species and subspecies/strain terminate the descent.
-        # Previous if/if/else also recursed into species children, double-counting
-        # their descendant strains.
+        # A species node is recorded AND descent continues into its children, so
+        # strains nested under a species are enumerated too. This is intentional:
+        # it reproduces the published Figure 6C contingency counts exactly
+        # (IBD chi2=674.63, PD chi2=1337.36) and matches the strain-level design of
+        # the classification (Classification_gold_standard_comparison.py prefers
+        # Num_Strains, falling back to Num_Species only when a taxon has 0 strains).
+        # A prior code-review change (4195edb) made this an `elif`, which stops at
+        # the species rank, silently dropped strains-under-species, and shrank the
+        # totals (IBD->1201, PD->642). Do NOT reintroduce the `elif` without
+        # re-validating against the manuscript; the `not in` guards already prevent
+        # any actual duplicate taxa (measured: 0 within-key duplicates).
         if microbe_rank == "species":
             if child not in species_found:
                 species_found.append(child)
-        elif microbe_rank in ["subspecies","strain"]:
+        if microbe_rank in ["subspecies","strain"]:
             if child not in strains_found:
                 strains_found.append(child)
         else:
@@ -562,12 +589,24 @@ def find_microbes_strain(conn, ncbi_taxa_ranks_df, all_taxa, output_dir, feature
 
     microbes_traits_strain_file = './' + output_dir + '/' + feature_type + '_microbes_strain.json'
     microbes_traits_species_file = './' + output_dir + '/' + feature_type + '_microbes_species.json'
+    manifest_file = './' + output_dir + '/' + feature_type + '_microbes_strain.manifest.json'
 
     print("Getting strain for all taxa: " + feature_type)
-    if not os.path.exists(microbes_traits_strain_file):
-        # microbes_traits_strain = defaultdict(list)
-        # # To also keep track of species if strains are not found
-        # microbes_traits_species = defaultdict(list)
+
+    expected_fp = compute_input_fingerprint(all_taxa, feature_type, ncbi_taxa_ranks_df)
+    if FORCE_STRAIN_REGEN:
+        valid, reason = False, "KGM_FORCE_STRAIN_REGEN=1"
+    else:
+        valid, reason = cache_is_valid(
+            [microbes_traits_strain_file, microbes_traits_species_file],
+            manifest_file,
+            expected_fp,
+            SEARCH_STRAINS_CODE_VERSION_MARKER,
+            feature_type,
+        )
+
+    if not valid:
+        print(f"cache invalid: {reason} — recomputing strain/species for {feature_type}")
         microbes_traits_strain, microbes_traits_species = create_species_strains_dictionary(output_dir)
 
         # Pre-compute taxonomy hierarchy once for massive performance improvement
@@ -575,17 +614,18 @@ def find_microbes_strain(conn, ncbi_taxa_ranks_df, all_taxa, output_dir, feature
 
         microbes_traits_strain, microbes_traits_species = find_all_strains(conn, ncbi_taxa_ranks_df, all_taxa, microbes_traits_strain, microbes_traits_species, taxonomy_hierarchy)
 
-        # for microbe in tqdm.tqdm(all_taxa): #["NCBITaxon:853"]:#tqdm.tqdm(relevant_ncbitaxa):
-        #     print("microbe from all taxa: ",microbe)
-        #     microbes_traits_strain = get_microbe_strain_children(conn, ncbi_taxa_ranks_df, microbe, microbe, strain, microbes_traits_strain)
-        #     print("after first in all taxa")
-        #     print(microbes_traits_strain)
-        #     import pdb;pdb.set_trace()
-        with open(microbes_traits_strain_file, 'w') as json_file:
-            json.dump(microbes_traits_strain, json_file, indent=4)
-        with open(microbes_traits_species_file, 'w') as json_file:
-            json.dump(microbes_traits_species, json_file, indent=4)
+        atomic_write_json(microbes_traits_strain_file, microbes_traits_strain)
+        atomic_write_json(microbes_traits_species_file, microbes_traits_species)
+        write_manifest(
+            manifest_file,
+            kind="strain_pair",
+            feature_type=feature_type,
+            output_paths=[microbes_traits_strain_file, microbes_traits_species_file],
+            input_fingerprint=expected_fp,
+            code_version_marker=SEARCH_STRAINS_CODE_VERSION_MARKER,
+        )
     else:
+        print(f"ℹ cache valid: loaded strain+species for {feature_type} from {microbes_traits_strain_file}")
         with open(microbes_traits_strain_file, 'r') as json_file:
             data = json.load(json_file)
             microbes_traits_strain = defaultdict(list, data)
@@ -598,11 +638,24 @@ def find_microbes_strain(conn, ncbi_taxa_ranks_df, all_taxa, output_dir, feature
 def find_microbes_species(conn, ncbi_taxa_ranks_df, all_taxa, output_dir, feature_type):
     '''Takes in list of all relevant taxa or just 1 microbe'''
     microbes_traits_species_file = './' + output_dir + '/' + feature_type + '_microbes_species.json'
+    manifest_file = './' + output_dir + '/' + feature_type + '_microbes_species.manifest.json'
 
     print("Getting species for all taxa: " + feature_type)
-    if not os.path.exists(microbes_traits_species_file):
-        # Get only species
-        # species = get_taxa_per_rank(all_taxa, "species", ncbi_taxa_ranks_df)
+
+    expected_fp = compute_input_fingerprint(all_taxa, feature_type, ncbi_taxa_ranks_df)
+    if FORCE_STRAIN_REGEN:
+        valid, reason = False, "KGM_FORCE_STRAIN_REGEN=1"
+    else:
+        valid, reason = cache_is_valid(
+            [microbes_traits_species_file],
+            manifest_file,
+            expected_fp,
+            SEARCH_STRAINS_CODE_VERSION_MARKER,
+            feature_type,
+        )
+
+    if not valid:
+        print(f"cache invalid: {reason} — recomputing species for {feature_type}")
         species = list(set(ncbi_taxa_ranks_df.loc[ncbi_taxa_ranks_df["Rank"] == "species", "NCBITaxon_ID"].tolist()))
         microbes_traits_species = defaultdict(list)
         for microbe in tqdm.tqdm(all_taxa): #["NCBITaxon:853"]:#tqdm.tqdm(relevant_ncbitaxa):
@@ -614,9 +667,17 @@ def find_microbes_species(conn, ncbi_taxa_ranks_df, all_taxa, output_dir, featur
                 print(microbe)
             else:
                 continue
-        with open(microbes_traits_species_file, 'w') as json_file:
-            json.dump(microbes_traits_species, json_file, indent=4)
+        atomic_write_json(microbes_traits_species_file, microbes_traits_species)
+        write_manifest(
+            manifest_file,
+            kind="species_singleton",
+            feature_type=feature_type,
+            output_paths=[microbes_traits_species_file],
+            input_fingerprint=expected_fp,
+            code_version_marker=SEARCH_STRAINS_CODE_VERSION_MARKER,
+        )
     else:
+        print(f"ℹ cache valid: loaded species for {feature_type} from {microbes_traits_species_file}")
         with open(microbes_traits_species_file, 'r') as json_file:
             data = json.load(json_file)
             microbes_traits_species = defaultdict(list, data)

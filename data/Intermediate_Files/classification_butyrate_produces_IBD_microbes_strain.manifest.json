@@ -1,0 +1,22 @@
+{
+    "schema_version": 1,
+    "kind": "strain_pair",
+    "feature_type": "classification_butyrate_produces_IBD",
+    "outputs": [
+        {
+            "name": "classification_butyrate_produces_IBD_microbes_strain.json",
+            "sha256": "d960096f26e26170e7fd23ff15157dd1861e57bdaf0c8c2ab43ac7194593e19f",
+            "size": 1580029
+        },
+        {
+            "name": "classification_butyrate_produces_IBD_microbes_species.json",
+            "sha256": "f349d25ba03505a7a67f7293f4075b4844d4e28c66e59ce439db4336b86c3b09",
+            "size": 828081
+        }
+    ],
+    "input_fingerprint": "addec54d8759a102a38c507af051d2588878fc5e03d4cb16a8f2756420d760f3",
+    "code_version_marker": "search_strains:if-recurse-into-species:v1",
+    "git_head": "a910aa9",
+    "git_dirty": true,
+    "created_utc": "2026-06-01T18:28:29+00:00"
+}

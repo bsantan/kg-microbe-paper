@@ -186,28 +186,56 @@ def main():
         ranks_df.to_csv(output_dir + "/outcome_to_NCBITaxon_cleaned_ranks_butyrate_production_" + disease_name + ".csv",sep=",",index=False)
 
 
-        num_increased_total = 0
-        num_decreased_total = 0
-        num_increased_disease_butyrate_producers = 0
-        num_decreased_disease_butyrate_producers = 0
-        total_strains = 0
-        total_species = 0
-
+        # ------------------------------------------------------------------
+        # Deduplicated (Figure 6C) contingency.
+        #
+        # The per-parent enumeration in ranks_df double-counts strains that
+        # descend from more than one disease-associated parent, and the same
+        # strain can fall under parents of both directions. For Figure 6C we
+        # count each descendant once and drop descendants that appear under
+        # both increased- and decreased-likelihood parents. Each parent
+        # contributes its strain descendants when it has any (Num_Strains > 0),
+        # otherwise its species descendants (or itself when it is a species).
+        # This is the "A2" analysis unit and matches
+        # src/figure6_sensitivity_analysis.py.
+        kg_producers = set(kg_analysis_microbes)
+        increased_set, decreased_set, strain_pool = set(), set(), set()
         for i in range(len(ranks_df)):
-            if ranks_df.iloc[i].loc["Num_Strains"] > 0:
-                num_total = ranks_df.iloc[i].loc["Num_Strains"]
-                num_producers = ranks_df.iloc[i].loc["Num_Strains_Butyrate_Producers"]
-                total_strains += num_total
-            elif ranks_df.iloc[i].loc["Num_Strains"] == 0:
-                num_total = ranks_df.iloc[i].loc["Num_Species"]
-                num_producers = ranks_df.iloc[i].loc["Num_Species_Butyrate_Producers"]
-                total_species += num_total
-            if "increased" in ranks_df.iloc[i].loc["Disease_Relationship"]:
-                num_increased_total += num_total
-                num_increased_disease_butyrate_producers += num_producers
-            elif "decreased" in ranks_df.iloc[i].loc["Disease_Relationship"]:
-                num_decreased_total += num_total
-                num_decreased_disease_butyrate_producers += num_producers
+            row = ranks_df.iloc[i]
+            parent = row.loc["Name"]
+            if row.loc["Num_Strains"] > 0:
+                descendants = set(microbes_strain_dict.get(parent, []))
+                pool = "strain"
+            else:
+                descendants = {parent} if row.loc["Rank"] == "species" else set(microbes_species_dict.get(parent, []))
+                pool = "species"
+            if "increased" in row.loc["Disease_Relationship"]:
+                increased_set |= descendants
+            elif "decreased" in row.loc["Disease_Relationship"]:
+                decreased_set |= descendants
+            if pool == "strain":
+                strain_pool |= descendants
+
+        conflicting = increased_set & decreased_set
+        increased_unique = increased_set - conflicting
+        decreased_unique = decreased_set - conflicting
+
+        num_increased_total = len(increased_unique)
+        num_decreased_total = len(decreased_unique)
+        num_increased_disease_butyrate_producers = len(increased_unique & kg_producers)
+        num_decreased_disease_butyrate_producers = len(decreased_unique & kg_producers)
+
+        # Panel B (bottom) "KG Species/Strain Representation" composition:
+        # classify each retained descendant as strain (reached via any strain-
+        # bearing parent) otherwise species.
+        kept = increased_unique | decreased_unique
+        total_strains = len(kept & strain_pool)
+        total_species = len(kept) - total_strains
+
+        print(f"{disease_name}: deduplicated Figure 6C contingency — "
+              f"{len(conflicting)} cross-direction descendants removed; "
+              f"increased {num_increased_total} (producers {num_increased_disease_butyrate_producers}), "
+              f"decreased {num_decreased_total} (producers {num_decreased_disease_butyrate_producers})")
 
         # Chi Square test 1s then 0s
         contingency_table = [

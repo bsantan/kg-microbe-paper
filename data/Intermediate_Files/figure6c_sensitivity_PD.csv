@@ -1,0 +1,5 @@
+scenario,unit,increased_total,increased_producers,decreased_total,decreased_producers,chi2,pval,dof,contingency,producer_frac_increased,producer_frac_decreased,enrichment_ratio_dec_over_inc,odds_ratio_dec_vs_inc,cramers_v,dropped_from_increased_due_to_overlap,dropped_from_decreased_due_to_overlap,conflicting_descendants_excluded,n_permutations,permutation_seed,n_permutations_ge_observed
+A0_published_baseline,per-parent occurrence (not deduped),22382,145,2988,299,1337.3569687912984,8.612243737704552e-293,1,"[[145, 22237], [299, 2689]]",0.006478,0.100067,15.4462,17.0525,0.2296,,,,,,
+A1_unique_strains_first_seen_wins,unique descendant per disease,12286,115,2203,239,765.9670795893883,1.3540411622719543e-168,1,"[[115, 12171], [239, 1964]]",,,,,,505.0,545.0,,,,
+A2_unique_strains_overlaps_excluded,"unique descendant, conflicts excluded",11742,115,1719,230,918.3603194432598,1.0012725685531044e-201,1,"[[115, 11627], [230, 1489]]",,,,,,,,1028.0,,,
+A3_cluster_permutation,"per-parent bundle (parent->direction permuted, bundle intact)",22382,145,2988,299,1337.3569687912986,0.001002998997001003,,,,,,,,,,,1000000.0,12.0,1002.0

@@ -1,0 +1,13 @@
+diagnostic,value
+n_parents,238.0
+total_descendant_occurrences,54879.0
+unique_descendants,24948.0
+ratio_occurrences_to_unique,2.1997
+descendants_in_both_directions,9580.0
+increased_unique,19837.0
+decreased_unique,14691.0
+fanout_eq_1_parents,7487.0
+fanout_eq_2_parents,12156.0
+fanout_eq_3_parents,1076.0
+fanout_eq_4_parents,1293.0
+fanout_eq_5_parents,2936.0

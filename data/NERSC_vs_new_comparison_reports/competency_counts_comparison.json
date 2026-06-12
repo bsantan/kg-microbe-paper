@@ -1,0 +1,27 @@
+{
+  "organismal_traits": {
+    "current": 15,
+    "nersc": 15,
+    "difference": 0
+  },
+  "organismal_strains": {
+    "current": 15,
+    "nersc": 15,
+    "difference": 0
+  },
+  "rhea_annotations": {
+    "current": 6503,
+    "nersc": 6450,
+    "difference": 53
+  },
+  "ec_pathway_all": {
+    "current": 1104,
+    "nersc": 1104,
+    "difference": 0
+  },
+  "gold_standard_overlap": {
+    "current": 3764,
+    "nersc": 3763,
+    "difference": 1
+  }
+}

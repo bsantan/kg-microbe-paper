@@ -29,7 +29,7 @@ def get_disease_pairs(output_dir, data_edges, data_nodes, disease_id,disease_nam
 
     print("len original")
     print(len(data_subset))
-    data_pairs_cleaned = remove_conflicting_directionality(data_subset)
+    data_pairs_cleaned = remove_conflicting_directionality(data_subset, disease_name=disease_name)
     # 239 bugs leftover after this for IBD
 
     print(len(data_pairs_cleaned))
@@ -49,11 +49,39 @@ def combine_labels(taxonomic_labels_counts, keep_label, new_label):
 
 def main():
 
-    # feature_table = pd.read_csv("./data/Intermediate_Files_func/feature_table.csv", index_col="subject")
+    # feature_table = pd.read_csv("./Intermediate_Files_func/feature_table.csv", index_col="subject")
     # disease_microbes = feature_table.index.unique().to_list()
 
-    data_edges = pd.read_csv("./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", header=0, sep="\t")
-    data_nodes = pd.read_csv("./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", header=0, sep="\t")
+    print("="*80)
+    print("MEMORY OPTIMIZATION: Using DuckDB to filter data before loading into pandas")
+    print("This prevents loading 150M+ rows into memory")
+    print("="*80)
+
+    # Use DuckDB to filter edges before loading into pandas (massive memory savings)
+    conn_filter = duckdb.connect(":memory:")
+
+    # Only load edges that involve NCBITaxon or disease (MONDO) entities
+    # This reduces ~150M rows to ~few thousand rows before pandas loading
+    print("Filtering edges to disease-relevant subset...")
+    query = """
+    SELECT subject, predicate, object
+    FROM read_csv_auto('./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv', delim='\t', null_padding=true)
+    WHERE (subject LIKE 'NCBITaxon:%' OR object LIKE 'NCBITaxon:%'
+           OR subject LIKE 'MONDO:%' OR object LIKE 'MONDO:%')
+      AND predicate IS NOT NULL
+      AND subject IS NOT NULL
+      AND object IS NOT NULL
+    """
+    data_edges = conn_filter.execute(query).df()
+    print(f"✓ Loaded {len(data_edges):,} filtered edges (instead of full 150M+ rows)")
+
+    # Load only necessary columns from nodes
+    print("Loading nodes...")
+    data_nodes = pd.read_csv("./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv",
+                             header=0, sep="\t", usecols=['id', 'name'])
+    print(f"✓ Loaded {len(data_nodes):,} nodes")
+
+    conn_filter.close()
 
     output_dir = "./data/Intermediate_Files"
 
@@ -86,6 +114,9 @@ def main():
         phylogeny_output_dir = "./data/Phylogeny_Search"
         ncbi_taxa_ranks_df = get_all_ranks(phylogeny_output_dir)
 
+        # Pre-compute rank lookup to avoid repeated DataFrame indexing (performance optimization)
+        rank_lookup = ncbi_taxa_ranks_df.set_index("NCBITaxon_ID")["Rank"].to_dict()
+
         disease_microbes_ranks = []
         disease_microbes_disease_relationship = []
         # disease_microbes_children_numbers = []
@@ -96,15 +127,16 @@ def main():
         disease_microbes_strains_butyrate_producers = []
 
         conn = duckdb.connect(":memory:")
-        duckdb_load_table(conn, "./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv", "ncbitaxon_edges", ["subject", "predicate", "object"])
-        # duckdb_load_table(conn, "./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges.tsv", "ncbitaxon_edges", ["subject", "predicate", "object"])
+        # Table must be named "edges" for precompute_taxonomy_hierarchy() to work
+        duckdb_load_table(conn, "./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv", "edges", ["subject", "predicate", "object"])
+        # duckdb_load_table(conn, "./data/Input_Files/kg-microbe-biomedical/merged-kg_edges.tsv", "edges", ["subject", "predicate", "object"])
 
         microbes_strain_dict, microbes_species_dict = find_microbes_strain(conn, ncbi_taxa_ranks_df, disease_microbes, output_dir, "classification_butyrate_produces_" + disease_name)
 
         for microbe in disease_microbes: #["NCBITaxon:853"]:#tqdm.tqdm(relevant_ncbitaxa):
             ibd_relationship = disease_microbes_df.loc[disease_microbes_df["subject"] == microbe, "object"].values[0]
             disease_microbes_disease_relationship.append(ibd_relationship)
-            microbe_rank = ncbi_taxa_ranks_df.set_index("NCBITaxon_ID")["Rank"].get(microbe, "not_found")
+            microbe_rank = rank_lookup.get(microbe, "not_found")
             disease_microbes_ranks.append(microbe_rank)
             # # Search traits from only children
             # children = search_lower_subclass_phylogeny(conn, microbe)
@@ -154,28 +186,60 @@ def main():
         ranks_df.to_csv(output_dir + "/outcome_to_NCBITaxon_cleaned_ranks_butyrate_production_" + disease_name + ".csv",sep=",",index=False)
 
 
-        num_increased_total = 0
-        num_decreased_total = 0
-        num_increased_disease_butyrate_producers = 0
-        num_decreased_disease_butyrate_producers = 0
-        total_strains = 0
-        total_species = 0
-
+        # ------------------------------------------------------------------
+        # Deduplicated (Figure 6C) contingency.
+        #
+        # The per-parent enumeration in ranks_df double-counts strains that
+        # descend from more than one disease-associated parent, and the same
+        # strain can fall under parents of both directions. For Figure 6C we
+        # count each descendant once and drop descendants that appear under
+        # both increased- and decreased-likelihood parents. A parent that is
+        # itself a strain or subspecies contributes itself (consistent with how
+        # ranks_df counts it); otherwise it contributes its strain descendants
+        # when it has any (Num_Strains > 0), else its species descendants (or
+        # itself when it is a species). This is the "A2" analysis unit and
+        # matches src/figure6_sensitivity_analysis.py.
+        kg_producers = set(kg_analysis_microbes)
+        increased_set, decreased_set, strain_pool = set(), set(), set()
         for i in range(len(ranks_df)):
-            if ranks_df.iloc[i].loc["Num_Strains"] > 0:
-                num_total = ranks_df.iloc[i].loc["Num_Strains"]
-                num_producers = ranks_df.iloc[i].loc["Num_Strains_Butyrate_Producers"]
-                total_strains += num_total
-            elif ranks_df.iloc[i].loc["Num_Strains"] == 0:
-                num_total = ranks_df.iloc[i].loc["Num_Species"]
-                num_producers = ranks_df.iloc[i].loc["Num_Species_Butyrate_Producers"]
-                total_species += num_total
-            if "increased" in ranks_df.iloc[i].loc["Disease_Relationship"]:
-                num_increased_total += num_total
-                num_increased_disease_butyrate_producers += num_producers
-            elif "decreased" in ranks_df.iloc[i].loc["Disease_Relationship"]:
-                num_decreased_total += num_total
-                num_decreased_disease_butyrate_producers += num_producers
+            row = ranks_df.iloc[i]
+            parent = row.loc["Name"]
+            if row.loc["Rank"] in ("strain", "subspecies"):
+                descendants = {parent}
+                pool = "strain"
+            elif row.loc["Num_Strains"] > 0:
+                descendants = set(microbes_strain_dict.get(parent, []))
+                pool = "strain"
+            else:
+                descendants = {parent} if row.loc["Rank"] == "species" else set(microbes_species_dict.get(parent, []))
+                pool = "species"
+            if "increased" in row.loc["Disease_Relationship"]:
+                increased_set |= descendants
+            elif "decreased" in row.loc["Disease_Relationship"]:
+                decreased_set |= descendants
+            if pool == "strain":
+                strain_pool |= descendants
+
+        conflicting = increased_set & decreased_set
+        increased_unique = increased_set - conflicting
+        decreased_unique = decreased_set - conflicting
+
+        num_increased_total = len(increased_unique)
+        num_decreased_total = len(decreased_unique)
+        num_increased_disease_butyrate_producers = len(increased_unique & kg_producers)
+        num_decreased_disease_butyrate_producers = len(decreased_unique & kg_producers)
+
+        # Panel B (bottom) "KG Species/Strain Representation" composition:
+        # classify each retained descendant as strain (reached via any strain-
+        # bearing parent) otherwise species.
+        kept = increased_unique | decreased_unique
+        total_strains = len(kept & strain_pool)
+        total_species = len(kept) - total_strains
+
+        print(f"{disease_name}: deduplicated Figure 6C contingency — "
+              f"{len(conflicting)} cross-direction descendants removed; "
+              f"increased {num_increased_total} (producers {num_increased_disease_butyrate_producers}), "
+              f"decreased {num_decreased_total} (producers {num_decreased_disease_butyrate_producers})")
 
         # Chi Square test 1s then 0s
         contingency_table = [

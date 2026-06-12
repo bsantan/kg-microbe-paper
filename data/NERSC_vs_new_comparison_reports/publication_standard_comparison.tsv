@@ -1,0 +1,5 @@
+Disease	Repository	Status	Increased_Total_Std	Increased_Total_Repo	Increased_Butyrate_Std	Increased_Butyrate_Repo	Decreased_Total_Std	Decreased_Total_Repo	Decreased_Butyrate_Std	Decreased_Butyrate_Repo	Chi2_Std	Chi2_Repo	Notes
+IBD	CURRENT	DIFFERS	15398	7764	514	186	39554	3036	221	478	647	671.6827574772602	Repository data differs from publication standard
+IBD	NERSC	MISSING	15398	N/A	514	N/A	39554	N/A	221	N/A	647	N/A	No data found in repository
+PD	CURRENT	DIFFERS	2990	7401	299	150	22531	1240	152	302	1317	1063.5953362765647	Repository data differs from publication standard
+PD	NERSC	MISSING	2990	N/A	299	N/A	22531	N/A	152	N/A	1317	N/A	No data found in repository

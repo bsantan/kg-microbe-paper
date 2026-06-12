@@ -1,0 +1,13 @@
+Analysis	Metric	Current_Value	Expected_Value	Difference	Percent_Change	Status	Criticality
+IBD	Num_Decreased_disease_Total	3036.0	3036.0	0.0	0%	MATCH	OK
+IBD	Num_Increased_disease_Total	7764.0	7764.0	0.0	0%	MATCH	OK
+IBD	Num_Decreased_disease_Butyrate_Producers	478.0	478.0	0.0	0%	MATCH	OK
+IBD	Num_Increased_disease_Butyrate_Producers	186.0	186.0	0.0	0%	MATCH	OK
+IBD	chi2	671.6827574772602	671.68	0.0027574772602747544	0.0004%	MATCH	OK
+IBD	P_Val	4.301859210585492e-148	4.3e-148	1.859210585492124e-151	0%	MATCH	OK
+PD	Num_Decreased_disease_Total	1240.0	1240.0	0.0	0%	MATCH	OK
+PD	Num_Increased_disease_Total	7401.0	7401.0	0.0	0%	MATCH	OK
+PD	Num_Decreased_disease_Butyrate_Producers	302.0	302.0	0.0	0%	MATCH	OK
+PD	Num_Increased_disease_Butyrate_Producers	150.0	150.0	0.0	0%	MATCH	OK
+PD	chi2	1063.5953362765647	1063.6	0.004663723435214706	0.0004%	MATCH	OK
+PD	P_Val	2.699925100350924e-233	2.7e-233	7.48996490759771e-238	0%	MATCH	OK

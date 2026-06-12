@@ -1,0 +1,1106 @@
+{
+  "exists": true,
+  "files": [
+    {
+      "path": "vital_ids_manual.csv",
+      "size": 12745
+    },
+    {
+      "path": "All_Competencies_produces_raw.tsv",
+      "size": 347
+    },
+    {
+      "path": "vital_ids.csv",
+      "size": 12263
+    },
+    {
+      "path": "All_Competencies_Venn_Diagrams_With_Proteomes.png",
+      "size": 48632
+    },
+    {
+      "path": "All_Sources_Competencies_Comparison_tryptophan_produces.png",
+      "size": 45627
+    },
+    {
+      "path": "Monte_Carlos_Distribution.png",
+      "size": 28300
+    },
+    {
+      "path": "All_Competencies_produces_summary.tsv",
+      "size": 159
+    },
+    {
+      "path": "All_Competencies_Venn_Diagrams.png",
+      "size": 42335
+    },
+    {
+      "path": "All_Sources_Competencies_Comparison_butyrate_produces.png",
+      "size": 54655
+    },
+    {
+      "path": "butyrate_produces/NCBI_organismal_genomic_chebi_comparison_species.tsv",
+      "size": 32
+    },
+    {
+      "path": "butyrate_produces/gs_proteomes_no_trait_butyrate_produces_families.tsv",
+      "size": 5413
+    },
+    {
+      "path": "butyrate_produces/all_no_gs_butyrate_produces_families.tsv",
+      "size": 297448
+    },
+    {
+      "path": "butyrate_produces/NCBI_genomic_traits_RHEA.tsv",
+      "size": 579742
+    },
+    {
+      "path": "butyrate_produces/gs_proteomes_no_trait_ncbi_taxonomy_treemap.png",
+      "size": 119197
+    },
+    {
+      "path": "butyrate_produces/NCBI_genomic_traits_RHEA_GO.tsv",
+      "size": 23
+    },
+    {
+      "path": "butyrate_produces/term_mappings.csv",
+      "size": 32
+    },
+    {
+      "path": "butyrate_produces/Gold_Standard_Families_Venn_Diagrams.png",
+      "size": 55569
+    },
+    {
+      "path": "butyrate_produces/gs_no_kg_ncbi_taxonomy_treemap.png",
+      "size": 116789
+    },
+    {
+      "path": "butyrate_produces/organismal_no_gs_butyrate_produces_families.tsv",
+      "size": 1008
+    },
+    {
+      "path": "butyrate_produces/all_kg_butyrate_produces_families.tsv",
+      "size": 307543
+    },
+    {
+      "path": "butyrate_produces/NCBI_genomic_traits_CHEBI.tsv",
+      "size": 15
+    },
+    {
+      "path": "butyrate_produces/Gold_Standard_Species_Venn_Diagrams_EC.png",
+      "size": 60359
+    },
+    {
+      "path": "butyrate_produces/NCBI_organismal_genomic_go_comparison_species.tsv",
+      "size": 29
+    },
+    {
+      "path": "butyrate_produces/%butyrate%_CHEBI_term_labels.tsv",
+      "size": 7788
+    },
+    {
+      "path": "butyrate_produces/Gold_Standard_Species_Venn_Diagrams_EC_RHEA_Org.png",
+      "size": 56747
+    },
+    {
+      "path": "butyrate_produces/NCBI_organismal_traits_strains.tsv",
+      "size": 1163
+    },
+    {
+      "path": "butyrate_produces/organismal_no_gs_ncbi_taxonomy_treemap.png",
+      "size": 73865
+    },
+    {
+      "path": "butyrate_produces/rhea_chebi_no_gs_ncbi_taxonomy_treemap.png",
+      "size": 139618
+    },
+    {
+      "path": "butyrate_produces/NCBI_genomic_traits_GO.tsv",
+      "size": 15
+    },
+    {
+      "path": "butyrate_produces/all_kg_ncbi_taxonomy_treemap.png",
+      "size": 149618
+    },
+    {
+      "path": "butyrate_produces/NCBI_organismal_genomic_chebi_comparison_strain.tsv",
+      "size": 29
+    },
+    {
+      "path": "butyrate_produces/NCBI_organismal_genomic_rhea_go_comparison_species.tsv",
+      "size": 16
+    },
+    {
+      "path": "butyrate_produces/gold_standard_ids_manual.tsv",
+      "size": 18558
+    },
+    {
+      "path": "butyrate_produces/NCBI_organismal_genomic_rhea_comparison_species.tsv",
+      "size": 457
+    },
+    {
+      "path": "butyrate_produces/NCBI_organismal_genomic_rhea_comparison_strains.tsv",
+      "size": 502
+    },
+    {
+      "path": "butyrate_produces/ec_no_gs_ncbi_taxonomy_treemap.png",
+      "size": 124017
+    },
+    {
+      "path": "butyrate_produces/Gold_Standard_Families_Overlap_butyrate_produces.csv",
+      "size": 5192
+    },
+    {
+      "path": "butyrate_produces/proteomes_no_gs_ncbi_taxonomy_treemap.png",
+      "size": 152436
+    },
+    {
+      "path": "butyrate_produces/gs_and_kg_ncbi_taxonomy_treemap.png",
+      "size": 125732
+    },
+    {
+      "path": "butyrate_produces/proteomes_no_gs_butyrate_produces_families.tsv",
+      "size": 297100
+    },
+    {
+      "path": "butyrate_produces/all_no_gs_ncbi_taxonomy_treemap.png",
+      "size": 151540
+    },
+    {
+      "path": "butyrate_produces/gs_no_kg_butyrate_produces_families.tsv",
+      "size": 8138
+    },
+    {
+      "path": "butyrate_produces/NCBI_organismal_genomic_go_comparison_strain.tsv",
+      "size": 29
+    },
+    {
+      "path": "butyrate_produces/NCBI_genomic_traits_EC_pathway_2.tsv",
+      "size": 6814
+    },
+    {
+      "path": "butyrate_produces/%butyrate%_GO_term_labels.tsv",
+      "size": 3112
+    },
+    {
+      "path": "butyrate_produces/Gold_Standard_Species_Venn_Diagrams.png",
+      "size": 59942
+    },
+    {
+      "path": "butyrate_produces/NCBI_genomic_traits_EC_pathway_3.tsv",
+      "size": 2536
+    },
+    {
+      "path": "butyrate_produces/NCBI_organismal_traits.tsv",
+      "size": 721
+    },
+    {
+      "path": "butyrate_produces/NCBI_genomic_traits_EC_pathway_1.tsv",
+      "size": 9530
+    },
+    {
+      "path": "butyrate_produces/gs_and_kg_butyrate_produces_families.tsv",
+      "size": 10147
+    },
+    {
+      "path": "butyrate_produces/all_microbes_butyrate_produces_families.tsv",
+      "size": 315629
+    },
+    {
+      "path": "butyrate_produces/rhea_chebi_no_gs_butyrate_produces_families.tsv",
+      "size": 257259
+    },
+    {
+      "path": "butyrate_produces/NCBI_genomic_traits_EC_pathway_4.tsv",
+      "size": 180
+    },
+    {
+      "path": "butyrate_produces/NCBI_organismal_traits_strains_proteomes.tsv",
+      "size": 452
+    },
+    {
+      "path": "butyrate_produces/NCBI_organismal_genomic_rhea_go_comparison_strain.tsv",
+      "size": 11
+    },
+    {
+      "path": "butyrate_produces/NCBI_genomic_traits_EC_pathway_5.tsv",
+      "size": 144
+    },
+    {
+      "path": "butyrate_produces/reaction_direction_dict.json",
+      "size": 280
+    },
+    {
+      "path": "butyrate_produces/gold_standard_ids.tsv",
+      "size": 17964
+    },
+    {
+      "path": "butyrate_produces/ec_no_gs_butyrate_produces_families.tsv",
+      "size": 76552
+    },
+    {
+      "path": "butyrate_produces/NCBI_genomic_traits_EC_pathway_all.tsv",
+      "size": 44207
+    },
+    {
+      "path": "butyrate_produces/butyrate_CHEBI_term_labels.tsv",
+      "size": 29
+    },
+    {
+      "path": "butyrate_produces/Gold_Standard_Species_Overlap_butyrate_produces.csv",
+      "size": 382246
+    },
+    {
+      "path": "tryptophan_produces/L-tryptophan zwitterion_CHEBI_term_labels.tsv",
+      "size": 44
+    },
+    {
+      "path": "tryptophan_produces/NCBI_organismal_genomic_chebi_comparison_species.tsv",
+      "size": 32
+    },
+    {
+      "path": "tryptophan_produces/NCBI_genomic_traits_RHEA.tsv",
+      "size": 8216407
+    },
+    {
+      "path": "tryptophan_produces/NCBI_genomic_traits_RHEA_GO.tsv",
+      "size": 23
+    },
+    {
+      "path": "tryptophan_produces/term_mappings.csv",
+      "size": 99
+    },
+    {
+      "path": "tryptophan_produces/NCBI_genomic_traits_CHEBI.tsv",
+      "size": 15
+    },
+    {
+      "path": "tryptophan_produces/Gold_Standard_Species_Venn_Diagrams_EC.png",
+      "size": 42149
+    },
+    {
+      "path": "tryptophan_produces/NCBI_organismal_genomic_go_comparison_species.tsv",
+      "size": 29
+    },
+    {
+      "path": "tryptophan_produces/%tryptophan%_CHEBI_term_labels.tsv",
+      "size": 6881
+    },
+    {
+      "path": "tryptophan_produces/Gold_Standard_Species_Venn_Diagrams_EC_RHEA_Org.png",
+      "size": 41786
+    },
+    {
+      "path": "tryptophan_produces/NCBI_organismal_traits_strains.tsv",
+      "size": 129
+    },
+    {
+      "path": "tryptophan_produces/NCBI_genomic_traits_GO.tsv",
+      "size": 15
+    },
+    {
+      "path": "tryptophan_produces/Gold_Standard_Species_Overlap_tryptophan_produces.csv",
+      "size": 1932300
+    },
+    {
+      "path": "tryptophan_produces/NCBI_organismal_genomic_chebi_comparison_strain.tsv",
+      "size": 29
+    },
+    {
+      "path": "tryptophan_produces/NCBI_organismal_genomic_rhea_go_comparison_species.tsv",
+      "size": 16
+    },
+    {
+      "path": "tryptophan_produces/NCBI_organismal_genomic_rhea_comparison_species.tsv",
+      "size": 79
+    },
+    {
+      "path": "tryptophan_produces/NCBI_organismal_genomic_rhea_comparison_strains.tsv",
+      "size": 145
+    },
+    {
+      "path": "tryptophan_produces/L-tryptophan_CHEBI_term_labels.tsv",
+      "size": 33
+    },
+    {
+      "path": "tryptophan_produces/all_microbes_tryptophan_produces_families.tsv",
+      "size": 1983300
+    },
+    {
+      "path": "tryptophan_produces/%tryptophan%_GO_term_labels.tsv",
+      "size": 4148
+    },
+    {
+      "path": "tryptophan_produces/tryptophan_CHEBI_term_labels.tsv",
+      "size": 31
+    },
+    {
+      "path": "tryptophan_produces/NCBI_organismal_genomic_go_comparison_strain.tsv",
+      "size": 29
+    },
+    {
+      "path": "tryptophan_produces/Gold_Standard_Species_Venn_Diagrams.png",
+      "size": 45614
+    },
+    {
+      "path": "tryptophan_produces/NCBI_organismal_traits.tsv",
+      "size": 71
+    },
+    {
+      "path": "tryptophan_produces/NCBI_organismal_traits_strains_proteomes.tsv",
+      "size": 79
+    },
+    {
+      "path": "tryptophan_produces/NCBI_organismal_genomic_rhea_go_comparison_strain.tsv",
+      "size": 11
+    },
+    {
+      "path": "tryptophan_produces/reaction_direction_dict.json",
+      "size": 387
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/gs_proteomes_no_annotation_Genus_Traits_Comparison_Statistics_species_and_strain_all.tsv",
+      "size": 162
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/gs_proteomes_total_Genus_Traits_Comparison_species_and_strain_all.tsv",
+      "size": 146
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/gs_proteomes_no_trait_butyrate_produces_families.tsv",
+      "size": 5413
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/all_no_gs_butyrate_produces_families.tsv",
+      "size": 297448
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/proteomes_probable_protein_name_Genus_Traits_Comparison_species_and_strain_all.png",
+      "size": 98238
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/gs_and_kg_Genus_Traits_Comparison_species_and_strain_all.png",
+      "size": 72964
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/gs_proteomes_no_trait_ncbi_taxonomy_treemap.png",
+      "size": 119197
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/gs_proteomes_total_Genus_Traits_Comparison_species_and_strain_all.png",
+      "size": 73907
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/gs_no_kg_ncbi_taxonomy_treemap.png",
+      "size": 116789
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/organismal_no_gs_butyrate_produces_families.tsv",
+      "size": 1008
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/proteomes_probable_protein_name_butyrate_produces_families.tsv",
+      "size": 239434
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/proteomes_probable_protein_name_Genus_Traits_Comparison_Statistics_species_and_strain_all.tsv",
+      "size": 181
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/gs_and_kg_Genus_Traits_Comparison_species_and_strain_all.tsv",
+      "size": 146
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/proteomes_probable_protein_name_Genus_Traits_Comparison_species_and_strain_all.tsv",
+      "size": 267
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/all_kg_butyrate_produces_families.tsv",
+      "size": 307543
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/gs_proteomes_total_ncbi_taxonomy_treemap.png",
+      "size": 128660
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/gs_proteomes_total_Genus_Traits_Comparison_Statistics_species_and_strain_all.tsv",
+      "size": 164
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/gs_proteomes_no_annotation_ncbi_taxonomy_treemap.png",
+      "size": 119197
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/organismal_no_gs_Genus_Traits_Comparison_species_and_strain_all.png",
+      "size": 72188
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/organismal_no_gs_Genus_Traits_Comparison_Statistics_species_and_strain_all.tsv",
+      "size": 163
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/gs_proteomes_no_annotation_Genus_Traits_Comparison_species_and_strain_all.png",
+      "size": 72931
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/organismal_no_gs_ncbi_taxonomy_treemap.png",
+      "size": 73865
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/rhea_chebi_no_gs_ncbi_taxonomy_treemap.png",
+      "size": 139618
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/all_no_gs_Genus_Traits_Comparison_species_and_strain_all.png",
+      "size": 134447
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/all_kg_ncbi_taxonomy_treemap.png",
+      "size": 149618
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/organismal_no_gs_Genus_Traits_Comparison_species_and_strain_all.tsv",
+      "size": 147
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/ec_no_gs_Genus_Traits_Comparison_Statistics_species_and_strain_all.tsv",
+      "size": 164
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/gs_proteomes_no_annotation_butyrate_produces_families.tsv",
+      "size": 5413
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/proteomes_probable_protein_name_ncbi_taxonomy_treemap.png",
+      "size": 136938
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/all_no_gs_Genus_Traits_Comparison_species_and_strain_all.tsv",
+      "size": 407
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/all_no_gs_Genus_Traits_Comparison_Statistics_species_and_strain_all.tsv",
+      "size": 180
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/gs_proteomes_no_annotation_Genus_Traits_Comparison_species_and_strain_all.tsv",
+      "size": 146
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/rhea_chebi_no_gs_Genus_Traits_Comparison_Statistics_species_and_strain_all.tsv",
+      "size": 181
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/gs_no_kg_Genus_Traits_Comparison_species_and_strain_all.png",
+      "size": 72931
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/ec_no_gs_ncbi_taxonomy_treemap.png",
+      "size": 124017
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/all_kg_Genus_Traits_Comparison_Statistics_species_and_strain_all.tsv",
+      "size": 180
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/gs_proteomes_total_butyrate_produces_families.tsv",
+      "size": 15344
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/proteomes_no_gs_Genus_Traits_Comparison_Statistics_species_and_strain_all.tsv",
+      "size": 180
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/all_kg_Genus_Traits_Comparison_species_and_strain_all.tsv",
+      "size": 377
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/gs_proteomes_no_trait_Genus_Traits_Comparison_species_and_strain_all.tsv",
+      "size": 146
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/proteomes_no_gs_ncbi_taxonomy_treemap.png",
+      "size": 152436
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/gs_and_kg_Genus_Traits_Comparison_Statistics_species_and_strain_all.tsv",
+      "size": 162
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/gs_and_kg_ncbi_taxonomy_treemap.png",
+      "size": 125732
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/proteomes_no_gs_butyrate_produces_families.tsv",
+      "size": 297100
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/competency_summary_butyrate_produces.tsv",
+      "size": 367
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/gs_proteomes_no_trait_Genus_Traits_Comparison_species_and_strain_all.png",
+      "size": 72931
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/all_kg_Genus_Traits_Comparison_species_and_strain_all.png",
+      "size": 126843
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/gs_no_kg_Genus_Traits_Comparison_species_and_strain_all.tsv",
+      "size": 146
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/all_no_gs_ncbi_taxonomy_treemap.png",
+      "size": 151540
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/gs_no_kg_butyrate_produces_families.tsv",
+      "size": 8138
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/gs_proteomes_no_trait_Genus_Traits_Comparison_Statistics_species_and_strain_all.tsv",
+      "size": 162
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/rhea_chebi_no_gs_Genus_Traits_Comparison_species_and_strain_all.png",
+      "size": 123044
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/gs_no_kg_Genus_Traits_Comparison_Statistics_species_and_strain_all.tsv",
+      "size": 162
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/ec_no_gs_Genus_Traits_Comparison_species_and_strain_all.tsv",
+      "size": 218
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/proteomes_no_gs_Genus_Traits_Comparison_species_and_strain_all.tsv",
+      "size": 407
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/gs_and_kg_butyrate_produces_families.tsv",
+      "size": 10147
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/rhea_chebi_no_gs_butyrate_produces_families.tsv",
+      "size": 257259
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/proteomes_no_gs_Genus_Traits_Comparison_species_and_strain_all.png",
+      "size": 134447
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/ec_no_gs_butyrate_produces_families.tsv",
+      "size": 76552
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/rhea_chebi_no_gs_Genus_Traits_Comparison_species_and_strain_all.tsv",
+      "size": 332
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/ec_no_gs_Genus_Traits_Comparison_species_and_strain_all.png",
+      "size": 89769
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/all_no_gs_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_0.1.tsv",
+      "size": 168
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/gs_and_kg_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_0.1.tsv",
+      "size": 169
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/all_kg_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.png",
+      "size": 64478
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/all_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.png",
+      "size": 73384
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/all_kg_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_0.1.tsv",
+      "size": 156
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/gs_proteomes_no_trait_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.png",
+      "size": 74627
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/all_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.tsv",
+      "size": 141
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/all_kg_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.tsv",
+      "size": 126
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/gs_no_kg_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_0.1.tsv",
+      "size": 171
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/ec_no_gs_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_0.1.tsv",
+      "size": 171
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/gs_proteomes_no_annotation_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_0.1.tsv",
+      "size": 171
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/gs_proteomes_no_trait_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.tsv",
+      "size": 156
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/gs_proteomes_total_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.tsv",
+      "size": 152
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/proteomes_probable_protein_name_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.tsv",
+      "size": 134
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/rhea_chebi_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.tsv",
+      "size": 141
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/gs_no_kg_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.tsv",
+      "size": 156
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/gs_and_kg_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.tsv",
+      "size": 152
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/proteomes_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.tsv",
+      "size": 141
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/proteomes_probable_protein_name_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_0.1.tsv",
+      "size": 150
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/proteomes_probable_protein_name_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.png",
+      "size": 64706
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/gs_proteomes_total_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.png",
+      "size": 74530
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/gs_and_kg_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.png",
+      "size": 74530
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/proteomes_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.png",
+      "size": 73384
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/gs_no_kg_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.png",
+      "size": 74627
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/gs_proteomes_total_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_0.1.tsv",
+      "size": 169
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/rhea_chebi_no_gs_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_0.1.tsv",
+      "size": 168
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/rhea_chebi_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.png",
+      "size": 73384
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/gs_proteomes_no_trait_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_0.1.tsv",
+      "size": 171
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/ec_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.png",
+      "size": 74627
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/gs_proteomes_no_annotation_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.png",
+      "size": 74627
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/proteomes_no_gs_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_0.1.tsv",
+      "size": 168
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/gs_proteomes_no_annotation_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.tsv",
+      "size": 156
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_0.1/ec_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.tsv",
+      "size": 156
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/gs_proteomes_no_trait_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.png",
+      "size": 74627
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/all_kg_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_1.0.tsv",
+      "size": 176
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/all_kg_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.png",
+      "size": 192643
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/all_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.png",
+      "size": 197236
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/ec_no_gs_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_1.0.tsv",
+      "size": 175
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/gs_no_kg_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_1.0.tsv",
+      "size": 171
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/gs_proteomes_no_annotation_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_1.0.tsv",
+      "size": 171
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/gs_proteomes_no_trait_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.tsv",
+      "size": 156
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/all_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.tsv",
+      "size": 972
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/all_kg_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.tsv",
+      "size": 940
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/gs_and_kg_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_1.0.tsv",
+      "size": 176
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/all_no_gs_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_1.0.tsv",
+      "size": 176
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/proteomes_no_gs_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_1.0.tsv",
+      "size": 176
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/ec_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.png",
+      "size": 88442
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/gs_proteomes_no_annotation_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.png",
+      "size": 74627
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/gs_proteomes_no_trait_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_1.0.tsv",
+      "size": 171
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/gs_proteomes_no_annotation_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.tsv",
+      "size": 156
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/ec_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.tsv",
+      "size": 234
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/gs_and_kg_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.tsv",
+      "size": 348
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/proteomes_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.tsv",
+      "size": 972
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/rhea_chebi_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.tsv",
+      "size": 892
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/gs_no_kg_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.tsv",
+      "size": 156
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/proteomes_probable_protein_name_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.tsv",
+      "size": 767
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/gs_proteomes_total_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.tsv",
+      "size": 427
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/rhea_chebi_no_gs_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_1.0.tsv",
+      "size": 175
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/gs_proteomes_total_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_1.0.tsv",
+      "size": 177
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/gs_no_kg_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.png",
+      "size": 74627
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/rhea_chebi_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.png",
+      "size": 183658
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/gs_and_kg_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.png",
+      "size": 122706
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/proteomes_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.png",
+      "size": 197236
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/gs_proteomes_total_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.png",
+      "size": 133966
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/proteomes_probable_protein_name_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_1.0.tsv",
+      "size": 176
+    },
+    {
+      "path": "butyrate_produces/Competency_Analysis/Threshold_1.0/proteomes_probable_protein_name_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.png",
+      "size": 196745
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/gs_proteomes_total_tryptophan_produces_families.tsv",
+      "size": 52
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/gs_no_kg_ncbi_taxonomy_treemap.png",
+      "size": 38406
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/ec_no_gs_tryptophan_produces_families.tsv",
+      "size": 52
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/gs_proteomes_total_ncbi_taxonomy_treemap.png",
+      "size": 38406
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/gs_proteomes_no_annotation_ncbi_taxonomy_treemap.png",
+      "size": 38406
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/competency_summary_tryptophan_produces.tsv",
+      "size": 354
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/organismal_no_gs_ncbi_taxonomy_treemap.png",
+      "size": 50698
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/rhea_chebi_no_gs_ncbi_taxonomy_treemap.png",
+      "size": 163072
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/all_no_gs_Genus_Traits_Comparison_species_and_strain_all.png",
+      "size": 198557
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/all_kg_ncbi_taxonomy_treemap.png",
+      "size": 163072
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/proteomes_probable_protein_name_tryptophan_produces_families.tsv",
+      "size": 52
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/all_kg_tryptophan_produces_families.tsv",
+      "size": 1983300
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/proteomes_probable_protein_name_ncbi_taxonomy_treemap.png",
+      "size": 38406
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/all_no_gs_Genus_Traits_Comparison_species_and_strain_all.tsv",
+      "size": 764
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/all_no_gs_Genus_Traits_Comparison_Statistics_species_and_strain_all.tsv",
+      "size": 171
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/gs_proteomes_no_annotation_tryptophan_produces_families.tsv",
+      "size": 52
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/rhea_chebi_no_gs_Genus_Traits_Comparison_Statistics_species_and_strain_all.tsv",
+      "size": 171
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/ec_no_gs_ncbi_taxonomy_treemap.png",
+      "size": 38406
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/all_kg_Genus_Traits_Comparison_Statistics_species_and_strain_all.tsv",
+      "size": 171
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/proteomes_no_gs_Genus_Traits_Comparison_Statistics_species_and_strain_all.tsv",
+      "size": 171
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/all_kg_Genus_Traits_Comparison_species_and_strain_all.tsv",
+      "size": 764
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/rhea_chebi_no_gs_tryptophan_produces_families.tsv",
+      "size": 1983300
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/proteomes_no_gs_ncbi_taxonomy_treemap.png",
+      "size": 163072
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/gs_and_kg_ncbi_taxonomy_treemap.png",
+      "size": 38406
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/all_no_gs_tryptophan_produces_families.tsv",
+      "size": 1983300
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/all_kg_Genus_Traits_Comparison_species_and_strain_all.png",
+      "size": 198557
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/all_no_gs_ncbi_taxonomy_treemap.png",
+      "size": 163072
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/proteomes_no_gs_tryptophan_produces_families.tsv",
+      "size": 1983300
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/rhea_chebi_no_gs_Genus_Traits_Comparison_species_and_strain_all.png",
+      "size": 198557
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/proteomes_no_gs_Genus_Traits_Comparison_species_and_strain_all.tsv",
+      "size": 764
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/organismal_no_gs_tryptophan_produces_families.tsv",
+      "size": 138
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/gs_and_kg_tryptophan_produces_families.tsv",
+      "size": 52
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/proteomes_no_gs_Genus_Traits_Comparison_species_and_strain_all.png",
+      "size": 198557
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/gs_no_kg_tryptophan_produces_families.tsv",
+      "size": 52
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/rhea_chebi_no_gs_Genus_Traits_Comparison_species_and_strain_all.tsv",
+      "size": 764
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/Threshold_0.1/all_no_gs_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_0.1.tsv",
+      "size": 180
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/Threshold_0.1/all_kg_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.png",
+      "size": 73877
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/Threshold_0.1/all_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.png",
+      "size": 73877
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/Threshold_0.1/all_kg_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_0.1.tsv",
+      "size": 180
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/Threshold_0.1/all_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.tsv",
+      "size": 142
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/Threshold_0.1/all_kg_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.tsv",
+      "size": 142
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/Threshold_0.1/rhea_chebi_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.tsv",
+      "size": 142
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/Threshold_0.1/proteomes_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.tsv",
+      "size": 142
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/Threshold_0.1/proteomes_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.png",
+      "size": 73877
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/Threshold_0.1/rhea_chebi_no_gs_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_0.1.tsv",
+      "size": 180
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/Threshold_0.1/rhea_chebi_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_0.1.png",
+      "size": 73877
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/Threshold_0.1/proteomes_no_gs_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_0.1.tsv",
+      "size": 180
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/Threshold_1.0/all_kg_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_1.0.tsv",
+      "size": 181
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/Threshold_1.0/all_kg_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.png",
+      "size": 217183
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/Threshold_1.0/all_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.png",
+      "size": 217183
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/Threshold_1.0/all_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.tsv",
+      "size": 1065
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/Threshold_1.0/all_kg_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.tsv",
+      "size": 1065
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/Threshold_1.0/all_no_gs_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_1.0.tsv",
+      "size": 181
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/Threshold_1.0/proteomes_no_gs_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_1.0.tsv",
+      "size": 181
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/Threshold_1.0/proteomes_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.tsv",
+      "size": 1065
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/Threshold_1.0/rhea_chebi_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.tsv",
+      "size": 1065
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/Threshold_1.0/rhea_chebi_no_gs_Genus_Traits_Comparison_Statistics_species_and_strain_impt_families_1.0.tsv",
+      "size": 181
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/Threshold_1.0/rhea_chebi_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.png",
+      "size": 217183
+    },
+    {
+      "path": "tryptophan_produces/Competency_Analysis/Threshold_1.0/proteomes_no_gs_Genus_Traits_Comparison_species_and_strain_impt_families_1.0.png",
+      "size": 217183
+    }
+  ],
+  "total_size": 33951503
+}

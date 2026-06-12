@@ -1,0 +1,82 @@
+KG-Microbe-Biomedical-Function Representation of Microbial Involvement in Disease
+Publication Figure 6 - Quantitative Results
+================================================================================
+
+PANEL B: Original Source Representation
+----------------------------------------
+
+Inflammatory Bowel Disease:
+  - Original Source: 239 total microbes
+  - KG Species/Strain Representation: 54,952 total
+
+Parkinson's Disease:
+  - Original Source: 233 total microbes
+  - KG Species/Strain Representation: 25,521 total
+
+
+PANEL C: Butyrate Producers vs Non-Butyrate Producers Analysis
+---------------------------------------------------------------
+
+INFLAMMATORY BOWEL DISEASE:
+
+  Increased likelihood of disease:
+    - Butyrate Producers: 514
+    - Non-Butyrate Producers: 14,884
+    - χ2 value: 647
+
+  Decreased likelihood of disease:
+    - Butyrate Producers: 221
+    - Non-Butyrate Producers: 39,333
+    - p-value: 1e-142
+
+  Total microbes analyzed:
+    - Total increased: 514 + 14,884 = 15,398
+    - Total decreased: 221 + 39,333 = 39,554
+    - Grand total: 54,952
+
+
+PARKINSON'S DISEASE:
+
+  Increased likelihood of disease:
+    - Butyrate Producers: 299
+    - Non-Butyrate Producers: 2,691
+    - χ2 value: 1317
+
+  Decreased likelihood of disease:
+    - Butyrate Producers: 152
+    - Non-Butyrate Producers: 22,379
+    - p-value: 2e-288
+
+  Total microbes analyzed:
+    - Total increased: 299 + 2,691 = 2,990
+    - Total decreased: 152 + 22,379 = 22,531
+    - Grand total: 25,521
+
+
+KEY FINDINGS:
+-------------
+
+1. Inflammatory Bowel Disease:
+   - Butyrate producers are DEPLETED in increased disease state
+   - Ratio of butyrate to non-butyrate in increased: 514:14,884 (3.3%)
+   - Ratio of butyrate to non-butyrate in decreased: 221:39,333 (0.6%)
+   - Highly significant association (p = 1e-142, χ2 = 647)
+
+2. Parkinson's Disease:
+   - Butyrate producers are DEPLETED in increased disease state
+   - Ratio of butyrate to non-butyrate in increased: 299:2,691 (10.0%)
+   - Ratio of butyrate to non-butyrate in decreased: 152:22,379 (0.7%)
+   - Highly significant association (p = 2e-288, χ2 = 1317)
+
+
+INTERPRETATION:
+---------------
+
+Both diseases show significant depletion of butyrate-producing microbes in
+disease-increased states compared to disease-decreased states. This supports
+the protective role of butyrate-producing bacteria in both inflammatory bowel
+disease and Parkinson's disease.
+
+The extremely low p-values (1e-142 for IBD, 2e-288 for PD) indicate these
+associations are highly statistically significant and unlikely to be due to
+chance.

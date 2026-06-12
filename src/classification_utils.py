@@ -102,7 +102,7 @@ def subset_by_features(input_dir, data_pairs, subject_prefix, features, intermed
 
     return data_pairs_clean
 
-def remove_conflicting_directionality(data_pairs):
+def remove_conflicting_directionality(data_pairs, disease_name=None):
 
     # Group by the 'subject' column and count unique values in the 'object' column for each group
     multiple_links = data_pairs.groupby('subject')['object'].nunique()
@@ -117,8 +117,18 @@ def remove_conflicting_directionality(data_pairs):
     r = len(subjects_with_multiple_links)/num_unique_values
 
     os.makedirs("./data/Intermediate_Files", exist_ok=True)
-    with open('./data/Intermediate_Files/Used_data_results.txt', 'w') as file:
-        file.write(f'Proportion of microbes both increased and decreased in IBD: {r}\n')
+    # When disease_name is provided (e.g. Classification_gold_standard_comparison
+    # iterating IBD then PD), write per-disease files so PD doesn't silently
+    # clobber IBD. Default to the legacy single-file path for other callers and
+    # derive the label from disease_name so legacy callers don't mis-label their
+    # disease as IBD when they were actually processing something else.
+    label = disease_name or 'unknown'
+    if disease_name:
+        results_path = f'./data/Intermediate_Files/Used_data_results_{disease_name}.txt'
+    else:
+        results_path = './data/Intermediate_Files/Used_data_results.txt'
+    with open(results_path, 'w') as file:
+        file.write(f'Proportion of microbes both increased and decreased in {label}: {r}\n')
 
         #Remove bugs that are associated with both increased and decreased Crohns
         file.write(f'Length before removing conflicting pairs: {len(data_pairs)}\n')

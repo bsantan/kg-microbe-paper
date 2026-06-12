@@ -1,0 +1,25 @@
+{
+    "schema_version": 2,
+    "kind": "strain_pair",
+    "feature_type": "classification_butyrate_produces_PD",
+    "outputs": [
+        {
+            "name": "classification_butyrate_produces_PD_microbes_strain.json",
+            "sha256": "9c7b5ebe0749a84e7d3a16f26f1541cc6566143d6d27bf43dbfaf134882bb0a1",
+            "size": 734431
+        },
+        {
+            "name": "classification_butyrate_produces_PD_microbes_species.json",
+            "sha256": "beff844ce660681b516fc2f1a72f3e1b0b965e89f2654383f3c13971e62f6db6",
+            "size": 482407
+        }
+    ],
+    "input_fingerprint": "762a82b98f846ccb1896e16e03bd766917a212c4f885d084839d8d13acfb6c61",
+    "code_version_marker": "search_strains:if-recurse-into-species:v1",
+    "git_head": "61542cf",
+    "git_dirty": true,
+    "created_utc": "2026-06-11T20:28:33+00:00",
+    "extra": {
+        "edge_table_sha256": "2aed38584a4ea9201af388a356ef5a19636ca11f76b61880e7e1ec8ff63525ae"
+    }
+}

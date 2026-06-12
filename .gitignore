@@ -38,3 +38,16 @@ tmp.json
 
 # SLURM job logs
 logs/
+
+# Documentation and notes directories (not tracked)
+docs/
+notes/
+
+# Reviewer/editor response files and review-related generated content (not tracked)
+revisions*/
+
+# Obsoleted response docx/md (superseded by Google Docs)
+ATTIC/
+
+# Reproducibility evidence bundles (regenerated per response, not tracked)
+data/evidence_bundles/

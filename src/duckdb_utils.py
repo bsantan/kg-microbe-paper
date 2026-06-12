@@ -20,13 +20,16 @@ def duckdb_load_table(con, file, table_name, columns):
     """Create a duckDB tables for any given graph."""
     columns_str = ", ".join(columns)
 
-    # Read the subset file into a DuckDB table
-    # Use ignore_errors=true to skip malformed lines with column count mismatches
+    # Read the subset file into a DuckDB table.
+    # null_padding=true: pad short rows with NULLs.
+    # ignore_errors=true: skip rows whose column count / types don't parse
+    # (some malformed lines exist in merged-kg_edges.tsv); without this flag
+    # a single bad row aborts the load.
     query = (
         f"""
     CREATE OR REPLACE TABLE {table_name} AS
     SELECT {columns_str}
-    FROM read_csv_auto('{file}', delim='\t', ignore_errors=true);
+    FROM read_csv_auto('{file}', delim='\t', null_padding=true, ignore_errors=true);
     """
     )
 

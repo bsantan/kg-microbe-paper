@@ -1,0 +1,44 @@
+Current_Path	NERSC_Path	Status	Category	Size_Diff_Bytes	Lines_Diff	Notes
+src/Classification_gold_standard_comparison.py	src/Classification_gold_standard_comparison.py	differs	scripts	79.0	0.0	Code file differs - see code_diff_summary.tsv
+src/Gold_standard_Competency_analysis.py	src/Gold_standard_Competency_analysis.py	differs	scripts	35.0	0.0	Code file differs - see code_diff_summary.tsv
+src/Process_competency_questions.py	src/Process_competency_questions.py	differs	scripts	20.0	0.0	Code file differs - see code_diff_summary.tsv
+src/Competencies.py	src/Competencies.py	differs	scripts	1059.0	19.0	Code file differs - see code_diff_summary.tsv
+src/constants.py	src/constants.py	differs	scripts	57.0	1.0	Code file differs - see code_diff_summary.tsv
+src/duckdb_utils.py	src/duckdb_utils.py	differs	scripts	102.0	1.0	Code file differs - see code_diff_summary.tsv
+src/ncbi_phylogeny_search.py	src/ncbi_phylogeny_search.py	differs	scripts	41.0	0.0	Code file differs - see code_diff_summary.tsv
+src/classification.py	src/classification.py	differs	scripts	26.0	0.0	Code file differs - see code_diff_summary.tsv
+src/classification_utils.py	src/classification_utils.py	differs	scripts	15.0	0.0	Code file differs - see code_diff_summary.tsv
+src/classification_permutations.py	src/classification_permutations.py	differs	scripts	81.0	0.0	Code file differs - see code_diff_summary.tsv
+src/Vital_gold_standard.py	src/Vital_gold_standard.py	identical	scripts	0.0	0.0	Files are identical (MD5 match)
+src/Functional_Annotations.py	src/Functional_Annotations.py	differs	scripts	13.0	0.0	Code file differs - see code_diff_summary.tsv
+src/Functional_Annotations_EC.py	src/Functional_Annotations_EC.py	differs	scripts	1.0	0.0	Code file differs - see code_diff_summary.tsv
+Makefile	Makefile	added_in_current	scripts			New file in current repository (not in NERSC)
+data/Intermediate_Files/outcome_to_NCBITaxon_cleaned_IBD.tsv	src/Intermediate_Files/outcome_to_NCBITaxon_cleaned_IBD.tsv	added_in_current	disease_outputs			New file in current repository (not in NERSC)
+data/Intermediate_Files/outcome_to_NCBITaxon_cleaned_PD.tsv	src/Intermediate_Files/outcome_to_NCBITaxon_cleaned_PD.tsv	added_in_current	disease_outputs			New file in current repository (not in NERSC)
+data/Intermediate_Files/outcome_to_NCBITaxon_cleaned_ranks_butyrate_production_IBD.csv	src/Intermediate_Files/outcome_to_NCBITaxon_cleaned_ranks_butyrate_production_IBD.csv	added_in_current	disease_outputs			New file in current repository (not in NERSC)
+data/Intermediate_Files/outcome_to_NCBITaxon_cleaned_ranks_butyrate_production_PD.csv	src/Intermediate_Files/outcome_to_NCBITaxon_cleaned_ranks_butyrate_production_PD.csv	added_in_current	disease_outputs			New file in current repository (not in NERSC)
+data/Intermediate_Files/IBD_Classification_butyrate_producers_summary.csv	src/Intermediate_Files/IBD_Classification_butyrate_producers_summary.csv	added_in_current	disease_outputs			New file in current repository (not in NERSC)
+data/Intermediate_Files/PD_Classification_butyrate_producers_summary.csv	src/Intermediate_Files/PD_Classification_butyrate_producers_summary.csv	added_in_current	disease_outputs			New file in current repository (not in NERSC)
+data/Intermediate_Files/classification_butyrate_produces_IBD_microbes_species.json	src/Intermediate_Files/classification_butyrate_produces_IBD_microbes_species.json	identical	disease_outputs	0.0	0.0	Files are identical (MD5 match)
+data/Intermediate_Files/classification_butyrate_produces_IBD_microbes_strain.json	src/Intermediate_Files/classification_butyrate_produces_IBD_microbes_strain.json	identical	disease_outputs	0.0	0.0	Files are identical (MD5 match)
+data/Intermediate_Files/classification_butyrate_produces_PD_microbes_species.json	src/Intermediate_Files/classification_butyrate_produces_PD_microbes_species.json	identical	disease_outputs	0.0	0.0	Files are identical (MD5 match)
+data/Intermediate_Files/classification_butyrate_produces_PD_microbes_strain.json	src/Intermediate_Files/classification_butyrate_produces_PD_microbes_strain.json	identical	disease_outputs	0.0	0.0	Files are identical (MD5 match)
+data/Intermediate_Files/All_Disease_Comparison_Ranks.png	src/Intermediate_Files/All_Disease_Comparison_Ranks.png	added_in_current	disease_outputs			New file in current repository (not in NERSC)
+data/Input_Files/Vital_etal_butyrate+producing_microbes.csv	src/Input_Files/Vital_etal_butyrate+producing_microbes.csv	missing_in_both	gold_standard			File path exists in code but file missing in both repos
+data/Intermediate_Files_Competencies/butyrate_produces/Gold_Standard_Species_Overlap_butyrate_produces.csv	src/Intermediate_Files_Competencies/butyrate_produces/Gold_Standard_Species_Overlap_butyrate_produces.csv	differs	gold_standard	-114605.0	1.0	Data file differs (+1 lines difference)
+data/Intermediate_Files_Competencies/butyrate_produces/NCBI_organismal_traits.tsv	src/Intermediate_Files_Competencies/butyrate_produces/NCBI_organismal_traits.tsv	differs	butyrate_competency	0.0	0.0	Data file differs (+0 lines difference)
+data/Intermediate_Files_Competencies/butyrate_produces/NCBI_organismal_traits_strains.tsv	src/Intermediate_Files_Competencies/butyrate_produces/NCBI_organismal_traits_strains.tsv	differs	butyrate_competency	0.0	0.0	Data file differs (+0 lines difference)
+data/Intermediate_Files_Competencies/butyrate_produces/NCBI_organismal_traits_strains_proteomes.tsv	src/Intermediate_Files_Competencies/butyrate_produces/NCBI_organismal_traits_strains_proteomes.tsv	differs	butyrate_competency	0.0	0.0	Data file differs (+0 lines difference)
+data/Intermediate_Files_Competencies/butyrate_produces/NCBI_genomic_traits_RHEA.tsv	src/Intermediate_Files_Competencies/butyrate_produces/NCBI_genomic_traits_RHEA.tsv	differs	butyrate_competency	4498.0	53.0	Data file differs (+53 lines difference)
+data/Intermediate_Files_Competencies/butyrate_produces/NCBI_genomic_traits_EC_pathway_1.tsv	src/Intermediate_Files_Competencies/butyrate_produces/NCBI_genomic_traits_EC_pathway_1.tsv	differs	butyrate_competency	0.0	0.0	Data file differs (+0 lines difference)
+data/Intermediate_Files_Competencies/butyrate_produces/NCBI_genomic_traits_EC_pathway_2.tsv	src/Intermediate_Files_Competencies/butyrate_produces/NCBI_genomic_traits_EC_pathway_2.tsv	differs	butyrate_competency	0.0	0.0	Data file differs (+0 lines difference)
+data/Intermediate_Files_Competencies/butyrate_produces/NCBI_genomic_traits_EC_pathway_3.tsv	src/Intermediate_Files_Competencies/butyrate_produces/NCBI_genomic_traits_EC_pathway_3.tsv	differs	butyrate_competency	0.0	0.0	Data file differs (+0 lines difference)
+data/Intermediate_Files_Competencies/butyrate_produces/NCBI_genomic_traits_EC_pathway_4.tsv	src/Intermediate_Files_Competencies/butyrate_produces/NCBI_genomic_traits_EC_pathway_4.tsv	differs	butyrate_competency	0.0	0.0	Data file differs (+0 lines difference)
+data/Intermediate_Files_Competencies/butyrate_produces/NCBI_genomic_traits_EC_pathway_5.tsv	src/Intermediate_Files_Competencies/butyrate_produces/NCBI_genomic_traits_EC_pathway_5.tsv	differs	butyrate_competency	0.0	0.0	Data file differs (+0 lines difference)
+data/Intermediate_Files_Competencies/butyrate_produces/NCBI_genomic_traits_EC_pathway_all.tsv	src/Intermediate_Files_Competencies/butyrate_produces/NCBI_genomic_traits_EC_pathway_all.tsv	differs	butyrate_competency	0.0	0.0	Data file differs (+0 lines difference)
+data/Intermediate_Files_Competencies/butyrate_produces/NCBI_organismal_genomic_rhea_comparison_species.tsv	src/Intermediate_Files_Competencies/butyrate_produces/NCBI_organismal_genomic_rhea_comparison_species.tsv	differs	butyrate_competency	0.0	0.0	Data file differs (+0 lines difference)
+data/Intermediate_Files_Competencies/butyrate_produces/NCBI_organismal_genomic_rhea_comparison_strains.tsv	src/Intermediate_Files_Competencies/butyrate_produces/NCBI_organismal_genomic_rhea_comparison_strains.tsv	differs	butyrate_competency	0.0	0.0	Data file differs (+0 lines difference)
+data/Intermediate_Files_Competencies/butyrate_produces/reaction_direction_dict.json	src/Intermediate_Files_Competencies/butyrate_produces/reaction_direction_dict.json	differs	butyrate_competency	228.0	8.0	Data file differs (+8 lines difference)
+data/Input_Files/merged-kg_edges_noEC.tsv	src/Input_Files/merged-kg_edges_noEC.tsv	missing_in_both	input_files			File path exists in code but file missing in both repos
+data/Input_Files/ncbitaxon_nodes.tsv	src/Input_Files/ncbitaxon_nodes.tsv	likely_identical	input_files	0.0	0.0	Files likely identical (same size, MD5 not computed for large file)
+data/Input_Files/ncbitaxon_rank.tsv	src/Input_Files/ncbitaxon_rank.tsv	missing_in_both	input_files			File path exists in code but file missing in both repos

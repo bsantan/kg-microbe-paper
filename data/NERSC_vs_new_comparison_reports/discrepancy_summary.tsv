@@ -1,0 +1,18 @@
+Category	Severity	Location	Description	Impact
+Data	Low	data/Intermediate_Files_Competencies/butyrate_produces/NCBI_organismal_traits.tsv	Row count differs by 0	May affect downstream competency analysis
+Data	Low	data/Intermediate_Files_Competencies/butyrate_produces/NCBI_organismal_traits_strains.tsv	Row count differs by 0	May affect downstream competency analysis
+Data	Low	data/Intermediate_Files_Competencies/butyrate_produces/NCBI_organismal_traits_strains_proteomes.tsv	Row count differs by 0	May affect downstream competency analysis
+Data	Medium	data/Intermediate_Files_Competencies/butyrate_produces/NCBI_genomic_traits_RHEA.tsv	Row count differs by 53	May affect downstream competency analysis
+Data	Low	data/Intermediate_Files_Competencies/butyrate_produces/NCBI_genomic_traits_EC_pathway_1.tsv	Row count differs by 0	May affect downstream competency analysis
+Data	Low	data/Intermediate_Files_Competencies/butyrate_produces/NCBI_genomic_traits_EC_pathway_2.tsv	Row count differs by 0	May affect downstream competency analysis
+Data	Low	data/Intermediate_Files_Competencies/butyrate_produces/NCBI_genomic_traits_EC_pathway_3.tsv	Row count differs by 0	May affect downstream competency analysis
+Data	Low	data/Intermediate_Files_Competencies/butyrate_produces/NCBI_genomic_traits_EC_pathway_4.tsv	Row count differs by 0	May affect downstream competency analysis
+Data	Low	data/Intermediate_Files_Competencies/butyrate_produces/NCBI_genomic_traits_EC_pathway_5.tsv	Row count differs by 0	May affect downstream competency analysis
+Data	Low	data/Intermediate_Files_Competencies/butyrate_produces/NCBI_genomic_traits_EC_pathway_all.tsv	Row count differs by 0	May affect downstream competency analysis
+Data	Low	data/Intermediate_Files_Competencies/butyrate_produces/NCBI_organismal_genomic_rhea_comparison_species.tsv	Row count differs by 0	May affect downstream competency analysis
+Data	Low	data/Intermediate_Files_Competencies/butyrate_produces/NCBI_organismal_genomic_rhea_comparison_strains.tsv	Row count differs by 0	May affect downstream competency analysis
+Data	Low	data/Intermediate_Files_Competencies/butyrate_produces/reaction_direction_dict.json	Row count differs by 8	May affect downstream competency analysis
+Data	Low	Gold_Standard_Species_Overlap_butyrate_produces.csv	Functional_Protein_Name column: UniprotKB IDs (current) vs protein names (NERSC)	Structure changed but semantic content preserved
+Workflow	High	NERSC repository	Figure 6 disease classification outputs not present in NERSC repo	NERSC snapshot predates final analysis run; current repo is source of truth
+Code	Low	Multiple Python scripts	Path updates for data/ reorganization	Expected organizational change, no logic impact
+Data	Medium	Knowledge graph input	KG version: kg-microbe-biomedical (NERSC) vs kg-microbe-biomedical-function-cat (current)	Need to verify which version was used for publication

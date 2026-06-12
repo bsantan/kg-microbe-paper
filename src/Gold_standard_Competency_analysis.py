@@ -16,7 +16,7 @@ import tqdm
 from duckdb_utils import duckdb_load_table, get_node_label
 from Competencies import convert_to_species
 from constants import ALL_DIRECTIONS, ALL_METABOLITES, GUT_FAMILIES_LIST, GUT_PHYLA_LIST
-from ncbi_phylogeny_search import find_microbes_family, find_microbes_phylum, find_microbes_rank, find_microbes_strain, get_all_ranks, get_ncbitaxon_with_uniprot
+from ncbi_phylogeny_search import find_microbes_rank, find_microbes_strain, get_all_ranks, get_ncbitaxon_with_uniprot, precompute_parent_hierarchy
 
 import plotly.express as px
 import plotly.io as pio
@@ -292,14 +292,21 @@ def main():
             duckdb_load_table(conn, "./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv", "edges", ["subject", "predicate", "object"])
             duckdb_load_table(conn, "./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_nodes.tsv", "nodes", ["id", "name"])
 
+            # Pre-compute parent hierarchy for massive performance improvement
+            print("\n" + "="*80)
+            print("OPTIMIZATION: Pre-computing parent hierarchy for upward taxonomy traversal")
+            print("This replaces thousands of DuckDB queries with dictionary lookups")
+            print("="*80 + "\n")
+            parent_hierarchy = precompute_parent_hierarchy(conn)
+
             # First create list of colors that will be used in every treemap to align family boxes
             all_microbes_list = gs_analysis_microbes_df["Value"].unique().tolist()
-            # Get genus of each bug
-            microbes_genus_dict = find_microbes_rank(conn, ncbi_taxa_ranks_df, all_microbes_list, phylogeny_output_dir, "/Gold_Standard_Species_Overlap_all_"+ metabolite + "_" + direction, "genus")
+            # Get genus of each bug (now optimized with pre-computed hierarchy)
+            microbes_genus_dict = find_microbes_rank(conn, ncbi_taxa_ranks_df, all_microbes_list, phylogeny_output_dir, "/Gold_Standard_Species_Overlap_all_"+ metabolite + "_" + direction, "genus", parent_hierarchy)
             # Get family of each bug
-            microbes_family_dict = find_microbes_rank(conn, ncbi_taxa_ranks_df, all_microbes_list, phylogeny_output_dir, "/Gold_Standard_Species_Overlap_all_"+ metabolite + "_" + direction, "family")
+            microbes_family_dict = find_microbes_rank(conn, ncbi_taxa_ranks_df, all_microbes_list, phylogeny_output_dir, "/Gold_Standard_Species_Overlap_all_"+ metabolite + "_" + direction, "family", parent_hierarchy)
             # Get phylum of each bug
-            microbes_phylum_dict = find_microbes_rank(conn, ncbi_taxa_ranks_df, all_microbes_list, phylogeny_output_dir, "/Gold_Standard_Species_Overlap_all_"+ metabolite + "_" + direction, "phylum")
+            microbes_phylum_dict = find_microbes_rank(conn, ncbi_taxa_ranks_df, all_microbes_list, phylogeny_output_dir, "/Gold_Standard_Species_Overlap_all_"+ metabolite + "_" + direction, "phylum", parent_hierarchy)
 
             all_microbes_df = post_competency_analysis(conn, metabolite, direction, microbes_family_dict, microbes_phylum_dict, microbes_genus_dict, ncbi_taxa_ranks_df, all_microbes_list, metab_direction_output_dir, "all_microbes", pd.DataFrame(columns = ["Value"]))
             families_list = all_microbes_df['Family'].unique().tolist()

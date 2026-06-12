@@ -1,0 +1,28 @@
+{
+  "IBD": {
+    "current": {
+      "Num_Decreased_disease_Total": 3036.0,
+      "Num_Increased_disease_Total": 7764.0,
+      "Num_Decreased_disease_Butyrate_Producers": 478.0,
+      "Num_Increased_disease_Butyrate_Producers": 186.0,
+      "chi2": 671.6827574772602,
+      "P_Val": 4.301859210585492e-148
+    },
+    "nersc": null,
+    "current_exists": true,
+    "nersc_exists": false
+  },
+  "PD": {
+    "current": {
+      "Num_Decreased_disease_Total": 1240.0,
+      "Num_Increased_disease_Total": 7401.0,
+      "Num_Decreased_disease_Butyrate_Producers": 302.0,
+      "Num_Increased_disease_Butyrate_Producers": 150.0,
+      "chi2": 1063.5953362765647,
+      "P_Val": 2.699925100350924e-233
+    },
+    "nersc": null,
+    "current_exists": true,
+    "nersc_exists": false
+  }
+}

@@ -8,17 +8,28 @@ likelihood directions, so the summed counts are not independent observations
 under the chi-square model.
 
 This script does NOT alter the published outputs. It re-runs the test under
-four scenarios so the response can disclose the multiplicity transparently:
+five scenarios so the response can disclose the multiplicity transparently:
 
   A0 - Published baseline: replays the per-parent sum exactly (self-check).
   A1 - Globally-unique strains per disease: each strain counted once;
        cross-bin overlaps assigned to the first-seen direction (with the
        drop-count reported).
-  A2 - Unique strains, conflicting overlaps removed entirely.
+  A2 - Unique strains, conflicting overlaps removed entirely. NOTE: dropping
+       conflicts is not statistically neutral — the conflict bucket has a
+       producer fraction much closer to the increased-only bin than the
+       decreased-only bin, so excluding it inflates the apparent
+       decreased-likelihood enrichment. A2 also dedups exact NCBITaxon IDs
+       only; sibling/descendant phylogenetic clustering still violates
+       chi-square independence. See A2_keep_overlaps for the conservative
+       inclusion and A3 for the cluster-aware test.
+  A2_keep_overlaps - Same unique-descendant unit as A2, but retains cross-
+       direction conflict descendants in BOTH bins. Discloses the bias
+       introduced by A2's drop-conflicts choice.
   A3 - Cluster permutation test: permutes parent -> direction labels while
        keeping each parent's strain bundle intact, then reports the empirical
        p-value vs the observed A0 chi-square. This is cluster-aware in the
-       sense that it respects the (parent -> strain set) hierarchy.
+       sense that it respects the (parent -> strain set) hierarchy, which
+       is what A0/A1/A2/A2_keep_overlaps' chi-square cannot address.
 
 Diagnostics CSV reports the multiplicity numbers (total occurrences vs
 unique strains, cross-bin overlap counts, cross-parent fan-out histogram).
@@ -43,10 +54,14 @@ INTERMEDIATE_DIR = "./data/Intermediate_Files"
 COMPETENCIES_DIR = "./data/Intermediate_Files_Competencies/butyrate_produces"
 GOLD_STANDARD_CSV = COMPETENCIES_DIR + "/Gold_Standard_Species_Overlap_butyrate_produces.csv"
 
-# Match the publication: A0 chi2 must agree with these values to 10 decimals
-# (this is the self-check; mismatch means the sensitivity script is reading
-# something different from what the figure depended on).
-PUBLISHED_BASELINE = {
+# Historical A0 self-check anchors. The PUBLISHED Figure 6C chi-square is the
+# deduplicated A2 contingency (IBD 497.26, PD 918.80; see
+# data/Intermediate_Files/{IBD,PD}_Classification_butyrate_producers_summary.csv).
+# A0 below is the per-parent baseline used for reproducibility self-check only:
+# A2 derives from the same strain/species enumeration that produces A0, so if
+# A0 here does not match these values to 10 decimals, the sensitivity script is
+# reading enumeration outputs different from what A2 depends on.
+A0_SELF_CHECK_BASELINE = {
     "IBD": {"chi2": 674.6307631130468},
     "PD": {"chi2": 1337.3569687912984},
 }
@@ -217,7 +232,17 @@ def compute_a1(per_parent, producers, disease: str):
 
 def compute_a2(per_parent, producers, disease: str):
     """Unique descendants per disease, dropping any descendant that appeared in
-    both directions."""
+    both directions.
+
+    Note: dropping conflicts is *not* statistically neutral here. The conflict
+    bucket has a producer fraction (~1.4 %% IBD, ~0.9 %% PD) much closer to the
+    increased-only bin than the decreased-only bin, so excluding it inflates
+    the apparent decreased-likelihood enrichment. The A2_keep_overlaps scenario
+    below retains conflicts in both bins so reviewers can see the chi-square
+    under the more conservative inclusion. A2 also dedups exact NCBITaxon IDs
+    only — sibling/descendant phylogenetic clustering still violates
+    chi-square independence; see A3 for the cluster-aware permutation test.
+    """
     direction_sets = defaultdict(set)
     for entry in per_parent:
         for desc in entry["descendants"]:
@@ -243,6 +268,42 @@ def compute_a2(per_parent, producers, disease: str):
         "dof": dof,
         "contingency": str(table),
         "conflicting_descendants_excluded": len(conflicting),
+    }
+
+
+def compute_a2_keep_overlaps(per_parent, producers, disease: str):
+    """Unique descendants per disease, retaining cross-direction conflicts in
+    BOTH bins (no dedup of overlaps). Discloses how non-neutral A2's
+    drop-conflicts choice is: conflict descendants have a producer fraction
+    between the two pure bins, so dropping them strengthens the apparent
+    enrichment in the decreased-likelihood direction. Keeping them in both bins
+    is the conservative inclusion of the same unique-descendant unit.
+    """
+    direction_sets = defaultdict(set)
+    for entry in per_parent:
+        for desc in entry["descendants"]:
+            direction_sets[entry["direction"]].add(desc)
+    inc = direction_sets["increased"]
+    dec = direction_sets["decreased"]
+    overlap = inc & dec
+    inc_prod = sum(1 for k in inc if k in producers)
+    dec_prod = sum(1 for k in dec if k in producers)
+    overlap_prod = sum(1 for k in overlap if k in producers)
+    table = [[inc_prod, len(inc) - inc_prod], [dec_prod, len(dec) - dec_prod]]
+    chi2, pval, dof, _ = chi2_contingency(table)
+    return {
+        "scenario": "A2_keep_overlaps_unique_strains_both_bins",
+        "unit": "unique descendant, conflicts retained in both bins",
+        "increased_total": len(inc),
+        "increased_producers": inc_prod,
+        "decreased_total": len(dec),
+        "decreased_producers": dec_prod,
+        "chi2": chi2,
+        "pval": pval,
+        "dof": dof,
+        "contingency": str(table),
+        "conflict_descendants_retained": len(overlap),
+        "conflict_producers_retained": overlap_prod,
     }
 
 
@@ -353,22 +414,25 @@ def run_disease(disease: str, producers: set) -> None:
 
     a0 = compute_a0(ranks_df)
 
-    # Self-check vs published baseline (10-decimal match)
-    expected = PUBLISHED_BASELINE[disease]["chi2"]
+    # Self-check vs historical A0 baseline (10-decimal match). Note: A0 is the
+    # reproducibility anchor here, not the published Figure 6C chi-square (that
+    # is A2, derived from the same enumeration A0 sums per-parent).
+    expected = A0_SELF_CHECK_BASELINE[disease]["chi2"]
     if abs(a0["chi2"] - expected) > 1e-9:
         print(f"  ⚠ A0 chi2 self-check FAILED for {disease}: "
-              f"computed {a0['chi2']:.10f} vs published {expected:.10f}")
+              f"computed {a0['chi2']:.10f} vs A0 baseline {expected:.10f}")
     else:
         print(f"  ✓ A0 chi2 self-check OK for {disease}: {a0['chi2']:.10f}")
 
     a1 = compute_a1(per_parent, producers, disease)
     a2 = compute_a2(per_parent, producers, disease)
+    a2_keep = compute_a2_keep_overlaps(per_parent, producers, disease)
     a3 = compute_a3(ranks_df)
     print(f"  A3 cluster permutation ({disease}): chi2={a3['chi2']:.4f}, "
           f"{a3['n_permutations_ge_observed']}/{a3['n_permutations']} >= observed, "
           f"empirical p={a3['pval']:.3e}")
 
-    rows = [a0, a1, a2, a3]
+    rows = [a0, a1, a2, a2_keep, a3]
     cols = [
         "scenario", "unit", "increased_total", "increased_producers",
         "decreased_total", "decreased_producers", "chi2", "pval", "dof",
@@ -378,6 +442,7 @@ def run_disease(disease: str, producers: set) -> None:
         "dropped_from_increased_due_to_overlap",
         "dropped_from_decreased_due_to_overlap",
         "conflicting_descendants_excluded",
+        "conflict_descendants_retained", "conflict_producers_retained",
         "n_permutations", "permutation_seed", "n_permutations_ge_observed",
     ]
     sens_df = pd.DataFrame(rows)

@@ -13,8 +13,15 @@ from _cache_utils import (
     atomic_write_json,
     cache_is_valid,
     compute_input_fingerprint,
+    source_file_sha256,
     write_manifest,
 )
+
+# Edge table that drives all descendant enumeration. Its sha256 feeds the
+# cache fingerprint so a swapped KG release with identical taxa/ranks but
+# different subclass edges invalidates strain/species caches instead of
+# silently serving stale JSON.
+NCBITAXON_EDGES_PATH = "./data/Input_Files/kg-microbe-biomedical-function-cat/merged-kg_edges_ncbitaxon.tsv"
 
 # When set truthy (e.g. KGM_FORCE_STRAIN_REGEN=1), find_microbes_strain/species
 # recompute their classification JSONs from scratch instead of loading a cached
@@ -299,10 +306,15 @@ def search_strains(conn_or_hierarchy, rank_lookup, microbe, strains_found, speci
             continue
         # A species node is recorded AND descent continues into its children, so
         # strains nested under a species are enumerated too. This is intentional:
-        # it reproduces the published Figure 6C contingency counts exactly
-        # (IBD chi2=674.63, PD chi2=1337.36) and matches the strain-level design of
-        # the classification (Classification_gold_standard_comparison.py prefers
-        # Num_Strains, falling back to Num_Species only when a taxon has 0 strains).
+        # it reproduces the per-parent A0 self-check (IBD chi2=674.63, PD
+        # chi2=1337.36; the historical baseline used by figure6_sensitivity_analysis.py)
+        # and matches the strain-level design of the classification
+        # (Classification_gold_standard_comparison.py prefers Num_Strains, falling
+        # back to Num_Species only when a taxon has 0 strains). The published
+        # Figure 6C statistic itself is the deduplicated A2 contingency (IBD
+        # chi2=497.26, PD chi2=918.80), but A2 derives FROM the strain/species
+        # enumeration this loop produces — so the enumeration counts must match
+        # A0 for the downstream A2 numbers to be reproducible.
         # A prior code-review change (4195edb) made this an `elif`, which stops at
         # the species rank, silently dropped strains-under-species, and shrank the
         # totals (IBD->1201, PD->642). Do NOT reintroduce the `elif` without
@@ -593,7 +605,9 @@ def find_microbes_strain(conn, ncbi_taxa_ranks_df, all_taxa, output_dir, feature
 
     print("Getting strain for all taxa: " + feature_type)
 
-    expected_fp = compute_input_fingerprint(all_taxa, feature_type, ncbi_taxa_ranks_df)
+    expected_fp = compute_input_fingerprint(
+        all_taxa, feature_type, ncbi_taxa_ranks_df, edge_table_path=NCBITAXON_EDGES_PATH
+    )
     if FORCE_STRAIN_REGEN:
         valid, reason = False, "KGM_FORCE_STRAIN_REGEN=1"
     else:
@@ -623,6 +637,7 @@ def find_microbes_strain(conn, ncbi_taxa_ranks_df, all_taxa, output_dir, feature
             output_paths=[microbes_traits_strain_file, microbes_traits_species_file],
             input_fingerprint=expected_fp,
             code_version_marker=SEARCH_STRAINS_CODE_VERSION_MARKER,
+            extra={"edge_table_sha256": source_file_sha256(NCBITAXON_EDGES_PATH)},
         )
     else:
         print(f"ℹ cache valid: loaded strain+species for {feature_type} from {microbes_traits_strain_file}")
@@ -642,7 +657,9 @@ def find_microbes_species(conn, ncbi_taxa_ranks_df, all_taxa, output_dir, featur
 
     print("Getting species for all taxa: " + feature_type)
 
-    expected_fp = compute_input_fingerprint(all_taxa, feature_type, ncbi_taxa_ranks_df)
+    expected_fp = compute_input_fingerprint(
+        all_taxa, feature_type, ncbi_taxa_ranks_df, edge_table_path=NCBITAXON_EDGES_PATH
+    )
     if FORCE_STRAIN_REGEN:
         valid, reason = False, "KGM_FORCE_STRAIN_REGEN=1"
     else:
@@ -661,7 +678,7 @@ def find_microbes_species(conn, ncbi_taxa_ranks_df, all_taxa, output_dir, featur
         for microbe in tqdm.tqdm(all_taxa): #["NCBITaxon:853"]:#tqdm.tqdm(relevant_ncbitaxa):
             microbe_rank = ncbi_taxa_ranks_df.set_index("NCBITaxon_ID")["Rank"].get(microbe, None)
             if microbe_rank in ("subspecies", "strain"):
-                microbes_traits_species = get_microbe_species(conn, microbe, species, microbes_traits_species,first_call=True)
+                microbes_traits_species = get_microbe_species(conn, microbe, species, microbes_traits_species)
             elif microbe_rank is None:
                 print("Rank not found")
                 print(microbe)
@@ -675,6 +692,7 @@ def find_microbes_species(conn, ncbi_taxa_ranks_df, all_taxa, output_dir, featur
             output_paths=[microbes_traits_species_file],
             input_fingerprint=expected_fp,
             code_version_marker=SEARCH_STRAINS_CODE_VERSION_MARKER,
+            extra={"edge_table_sha256": source_file_sha256(NCBITAXON_EDGES_PATH)},
         )
     else:
         print(f"ℹ cache valid: loaded species for {feature_type} from {microbes_traits_species_file}")

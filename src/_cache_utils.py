@@ -18,7 +18,7 @@ import tempfile
 from datetime import datetime, timezone
 from typing import Iterable
 
-MANIFEST_SCHEMA_VERSION = 1
+MANIFEST_SCHEMA_VERSION = 2
 
 
 def _sha256_bytes(data: bytes) -> str:
@@ -31,6 +31,30 @@ def sha256_file(path: str) -> str:
         for chunk in iter(lambda: f.read(1 << 20), b""):
             h.update(chunk)
     return h.hexdigest()
+
+
+_SOURCE_FILE_SHA_CACHE: dict[str, tuple[float, int, str]] = {}
+
+
+def source_file_sha256(path: str) -> str:
+    """sha256 a large source file, cached per process by (path, mtime, size).
+
+    Used to fingerprint inputs that drive cache validity but are too big to
+    re-hash on every call (e.g. ``merged-kg_edges_ncbitaxon.tsv``, ~45 MB).
+    Recomputes if mtime or size changes. Returns "missing" if the file
+    is absent so the fingerprint changes meaningfully rather than crashing
+    callers that catch and fall back.
+    """
+    try:
+        st = os.stat(path)
+    except OSError:
+        return "missing"
+    cached = _SOURCE_FILE_SHA_CACHE.get(path)
+    if cached and cached[0] == st.st_mtime and cached[1] == st.st_size:
+        return cached[2]
+    sha = sha256_file(path)
+    _SOURCE_FILE_SHA_CACHE[path] = (st.st_mtime, st.st_size, sha)
+    return sha
 
 
 def get_git_head(repo_dir: str | None = None) -> tuple[str, bool]:
@@ -48,12 +72,20 @@ def get_git_head(repo_dir: str | None = None) -> tuple[str, bool]:
         return "unknown", False
 
 
-def compute_input_fingerprint(all_taxa, feature_type: str, ranks_df, extra: dict | None = None) -> str:
+def compute_input_fingerprint(
+    all_taxa,
+    feature_type: str,
+    ranks_df,
+    extra: dict | None = None,
+    edge_table_path: str | None = None,
+) -> str:
     """Hash the inputs that, if changed, should invalidate the cache.
 
     Includes: feature_type, taxa count + sorted-taxa sha, ranks_df shape + a
-    sha of the sorted (taxon, rank) pairs that intersect all_taxa. Output
-    sha256 is independent (validated separately on load).
+    sha of the sorted (taxon, rank) pairs that intersect all_taxa, and (when
+    ``edge_table_path`` is supplied) a sha of the underlying NCBITaxon
+    subclass edge file that drives descendant enumeration. Output sha256 is
+    independent (validated separately on load).
     """
     taxa_list = sorted(str(t) for t in (all_taxa or []))
     taxa_sha = _sha256_bytes(("\n".join(taxa_list)).encode("utf-8"))
@@ -75,6 +107,8 @@ def compute_input_fingerprint(all_taxa, feature_type: str, ranks_df, extra: dict
         "ranks_shape": ranks_shape,
         "ranks_sample_sha256": ranks_sha,
     }
+    if edge_table_path is not None:
+        payload["edge_table_sha256"] = source_file_sha256(edge_table_path)
     if extra:
         payload["extra"] = extra
     return _sha256_bytes(json.dumps(payload, sort_keys=True).encode("utf-8"))

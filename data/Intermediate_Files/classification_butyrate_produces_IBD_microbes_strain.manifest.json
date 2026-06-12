@@ -1,5 +1,5 @@
 {
-    "schema_version": 1,
+    "schema_version": 2,
     "kind": "strain_pair",
     "feature_type": "classification_butyrate_produces_IBD",
     "outputs": [
@@ -14,9 +14,12 @@
             "size": 828081
         }
     ],
-    "input_fingerprint": "addec54d8759a102a38c507af051d2588878fc5e03d4cb16a8f2756420d760f3",
+    "input_fingerprint": "32702e69d7d67c8f2ba460a9c422f3849efc1591771aa11c0c80c7d905c1fbf1",
     "code_version_marker": "search_strains:if-recurse-into-species:v1",
-    "git_head": "a910aa9",
+    "git_head": "61542cf",
     "git_dirty": true,
-    "created_utc": "2026-06-01T18:28:29+00:00"
+    "created_utc": "2026-06-11T19:52:31+00:00",
+    "extra": {
+        "edge_table_sha256": "2aed38584a4ea9201af388a356ef5a19636ca11f76b61880e7e1ec8ff63525ae"
+    }
 }
